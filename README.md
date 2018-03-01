@@ -2,7 +2,7 @@
 Mango is a DSL which syntax is very like to Objective-C，Mango is also an iOS  App hotfix SDK. You can use Mango method replace any Objective-C method.
 
 
-# Example
+## Example
 ```objc
 import "AppDelegate.h"
 #import "mango.h"
@@ -48,13 +48,13 @@ class ViewController:UIViewController{
 
 ```
 
-# Installation
+## Installation
 
-# Usage
-## Objective-C
+## Usage
+### Objective-C
 
-1. #import "mango.h"
-2. exec Mango Script by [context evalAnanasScriptWithSourceString:@""];
+1. `#import "mango.h"`
+2. `exec Mango Script by [context evalAnanasScriptWithSourceString:@""];`
 
 ```objc
 MMANontext *context = [[MMANontext alloc] init];
