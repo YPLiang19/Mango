@@ -30,8 +30,6 @@
 @end
 
 @implementation MANTernaryExpression
-
-
 @end
 
 @implementation MANUnaryExpression
@@ -44,7 +42,10 @@
 @implementation MANFunctonCallExpression
 @end
 
-@implementation MANIndexExpression
+@implementation MANSubScriptExpression
+@end
+
+@implementation MANStructEntry
 @end
 
 @implementation MANStructpression

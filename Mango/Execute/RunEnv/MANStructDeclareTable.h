@@ -1,5 +1,5 @@
 //
-//  ANANASStructDeclareTable.h
+//  MANStructDeclareTable.h
 //  ananasExample
 //
 //  Created by jerry.yong on 2018/2/24.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MANStructDeclare.h"
 
-@interface ANANASStructDeclareTable : NSObject
+@interface MANStructDeclareTable : NSObject
 + (instancetype)shareInstance;
 
 - (void)addStructDeclare:(MANStructDeclare *)structDeclare;

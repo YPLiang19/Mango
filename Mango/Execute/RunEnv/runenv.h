@@ -9,8 +9,8 @@
 #ifndef runenv_h
 #define runenv_h
 
-#import "ANANASMethodMapTable.h"
-#import "ANANASStructDeclareTable.h"
+#import "MANMethodMapTable.h"
+#import "MANStructDeclareTable.h"
 #import "MANBlock.h"
 #import "MANValue.h"
 #import "MANStack.h"

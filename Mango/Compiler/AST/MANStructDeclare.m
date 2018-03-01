@@ -11,6 +11,9 @@
 @implementation MANStructDeclare
 - (instancetype)initWithName:(NSString *)name typeEncoding:(const char *)typeEncoding keys:(NSArray<NSString *> *)keys{
 	if (self = [super init]) {
+		if ([name isEqualToString:@"NSRange"]) {
+			name = @"_NSRange";
+		}
 		_name = name;
 		_typeEncoding = typeEncoding;
 		_keys = keys;

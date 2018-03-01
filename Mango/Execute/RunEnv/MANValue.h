@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)assign2CValuePointer:(void *)cvaluePointer typeEncoding:(const char *)typeEncoding;
 - (instancetype)initWithCValuePointer:(void *)cValuePointer typeEncoding:(const char *)typeEncoding;
 
+
 + (instancetype)defaultValueWithTypeEncoding:(const char *)typeEncoding;
 + (instancetype)voidValueInstance;
 + (instancetype)valueInstanceWithBOOL:(BOOL)boolValue;

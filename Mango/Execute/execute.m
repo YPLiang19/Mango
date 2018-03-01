@@ -40,11 +40,10 @@ static MANValue *default_value_with_type_specifier(MANInterpreter *inter, MANTyp
 
 
 static void execute_declaration(MANInterpreter *inter, MANScopeChain *scope, MANDeclaration *declaration){
-	MANValue *value;
+	MANValue *value = default_value_with_type_specifier(inter, declaration.type);
 	if (declaration.initializer) {
-		value = ane_eval_expression(inter, scope, declaration.initializer);
-	}else{
-		value = default_value_with_type_specifier(inter, declaration.type);
+		MANValue *initValue = ane_eval_expression(inter, scope, declaration.initializer);
+		[value assignFrom:initValue];
 	}
 	scope.vars[declaration.name] = value;
 }
@@ -177,7 +176,7 @@ static MANStatementResult *execute_for_each_statement(MANInterpreter *inter, MAN
 	
 	for (id var in arrValue.objectValue) {
 		MANValue *operValue = [[MANValue alloc] init];
-		operValue.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+		operValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 		operValue.objectValue = var;
 		mango_assign_value_to_identifer_expr(inter, forScope, statement.identifierExpr.identifier, operValue);
 		
@@ -557,7 +556,7 @@ static void mango_forward_invocation(__unsafe_unretained id assignSlf, SEL sel, 
 {
 	
 	BOOL classMethod = object_isClass(assignSlf);
-	MANMethodMapTableItem *map = [[ANANASMethodMapTable shareInstance] getMethodMapTableItemWith:classMethod ? assignSlf : [assignSlf class] classMethod:classMethod sel:invocation.selector];
+	MANMethodMapTableItem *map = [[MANMethodMapTable shareInstance] getMethodMapTableItemWith:classMethod ? assignSlf : [assignSlf class] classMethod:classMethod sel:invocation.selector];
 	MANMethodDefinition *method = map.method;
 	MANInterpreter *inter = map.inter;
 	
@@ -600,7 +599,7 @@ static void replace_method(MANInterpreter *interpreter,Class clazz, MANMethodDef
 	SEL sel = NSSelectorFromString(func.name);
 	
 	MANMethodMapTableItem *item = [[MANMethodMapTableItem alloc] initWithClass:clazz inter:interpreter method:method];
-	[[ANANASMethodMapTable shareInstance] addMethodMapTableItem:item];
+	[[MANMethodMapTable shareInstance] addMethodMapTableItem:item];
 	
 	
 	
@@ -653,7 +652,7 @@ void add_struct_declare(MANInterpreter *interpreter, MANStructDeclare *structDec
 			return;
 		}
 	}
-	ANANASStructDeclareTable *table = [ANANASStructDeclareTable shareInstance];
+	MANStructDeclareTable *table = [MANStructDeclareTable shareInstance];
 	[table addStructDeclare:structDeclaer];
 }
 

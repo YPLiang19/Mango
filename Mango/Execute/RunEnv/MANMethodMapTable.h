@@ -1,5 +1,5 @@
 //
-//  ANANASMethodMapTable.h
+//  MANMethodMapTable.h
 //  ananasExample
 //
 //  Created by jerry.yong on 2018/2/23.
@@ -19,7 +19,7 @@
 
 @end
 
-@interface ANANASMethodMapTable : NSObject
+@interface MANMethodMapTable : NSObject
 
 + (instancetype)shareInstance;
 

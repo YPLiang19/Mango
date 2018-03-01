@@ -19,16 +19,16 @@ typedef NS_ENUM(NSUInteger, ANATypeSpecifierKind) {
 	MAN_TYPE_SEL,
 	MAN_TYPE_OBJECT,
 	MAN_TYPE_BLOCK,
-	MAN_TYPE_mango_BLOCK,
 	MAN_TYPE_STRUCT,
 	MAN_TYPE_STRUCT_LITERAL,
 	MAN_TYPE_POINTER
 };
 @interface MANTypeSpecifier : NSObject
 @property (copy, nonatomic) NSString *structName;
+@property (assign, nonatomic, readonly) size_t structSize;
 @property (copy, nonatomic) NSString *typeName;
 @property (assign, nonatomic) ANATypeSpecifierKind typeKind;
-- (const char *)typeEncoding;
+@property (assign, nonatomic, readonly) const char * typeEncoding;
 
 
 @end

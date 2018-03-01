@@ -8,7 +8,7 @@
 
 #import "MANValue.h"
 #import "MANTypeSpecifier.h"
-#import "ANANASStructDeclareTable.h"
+#import "MANStructDeclareTable.h"
 #import "create.h"
 #import "util.h"
 
@@ -79,20 +79,47 @@
 }
 
 - (void)assignFrom:(MANValue *)src{
-	
-	_type = src.type;
-	_uintValue = src.uintValue;
-	_integerValue = src.integerValue;
-	_doubleValue = src.doubleValue;
-	_classValue = src.classValue;
-	_selValue = src.selValue;
-	_objectValue = src.objectValue;
-	_pointerValue = src.pointerValue;
-	if (src.cstringValue) {
-		char *cstringValue = malloc(strlen(src.cstringValue));
-		strcpy(cstringValue, src.cstringValue);
-		_cstringValue = cstringValue;
+	switch (_type.typeKind) {
+		case MAN_TYPE_BOOL:
+		case MAN_TYPE_U_INT:
+			_uintValue = [src c2uintValue];
+			break;
+		case MAN_TYPE_INT:
+			_integerValue = [src c2integerValue];
+			break;
+		case MAN_TYPE_DOUBLE:
+			_doubleValue = [src c2doubleValue];
+			break;
+		case MAN_TYPE_SEL:
+			_selValue = [src selValue];
+			break;
+		case MAN_TYPE_BLOCK:
+		case MAN_TYPE_OBJECT:
+			_objectValue = [src c2objectValue];
+			break;
+		case MAN_TYPE_CLASS:
+			_classValue = [src c2objectValue];
+			break;
+		case MAN_TYPE_POINTER:
+			_pointerValue = [src c2pointerValue];
+			break;
+		case MAN_TYPE_C_STRING:
+			_cstringValue = [src c2pointerValue];
+			break;
+		case MAN_TYPE_STRUCT:
+			if (src.type.typeKind == MAN_TYPE_STRUCT) {
+				memcpy(_pointerValue, src.pointerValue, _type.structSize);
+			}else if (src.type.typeKind == MAN_TYPE_STRUCT_LITERAL){
+				MANStructDeclareTable *table = [MANStructDeclareTable shareInstance];
+				MANStructDeclare *declare = [table getStructDeclareWithName:self.type.structName];
+				mango_struct_data_with_dic(self.pointerValue, src.objectValue, declare);
+			}
+			break;
+		default:
+			NSCAssert(0, @"");
+			break;
 	}
+	
 }
 
 
@@ -219,7 +246,7 @@ break;\
 				memcpy(cvaluePointer, self.pointerValue, structSize);
 			}else if (_type.typeKind == MAN_TYPE_STRUCT_LITERAL){
 				NSString *structName = mango_struct_name_with_encoding(typeEncoding);
-				ANANASStructDeclareTable *table = [ANANASStructDeclareTable shareInstance];
+				MANStructDeclareTable *table = [MANStructDeclareTable shareInstance];
 				mango_struct_data_with_dic(cvaluePointer, _objectValue, [table getStructDeclareWithName:structName]);
 			}
 			break;
@@ -240,7 +267,7 @@ break;\
 	
 #define ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE(_code,_kind, _type,_sel)\
 case _code:{\
-retValue.type = anc_create_type_specifier(_kind);\
+retValue.type = man_create_type_specifier(_kind);\
 retValue._sel = *(_type *)cValuePointer;\
 break;\
 }
@@ -264,13 +291,13 @@ break;\
 			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('*',MAN_TYPE_C_STRING, char *,cstringValue)
 			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('#',MAN_TYPE_CLASS, Class,classValue)
 		case '@':{
-			retValue.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+			retValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 			retValue.objectValue = (__bridge id)(*(void **)cValuePointer);
 			break;
 		}
 		case '{':{
 			NSString *structName = mango_struct_name_with_encoding(typeEncoding);
-			retValue.type= anc_create_struct_type_specifier(structName);
+			retValue.type= man_create_struct_type_specifier(structName);
 			size_t size = mango_size_with_encoding(typeEncoding);
 			retValue.pointerValue = malloc(size);
 			memcpy(retValue.pointerValue, cValuePointer, size);
@@ -290,64 +317,64 @@ break;\
 	MANValue *value = [[MANValue alloc] init];
 	switch (*typeEncoding) {
 		case 'c':
-			value.type = anc_create_type_specifier(MAN_TYPE_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_INT);
 			break;
 		case 'i':
-			value.type = anc_create_type_specifier(MAN_TYPE_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_INT);
 			break;
 		case 's':
-			value.type = anc_create_type_specifier(MAN_TYPE_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_INT);
 			break;
 		case 'l':
-			value.type = anc_create_type_specifier(MAN_TYPE_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_INT);
 			break;
 		case 'q':
-			value.type = anc_create_type_specifier(MAN_TYPE_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_INT);
 			break;
 		case 'C':
-			value.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_U_INT);
 			break;
 		case 'I':
-			value.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_U_INT);
 			break;
 		case 'S':
-			value.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_U_INT);
 			break;
 		case 'L':
-			value.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_U_INT);
 			break;
 		case 'Q':
-			value.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+			value.type = man_create_type_specifier(MAN_TYPE_U_INT);
 			break;
 		case 'B':
-			value.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+			value.type = man_create_type_specifier(MAN_TYPE_BOOL);
 			break;
 		case 'f':
-			value.type = anc_create_type_specifier(MAN_TYPE_DOUBLE);
+			value.type = man_create_type_specifier(MAN_TYPE_DOUBLE);
 			break;
 		case 'd':
-			value.type = anc_create_type_specifier(MAN_TYPE_DOUBLE);
+			value.type = man_create_type_specifier(MAN_TYPE_DOUBLE);
 			break;
 		case ':':
-			value.type = anc_create_type_specifier(MAN_TYPE_SEL);
+			value.type = man_create_type_specifier(MAN_TYPE_SEL);
 			break;
 		case '^':
-			value.type = anc_create_type_specifier(MAN_TYPE_POINTER);
+			value.type = man_create_type_specifier(MAN_TYPE_POINTER);
 			break;
 		case '*':
-			value.type = anc_create_type_specifier(MAN_TYPE_C_STRING);
+			value.type = man_create_type_specifier(MAN_TYPE_C_STRING);
 			break;
 		case '#':
-			value.type = anc_create_type_specifier(MAN_TYPE_CLASS);
+			value.type = man_create_type_specifier(MAN_TYPE_CLASS);
 			break;
 		case '@':
-			value.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+			value.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 			break;
 		case '{':
-			value.type = anc_create_struct_type_specifier(mango_struct_name_with_encoding(typeEncoding));
+			value.type = man_create_struct_type_specifier(mango_struct_name_with_encoding(typeEncoding));
 			break;
 		case 'v':
-			value.type = anc_create_type_specifier(MAN_TYPE_VOID);
+			value.type = man_create_type_specifier(MAN_TYPE_VOID);
 			break;
 		default:
 			NSCAssert(0, @"");
@@ -358,76 +385,76 @@ break;\
 
 + (instancetype)voidValueInstance{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_VOID);
+	value.type = man_create_type_specifier(MAN_TYPE_VOID);
 	return value;
 }
 
 
 + (instancetype)valueInstanceWithBOOL:(BOOL)boolValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	value.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	value.uintValue = boolValue;
 	return value;
 }
 + (instancetype)valueInstanceWithUint:(unsigned long long int)uintValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+	value.type = man_create_type_specifier(MAN_TYPE_U_INT);
 	value.uintValue = uintValue;
 	return value;
 }
 + (instancetype)valueInstanceWithInt:(long long int)intValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_INT);
+	value.type = man_create_type_specifier(MAN_TYPE_INT);
 	value.integerValue = intValue;
 	return value;
 }
 + (instancetype)valueInstanceWithDouble:(double)doubleValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_DOUBLE);
+	value.type = man_create_type_specifier(MAN_TYPE_DOUBLE);
 	value.doubleValue = doubleValue;
 	return value;
 }
 + (instancetype)valueInstanceWithObject:(id)objValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	value.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	value.objectValue = objValue;
 	return value;
 }
 + (instancetype)valueInstanceWithBlock:(id)blockValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_BLOCK);
+	value.type = man_create_type_specifier(MAN_TYPE_BLOCK);
 	value.objectValue = blockValue;
 	return value;
 }
 + (instancetype)valueInstanceWithClass:(Class)clazzValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_CLASS);
+	value.type = man_create_type_specifier(MAN_TYPE_CLASS);
 	value.classValue = clazzValue;
 	return value;
 }
 + (instancetype)valueInstanceWithSEL:(SEL)selValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_SEL);
+	value.type = man_create_type_specifier(MAN_TYPE_SEL);
 	value.selValue = selValue;
 	return value;
 }
 + (instancetype)valueInstanceWithCstring:(const char *)cstringValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_C_STRING);
+	value.type = man_create_type_specifier(MAN_TYPE_C_STRING);
 	value.cstringValue = cstringValue;
 	return value;
 }
 
 + (instancetype)valueInstanceWithPointer:(void *)pointerValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_POINTER);
+	value.type = man_create_type_specifier(MAN_TYPE_POINTER);
 	value.pointerValue = pointerValue;
 	return value;
 }
 
 + (instancetype)valueInstanceWithStruct:(void *)structValue typeEncoding:(const char *)typeEncoding{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_SEL);
+	value.type = man_create_type_specifier(MAN_TYPE_SEL);
 	value.type.structName = mango_struct_name_with_encoding(typeEncoding);
 	size_t size = mango_struct_size_with_encoding(typeEncoding);
 	value.pointerValue = malloc(size);
@@ -437,7 +464,7 @@ break;\
 
 - (instancetype)nsStringValue{
 	MANValue *value = [[MANValue alloc] init];
-	value.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	value.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	switch (_type.typeKind) {
 		case MAN_TYPE_BOOL:
 		case MAN_TYPE_U_INT:

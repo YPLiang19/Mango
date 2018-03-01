@@ -9,7 +9,7 @@
 #include <Foundation/Foundation.h>
 #import "create.h"
 
-void anc_compile_err(NSUInteger lineNumber,MANCompileError error,...){
+void man_compile_err(NSUInteger lineNumber,MANCompileError error,...){
 	NSLog(@"编译错误。。。。");
 	exit(1);
 }

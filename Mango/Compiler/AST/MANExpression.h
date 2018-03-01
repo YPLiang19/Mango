@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, MANExpressionKind) {
 	MAN_ARRAY_LITERAL_EXPRESSION,
 	MAN_DIC_LITERAL_EXPRESSION,
 	MAN_STRUCT_LITERAL_EXPRESSION,
-	MAN_INDEX_EXPRESSION,
+	MAN_SUB_SCRIPT_EXPRESSION,
 	MAN_INCREMENT_EXPRESSION,
 	MAN_DECREMENT_EXPRESSION,
 	MAN_AT_EXPRESSION
@@ -127,19 +127,22 @@ typedef NS_ENUM(NSInteger, MANAssignKind) {
 @end
 
 
-@interface MANIndexExpression: MANExpression
+@interface MANSubScriptExpression: MANExpression
 
-@property (strong, nonatomic) MANExpression *arrayExpression;
-@property (strong, nonatomic) MANExpression *indexExpression;
+@property (strong, nonatomic) MANExpression *aboveExpr;
+@property (strong, nonatomic) MANExpression *bottomExpr;
 
 @end
 
 
 
+@interface MANStructEntry:NSObject
+@property (copy, nonatomic) NSString *key;
+@property (strong, nonatomic) MANExpression *valueExpr;
+@end
 
 @interface MANStructpression: MANExpression
-@property (strong, nonatomic) NSArray<NSString *> *keys;
-@property (strong, nonatomic) NSArray<MANExpression *> *valueExpressions;
+@property (strong, nonatomic) NSArray<MANStructEntry *> *entriesExpr;
 
 @end
 

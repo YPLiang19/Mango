@@ -282,7 +282,7 @@ break;\
 				NSString *subTypeEncoding = [types substringWithRange:NSMakeRange(index, end - index + 1)];
 				size_t size = mango_struct_size_with_encoding(subTypeEncoding.UTF8String);
 				NSString *subStructName = mango_struct_name_with_encoding(subTypeEncoding.UTF8String);
-				MANStructDeclare *subStructDeclare = [[ANANASStructDeclareTable shareInstance] getStructDeclareWithName:subStructName];
+				MANStructDeclare *subStructDeclare = [[MANStructDeclareTable shareInstance] getStructDeclareWithName:subStructName];
 				id subStruct = dic[key];
 				if ([subStruct isKindOfClass:[NSDictionary class]]) {
 					mango_struct_data_with_dic(structData + postion, dic[key],subStructDeclare);

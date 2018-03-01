@@ -1,12 +1,12 @@
 //
-//  ANANASMethodMapTable.m
+//  MANMethodMapTable.m
 //  ananasExample
 //
 //  Created by jerry.yong on 2018/2/23.
 //  Copyright © 2018年 yongpengliang. All rights reserved.
 //
 
-#import "ANANASMethodMapTable.h"
+#import "MANMethodMapTable.h"
 
 @implementation MANMethodMapTableItem
 - (instancetype)initWithClass:(Class)clazz inter:(MANInterpreter *)inter method:(MANMethodDefinition *)method; {
@@ -19,7 +19,7 @@
 }
 @end
 
-@implementation ANANASMethodMapTable{
+@implementation MANMethodMapTable{
 	NSMutableDictionary<NSString *, MANMethodMapTableItem *> *_dic;
 }
 
@@ -27,7 +27,7 @@
 	static id _instance;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		_instance = [[ANANASMethodMapTable alloc] init];
+		_instance = [[MANMethodMapTable alloc] init];
 	});
 	return _instance;
 }

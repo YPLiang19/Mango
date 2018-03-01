@@ -17,11 +17,11 @@
 		4164A4CD2047E0020069ADEE /* eval.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4912047E0020069ADEE /* eval.m */; };
 		4164A4CE2047E0020069ADEE /* built-in.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4922047E0020069ADEE /* built-in.m */; };
 		4164A4CF2047E0020069ADEE /* execute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4932047E0020069ADEE /* execute.m */; };
-		4164A4D02047E0020069ADEE /* ANANASMethodMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A49A2047E0020069ADEE /* ANANASMethodMapTable.m */; };
+		4164A4D02047E0020069ADEE /* MANMethodMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A49A2047E0020069ADEE /* MANMethodMapTable.m */; };
 		4164A4D12047E0020069ADEE /* MANStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A49C2047E0020069ADEE /* MANStack.m */; };
 		4164A4D22047E0020069ADEE /* MANBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A49D2047E0020069ADEE /* MANBlock.m */; };
 		4164A4D32047E0020069ADEE /* MANValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A49E2047E0020069ADEE /* MANValue.m */; };
-		4164A4D42047E0020069ADEE /* ANANASStructDeclareTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A49F2047E0020069ADEE /* ANANASStructDeclareTable.m */; };
+		4164A4D42047E0020069ADEE /* MANStructDeclareTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A49F2047E0020069ADEE /* MANStructDeclareTable.m */; };
 		4164A4D52047E0020069ADEE /* MANStatementResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4A02047E0020069ADEE /* MANStatementResult.m */; };
 		4164A4D62047E0020069ADEE /* MANScopeChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4A42047E0020069ADEE /* MANScopeChain.m */; };
 		4164A4D72047E0020069ADEE /* create.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4A62047E0020069ADEE /* create.m */; };
@@ -59,18 +59,18 @@
 		4164A4922047E0020069ADEE /* built-in.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "built-in.m"; sourceTree = "<group>"; };
 		4164A4932047E0020069ADEE /* execute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = execute.m; sourceTree = "<group>"; };
 		4164A4942047E0020069ADEE /* execute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = execute.h; sourceTree = "<group>"; };
-		4164A4962047E0020069ADEE /* ANANASStructDeclareTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANANASStructDeclareTable.h; sourceTree = "<group>"; };
+		4164A4962047E0020069ADEE /* MANStructDeclareTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANStructDeclareTable.h; sourceTree = "<group>"; };
 		4164A4972047E0020069ADEE /* MANStatementResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANStatementResult.h; sourceTree = "<group>"; };
 		4164A4982047E0020069ADEE /* MANValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANValue.h; sourceTree = "<group>"; };
 		4164A4992047E0020069ADEE /* runenv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runenv.h; sourceTree = "<group>"; };
-		4164A49A2047E0020069ADEE /* ANANASMethodMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANANASMethodMapTable.m; sourceTree = "<group>"; };
+		4164A49A2047E0020069ADEE /* MANMethodMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANMethodMapTable.m; sourceTree = "<group>"; };
 		4164A49B2047E0020069ADEE /* MANScopeChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANScopeChain.h; sourceTree = "<group>"; };
 		4164A49C2047E0020069ADEE /* MANStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANStack.m; sourceTree = "<group>"; };
 		4164A49D2047E0020069ADEE /* MANBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANBlock.m; sourceTree = "<group>"; };
 		4164A49E2047E0020069ADEE /* MANValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANValue.m; sourceTree = "<group>"; };
-		4164A49F2047E0020069ADEE /* ANANASStructDeclareTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANANASStructDeclareTable.m; sourceTree = "<group>"; };
+		4164A49F2047E0020069ADEE /* MANStructDeclareTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANStructDeclareTable.m; sourceTree = "<group>"; };
 		4164A4A02047E0020069ADEE /* MANStatementResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANStatementResult.m; sourceTree = "<group>"; };
-		4164A4A12047E0020069ADEE /* ANANASMethodMapTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANANASMethodMapTable.h; sourceTree = "<group>"; };
+		4164A4A12047E0020069ADEE /* MANMethodMapTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANMethodMapTable.h; sourceTree = "<group>"; };
 		4164A4A22047E0020069ADEE /* MANBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANBlock.h; sourceTree = "<group>"; };
 		4164A4A32047E0020069ADEE /* MANStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANStack.h; sourceTree = "<group>"; };
 		4164A4A42047E0020069ADEE /* MANScopeChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANScopeChain.m; sourceTree = "<group>"; };
@@ -188,10 +188,10 @@
 		4164A4902047E0020069ADEE /* Execute */ = {
 			isa = PBXGroup;
 			children = (
+				4164A4942047E0020069ADEE /* execute.h */,
+				4164A4932047E0020069ADEE /* execute.m */,
 				4164A4912047E0020069ADEE /* eval.m */,
 				4164A4922047E0020069ADEE /* built-in.m */,
-				4164A4932047E0020069ADEE /* execute.m */,
-				4164A4942047E0020069ADEE /* execute.h */,
 				4164A4952047E0020069ADEE /* RunEnv */,
 			);
 			path = Execute;
@@ -200,21 +200,21 @@
 		4164A4952047E0020069ADEE /* RunEnv */ = {
 			isa = PBXGroup;
 			children = (
-				4164A4962047E0020069ADEE /* ANANASStructDeclareTable.h */,
-				4164A4972047E0020069ADEE /* MANStatementResult.h */,
-				4164A4982047E0020069ADEE /* MANValue.h */,
 				4164A4992047E0020069ADEE /* runenv.h */,
-				4164A49A2047E0020069ADEE /* ANANASMethodMapTable.m */,
-				4164A49B2047E0020069ADEE /* MANScopeChain.h */,
-				4164A49C2047E0020069ADEE /* MANStack.m */,
-				4164A49D2047E0020069ADEE /* MANBlock.m */,
-				4164A49E2047E0020069ADEE /* MANValue.m */,
-				4164A49F2047E0020069ADEE /* ANANASStructDeclareTable.m */,
+				4164A4972047E0020069ADEE /* MANStatementResult.h */,
 				4164A4A02047E0020069ADEE /* MANStatementResult.m */,
-				4164A4A12047E0020069ADEE /* ANANASMethodMapTable.h */,
-				4164A4A22047E0020069ADEE /* MANBlock.h */,
-				4164A4A32047E0020069ADEE /* MANStack.h */,
+				4164A49B2047E0020069ADEE /* MANScopeChain.h */,
 				4164A4A42047E0020069ADEE /* MANScopeChain.m */,
+				4164A4A32047E0020069ADEE /* MANStack.h */,
+				4164A49C2047E0020069ADEE /* MANStack.m */,
+				4164A4A22047E0020069ADEE /* MANBlock.h */,
+				4164A49D2047E0020069ADEE /* MANBlock.m */,
+				4164A4982047E0020069ADEE /* MANValue.h */,
+				4164A49E2047E0020069ADEE /* MANValue.m */,
+				4164A4962047E0020069ADEE /* MANStructDeclareTable.h */,
+				4164A49F2047E0020069ADEE /* MANStructDeclareTable.m */,
+				4164A4A12047E0020069ADEE /* MANMethodMapTable.h */,
+				4164A49A2047E0020069ADEE /* MANMethodMapTable.m */,
 			);
 			path = RunEnv;
 			sourceTree = "<group>";
@@ -224,9 +224,9 @@
 			children = (
 				4164A4E52047E4270069ADEE /* lex_yacc */,
 				4164A4A92047E0020069ADEE /* AST */,
+				4164A4BE2047E0020069ADEE /* create.h */,
 				4164A4A62047E0020069ADEE /* create.m */,
 				4164A4BD2047E0020069ADEE /* errrorc.m */,
-				4164A4BE2047E0020069ADEE /* create.h */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -234,24 +234,24 @@
 		4164A4A92047E0020069ADEE /* AST */ = {
 			isa = PBXGroup;
 			children = (
-				4164A4AA2047E0020069ADEE /* MANExpression.m */,
-				4164A4AB2047E0020069ADEE /* MANClassDefinition.h */,
-				4164A4AC2047E0020069ADEE /* MANStatement.m */,
-				4164A4AD2047E0020069ADEE /* MANBlockBody.m */,
 				4164A4AE2047E0020069ADEE /* man_ast.h */,
-				4164A4AF2047E0020069ADEE /* MANTypeSpecifier.m */,
 				4164A4B02047E0020069ADEE /* MANStructDeclare.h */,
-				4164A4B12047E0020069ADEE /* MANInterpreter.h */,
-				4164A4B22047E0020069ADEE /* MANFunctionDefinition.m */,
-				4164A4B32047E0020069ADEE /* MANDeclaration.h */,
-				4164A4B42047E0020069ADEE /* MANTypeSpecifier.h */,
-				4164A4B52047E0020069ADEE /* MANBlockBody.h */,
-				4164A4B62047E0020069ADEE /* MANStatement.h */,
-				4164A4B72047E0020069ADEE /* MANExpression.h */,
-				4164A4B82047E0020069ADEE /* MANClassDefinition.m */,
 				4164A4B92047E0020069ADEE /* MANStructDeclare.m */,
-				4164A4BA2047E0020069ADEE /* MANDeclaration.m */,
+				4164A4AB2047E0020069ADEE /* MANClassDefinition.h */,
+				4164A4B82047E0020069ADEE /* MANClassDefinition.m */,
 				4164A4BB2047E0020069ADEE /* MANFunctionDefinition.h */,
+				4164A4B22047E0020069ADEE /* MANFunctionDefinition.m */,
+				4164A4B42047E0020069ADEE /* MANTypeSpecifier.h */,
+				4164A4AF2047E0020069ADEE /* MANTypeSpecifier.m */,
+				4164A4B52047E0020069ADEE /* MANBlockBody.h */,
+				4164A4AD2047E0020069ADEE /* MANBlockBody.m */,
+				4164A4B62047E0020069ADEE /* MANStatement.h */,
+				4164A4AC2047E0020069ADEE /* MANStatement.m */,
+				4164A4B72047E0020069ADEE /* MANExpression.h */,
+				4164A4AA2047E0020069ADEE /* MANExpression.m */,
+				4164A4B32047E0020069ADEE /* MANDeclaration.h */,
+				4164A4BA2047E0020069ADEE /* MANDeclaration.m */,
+				4164A4B12047E0020069ADEE /* MANInterpreter.h */,
 				4164A4BC2047E0020069ADEE /* MANInterpreter.m */,
 			);
 			path = AST;
@@ -357,7 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4164A4DB2047E0020069ADEE /* MANStatement.m in Sources */,
-				4164A4D02047E0020069ADEE /* ANANASMethodMapTable.m in Sources */,
+				4164A4D02047E0020069ADEE /* MANMethodMapTable.m in Sources */,
 				4164A4EE2047EBC10069ADEE /* AppDelegate.m in Sources */,
 				4164A4E82047E4270069ADEE /* mango.y in Sources */,
 				4164A4D32047E0020069ADEE /* MANValue.m in Sources */,
@@ -378,7 +378,7 @@
 				4164A4E92047E4270069ADEE /* mango.l in Sources */,
 				4164A4D22047E0020069ADEE /* MANBlock.m in Sources */,
 				4164A4DF2047E0020069ADEE /* MANClassDefinition.m in Sources */,
-				4164A4D42047E0020069ADEE /* ANANASStructDeclareTable.m in Sources */,
+				4164A4D42047E0020069ADEE /* MANStructDeclareTable.m in Sources */,
 				4164A4CE2047E0020069ADEE /* built-in.m in Sources */,
 				4164A4CD2047E0020069ADEE /* eval.m in Sources */,
 				4164A4D62047E0020069ADEE /* MANScopeChain.m in Sources */,

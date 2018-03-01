@@ -21,22 +21,22 @@ static int st_string_literal_buffer_alloc_size = 0;
 
 
 int yyerror(char const *str){
-	printf("line:%zd: %s\n",anc_get_current_compile_util().currentLineNumber,str);
+	printf("line:%zd: %s\n",man_get_current_compile_util().currentLineNumber,str);
 	return 0;
 }
 
 
-MANInterpreter *anc_get_current_compile_util(){
+MANInterpreter *man_get_current_compile_util(){
 	return st_current_compile_util;
 }
 
-void anc_set_current_compile_util(MANInterpreter *interpreter){
+void man_set_current_compile_util(MANInterpreter *interpreter){
 	st_current_compile_util = interpreter;
 }
 
 
 
-NSString *anc_create_identifier(char *str){
+NSString *man_create_identifier(char *str){
 	NSString *ocStr = [NSString stringWithUTF8String:str];
 	return ocStr;
 }
@@ -44,11 +44,11 @@ NSString *anc_create_identifier(char *str){
 
 
 
-void anc_open_string_literal_buf(){
+void man_open_string_literal_buf(){
 	st_string_literal_buffer_size = 0;
 }
 
-void anc_append_string_literal(int letter){
+void man_append_string_literal(int letter){
 	if (st_string_literal_buffer_size >= st_string_literal_buffer_alloc_size) {
 		st_string_literal_buffer_alloc_size +=  STRING_ALLOC_SIZE;
 		void *new_pointer = realloc(st_string_literal_buffer, st_string_literal_buffer_alloc_size);
@@ -60,7 +60,7 @@ void anc_append_string_literal(int letter){
 	st_string_literal_buffer_size++;
 }
 
-void anc_rest_string_literal_buffer(void){
+void man_rest_string_literal_buffer(void){
 	free(st_string_literal_buffer);
 	st_string_literal_buffer = NULL;
 	st_string_literal_buffer_size = 0;
@@ -68,17 +68,17 @@ void anc_rest_string_literal_buffer(void){
 	
 }
 
-const char *anc_end_string_literal(){
-	anc_append_string_literal('\0');
+const char *man_end_string_literal(){
+	man_append_string_literal('\0');
 	size_t strLen = strlen(st_string_literal_buffer);
 	char *str = malloc(strLen + 1);
 	strcpy(str, st_string_literal_buffer);
-	anc_rest_string_literal_buffer();
+	man_rest_string_literal_buffer();
 	
 	return str;
 }
 
-Class anc_expression_class_of_kind(MANExpressionKind kind){
+Class man_expression_class_of_kind(MANExpressionKind kind){
 	switch (kind) {
 		case MAN_BOOLEAN_EXPRESSION:
 		case MAN_INT_EXPRESSION:
@@ -119,8 +119,8 @@ Class anc_expression_class_of_kind(MANExpressionKind kind){
 		case NSC_NEGATIVE_EXPRESSION:
 		case MAN_AT_EXPRESSION:
 			return [MANUnaryExpression class];
-		case MAN_INDEX_EXPRESSION:
-			return [MANIndexExpression class];
+		case MAN_SUB_SCRIPT_EXPRESSION:
+			return [MANSubScriptExpression class];
 		case MAN_MEMBER_EXPRESSION:
 			return [MANMemberExpression class];
 		case MAN_FUNCTION_CALL_EXPRESSION:
@@ -137,26 +137,33 @@ Class anc_expression_class_of_kind(MANExpressionKind kind){
 	
 }
 
-MANDicEntry *anc_create_dic_entry(MANExpression *keyExpr, MANExpression *valueExpr){
+MANStructEntry *man_create_struct_entry(NSString *key, MANExpression *valueExpr){
+	MANStructEntry *structEntry = [[MANStructEntry alloc] init];
+	structEntry.key = key;
+	structEntry.valueExpr = valueExpr;
+	return structEntry;
+}
+
+MANDicEntry *man_create_dic_entry(MANExpression *keyExpr, MANExpression *valueExpr){
 	MANDicEntry *dicEntry = [[MANDicEntry alloc] init];
 	dicEntry.keyExpr = keyExpr;
 	dicEntry.valueExpr = valueExpr;
 	return dicEntry;
 }
 
-MANExpression *anc_create_expression(MANExpressionKind kind){
-	Class clazz = anc_expression_class_of_kind(kind);
+MANExpression *man_create_expression(MANExpressionKind kind){
+	Class clazz = man_expression_class_of_kind(kind);
 	MANExpression *expr = [[clazz alloc] init];
 	expr.expressionKind = kind;
 	return expr;
 }
 
 
-void anc_build_block_expr(MANBlockExpression *expr, MANTypeSpecifier *returnTypeSpecifier, NSArray<MANParameter *> *params, MANBlockBody *block){
+void man_build_block_expr(MANBlockExpression *expr, MANTypeSpecifier *returnTypeSpecifier, NSArray<MANParameter *> *params, MANBlockBody *block){
 	MANFunctionDefinition *func = [[MANFunctionDefinition alloc] init];
 	func.kind = MANFunctionDefinitionKindBlock;
 	if (!returnTypeSpecifier) {
-		returnTypeSpecifier = anc_create_type_specifier(MAN_TYPE_VOID);
+		returnTypeSpecifier = man_create_type_specifier(MAN_TYPE_VOID);
 	}
 	func.returnTypeSpecifier = returnTypeSpecifier;
 	func.params  = params;
@@ -167,7 +174,7 @@ void anc_build_block_expr(MANBlockExpression *expr, MANTypeSpecifier *returnType
 
 
 
-MANDeclaration *anc_create_declaration(MANTypeSpecifier *type, NSString *name, MANExpression *initializer){
+MANDeclaration *man_create_declaration(MANTypeSpecifier *type, NSString *name, MANExpression *initializer){
 	MANDeclaration *declaration = [[MANDeclaration alloc] init];
 	declaration.type = type;
 	declaration.name = name;
@@ -175,7 +182,7 @@ MANDeclaration *anc_create_declaration(MANTypeSpecifier *type, NSString *name, M
 	return declaration;
 }
 
-MANDeclarationStatement *anc_create_declaration_statement(MANDeclaration *declaration){
+MANDeclarationStatement *man_create_declaration_statement(MANDeclaration *declaration){
 	MANDeclarationStatement *statement = [[MANDeclarationStatement alloc] init];
 	statement.kind = MANStatementKindDeclaration;
 	statement.declaration = declaration;
@@ -185,14 +192,14 @@ MANDeclarationStatement *anc_create_declaration_statement(MANDeclaration *declar
 
 
 
-MANExpressionStatement *anc_create_expression_statement(MANExpression *expr){
+MANExpressionStatement *man_create_expression_statement(MANExpression *expr){
 	MANExpressionStatement *statement = [[MANExpressionStatement alloc] init];
 	statement.kind = MANStatementKindExpression;
 	statement.expr = expr;
 	return statement;
 }
 
-MANElseIf *anc_create_else_if(MANExpression *condition, MANBlockBody *thenBlock){
+MANElseIf *man_create_else_if(MANExpression *condition, MANBlockBody *thenBlock){
 	MANElseIf *elseIf = [[MANElseIf alloc] init];
 	elseIf.condition = condition;
 	elseIf.thenBlock = thenBlock;
@@ -200,7 +207,7 @@ MANElseIf *anc_create_else_if(MANExpression *condition, MANBlockBody *thenBlock)
 }
 
 
-MANIfStatement *anc_create_if_statement(MANExpression *condition,MANBlockBody *thenBlock,NSArray<MANElseIf *> *elseIfList,MANBlockBody *elseBlocl){
+MANIfStatement *man_create_if_statement(MANExpression *condition,MANBlockBody *thenBlock,NSArray<MANElseIf *> *elseIfList,MANBlockBody *elseBlocl){
 	MANIfStatement *statement = [[MANIfStatement alloc] init];
 
 	
@@ -214,14 +221,14 @@ MANIfStatement *anc_create_if_statement(MANExpression *condition,MANBlockBody *t
 
 
 
-MANCase *anc_create_case(MANExpression *expr, MANBlockBody *block){
+MANCase *man_create_case(MANExpression *expr, MANBlockBody *block){
 	MANCase *case_ = [[MANCase alloc] init];
 	case_.expr = expr;
 	case_.block = block;
 	return case_;
 }
 
-MANSwitchStatement *anc_create_switch_statement(MANExpression *expr, NSArray<MANCase *> *caseList, MANBlockBody *defaultBlock){
+MANSwitchStatement *man_create_switch_statement(MANExpression *expr, NSArray<MANCase *> *caseList, MANBlockBody *defaultBlock){
 	MANSwitchStatement *statement = [[MANSwitchStatement alloc] init];
 	
 	statement.kind = MANStatementKindSwitch;
@@ -232,7 +239,7 @@ MANSwitchStatement *anc_create_switch_statement(MANExpression *expr, NSArray<MAN
 }
 
 
-MANForStatement *anc_create_for_statement(MANExpression *initializerExpr, MANDeclaration *declaration,
+MANForStatement *man_create_for_statement(MANExpression *initializerExpr, MANDeclaration *declaration,
 										  MANExpression *condition, MANExpression *post, MANBlockBody *block){
 	MANForStatement *statement = [[MANForStatement alloc] init];
 	
@@ -246,15 +253,15 @@ MANForStatement *anc_create_for_statement(MANExpression *initializerExpr, MANDec
 }
 
 
-MANForEachStatement *anc_create_for_each_statement(MANTypeSpecifier *typeSpecifier,NSString *varName, MANExpression *arrayExpr,MANBlockBody *block){
+MANForEachStatement *man_create_for_each_statement(MANTypeSpecifier *typeSpecifier,NSString *varName, MANExpression *arrayExpr,MANBlockBody *block){
 	MANForEachStatement *statement = [[MANForEachStatement alloc] init];
 	
 	
 	statement.kind = MANStatementKindForEach;
 	if (typeSpecifier) {
-		statement.declaration = anc_create_declaration(typeSpecifier, varName, nil);
+		statement.declaration = man_create_declaration(typeSpecifier, varName, nil);
 	}else{
-		MANIdentifierExpression *varExpr = (MANIdentifierExpression *)anc_create_expression(MAN_IDENTIFIER_EXPRESSION);
+		MANIdentifierExpression *varExpr = (MANIdentifierExpression *)man_create_expression(MAN_IDENTIFIER_EXPRESSION);
 		varExpr.identifier = varName;
 		statement.identifierExpr = varExpr;
 	}
@@ -265,7 +272,7 @@ MANForEachStatement *anc_create_for_each_statement(MANTypeSpecifier *typeSpecifi
 }
 
 
-MANWhileStatement *anc_create_while_statement(MANExpression *condition, MANBlockBody *block){
+MANWhileStatement *man_create_while_statement(MANExpression *condition, MANBlockBody *block){
 	MANWhileStatement *statement = [[MANWhileStatement alloc] init];
 	statement.kind = MANStatementKindWhile;
 	statement.condition = condition;
@@ -273,7 +280,7 @@ MANWhileStatement *anc_create_while_statement(MANExpression *condition, MANBlock
 	return statement;
 }
 
-MANDoWhileStatement *anc_create_do_while_statement(MANBlockBody *block, MANExpression *condition){
+MANDoWhileStatement *man_create_do_while_statement(MANBlockBody *block, MANExpression *condition){
 	MANDoWhileStatement *statement = [[MANDoWhileStatement alloc] init];
 	statement.kind = MANStatementKindDoWhile;
 	statement.block = block;
@@ -281,21 +288,21 @@ MANDoWhileStatement *anc_create_do_while_statement(MANBlockBody *block, MANExpre
 	return statement;
 }
 
-MANContinueStatement *anc_create_continue_statement(){
+MANContinueStatement *man_create_continue_statement(){
 	MANContinueStatement *statement = [[MANContinueStatement alloc] init];
 	statement.kind = MANStatementKindContinue;
 	return statement;
 }
 
 
-MANBreakStatement *anc_create_break_statement(){
+MANBreakStatement *man_create_break_statement(){
 	MANBreakStatement *statement = [[MANBreakStatement alloc] init];
 	statement.kind = MANStatementKindBreak;
 	return statement;
 	
 }
 
-MANReturnStatement *anc_create_return_statement(MANExpression *retValExpr){
+MANReturnStatement *man_create_return_statement(MANExpression *retValExpr){
 	MANReturnStatement *statement = [[MANReturnStatement alloc] init];
 	statement.kind = MANStatementKindReturn;
 	statement.retValExpr = retValExpr;
@@ -304,18 +311,18 @@ MANReturnStatement *anc_create_return_statement(MANExpression *retValExpr){
 
 
 
-MANBlockBody *anc_open_block_statement(){
+MANBlockBody *man_open_block_statement(){
 	MANBlockBody *block = [[MANBlockBody alloc] init];
-	MANInterpreter *interpreter = anc_get_current_compile_util();
+	MANInterpreter *interpreter = man_get_current_compile_util();
 	block.outBlock = interpreter.currentBlock;
 	interpreter.currentBlock = block;
 	return block;
 	
 }
 
-MANBlockBody *anc_close_block_statement(MANBlockBody *block, NSArray<MANStatement *> *statementList){
-	MANInterpreter *interpreter = anc_get_current_compile_util();
-	NSCAssert(block == interpreter.currentBlock, @"block != anc_get_current_compile_util().currentBlock");
+MANBlockBody *man_close_block_statement(MANBlockBody *block, NSArray<MANStatement *> *statementList){
+	MANInterpreter *interpreter = man_get_current_compile_util();
+	NSCAssert(block == interpreter.currentBlock, @"block != man_get_current_compile_util().currentBlock");
 	interpreter.currentBlock = block.outBlock;
 	block.statementList = statementList;
 	return block;
@@ -329,13 +336,13 @@ MANBlockBody *anc_close_block_statement(MANBlockBody *block, NSArray<MANStatemen
 
 
 
-MANStructDeclare *anc_create_struct_declare(MANExpression *annotaionIfConditionExpr, NSString *structName, NSString *typeEncodingKey, const char *typeEncodingValue, NSString *keysKey, NSArray<NSString *> *keysValue){
+MANStructDeclare *man_create_struct_declare(MANExpression *annotaionIfConditionExpr, NSString *structName, NSString *typeEncodingKey, const char *typeEncodingValue, NSString *keysKey, NSArray<NSString *> *keysValue){
 	if (![typeEncodingKey isEqualToString:@"typeEncoding"]) {
-		anc_compile_err(0, MANCompileErrorStructDeclareLackTypeEncoding);
+		man_compile_err(0, MANCompileErrorStructDeclareLackTypeEncoding);
 	}
 	
 	if (![keysKey isEqualToString:@"keys"]) {
-		anc_compile_err(0, MANCompileErrorStructDeclareLackTypeKeys);
+		man_compile_err(0, MANCompileErrorStructDeclareLackTypeKeys);
 	}
 	
 	MANStructDeclare *structDeclare = [[MANStructDeclare alloc] init];
@@ -349,28 +356,28 @@ MANStructDeclare *anc_create_struct_declare(MANExpression *annotaionIfConditionE
 	
 }
 
-MANTypeSpecifier *anc_create_type_specifier(ANATypeSpecifierKind kind){
+MANTypeSpecifier *man_create_type_specifier(ANATypeSpecifierKind kind){
 	MANTypeSpecifier *typeSpecifier = [[MANTypeSpecifier alloc] init];
 	typeSpecifier.typeKind = kind;
 	return typeSpecifier;
 }
 
-MANTypeSpecifier *anc_create_struct_type_specifier(NSString *structName){
-	MANTypeSpecifier *typeSpecifier = anc_create_type_specifier(MAN_TYPE_STRUCT);
+MANTypeSpecifier *man_create_struct_type_specifier(NSString *structName){
+	MANTypeSpecifier *typeSpecifier = man_create_type_specifier(MAN_TYPE_STRUCT);
 	typeSpecifier.structName = structName;
 	return typeSpecifier;
 }
 
 
-MANParameter *anc_create_parameter(MANTypeSpecifier *type, NSString *name){
+MANParameter *man_create_parameter(MANTypeSpecifier *type, NSString *name){
 	MANParameter *parameter = [[MANParameter alloc] init];
 	parameter.type = type;
 	parameter.name = name;
-	parameter.lineNumber = anc_get_current_compile_util().currentLineNumber;
+	parameter.lineNumber = man_get_current_compile_util().currentLineNumber;
 	return parameter;
 }
 
-MANFunctionDefinition *anc_create_function_definition(MANTypeSpecifier *returnTypeSpecifier,NSString *name ,NSArray<MANParameter *> *prasms,
+MANFunctionDefinition *man_create_function_definition(MANTypeSpecifier *returnTypeSpecifier,NSString *name ,NSArray<MANParameter *> *prasms,
 													  MANBlockBody *block){
 	MANFunctionDefinition *functionDefinition = [[MANFunctionDefinition alloc] init];
 	functionDefinition.returnTypeSpecifier = returnTypeSpecifier;
@@ -380,7 +387,7 @@ MANFunctionDefinition *anc_create_function_definition(MANTypeSpecifier *returnTy
 	return functionDefinition;
 }
 
-MANMethodNameItem *anc_create_method_name_item(NSString *name, MANTypeSpecifier *typeSpecifier, NSString *paramName){
+MANMethodNameItem *man_create_method_name_item(NSString *name, MANTypeSpecifier *typeSpecifier, NSString *paramName){
 	MANMethodNameItem *item = [[MANMethodNameItem alloc] init];
 	item.name = name;
 	if (typeSpecifier && paramName) {
@@ -395,7 +402,7 @@ MANMethodNameItem *anc_create_method_name_item(NSString *name, MANTypeSpecifier 
 	
 }
 
-MANMethodDefinition *anc_create_method_definition(MANExpression *annotaionIfConditionExpr, BOOL classMethod, MANTypeSpecifier *returnTypeSpecifier, NSArray<MANMethodNameItem *> *items, MANBlockBody *block){
+MANMethodDefinition *man_create_method_definition(MANExpression *annotaionIfConditionExpr, BOOL classMethod, MANTypeSpecifier *returnTypeSpecifier, NSArray<MANMethodNameItem *> *items, MANBlockBody *block){
 	MANMethodDefinition *methodDefinition = [[MANMethodDefinition alloc] init];
 	methodDefinition.annotationIfConditionExpr = annotaionIfConditionExpr;
 	methodDefinition.classMethod = classMethod;
@@ -404,11 +411,11 @@ MANMethodDefinition *anc_create_method_definition(MANExpression *annotaionIfCond
 	funcDefinition.returnTypeSpecifier = returnTypeSpecifier;
 	NSMutableArray<MANParameter *> *params = [NSMutableArray array];
 	MANParameter *selfParam = [[MANParameter alloc] init];
-	selfParam.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	selfParam.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	selfParam.name = @"self";
 	
 	MANParameter *selParam = [[MANParameter alloc] init];
-	selParam.type = anc_create_type_specifier(MAN_TYPE_SEL);
+	selParam.type = man_create_type_specifier(MAN_TYPE_SEL);
 	selParam.name = @"_cmd";
 	
 	[params addObject:selfParam];
@@ -430,18 +437,18 @@ MANMethodDefinition *anc_create_method_definition(MANExpression *annotaionIfCond
 	
 }
 
-MANPropertyDefinition *anc_create_property_definition(MANExpression *annotaionIfConditionExpr, MANPropertyModifier modifier, MANTypeSpecifier *typeSpecifier, NSString *name){
+MANPropertyDefinition *man_create_property_definition(MANExpression *annotaionIfConditionExpr, MANPropertyModifier modifier, MANTypeSpecifier *typeSpecifier, NSString *name){
 	MANPropertyDefinition *propertyDefinition = [[MANPropertyDefinition alloc] init];
 	propertyDefinition.annotationIfConditionExpr = annotaionIfConditionExpr;
-	propertyDefinition.lineNumber = anc_get_current_compile_util().currentLineNumber;
+	propertyDefinition.lineNumber = man_get_current_compile_util().currentLineNumber;
 	propertyDefinition.modifier = modifier;
 	propertyDefinition.typeSpecifier = typeSpecifier;
 	propertyDefinition.name = name;
 	return propertyDefinition;
 }
 
-void anc_start_class_definition(MANExpression *annotaionIfConditionExpr, NSString *name, NSString *superNmae, NSArray<NSString *> *protocolNames){
-	MANInterpreter *interpreter = anc_get_current_compile_util();
+void man_start_class_definition(MANExpression *annotaionIfConditionExpr, NSString *name, NSString *superNmae, NSArray<NSString *> *protocolNames){
+	MANInterpreter *interpreter = man_get_current_compile_util();
 	MANClassDefinition *classDefinition = [[MANClassDefinition alloc] init];
 	classDefinition.lineNumber = interpreter.currentLineNumber;
 	classDefinition.annotationIfConditionExpr = annotaionIfConditionExpr;
@@ -452,8 +459,8 @@ void anc_start_class_definition(MANExpression *annotaionIfConditionExpr, NSStrin
 }
 
 
-MANClassDefinition *anc_end_class_definition(NSArray<MANMemberDefinition *> *members){
-	MANInterpreter *interpreter = anc_get_current_compile_util();
+MANClassDefinition *man_end_class_definition(NSArray<MANMemberDefinition *> *members){
+	MANInterpreter *interpreter = man_get_current_compile_util();
 	MANClassDefinition *classDefinition = interpreter.currentClassDefinition;
 	NSMutableArray<MANPropertyDefinition *> *propertyDefinition = [NSMutableArray array];
 	NSMutableArray<MANMethodDefinition *> *classMethods = [NSMutableArray array];
@@ -478,21 +485,21 @@ MANClassDefinition *anc_end_class_definition(NSArray<MANMemberDefinition *> *mem
 	return classDefinition;
 }
 
-void anc_add_struct_declare(MANStructDeclare *structDeclare){
-	MANInterpreter *interpreter = anc_get_current_compile_util();
+void man_add_struct_declare(MANStructDeclare *structDeclare){
+	MANInterpreter *interpreter = man_get_current_compile_util();
 	interpreter.structDeclareDic[structDeclare.name] = structDeclare;
 	[interpreter.topList addObject:structDeclare];
 }
 
-void anc_add_class_definition(MANClassDefinition *classDefinition){
-	MANInterpreter *interpreter = anc_get_current_compile_util();
+void man_add_class_definition(MANClassDefinition *classDefinition){
+	MANInterpreter *interpreter = man_get_current_compile_util();
 	interpreter.classDefinitionDic[classDefinition.name] = classDefinition;
 	[interpreter.topList addObject:classDefinition];
 	
 }
 
-void anc_add_statement(MANStatement *statement){
-	MANInterpreter *interpreter = anc_get_current_compile_util();
+void man_add_statement(MANStatement *statement){
+	MANInterpreter *interpreter = man_get_current_compile_util();
 	[interpreter.topList addObject:statement];
 
 }

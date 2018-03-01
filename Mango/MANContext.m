@@ -25,7 +25,7 @@
 }
 
 - (void)evalAnanasScriptWithURL:(NSURL *)url{
-	anc_set_current_compile_util(self.interpreter);
+	man_set_current_compile_util(self.interpreter);
 	[self.interpreter compileSoruceWithURL:url];
 	ane_interpret(self.interpreter);
 	
@@ -33,7 +33,7 @@
 }
 
 - (void)evalAnanasScriptWithSourceString:(NSString *)sourceString{
-	anc_set_current_compile_util(self.interpreter);
+	man_set_current_compile_util(self.interpreter);
 	[self.interpreter compileSoruceWithString:sourceString];
 	ane_interpret(self.interpreter);
 }

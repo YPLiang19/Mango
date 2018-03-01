@@ -1,14 +1,14 @@
 //
-//  ANANASStructDeclareTable.m
+//  MANStructDeclareTable.m
 //  ananasExample
 //
 //  Created by jerry.yong on 2018/2/24.
 //  Copyright © 2018年 yongpengliang. All rights reserved.
 //
 
-#import "ANANASStructDeclareTable.h"
+#import "MANStructDeclareTable.h"
 
-@implementation ANANASStructDeclareTable{
+@implementation MANStructDeclareTable{
 	NSMutableDictionary<NSString *, MANStructDeclare *> *_dic;
 }
 
@@ -22,7 +22,7 @@
 	static id _instance;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		_instance = [[ANANASStructDeclareTable alloc] init];
+		_instance = [[MANStructDeclareTable alloc] init];
 	});
 	return _instance;
 }

@@ -11,7 +11,7 @@
 #import "runenv.h"
 
 static void add_built_in_struct_declare(){
-	ANANASStructDeclareTable *table = [ANANASStructDeclareTable shareInstance];
+	MANStructDeclareTable *table = [MANStructDeclareTable shareInstance];
 	
 	MANStructDeclare *cgPoinerStructDeclare = [[MANStructDeclare alloc] initWithName:@"CGPoint" typeEncoding:"{CGPoint=dd}" keys:@[@"x",@"y"]];
 	[table addStructDeclare:cgPoinerStructDeclare];
@@ -27,7 +27,7 @@ static void add_built_in_struct_declare(){
 	
 	MANStructDeclare *cgVectorStructDeclare = [[MANStructDeclare alloc] initWithName:@"CGVector" typeEncoding:"{CGVector=dd}" keys:@[@"dx",@"dy"]];
 	[table addStructDeclare:cgVectorStructDeclare];
-	//todo _NSRange
+	
 	MANStructDeclare *nsRangeStructDeclare = [[MANStructDeclare alloc] initWithName:@"NSRange" typeEncoding:"{_NSRange=QQ}" keys:@[@"location",@"length"]];
 	[table addStructDeclare:nsRangeStructDeclare];
 	

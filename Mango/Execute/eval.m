@@ -19,35 +19,35 @@ static void eval_expression(MANInterpreter *inter, MANScopeChain *scope, __kindo
 
 static void eval_bool_exprseeion(MANInterpreter *inter, MANExpression *expr){
 	MANValue *value = [MANValue new];
-	value.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	value.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	value.uintValue = expr.boolValue;
 	[inter.stack push:value];
 }
 
 static void eval_interger_expression(MANInterpreter *inter, MANExpression *expr){
 	MANValue *value = [MANValue new];
-	value.type = anc_create_type_specifier(MAN_TYPE_INT);
+	value.type = man_create_type_specifier(MAN_TYPE_INT);
 	value.integerValue = expr.integerValue;
 	[inter.stack push:value];
 }
 
 static void eval_double_expression(MANInterpreter *inter, MANExpression *expr){
 	MANValue *value = [MANValue new];
-	value.type = anc_create_type_specifier(MAN_TYPE_DOUBLE);
+	value.type = man_create_type_specifier(MAN_TYPE_DOUBLE);
 	value.doubleValue = expr.doubleValue;
 	[inter.stack push:value];
 }
 
 static void eval_string_expression(MANInterpreter *inter, MANExpression *expr){
 	MANValue *value = [MANValue new];
-	value.type = anc_create_type_specifier(MAN_TYPE_C_STRING);
+	value.type = man_create_type_specifier(MAN_TYPE_C_STRING);
 	value.cstringValue = expr.cstringValue;
 	[inter.stack push:value];
 }
 
 static void eval_sel_expression(MANInterpreter *inter, MANExpression *expr){
 	MANValue *value = [MANValue new];
-	value.type = anc_create_type_specifier(MAN_TYPE_SEL);
+	value.type = man_create_type_specifier(MAN_TYPE_SEL);
 	value.selValue = NSSelectorFromString(expr.selectorName);
 	[inter.stack push:value];
 }
@@ -57,7 +57,7 @@ static void eval_sel_expression(MANInterpreter *inter, MANExpression *expr){
 
 static void eval_block_expression(MANInterpreter *inter, MANScopeChain *outScope, MANBlockExpression *expr){
 	MANValue *value = [MANValue new];
-	value.type = anc_create_type_specifier(MAN_TYPE_BLOCK);
+	value.type = man_create_type_specifier(MAN_TYPE_BLOCK);
 	MANBlock *manBlock = [[MANBlock alloc] init];
 	manBlock.func = expr.func;
 	
@@ -79,7 +79,7 @@ static void eval_block_expression(MANInterpreter *inter, MANScopeChain *outScope
 
 static void eval_nil_expr(MANInterpreter *inter){
 	MANValue *value = [MANValue new];
-	value.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	value.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	value.objectValue = nil;
 	[inter.stack push:value];
 }
@@ -197,8 +197,6 @@ static void eval_assign_expression(MANInterpreter *inter, MANScopeChain *scope, 
 				}
 				
 			}
-			
-			
 			eval_function_call_expression(inter, scope, callExpr);
 			break;
 		}
@@ -258,15 +256,32 @@ static void eval_assign_expression(MANInterpreter *inter, MANScopeChain *scope, 
 			[inter.stack push:operValue];
 			break;
 		}
-		case MAN_INDEX_EXPRESSION:{
-			MANIndexExpression *indexExpr = (MANIndexExpression *)leftExpr;
+		case MAN_SUB_SCRIPT_EXPRESSION:{
+			MANSubScriptExpression *subScriptExpr = (MANSubScriptExpression *)leftExpr;
 			eval_expression(inter, scope, rightExpr);
 			MANValue *rightValue = [inter.stack pop];
-			eval_expression(inter, scope, indexExpr.arrayExpression);
-			MANValue *arrValue =  [inter.stack pop];
-			eval_expression(inter, scope, indexExpr.indexExpression);
-			MANValue *indexValue = [inter.stack pop];
-			arrValue.objectValue[indexValue.c2uintValue] = rightValue.objectValue;
+			eval_expression(inter, scope, subScriptExpr.aboveExpr);
+			MANValue *aboveValue =  [inter.stack pop];
+			eval_expression(inter, scope, subScriptExpr.bottomExpr);
+			MANValue *bottomValue = [inter.stack pop];
+			switch (bottomValue.type.typeKind) {
+				case MAN_TYPE_BOOL:
+				case MAN_TYPE_INT:
+				case MAN_TYPE_U_INT:
+					aboveValue.objectValue[bottomValue.c2integerValue] = rightValue.objectValue;
+					break;
+				case MAN_TYPE_CLASS:
+					aboveValue.objectValue[(id<NSCopying>)bottomValue.classValue] = rightValue.objectValue;
+					break;
+				case MAN_TYPE_OBJECT:
+				case MAN_TYPE_BLOCK:
+					aboveValue.objectValue[bottomValue.objectValue] = rightValue.objectValue;
+					break;
+				default:
+					NSCAssert(0, @"");
+					break;
+			}
+			
 			[inter.stack push:rightValue];
 			break;
 		}
@@ -281,7 +296,7 @@ static void eval_assign_expression(MANInterpreter *inter, MANScopeChain *scope, 
 
 #define arithmeticalOperation(operation,operationName) \
 if (leftValue.type.typeKind == MAN_TYPE_DOUBLE || rightValue.type.typeKind == MAN_TYPE_DOUBLE) {\
-resultValue.type = anc_create_type_specifier(MAN_TYPE_DOUBLE);\
+resultValue.type = man_create_type_specifier(MAN_TYPE_DOUBLE);\
 if (leftValue.type.typeKind == MAN_TYPE_DOUBLE) {\
 switch (rightValue.type.typeKind) {\
 case MAN_TYPE_DOUBLE:\
@@ -311,7 +326,7 @@ break;\
 }\
 }\
 }else if (leftValue.type.typeKind == MAN_TYPE_INT || rightValue.type.typeKind == MAN_TYPE_INT){\
-resultValue.type = anc_create_type_specifier(MAN_TYPE_INT);\
+resultValue.type = man_create_type_specifier(MAN_TYPE_INT);\
 if (leftValue.type.typeKind == MAN_TYPE_INT) {\
 switch (rightValue.type.typeKind) {\
 case MAN_TYPE_INT:\
@@ -335,7 +350,7 @@ break;\
 }\
 }\
 }else if (leftValue.type.typeKind == MAN_TYPE_U_INT && rightValue.type.typeKind == MAN_TYPE_U_INT){\
-resultValue.type = anc_create_type_specifier(MAN_TYPE_U_INT);\
+resultValue.type = man_create_type_specifier(MAN_TYPE_U_INT);\
 resultValue.uintValue = leftValue.uintValue operation rightValue.uintValue;\
 }else{\
 NSCAssert(0, @"line:%zd, " #operationName  " operation not support type: %@",expr.right.lineNumber ,rightValue.type.typeName);\
@@ -350,7 +365,7 @@ static void eval_add_expression(MANInterpreter *inter, MANScopeChain *scope,MANB
 	MANValue *resultValue = [MANValue new];
 	
 	if (![leftValue isMember] || ![rightValue isMember]){
-		resultValue.type = anc_create_type_specifier(MAN_TYPE_OBJECT);\
+		resultValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);\
 		NSString *str = [NSString stringWithFormat:@"%@%@",[leftValue nsStringValue].objectValue,[rightValue nsStringValue].objectValue];\
 		resultValue.objectValue = str;\
 	}else arithmeticalOperation(+,add);
@@ -450,7 +465,7 @@ static void eval_mod_expression(MANInterpreter *inter, MANScopeChain *scope,MANB
 	}
 	MANValue *resultValue = [MANValue new];
 	if (leftValue.type.typeKind == MAN_TYPE_INT || leftValue.type.typeKind == MAN_TYPE_INT) {
-		resultValue.type = anc_create_type_specifier(MAN_TYPE_INT);
+		resultValue.type = man_create_type_specifier(MAN_TYPE_INT);
 		if (leftValue.type.typeKind == MAN_TYPE_INT) {
 			if (rightValue.type.typeKind == MAN_TYPE_INT) {
 				resultValue.integerValue = leftValue.integerValue % rightValue.integerValue;
@@ -461,7 +476,7 @@ static void eval_mod_expression(MANInterpreter *inter, MANScopeChain *scope,MANB
 			resultValue.integerValue = leftValue.uintValue % rightValue.integerValue;
 		}
 	}else{
-		resultValue.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+		resultValue.type = man_create_type_specifier(MAN_TYPE_U_INT);
 		resultValue.uintValue = leftValue.uintValue % rightValue.uintValue;
 	}
 	[inter.stack pop];
@@ -584,7 +599,7 @@ static void eval_eq_expression(MANInterpreter *inter, MANScopeChain *scope, MANB
 	MANValue *rightValue = [inter.stack peekStack:0];
 	BOOL equal =  mango_equal_value(expr.left.lineNumber, leftValue, rightValue);
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	resultValue.uintValue = equal;
 	[inter.stack pop];
 	[inter.stack pop];
@@ -598,7 +613,7 @@ static void eval_ne_expression(MANInterpreter *inter, MANScopeChain *scope, MANB
 	MANValue *rightValue = [inter.stack peekStack:0];
 	BOOL equal =  mango_equal_value(expr.left.lineNumber, leftValue, rightValue);
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	resultValue.uintValue = !equal;
 	[inter.stack pop];
 	[inter.stack pop];
@@ -636,7 +651,7 @@ static void eval_lt_expression(MANInterpreter *inter, MANScopeChain *scope, MANB
 	MANValue *rightValue = [inter.stack peekStack:0];
 	BOOL lt = lt_value(expr.left.lineNumber, leftValue, rightValue);
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	resultValue.uintValue = lt;
 	[inter.stack pop];
 	[inter.stack pop];
@@ -651,7 +666,7 @@ static void eval_le_expression(MANInterpreter *inter, MANScopeChain *scope, MANB
 	MANValue *rightValue = [inter.stack peekStack:0];
 	BOOL le = le_value(expr.left.lineNumber, leftValue, rightValue);
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	resultValue.uintValue = le;
 	[inter.stack pop];
 	[inter.stack pop];
@@ -665,7 +680,7 @@ static void eval_ge_expression(MANInterpreter *inter, MANScopeChain *scope, MANB
 	MANValue *rightValue = [inter.stack peekStack:0];
 	BOOL ge = ge_value(expr.left.lineNumber, leftValue, rightValue);
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	resultValue.uintValue = ge;
 	[inter.stack pop];
 	[inter.stack pop];
@@ -680,7 +695,7 @@ static void eval_gt_expression(MANInterpreter *inter, MANScopeChain *scope, MANB
 	MANValue *rightValue = [inter.stack peekStack:0];
 	BOOL gt = gt_value(expr.left.lineNumber, leftValue, rightValue);
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	resultValue.uintValue = gt;
 	[inter.stack pop];
 	[inter.stack pop];
@@ -691,7 +706,7 @@ static void eval_logic_and_expression(MANInterpreter *inter, MANScopeChain *scop
 	eval_expression(inter, scope, expr.left);
 	MANValue *leftValue = [inter.stack peekStack:0];
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	if (!leftValue.isSubtantial) {
 		resultValue.uintValue = NO;
 		[inter.stack pop];
@@ -712,7 +727,7 @@ static void eval_logic_or_expression(MANInterpreter *inter, MANScopeChain *scope
 	eval_expression(inter, scope, expr.left);
 	MANValue *leftValue = [inter.stack peekStack:0];
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	if (leftValue.isSubtantial) {
 		resultValue.uintValue = YES;
 		[inter.stack pop];
@@ -733,19 +748,19 @@ static void eval_logic_not_expression(MANInterpreter *inter, MANScopeChain *scop
 	eval_expression(inter, scope, expr.expr);
 	MANValue *value = [inter.stack peekStack:0];
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_BOOL);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_BOOL);
 	resultValue.uintValue = !value.isSubtantial;
 	[inter.stack pop];
 	[inter.stack push:resultValue];
 }
 
 static void eval_increment_expression(MANInterpreter *inter, MANScopeChain *scope,MANUnaryExpression *expr){
-	MANExpression *oneValueExpr = anc_create_expression(MAN_INT_EXPRESSION);
+	MANExpression *oneValueExpr = man_create_expression(MAN_INT_EXPRESSION);
 	oneValueExpr.integerValue = 1;
 	MANBinaryExpression *addExpr = [[MANBinaryExpression alloc] initWithExpressionKind:MAN_ADD_EXPRESSION];
 	addExpr.left = expr.expr;
 	addExpr.right = oneValueExpr;
-	MANAssignExpression *assignExpression = (MANAssignExpression *)anc_create_expression(MAN_ASSIGN_EXPRESSION);
+	MANAssignExpression *assignExpression = (MANAssignExpression *)man_create_expression(MAN_ASSIGN_EXPRESSION);
 	assignExpression.assignKind = MAN_NORMAL_ASSIGN;
 	assignExpression.left = expr.expr;
 	assignExpression.right = addExpr;
@@ -754,12 +769,12 @@ static void eval_increment_expression(MANInterpreter *inter, MANScopeChain *scop
 
 static void eval_decrement_expression(MANInterpreter *inter, MANScopeChain *scope,MANUnaryExpression *expr){
 	
-	MANExpression *oneValueExpr = anc_create_expression(MAN_INT_EXPRESSION);
-	oneValueExpr.integerValue = -1;
+	MANExpression *oneValueExpr = man_create_expression(MAN_INT_EXPRESSION);
+	oneValueExpr.integerValue = 1;
 	MANBinaryExpression *addExpr = [[MANBinaryExpression alloc] initWithExpressionKind:MAN_SUB_EXPRESSION];
 	addExpr.left = expr.expr;
 	addExpr.right = oneValueExpr;
-	MANAssignExpression *assignExpression = (MANAssignExpression *)anc_create_expression(MAN_ASSIGN_EXPRESSION);
+	MANAssignExpression *assignExpression = (MANAssignExpression *)man_create_expression(MAN_ASSIGN_EXPRESSION);
 	assignExpression.assignKind = MAN_NORMAL_ASSIGN;
 	assignExpression.left = expr.expr;
 	assignExpression.right = addExpr;
@@ -773,16 +788,16 @@ static void eval_negative_expression(MANInterpreter *inter, MANScopeChain *scope
 	MANValue *resultValue = [MANValue new];
 	switch (value.type.typeKind) {
 		case MAN_TYPE_INT:
-			resultValue.type = anc_create_type_specifier(MAN_TYPE_INT);
+			resultValue.type = man_create_type_specifier(MAN_TYPE_INT);
 			resultValue.integerValue = -value.integerValue;
 			break;
 		case MAN_TYPE_BOOL:
 		case MAN_TYPE_U_INT:
-			resultValue.type = anc_create_type_specifier(MAN_TYPE_U_INT);
+			resultValue.type = man_create_type_specifier(MAN_TYPE_U_INT);
 			resultValue.integerValue = - value.uintValue;
 			break;
 		case MAN_TYPE_DOUBLE:
-			resultValue.type = anc_create_type_specifier(MAN_TYPE_DOUBLE);
+			resultValue.type = man_create_type_specifier(MAN_TYPE_DOUBLE);
 			resultValue.doubleValue = - value.doubleValue;
 			break;
 			
@@ -793,25 +808,30 @@ static void eval_negative_expression(MANInterpreter *inter, MANScopeChain *scope
 }
 
 
-static void eval_index_expression(MANInterpreter *inter, MANScopeChain *scope,MANIndexExpression *expr){
-	eval_expression(inter, scope, expr.indexExpression);
-	MANValue *indexValue = [inter.stack peekStack:0];
-	ANATypeSpecifierKind kind = indexValue.type.typeKind;
+static void eval_sub_script_expression(MANInterpreter *inter, MANScopeChain *scope,MANSubScriptExpression *expr){
+	eval_expression(inter, scope, expr.bottomExpr);
+	MANValue *bottomValue = [inter.stack peekStack:0];
+	ANATypeSpecifierKind kind = bottomValue.type.typeKind;
 	
-	eval_expression(inter, scope, expr.arrayExpression);
+	eval_expression(inter, scope, expr.aboveExpr);
 	MANValue *arrValue = [inter.stack peekStack:0];
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	switch (kind) {
 		case MAN_TYPE_BOOL:
 		case MAN_TYPE_U_INT:
-			resultValue.objectValue = arrValue.objectValue[indexValue.uintValue];
-			break;
 		case MAN_TYPE_INT:
-			resultValue.objectValue = arrValue.objectValue[indexValue.integerValue];
+			resultValue.objectValue = arrValue.objectValue[bottomValue.c2integerValue];
+			break;
+		case MAN_TYPE_BLOCK:
+		case MAN_TYPE_OBJECT:
+			resultValue.objectValue = arrValue.objectValue[bottomValue.objectValue];
+			break;
+		case MAN_TYPE_CLASS:
+			resultValue.objectValue = arrValue.objectValue[bottomValue.classValue];
 			break;
 		default:
-			NSCAssert(0, @"line:%zd, index operator can not use type: %@",expr.indexExpression.lineNumber, indexValue.type.typeName);
+			NSCAssert(0, @"line:%zd, index operator can not use type: %@",expr.bottomExpr.lineNumber, bottomValue.type.typeName);
 			break;
 	}
 	[inter.stack pop];
@@ -823,7 +843,7 @@ static void eval_at_expression(MANInterpreter *inter, MANScopeChain *scope,MANUn
 	eval_expression(inter, scope, expr.expr);
 	MANValue *value = [inter.stack pop];
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	switch (value.type.typeKind) {
 		case MAN_TYPE_BOOL:
 		case MAN_TYPE_U_INT:
@@ -849,10 +869,10 @@ static void eval_at_expression(MANInterpreter *inter, MANScopeChain *scope,MANUn
 
 static void eval_struct_expression(MANInterpreter *inter, MANScopeChain *scope, MANStructpression *expr){
 	NSMutableDictionary *structDic = [NSMutableDictionary dictionary];
-	NSUInteger count = expr.keys.count;
-	for (NSUInteger i = 0; i < count; i++) {
-		NSString *key = expr.keys[i];
-		MANExpression *itemExpr = expr.valueExpressions[i];
+	NSArray *entriesExpr =  expr.entriesExpr;
+	for (MANStructEntry *entryExpr in entriesExpr) {
+		NSString *key = entryExpr.key;
+		MANExpression *itemExpr =  entryExpr.valueExpr;
 		eval_expression(inter, scope, itemExpr);
 		MANValue *value = [inter.stack peekStack:0];
 		if (value.isObject) {
@@ -891,11 +911,10 @@ static void eval_struct_expression(MANInterpreter *inter, MANScopeChain *scope, 
 		}
 		
 		[inter.stack pop];
-		
 	}
-	
+
 	MANValue *result = [[MANValue alloc] init];
-	result.type = anc_create_type_specifier(MAN_TYPE_STRUCT_LITERAL);
+	result.type = man_create_type_specifier(MAN_TYPE_STRUCT_LITERAL);
 	result.objectValue = [structDic copy];
 	[inter.stack push:result];
 }
@@ -926,7 +945,7 @@ static void eval_dic_expression(MANInterpreter *inter, MANScopeChain *scope, MAN
 		[inter.stack pop];
 	}
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	resultValue.objectValue = dic.copy;
 	[inter.stack push:resultValue];
 	
@@ -947,7 +966,7 @@ static void eval_array_expression(MANInterpreter *inter, MANScopeChain *scope, M
 		[inter.stack pop];
 	}
 	MANValue *resultValue = [MANValue new];
-	resultValue.type = anc_create_type_specifier(MAN_TYPE_OBJECT);
+	resultValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 	resultValue.objectValue = array.copy;
 	[inter.stack push:resultValue];
 }
@@ -975,7 +994,7 @@ static MANValue *get_struct_field_value(void *structData,MANStructDeclare *decla
 case _code:{\
 if (j == index) {\
 _type value = *(_type *)(structData + postion);\
-retValue.type = anc_create_type_specifier(_kind);\
+retValue.type = man_create_type_specifier(_kind);\
 retValue._sel = value;\
 return retValue;\
 }\
@@ -1020,7 +1039,7 @@ break;\
 					void *value = structData + postion;
 					MANValue *retValue = [[MANValue alloc] init];
 					NSString *subStruct = mango_struct_name_with_encoding(subTypeEncoding.UTF8String);
-					retValue.type = anc_create_struct_type_specifier(subStruct);
+					retValue.type = man_create_struct_type_specifier(subStruct);
 					retValue.pointerValue = malloc(size);
 					memcpy(retValue.pointerValue, value, size);
 					return retValue;
@@ -1050,7 +1069,7 @@ static void eval_member_expression(MANInterpreter *inter, MANScopeChain *scope, 
 	eval_expression(inter, scope, expr.expr);
 	MANValue *obj = [inter.stack peekStack:0];
 	if (obj.type.typeKind == MAN_TYPE_STRUCT) {
-		ANANASStructDeclareTable *table = [ANANASStructDeclareTable shareInstance];
+		MANStructDeclareTable *table = [MANStructDeclareTable shareInstance];
 		MANValue *value =  get_struct_field_value(obj.pointerValue, [table getStructDeclareWithName:obj.type.structName], expr.memberName);
 		[inter.stack pop];
 		[inter.stack push:value];
@@ -1090,17 +1109,14 @@ static void eval_member_expression(MANInterpreter *inter, MANScopeChain *scope, 
 
 
 static MANValue *invoke(NSUInteger line, MANInterpreter *inter, MANScopeChain *scope, id instance, SEL sel, NSArray<MANExpression *> *argExprs){
-	
-	NSMethodSignature *sig = [instance methodSignatureForSelector:sel];
 	if (!instance) {
-		//todo
-		const char *returnType = [sig methodReturnType];
 		for (MANExpression *argExpr in argExprs) {
 			eval_expression(inter, scope, argExpr);
 			[inter.stack pop];
 		}
-		return [MANValue defaultValueWithTypeEncoding:returnType];
+		return [MANValue valueInstanceWithInt:0];
 	}
+	NSMethodSignature *sig = [instance methodSignatureForSelector:sel];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
 	invocation.target = instance;
 	invocation.selector = sel;
@@ -1201,7 +1217,19 @@ break;\
 
 							case '{':{
 								argTypes[i] = mango_ffi_type_with_type_encoding(argTypeEncoding);
-								args[i] = argValue.pointerValue;
+								if (argValue.type.typeKind == MAN_TYPE_STRUCT_LITERAL) {
+									size_t structSize = mango_size_with_encoding(argTypeEncoding);
+									void * structPtr = alloca(structSize);
+									MANStructDeclareTable *table = [MANStructDeclareTable shareInstance];
+									NSString *structName = mango_struct_name_with_encoding(argTypeEncoding);
+									MANStructDeclare *declare = [table getStructDeclareWithName:structName];
+									mango_struct_data_with_dic(structPtr, argValue.objectValue, declare);
+									args[i] = structPtr;
+								}else if (argValue.type.typeKind == MAN_TYPE_STRUCT){
+									args[i] = argValue.pointerValue;
+								}else{
+									NSCAssert(0, @"");
+								}
 								break;
 							}
 							
@@ -1245,7 +1273,7 @@ break;\
 						mango_FFI_RETURN_TYPE_CASE('*', ffi_type_pointer)
 						mango_FFI_RETURN_TYPE_CASE('v', ffi_type_void)
 						case '{':{
-							rtype =mango_ffi_type_with_type_encoding(returnTypeEncoding);
+							rtype = mango_ffi_type_with_type_encoding(returnTypeEncoding);
 							rvalue = alloca(rtype->size);
 						}
 							
@@ -1299,7 +1327,7 @@ break;\
 			}
 			for (NSUInteger i = 1; i < numberOfArguments; i++) {
 				const char *typeEncoding = [sig getArgumentTypeAtIndex:i];
-				void *ptr = malloc(mango_size_with_encoding(typeEncoding));
+				void *ptr = alloca(mango_size_with_encoding(typeEncoding));
 				eval_expression(inter, scope, expr.args[i -1]);
 				MANValue *argValue = [inter.stack pop];
 				[argValue assign2CValuePointer:ptr typeEncoding:typeEncoding];
@@ -1310,14 +1338,12 @@ break;\
 			retType = removeTypeEncodingPrefix((char *)retType);
 			MANValue *retValue;
 			if (*retType != 'v') {
-				void *retValuePtr = malloc(mango_size_with_encoding(retType));
+				void *retValuePtr = alloca(mango_size_with_encoding(retType));
 				[invocation getReturnValue:retValuePtr];
 				retValue = [[MANValue alloc] initWithCValuePointer:retValuePtr typeEncoding:retType];
-				free(retValuePtr);
 			}else{
 				retValue = [MANValue voidValueInstance];
 			}
-			
 			[inter.stack push:retValue];
 			break;
 		}
@@ -1415,8 +1441,8 @@ static void eval_expression(MANInterpreter *inter, MANScopeChain *scope, __kindo
 		case MAN_TERNARY_EXPRESSION:
 			eval_ternary_expression(inter, scope, expr);
 			break;
-		case MAN_INDEX_EXPRESSION:
-			eval_index_expression(inter, scope, expr);
+		case MAN_SUB_SCRIPT_EXPRESSION:
+			eval_sub_script_expression(inter, scope, expr);
 			break;
 		case MAN_AT_EXPRESSION:
 			eval_at_expression(inter, scope, expr);

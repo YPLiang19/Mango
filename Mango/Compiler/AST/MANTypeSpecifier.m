@@ -8,14 +8,33 @@
 
 #import "MANTypeSpecifier.h"
 #import "MANInterpreter.h"
-#import "ANANASStructDeclareTable.h"
+#import "MANStructDeclareTable.h"
+#import "util.h"
 
 
-@implementation MANTypeSpecifier
+@implementation MANTypeSpecifier{
+	const char * _typeEncoding;
+	size_t _structSize;
+}
+
+- (size_t)structSize{
+	if (self.typeKind == MAN_TYPE_STRUCT) {
+		if (!_structSize) {
+			_structSize =  mango_size_with_encoding([self typeEncoding]);
+		}
+		return _structSize;;
+	}
+	return 0;
+}
+
 - (const char *)typeEncoding{
+	if (_typeEncoding) {
+		return _typeEncoding;
+	}
 	if (self.typeKind == MAN_TYPE_STRUCT || self.typeKind == MAN_TYPE_STRUCT_LITERAL) {
-		ANANASStructDeclareTable *table = [ANANASStructDeclareTable shareInstance];
-		return [table getStructDeclareWithName:self.structName].typeEncoding;
+		MANStructDeclareTable *table = [MANStructDeclareTable shareInstance];
+		_typeEncoding = [table getStructDeclareWithName:self.structName].typeEncoding;
+		return _typeEncoding;
 	}
 	static NSDictionary *_dic;
 	static dispatch_once_t onceToken;
@@ -34,7 +53,8 @@
 				  @(MAN_TYPE_BLOCK):@"@?"
 				 };
 	});
-	return [_dic[@(self.typeKind)] UTF8String];
+	_typeEncoding = [_dic[@(self.typeKind)] UTF8String];
+	return _typeEncoding;
 }
 
 - (NSString *)typeName{
@@ -62,6 +82,12 @@
 }
 
 
+- (void)setStructName:(NSString *)structName{
+	if ([structName isEqualToString:@"NSRange"]) {
+		structName = @"_NSRange";
+	}
+	_structName = structName;
+}
 
 
 

@@ -40,7 +40,7 @@ int yywrap(){
 }
 
 static void increment_line_number(){
-	MANInterpreter *interpreter = anc_get_current_compile_util();
+	MANInterpreter *interpreter = man_get_current_compile_util();
 	interpreter.currentLineNumber++;
 }
 %}
@@ -141,31 +141,31 @@ static void increment_line_number(){
 <INITIAL>"Pointer" {return POINTER; }
 
 <INITIAL>"self" {
-	MANExpression *expression = anc_create_expression(MAN_SELF_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_SELF_EXPRESSION);
 	yylval.expression = (__bridge_retained void *)expression;
 	return SELF;
 }
 <INITIAL>"super" {
-	MANExpression *expression = anc_create_expression(MAN_SUPER_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_SUPER_EXPRESSION);
 	yylval.expression = (__bridge_retained void *)expression;
 	return SUPER;
 	
 }
 <INITIAL>"nil" {
-	MANExpression *expression = anc_create_expression(MAN_NIL_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_NIL_EXPRESSION);
 	yylval.expression = (__bridge_retained void *)expression;
 	return NIL;
 	
 }
 <INITIAL>"YES" {
-	MANExpression *expression = anc_create_expression(MAN_BOOLEAN_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_BOOLEAN_EXPRESSION);
 	expression.boolValue = YES;
 	yylval.expression = (__bridge_retained void *)expression;
 	return YES_;
 	
 }
 <INITIAL>"NO" {
-	MANExpression *expression = anc_create_expression(MAN_BOOLEAN_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_BOOLEAN_EXPRESSION);
 	expression.boolValue = NO;
 	yylval.expression = (__bridge_retained void *)expression;
 	return NO_;
@@ -175,7 +175,7 @@ static void increment_line_number(){
 
 
 <INITIAL>[A-Za-z_$][A-Za-z_$0-9]* {
-	NSString *identifier = anc_create_identifier(yytext);
+	NSString *identifier = man_create_identifier(yytext);
 	yylval.identifier = (__bridge_retained void *)identifier;
 	return IDENTIFIER;
 }
@@ -183,7 +183,7 @@ static void increment_line_number(){
 
 
 <INITIAL>[1-9][0-9]* {
-	MANExpression *expression = anc_create_expression(MAN_INT_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_INT_EXPRESSION);
 	NSInteger val;
 	sscanf(yytext,"%ld",&val);
 	expression.integerValue = val;
@@ -194,7 +194,7 @@ static void increment_line_number(){
 
 
 <INITIAL>"0"[xX][0-9a-fA-F]+ {
-	MANExpression *expression = anc_create_expression(MAN_INT_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_INT_EXPRESSION);
 	NSInteger val;
 	sscanf(yytext,"%lx",&val);
 	expression.integerValue = val;
@@ -204,7 +204,7 @@ static void increment_line_number(){
 
 
 <INITIAL>"0" {
-	MANExpression *expression = anc_create_expression(MAN_INT_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_INT_EXPRESSION);
 	expression.integerValue = 0;
 	yylval.expression = (__bridge_retained void *)expression;
 	return INTETER_LITERAL;
@@ -212,7 +212,7 @@ static void increment_line_number(){
 
 
 <INITIAL>[0-9]\.[0-9]+ {
-	MANExpression *expression = anc_create_expression(MAN_DOUBLE_EXPRESSION);
+	MANExpression *expression = man_create_expression(MAN_DOUBLE_EXPRESSION);
 	double val;
 	sscanf(yytext,"%lf",&val);
 	expression.doubleValue = val;
@@ -221,42 +221,58 @@ static void increment_line_number(){
 }
 
 <INITIAL>\" {
-	anc_open_string_literal_buf();
+	man_open_string_literal_buf();
 	BEGIN STRING_LITERAL_STATE;
 }
 
+<INITIAL>[ \t] ;
+<INITIAL>[\n] { increment_line_number(); }
+
+<INITIAL>"/*" {	BEGIN C_COMMENT; }
+<INITIAL>"//" { BEGIN CC_COMMENT; }
+<INITIAL>.	{
+	man_compile_err(0,MANCompileErrorParseErr);
+}
+
+<C_COMMENT>\n { increment_line_number();}
+<C_COMMENT>. ;
+<C_COMMENT>"*/"	{ BEGIN INITIAL; }
+<C_COMMENT><<EOF>>	{
+	man_compile_err(0,MANCompileErrorParseErr);
+}
+
+<CC_COMMENT>.	;
+<CC_COMMENT>\n	{
+	increment_line_number();
+	BEGIN INITIAL;
+}
+<CC_COMMENT><<EOF>> { BEGIN INITIAL; }
+
+
 
 <STRING_LITERAL_STATE>\" {
-	MANExpression *expression = anc_create_expression(MAN_STRING_EXPRESSION);
-	expression.cstringValue = anc_end_string_literal();
+	MANExpression *expression = man_create_expression(MAN_STRING_EXPRESSION);
+	expression.cstringValue = man_end_string_literal();
 	yylval.expression = (__bridge_retained void *)expression;
 	BEGIN  INITIAL;
 	return STRING_LITERAL;
 }
 
 <STRING_LITERAL_STATE>. {
-	anc_append_string_literal(yytext[0]);
+	man_append_string_literal(yytext[0]);
 } 
 
 
-<STRING_LITERAL_STATE>\\\"  { anc_append_string_literal('\"'); }
-<STRING_LITERAL_STATE>\\n	{ anc_append_string_literal('\n'); }
-<STRING_LITERAL_STATE>\\t	{ anc_append_string_literal('\t'); }
-<STRING_LITERAL_STATE>\\\\	{ anc_append_string_literal('\\'); }
+<STRING_LITERAL_STATE>\\\"  { man_append_string_literal('\"'); }
+<STRING_LITERAL_STATE>\\n	{ man_append_string_literal('\n'); }
+<STRING_LITERAL_STATE>\\t	{ man_append_string_literal('\t'); }
+<STRING_LITERAL_STATE>\\\\	{ man_append_string_literal('\\'); }
 <STRING_LITERAL_STATE>[\x81-\x9f\xe0-\xef][\x40-\x7e\x80-\xfc] {
-	anc_append_string_literal(yytext[0]);
-	anc_append_string_literal(yytext[1]);
+	man_append_string_literal(yytext[0]);
+	man_append_string_literal(yytext[1]);
 }
 
 
-
-<INITIAL>"//" { BEGIN CC_COMMENT; }
-<CC_COMMENT>\n { increment_line_number(); BEGIN INITIAL; }
-<CC_COMMENT>. ;
-
-<INITIAL>[ \t]+  ;
-<INITIAL>[\n]  { increment_line_number(); };
-<INITIAL>.  ;
 %%
 
 
