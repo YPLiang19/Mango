@@ -319,26 +319,37 @@ class SubRotateAnimationExampleController:UIViewController {
 
 #### Mango Type usage
  Mango support type as fllow: 
-  ##### void
+ 
+##### void
   	equivalent to Objective-C `void`.
-  #### BOOL
+	
+#### BOOL
   	equivalent to Objective-C `BOOL`.
-  ##### uint
-	  equivalent to Objective-C `unsigned char`、`unsigned short`、`unsigned int`、`unsigned long`、`unsigned long long`、`NSUInteger`. 
-  #### int
+	
+##### uint
+	equivalent to Objective-C `unsigned char`、`unsigned short`、`unsigned int`、`unsigned long`、`unsigned long long`、`NSUInteger`. 
+	  
+#### int
   	equivalent to Objective-C `char`、`short`、`int`、`long`、`long long`、`NSInteger`. 
-  ##### double
+	
+##### double
   	equivalent to Objective-C `double`、`float`、`CGFloat`. 
-  #### id
+	
+#### id
   	equivalent to Objective-C `id`.
-  #### OCClassName *
-  	`NSString *str = @"";`
-  #### Block
-  	`Block blokc = ^id(id arg){};`
-  #### Class
-  	`Class clazz = NSString.class();`
-  #### struct
-  	`struct CGRect rect;// must add struct keyword  before structure variables defined.`
- #### Pointer
- 	`Pointer ptr; // C pointer. `
+	
+#### OCClassName *
+  	NSString *str = @"";
+	
+#### Block
+  	Block blokc = ^id(id arg){};
+	
+#### Class
+  	Class clazz = NSString.class();
+	
+#### struct
+  	struct CGRect rect;// must add struct keyword  before structure variables defined.
+	
+#### Pointer
+ 	Pointer ptr; // C pointer. 
   
