@@ -10,8 +10,6 @@
 		414B86992047D2A200A83B0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 414B86982047D2A200A83B0D /* Assets.xcassets */; };
 		414B869C2047D2A200A83B0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 414B869A2047D2A200A83B0D /* LaunchScreen.storyboard */; };
 		414B869F2047D2A200A83B0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 414B869E2047D2A200A83B0D /* main.m */; };
-		414B87042047D57500A83B0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 414B87012047D57400A83B0D /* AppDelegate.m */; };
-		414B87052047D57500A83B0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414B87022047D57400A83B0D /* ViewController.m */; };
 		414B87072047D58200A83B0D /* demo.mg in Resources */ = {isa = PBXBuildFile; fileRef = 414B87062047D58200A83B0D /* demo.mg */; };
 		414B87092047D5AF00A83B0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 414B87082047D5AF00A83B0D /* Main.storyboard */; };
 		4164A4CB2047E0020069ADEE /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A48C2047E0020069ADEE /* util.m */; };
@@ -40,6 +38,8 @@
 		4164A4E42047E0020069ADEE /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4164A4C82047E0020069ADEE /* libffi.a */; };
 		4164A4E82047E4270069ADEE /* mango.y in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4E62047E4270069ADEE /* mango.y */; };
 		4164A4E92047E4270069ADEE /* mango.l in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4E72047E4270069ADEE /* mango.l */; };
+		4164A4EE2047EBC10069ADEE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4EA2047EBC10069ADEE /* AppDelegate.m */; };
+		4164A4EF2047EBC10069ADEE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4ED2047EBC10069ADEE /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,10 +48,6 @@
 		414B869B2047D2A200A83B0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		414B869D2047D2A200A83B0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		414B869E2047D2A200A83B0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		414B87002047D57400A83B0D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../ananas/ananasExample/AppDelegate.h; sourceTree = "<group>"; };
-		414B87012047D57400A83B0D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../ananas/ananasExample/AppDelegate.m; sourceTree = "<group>"; };
-		414B87022047D57400A83B0D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../ananas/ananasExample/ViewController.m; sourceTree = "<group>"; };
-		414B87032047D57500A83B0D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../ananas/ananasExample/ViewController.h; sourceTree = "<group>"; };
 		414B87062047D58200A83B0D /* demo.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.mg; sourceTree = "<group>"; };
 		414B87082047D5AF00A83B0D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4164A48B2047E0020069ADEE /* mango.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mango.h; sourceTree = "<group>"; };
@@ -113,6 +109,10 @@
 		4164A4CA2047E0020069ADEE /* ffi_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_arm64.h; sourceTree = "<group>"; };
 		4164A4E62047E4270069ADEE /* mango.y */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = mango.y; sourceTree = "<group>"; };
 		4164A4E72047E4270069ADEE /* mango.l */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = mango.l; sourceTree = "<group>"; };
+		4164A4EA2047EBC10069ADEE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4164A4EB2047EBC10069ADEE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4164A4EC2047EBC10069ADEE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4164A4ED2047EBC10069ADEE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,11 +148,11 @@
 		414B868E2047D2A200A83B0D /* MangoDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4164A4EC2047EBC10069ADEE /* AppDelegate.h */,
+				4164A4EA2047EBC10069ADEE /* AppDelegate.m */,
+				4164A4EB2047EBC10069ADEE /* ViewController.h */,
+				4164A4ED2047EBC10069ADEE /* ViewController.m */,
 				414B87062047D58200A83B0D /* demo.mg */,
-				414B87002047D57400A83B0D /* AppDelegate.h */,
-				414B87012047D57400A83B0D /* AppDelegate.m */,
-				414B87032047D57500A83B0D /* ViewController.h */,
-				414B87022047D57400A83B0D /* ViewController.m */,
 				414B87082047D5AF00A83B0D /* Main.storyboard */,
 				414B86982047D2A200A83B0D /* Assets.xcassets */,
 				414B869A2047D2A200A83B0D /* LaunchScreen.storyboard */,
@@ -356,13 +356,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				414B87042047D57500A83B0D /* AppDelegate.m in Sources */,
 				4164A4DB2047E0020069ADEE /* MANStatement.m in Sources */,
 				4164A4D02047E0020069ADEE /* ANANASMethodMapTable.m in Sources */,
+				4164A4EE2047EBC10069ADEE /* AppDelegate.m in Sources */,
 				4164A4E82047E4270069ADEE /* mango.y in Sources */,
 				4164A4D32047E0020069ADEE /* MANValue.m in Sources */,
 				414B869F2047D2A200A83B0D /* main.m in Sources */,
-				414B87052047D57500A83B0D /* ViewController.m in Sources */,
 				4164A4E12047E0020069ADEE /* MANDeclaration.m in Sources */,
 				4164A4E02047E0020069ADEE /* MANStructDeclare.m in Sources */,
 				4164A4DD2047E0020069ADEE /* MANTypeSpecifier.m in Sources */,
@@ -371,6 +370,7 @@
 				4164A4CC2047E0020069ADEE /* MANContext.m in Sources */,
 				4164A4D72047E0020069ADEE /* create.m in Sources */,
 				4164A4E22047E0020069ADEE /* MANInterpreter.m in Sources */,
+				4164A4EF2047EBC10069ADEE /* ViewController.m in Sources */,
 				4164A4DC2047E0020069ADEE /* MANBlockBody.m in Sources */,
 				4164A4D12047E0020069ADEE /* MANStack.m in Sources */,
 				4164A4DE2047E0020069ADEE /* MANFunctionDefinition.m in Sources */,
