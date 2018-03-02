@@ -13,7 +13,7 @@ import "AppDelegate.h"
     NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"mg"];
     NSURL *scriptUrl = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",path]];
     MMANontext *context = [[MMANontext alloc] init];
-    [context evalAnanasScriptWithURL:scriptUrl];
+    [context evalMangoScriptWithURL:scriptUrl];
     return YES;
 }
 
@@ -54,20 +54,20 @@ class ViewController:UIViewController{
 ### Objective-C
 
 1. `#import "mango.h"`
-2. `exec Mango Script by [context evalAnanasScriptWithSourceString:@""];`
+2. `exec Mango Script by [context evalMangoScriptWithSourceString:@""];`
 
 ```objc
 MMANontext *context = [[MMANontext alloc] init];
 // exec mango file from network
 [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://xxx/demo.mg"]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
     NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [context evalAnanasScriptWithSourceString:script];
+    [context evalMangoScriptWithSourceString:script];
 }];
 	
 // exec local mango file
 NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"js"];
 NSString *script = [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
-[context evalAnanasScriptWithSourceString:script];
+[context evalMangoScriptWithSourceString:script];
 ```
 
 ### Mango
