@@ -14,7 +14,7 @@
 @interface MANBlockBody: NSObject
 @property (strong, nonatomic) NSArray<MANStatement *> *statementList;
 @property (strong, nonatomic) NSMutableArray<MANDeclaration *> *declarations;
-@property (weak, nonatomic) MANBlock *outBlock;
+@property (weak, nonatomic) MANBlockBody *outBlock;
 
 
 @end

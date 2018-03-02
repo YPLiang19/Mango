@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) NSMutableArray *topList;
 @property (strong, nonatomic) MANClassDefinition *currentClassDefinition;
-@property (strong, nonatomic) MANBlock *currentBlock;
+@property (strong, nonatomic) MANBlockBody *currentBlock;
 
 @property (strong, nonatomic) MANScopeChain *topScope;
 @property (strong, nonatomic) MANScopeChain *commonScope;

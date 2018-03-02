@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <objc/message.h>
-#import <objc/runtime.h>
 #import "mango.h"
 
 
