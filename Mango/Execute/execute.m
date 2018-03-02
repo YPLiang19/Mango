@@ -410,7 +410,7 @@ void getterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 		value = [MANValue defaultValueWithTypeEncoding:type];
 		[value assign2CValuePointer:ret typeEncoding:type];
 	}else if(*type == '@'){
-		*(void **)ret = (__bridge_retained void *)propValue;
+		*(void **)ret = (__bridge void *)propValue;
 	}else{
 		value = propValue;
 		[value assign2CValuePointer:ret typeEncoding:type];

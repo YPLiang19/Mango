@@ -40,6 +40,7 @@
 		4164A4E92047E4270069ADEE /* mango.l in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4E72047E4270069ADEE /* mango.l */; };
 		4164A4EE2047EBC10069ADEE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4EA2047EBC10069ADEE /* AppDelegate.m */; };
 		4164A4EF2047EBC10069ADEE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4ED2047EBC10069ADEE /* ViewController.m */; };
+		41DDFF40204925E000E8E562 /* TextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DDFF3F204925E000E8E562 /* TextObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,8 @@
 		4164A4EB2047EBC10069ADEE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4164A4EC2047EBC10069ADEE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4164A4ED2047EBC10069ADEE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		41DDFF3E204925E000E8E562 /* TextObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextObject.h; sourceTree = "<group>"; };
+		41DDFF3F204925E000E8E562 /* TextObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				414B869A2047D2A200A83B0D /* LaunchScreen.storyboard */,
 				414B869D2047D2A200A83B0D /* Info.plist */,
 				414B869E2047D2A200A83B0D /* main.m */,
+				41DDFF3E204925E000E8E562 /* TextObject.h */,
+				41DDFF3F204925E000E8E562 /* TextObject.m */,
 			);
 			path = MangoDemo;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				4164A4DA2047E0020069ADEE /* MANExpression.m in Sources */,
 				4164A4CC2047E0020069ADEE /* MANContext.m in Sources */,
 				4164A4D72047E0020069ADEE /* create.m in Sources */,
+				41DDFF40204925E000E8E562 /* TextObject.m in Sources */,
 				4164A4E22047E0020069ADEE /* MANInterpreter.m in Sources */,
 				4164A4EF2047EBC10069ADEE /* ViewController.m in Sources */,
 				4164A4DC2047E0020069ADEE /* MANBlockBody.m in Sources */,

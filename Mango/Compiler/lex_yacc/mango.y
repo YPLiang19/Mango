@@ -20,7 +20,6 @@ int yylex(void);
 	void	*type_specifier;
 	void	*one_case;
 	void	*else_if;
-	void    *annotation_if;
 	void	*class_definition;
 	void	*declare_struct;
 	void	*member_definition;
@@ -57,8 +56,7 @@ int yylex(void);
 
 %type <assignment_operator> assignment_operator
 %type <expression> expression expression_opt struct_literal assign_expression ternary_operator_expression logic_or_expression logic_and_expression  
-equality_expression relational_expression additive_expression multiplication_expression unary_expression postfix_expression
-primary_expression  dic block_body annotation_if
+equality_expression relational_expression additive_expression multiplication_expression unary_expression postfix_expression primary_expression  dic block_body annotation_if
 
 %type <identifier> selector selector_1 selector_2
 

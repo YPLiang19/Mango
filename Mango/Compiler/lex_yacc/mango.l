@@ -211,7 +211,7 @@ static void increment_line_number(){
 }
 
 
-<INITIAL>[0-9]\.[0-9]+ {
+<INITIAL>[0-9]+\.[0-9]+ {
 	MANExpression *expression = man_create_expression(MAN_DOUBLE_EXPRESSION);
 	double val;
 	sscanf(yytext,"%lf",&val);

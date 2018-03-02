@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "TextObject.h"
 static NSString * const cellIdentifier = @"cell";
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -18,10 +18,37 @@ static NSString * const cellIdentifier = @"cell";
 
 @implementation ViewController
 
+
++ (void)classMethodExapleWithInstance:(ViewController *)vc{
+	vc.resultView.text = @"here is OC Class Method";
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"Mango示例";
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+	
+	
+	
+	NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:"@@:"];
+	NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
+	inv.target = [TextObject class];
+	inv.selector = @selector(new);
+	[inv invoke];
+//方法1 释放
+//	id obj;
+//	[inv getReturnValue:&obj];
+	
+//方法2 不释放
+//	void *objPtr = alloca(sig.methodReturnLength);
+//	[inv getReturnValue:objPtr];
+//	id obj = (__bridge id)*(void **)objPtr;
+	
+	
+//方法3 释放
+//	void *objPtr = alloca(sig.methodReturnLength);
+//	[inv getReturnValue:objPtr];
+//	id obj = (__bridge_transfer  id)*(void **)objPtr;
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -78,20 +105,23 @@ static NSString * const cellIdentifier = @"cell";
 		case 10://创建自定义ViewController
 			[self createAndOpenNewViewControllerExample];
 			break;
-			
+		case 11://替换类方式示例
+			[self.class classMethodExapleWithInstance:self];
+		case 12://条件注解示例
+			[self conditionsAnnotationExample];
+			break;
+		case 13:
+			[self testObjectDealloc];
 		default:
 			break;
 	}
-	
-	
-	
 	
 }
 
 - (NSArray *)titles{
 	if (_titles == nil) {
 		_titles = @[@"顺序语句示例",@"if语句示例",@"switch语句示例",@"for语句示例",@"forEach语句示例",@"while语句示例",
-					@"do while语句示例",@"block语句示例",@"参数传递示例",@"返回值示例",@"创建自定义ViewController"];
+					@"do while语句示例",@"block语句示例",@"参数传递示例",@"返回值示例",@"创建自定义ViewController",@"替换类方式示例",@"条件注解示例",@"测试对象是否销毁"];
 	}
 	return _titles;
 }
@@ -137,8 +167,18 @@ static NSString * const cellIdentifier = @"cell";
 }
 
 - (void)createAndOpenNewViewControllerExample{
+	
 }
 
+
+- (void)conditionsAnnotationExample{
+	self.resultView.text = @"here is OC method";
+}
+
+
+- (void)testObjectDealloc{
+	
+}
 
 
 @end

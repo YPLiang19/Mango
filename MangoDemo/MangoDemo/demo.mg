@@ -217,7 +217,21 @@ self.resultView.text = text;
 
 }
 
++ (void)classMethodExapleWithInstance:(ViewController *)vc{
+	vc.resultView.text = @"here is Mango  Class Method " + self;
 }
+
+#If($systemVersion.doubleValue() > 12.0 )
+- (void)conditionsAnnotationExample{
+self.resultView.text = @"here is Mango method";
+}
+
+- (void)testObjectDealloc{
+	TextObject *obj = TextObject.alloc().init();
+}
+
+}
+
 
 
 class SubRotateAnimationExampleController:UIViewController {
