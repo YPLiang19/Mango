@@ -403,10 +403,20 @@ void getterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	MANPropertyDefinition *propDef = (__bridge MANPropertyDefinition *)userdata;
 	id _self = (__bridge id)(*(void **)args[0]);
 	NSString *propName = propDef.name;
-	MANValue *value = objc_getAssociatedObject(_self, propKey(propName));
-	value = value?:[[MANValue alloc] init];
+	id propValue = objc_getAssociatedObject(_self, propKey(propName));
 	const char *type = [propDef.typeSpecifier typeEncoding];
-	[value assign2CValuePointer:ret typeEncoding:type];
+	MANValue *value;
+	if (!propValue) {
+		value = [MANValue defaultValueWithTypeEncoding:type];
+		[value assign2CValuePointer:ret typeEncoding:type];
+	}else if(*type == '@'){
+		*(void **)ret = (__bridge_retained void *)propValue;
+	}else{
+		value = propValue;
+		[value assign2CValuePointer:ret typeEncoding:type];
+	}
+	
+	
 }
 
 
@@ -414,7 +424,12 @@ void setterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	MANPropertyDefinition *propDef = (__bridge MANPropertyDefinition *)userdata;
 	id _self = (__bridge id)(*(void **)args[0]);
 	const char *type = [propDef.typeSpecifier typeEncoding];
-	MANValue *value = [[MANValue alloc] initWithCValuePointer:args[2] typeEncoding:type];
+	id value;
+	if (*type == '@') {
+		value = (__bridge id)(*(void **)args[2]);
+	}else{
+		value = [[MANValue alloc] initWithCValuePointer:args[2] typeEncoding:type];
+	}
 	NSString *propName = propDef.name;
 	
 	objc_AssociationPolicy associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;

@@ -224,6 +224,7 @@ class SubRotateAnimationExampleController:UIViewController {
 @property (strong, nonatomic) UIView *rotateView;
 - (void)viewDidLoad {
 	super.viewDidLoad();
+	id xx = self.rotateView;
 	self.title = @"Magno 创建自定义ViewController";
 	self.view.backgroundColor = UIColor.whiteColor();
 	double width = 100;
