@@ -1,6 +1,6 @@
 //
 //  MANBlock.m
-//  ananasExample
+//  mangoExample
 //
 //  Created by jerry.yong on 2017/12/26.
 //  Copyright © 2017年 yongpengliang. All rights reserved.
@@ -28,11 +28,11 @@ struct MANSimulateBlock {
 	int flags;
 	int reserved;
 	void *invoke;
-	struct ANANASSimulateBlockDescriptor *descriptor;
+	struct MANGOSimulateBlockDescriptor *descriptor;
 	void *wrapper;
 };
 
-struct ANANASSimulateBlockDescriptor {
+struct MANGOSimulateBlockDescriptor {
 	//Block_descriptor_1
 	struct {
 		unsigned long int reserved;
@@ -67,11 +67,11 @@ void dispose_helper(struct MANSimulateBlock *src)
 
 
 static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
-	MANBlock *anananBlock = (__bridge MANBlock *)userdata;
-	MANInterpreter *inter = anananBlock.inter;
-	MANScopeChain *scope = anananBlock.scope;
-	MANFunctionDefinition *func = anananBlock.func;
-	NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:anananBlock.typeEncoding];
+	MANBlock *mangoBlock = (__bridge MANBlock *)userdata;
+	MANInterpreter *inter = mangoBlock.inter;
+	MANScopeChain *scope = mangoBlock.scope;
+	MANFunctionDefinition *func = mangoBlock.func;
+	NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:mangoBlock.typeEncoding];
 	NSUInteger numberOfArguments = [sig numberOfArguments];
 	NSMutableArray *argValues = [NSMutableArray array];
 	for (NSUInteger i = 1; i < numberOfArguments ; i++) {
@@ -90,7 +90,7 @@ static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	ffi_closure *_closure;
 	BOOL _generatedPtr;
 	void *_blockPtr;
-	struct ANANASSimulateBlockDescriptor *_descriptor;
+	struct MANGOSimulateBlockDescriptor *_descriptor;
 }
 
 + (const char *)typeEncodingForBlock:(id)block{
@@ -142,15 +142,15 @@ static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	ffi_prep_closure_loc(_closure, _cifPtr, blockInter, (__bridge void *)self, blockImp);
 	
 	
-	struct ANANASSimulateBlockDescriptor descriptor = {
+	struct MANGOSimulateBlockDescriptor descriptor = {
 		0,
 		sizeof(struct MANSimulateBlock),
 		(void (*)(void *dst, const void *src))copy_helper,
 		(void (*)(const void *src))dispose_helper,
 		typeEncoding
 	};
-	struct ANANASSimulateBlockDescriptor *descriptorPtr = malloc(sizeof(struct ANANASSimulateBlockDescriptor));
-	memcpy(descriptorPtr, &descriptor, sizeof(struct ANANASSimulateBlockDescriptor));
+	struct MANGOSimulateBlockDescriptor *descriptorPtr = malloc(sizeof(struct MANGOSimulateBlockDescriptor));
+	memcpy(descriptorPtr, &descriptor, sizeof(struct MANGOSimulateBlockDescriptor));
 	
 	struct MANSimulateBlock simulateBlock = {
 		&_NSConcreteStackBlock,

@@ -1,6 +1,6 @@
 //
 //  MANContext.m
-//  ananasExample
+//  mangoExample
 //
 //  Created by jerry.yong on 2017/12/25.
 //  Copyright © 2017年 yongpengliang. All rights reserved.
@@ -24,7 +24,7 @@
 	return self;
 }
 
-- (void)evalAnanasScriptWithURL:(NSURL *)url{
+- (void)evalMangoScriptWithURL:(NSURL *)url{
 	man_set_current_compile_util(self.interpreter);
 	[self.interpreter compileSoruceWithURL:url];
 	ane_interpret(self.interpreter);
@@ -32,7 +32,7 @@
 	
 }
 
-- (void)evalAnanasScriptWithSourceString:(NSString *)sourceString{
+- (void)evalMangoScriptWithSourceString:(NSString *)sourceString{
 	man_set_current_compile_util(self.interpreter);
 	[self.interpreter compileSoruceWithString:sourceString];
 	ane_interpret(self.interpreter);

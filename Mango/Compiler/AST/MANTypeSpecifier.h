@@ -1,6 +1,6 @@
 //
 //  NSCTypeSpecifier.h
-//  ananasExample
+//  mangoExample
 //
 //  Created by jerry.yong on 2017/11/13.
 //  Copyright © 2017年 yongpengliang. All rights reserved.

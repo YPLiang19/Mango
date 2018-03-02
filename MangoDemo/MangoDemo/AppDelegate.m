@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  ananasExample
+//  mangoExample
 //
 //  Created by jerry.yong on 2017/10/31.
 //  Copyright © 2017年 yongpengliang. All rights reserved.
@@ -21,7 +21,7 @@
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"mg"];
 	NSURL *scriptUrl = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",path]];
 	MMANontext *context = [[MMANontext alloc] init];
-	[context evalAnanasScriptWithURL:scriptUrl];
+	[context evalMangoScriptWithURL:scriptUrl];
 	return YES;
 }
 

@@ -1,6 +1,6 @@
 //
 //  MANValue .m
-//  ananasExample
+//  mangoExample
 //
 //  Created by jerry.yong on 2018/2/28.
 //  Copyright © 2018年 yongpengliang. All rights reserved.
@@ -265,7 +265,7 @@ break;\
 	typeEncoding = removeTypeEncodingPrefix((char *)typeEncoding);
 	MANValue *retValue = [[MANValue alloc] init];
 	
-#define ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE(_code,_kind, _type,_sel)\
+#define MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE(_code,_kind, _type,_sel)\
 case _code:{\
 retValue.type = man_create_type_specifier(_kind);\
 retValue._sel = *(_type *)cValuePointer;\
@@ -273,23 +273,23 @@ break;\
 }
 	
 	switch (*typeEncoding) {
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('c',MAN_TYPE_INT, char, integerValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('i',MAN_TYPE_INT, int,integerValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('s',MAN_TYPE_INT, short,integerValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('l',MAN_TYPE_INT, long,integerValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('q',MAN_TYPE_INT, long long,integerValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('C',MAN_TYPE_U_INT, unsigned char, uintValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('I',MAN_TYPE_U_INT,  unsigned int, uintValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('S',MAN_TYPE_U_INT, unsigned short, uintValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('L',MAN_TYPE_U_INT,  unsigned long, uintValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('Q',MAN_TYPE_U_INT, unsigned long long,uintValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('B',MAN_TYPE_BOOL, BOOL, uintValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('f',MAN_TYPE_DOUBLE, float, doubleValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('d',MAN_TYPE_DOUBLE, double,doubleValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE(':',MAN_TYPE_SEL, SEL, selValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('^',MAN_TYPE_POINTER,void *, pointerValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('*',MAN_TYPE_C_STRING, char *,cstringValue)
-			ANANASA_C_VALUE_CONVER_TO_mango_VALUE_CASE('#',MAN_TYPE_CLASS, Class,classValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('c',MAN_TYPE_INT, char, integerValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('i',MAN_TYPE_INT, int,integerValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('s',MAN_TYPE_INT, short,integerValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('l',MAN_TYPE_INT, long,integerValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('q',MAN_TYPE_INT, long long,integerValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('C',MAN_TYPE_U_INT, unsigned char, uintValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('I',MAN_TYPE_U_INT,  unsigned int, uintValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('S',MAN_TYPE_U_INT, unsigned short, uintValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('L',MAN_TYPE_U_INT,  unsigned long, uintValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('Q',MAN_TYPE_U_INT, unsigned long long,uintValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('B',MAN_TYPE_BOOL, BOOL, uintValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('f',MAN_TYPE_DOUBLE, float, doubleValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('d',MAN_TYPE_DOUBLE, double,doubleValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE(':',MAN_TYPE_SEL, SEL, selValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('^',MAN_TYPE_POINTER,void *, pointerValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('*',MAN_TYPE_C_STRING, char *,cstringValue)
+			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('#',MAN_TYPE_CLASS, Class,classValue)
 		case '@':{
 			retValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 			retValue.objectValue = (__bridge id)(*(void **)cValuePointer);
