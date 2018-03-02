@@ -507,11 +507,6 @@ void man_add_statement(MANStatement *statement){
 
 
 
-void ane_test(id obj){
-	NSLog(@"%@",obj);
-}
-
-
 
 
 

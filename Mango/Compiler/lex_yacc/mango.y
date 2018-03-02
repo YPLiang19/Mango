@@ -870,7 +870,6 @@ primary_expression: IDENTIFIER
 			{
 				MANUnaryExpression *expr = (MANUnaryExpression *)man_create_expression(MAN_AT_EXPRESSION);
 				MANExpression *subExpr = (__bridge_transfer MANExpression *)$2;
-				ane_test(subExpr);
 				expr.expr = subExpr;
 				$$ = (__bridge_retained void *)expr;
 			}

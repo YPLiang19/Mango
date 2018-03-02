@@ -64,7 +64,6 @@ void man_add_class_definition(MANClassDefinition *classDefinition);
 void man_add_struct_declare(MANStructDeclare *structDeclare);
 void man_add_statement(MANStatement *statement);
 
-void ane_test(id obj);
 
 
 MANInterpreter *man_get_current_compile_util(void);
