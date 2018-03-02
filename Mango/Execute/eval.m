@@ -1094,7 +1094,7 @@ static void eval_member_expression(MANInterpreter *inter, MANScopeChain *scope, 
 	if (*returnTypeEncoding != 'v') {
 		void *returnData = malloc([sig methodReturnLength]);
 		[invocation getReturnValue:returnData];
-		retValue = [[MANValue alloc] initWithCValuePointer:returnData typeEncoding:returnTypeEncoding];
+		retValue = [[MANValue alloc] initWithCValuePointer:returnData typeEncoding:returnTypeEncoding bridgeTransfer:NO];
 		free(returnData);
 	}else{
 		retValue = [MANValue voidValueInstance];
@@ -1138,7 +1138,14 @@ static MANValue *invoke(NSUInteger line, MANInterpreter *inter, MANScopeChain *s
 	if (*returnType != 'v') {
 		void *retValuePointer = malloc([sig methodReturnLength]);
 		[invocation getReturnValue:retValuePointer];
-		retValue = [[MANValue alloc] initWithCValuePointer:retValuePointer typeEncoding:returnType];
+		NSString *selectorName = NSStringFromSelector(sel);
+		if ([selectorName isEqualToString:@"alloc"] || [selectorName isEqualToString:@"new"] ||
+			[selectorName isEqualToString:@"copy"] || [selectorName isEqualToString:@"mutableCopy"]) {
+			retValue = [[MANValue alloc] initWithCValuePointer:retValuePointer typeEncoding:returnType bridgeTransfer:YES];
+		}else{
+			retValue = [[MANValue alloc] initWithCValuePointer:retValuePointer typeEncoding:returnType bridgeTransfer:NO];
+		}
+		
 		free(retValuePointer);
 	}else{
 		retValue = [MANValue voidValueInstance];
@@ -1288,7 +1295,7 @@ break;\
 					ffi_call(&cif, objc_msgSendSuper, rvalue, args);
 					MANValue *retValue;
 					if (*returnTypeEncoding != 'v') {
-						 retValue = [[MANValue alloc] initWithCValuePointer:rvalue typeEncoding:returnTypeEncoding];
+						 retValue = [[MANValue alloc] initWithCValuePointer:rvalue typeEncoding:returnTypeEncoding bridgeTransfer:NO];
 					}else{
 						retValue = [MANValue voidValueInstance];
 					}
@@ -1340,7 +1347,7 @@ break;\
 			if (*retType != 'v') {
 				void *retValuePtr = alloca(mango_size_with_encoding(retType));
 				[invocation getReturnValue:retValuePtr];
-				retValue = [[MANValue alloc] initWithCValuePointer:retValuePtr typeEncoding:retType];
+				retValue = [[MANValue alloc] initWithCValuePointer:retValuePtr typeEncoding:retType bridgeTransfer:NO];
 			}else{
 				retValue = [MANValue voidValueInstance];
 			}

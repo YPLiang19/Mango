@@ -76,7 +76,7 @@ static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	NSMutableArray *argValues = [NSMutableArray array];
 	for (NSUInteger i = 1; i < numberOfArguments ; i++) {
 		void *arg = args[i];
-		MANValue *argValue = [[MANValue alloc] initWithCValuePointer:arg typeEncoding:[sig getArgumentTypeAtIndex:i]];
+		MANValue *argValue = [[MANValue alloc] initWithCValuePointer:arg typeEncoding:[sig getArgumentTypeAtIndex:i] bridgeTransfer:NO];
 		[argValues addObject:argValue];
 		
 	}

@@ -27,29 +27,9 @@ static NSString * const cellIdentifier = @"cell";
 	[super viewDidLoad];
 	self.title = @"Mango示例";
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
-	
-	
-	
-	NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:"@@:"];
-	NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
-	inv.target = [TextObject class];
-	inv.selector = @selector(new);
-	[inv invoke];
-//方法1 释放
-//	id obj;
-//	[inv getReturnValue:&obj];
-	
-//方法2 不释放
-//	void *objPtr = alloca(sig.methodReturnLength);
-//	[inv getReturnValue:objPtr];
-//	id obj = (__bridge id)*(void **)objPtr;
-	
-	
-//方法3 释放
-//	void *objPtr = alloca(sig.methodReturnLength);
-//	[inv getReturnValue:objPtr];
-//	id obj = (__bridge_transfer  id)*(void **)objPtr;
 }
+
+
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -261,7 +261,7 @@ break;\
 }
 
 
-- (instancetype)initWithCValuePointer:(void *)cValuePointer typeEncoding:(const char *)typeEncoding{
+- (instancetype)initWithCValuePointer:(void *)cValuePointer typeEncoding:(const char *)typeEncoding bridgeTransfer:(BOOL)bridgeTransfer  {
 	typeEncoding = removeTypeEncodingPrefix((char *)typeEncoding);
 	MANValue *retValue = [[MANValue alloc] init];
 	
@@ -292,7 +292,12 @@ break;\
 			MANGO_C_VALUE_CONVER_TO_mango_VALUE_CASE('#',MAN_TYPE_CLASS, Class,classValue)
 		case '@':{
 			retValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
-			retValue.objectValue = (__bridge id)(*(void **)cValuePointer);
+			if (bridgeTransfer) {
+				retValue.objectValue = (__bridge_transfer id)(*(void **)cValuePointer);
+			}else{
+				retValue.objectValue = (__bridge id)(*(void **)cValuePointer);
+			}
+			
 			break;
 		}
 		case '{':{

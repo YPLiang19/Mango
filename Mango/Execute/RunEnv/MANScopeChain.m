@@ -32,7 +32,7 @@
 			if (ivar) {
 				const char *ivarEncoding = ivar_getTypeEncoding(ivar);
 				void *ptr = (__bridge void *)(pos.instance) +  ivar_getOffset(ivar);
-				MANValue *value = [[MANValue alloc] initWithCValuePointer:ptr typeEncoding:ivarEncoding];
+				MANValue *value = [[MANValue alloc] initWithCValuePointer:ptr typeEncoding:ivarEncoding bridgeTransfer:NO];
 				return value;
 			}
 		}else{

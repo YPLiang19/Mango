@@ -428,7 +428,7 @@ void setterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	if (*type == '@') {
 		value = (__bridge id)(*(void **)args[2]);
 	}else{
-		value = [[MANValue alloc] initWithCValuePointer:args[2] typeEncoding:type];
+		value = [[MANValue alloc] initWithCValuePointer:args[2] typeEncoding:type bridgeTransfer:NO];
 	}
 	NSString *propName = propDef.name;
 	
@@ -588,7 +588,7 @@ static void mango_forward_invocation(__unsafe_unretained id assignSlf, SEL sel, 
 		size_t size = mango_size_with_encoding(typeEncoding);
 		void *ptr = malloc(size);
 		[invocation getArgument:ptr atIndex:i];
-		MANValue *argValue = [[MANValue alloc] initWithCValuePointer:ptr typeEncoding:typeEncoding];
+		MANValue *argValue = [[MANValue alloc] initWithCValuePointer:ptr typeEncoding:typeEncoding bridgeTransfer:NO];
 		[args addObject:argValue];
 	}
 	
