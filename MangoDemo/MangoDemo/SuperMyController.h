@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SuperRotateAnimationExampleController : UIViewController
+@interface SuperMyController : UIViewController
 
 @end

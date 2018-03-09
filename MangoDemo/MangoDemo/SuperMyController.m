@@ -6,13 +6,13 @@
 //  Copyright © 2018年 yongpengliang. All rights reserved.
 //
 
-#import "SuperRotateAnimationExampleController.h"
+#import "SuperMyController.h"
 
-@interface SuperRotateAnimationExampleController ()
+@interface SuperMyController ()
 
 @end
 
-@implementation SuperRotateAnimationExampleController
+@implementation SuperMyController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

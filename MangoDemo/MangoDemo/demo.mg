@@ -128,7 +128,7 @@ self.resultView.text = text;
 
 
 - (void)createAndOpenNewViewControllerExample{
-	SubRotateAnimationExampleController *vc = SubRotateAnimationExampleController.alloc().init();
+	SubMyController *vc = SubMyController.alloc().init();
 	self.navigationController.pushViewController:animated:(vc,YES);
 
 }
@@ -150,7 +150,7 @@ self.resultView.text = @"here is Mango method";
 
 
 
-class SubRotateAnimationExampleController:SuperRotateAnimationExampleController {
+class SubMyController:SuperMyController {
 @property (strong, nonatomic) UIView *rotateView;
 - (void)viewDidLoad {
 		self.title = @"Magno 创建自定义ViewController";
@@ -159,17 +159,11 @@ class SubRotateAnimationExampleController:SuperRotateAnimationExampleController 
 		double height = 100;
 		double x = self.view.frame.size.width/2 - width/2;
 		double y = self.view.frame.size.height/2 - height/2;
-		UIView *view = UIView.alloc().initWithFrame:(CGRectMake(x, y, width, height));
+		UIView *view = MyView.alloc().initWithFrame:(CGRectMake(x, y, width, height));
 		self.view.addSubview:(view);
 		view.backgroundColor = UIColor.redColor();
 		self.rotateView = view;
-		Block block= ^(NSTimer *timer) {
-		UIView.animateWithDuration:animations:(0.25,^(){
-		self.rotateView.transform = CGAffineTransformRotate(self.rotateView.transform, M_PI);
-		});
-		};
-		NSTimer *timer = NSTimer.timerWithTimeInterval:repeats:block:(0.25, YES, block);
-		NSRunLoop.currentRunLoop().addTimer:forMode:(timer,NSRunLoopCommonModes);
+
 
 }
 
