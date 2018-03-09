@@ -232,7 +232,7 @@ break;\
 			mango_ASSIGN_2_C_VALUE_POINTER_CASE(':', SEL, selValue)
 		case '@':{
 			void  **ptr =cvaluePointer;
-			*ptr = (__bridge_retained void *)[self c2objectValue];
+			*ptr = (__bridge void *)[self c2objectValue];
 			break;
 		}
 		case '#':{

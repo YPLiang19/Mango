@@ -9,6 +9,7 @@
 #import "MANScopeChain.h"
 #import "MANValue.h"
 #import <objc/runtime.h>
+#import "MANBlock.h"
 @interface MANScopeChain()
 @property (strong, nonatomic) NSMutableDictionary<NSString *,MANValue *> *vars;
 @end
@@ -88,6 +89,24 @@
 		}
 	}
 	return nil;
+}
+
+- (void)setMangoBlockVarNil{
+	dispatch_barrier_async(_queue, ^{
+		NSArray *allValues = [self.vars allValues];
+		for (MANValue *value in allValues) {
+			if ([value isObject]) {
+				Class ocBlockClass = NSClassFromString(@"NSBlock");
+				if ([[value c2objectValue] isKindOfClass:ocBlockClass]) {
+					struct MANSimulateBlock *blockStructPtr = (__bridge void *)value.objectValue;
+					if (blockStructPtr->flags | BLOCK_CREATED_FROM_MANGO) {
+						value.objectValue = nil;
+					}
+				}
+				
+			}
+		}
+	});
 }
 
 @end

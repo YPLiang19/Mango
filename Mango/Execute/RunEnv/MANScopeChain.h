@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (MANValue *)getValueWithIdentifier:(NSString *)identifer;
 - (void)setValue:(MANValue *)value withIndentifier:(NSString *)identier;
 - (void)assignWithIdentifer:(NSString *)identifier value:(MANValue *)value;
+- (void)setMangoBlockVarNil;
 @end
 NS_ASSUME_NONNULL_END
 

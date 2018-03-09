@@ -40,6 +40,7 @@
 		4164A4E92047E4270069ADEE /* mango.l in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4E72047E4270069ADEE /* mango.l */; };
 		4164A4EE2047EBC10069ADEE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4EA2047EBC10069ADEE /* AppDelegate.m */; };
 		4164A4EF2047EBC10069ADEE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4164A4ED2047EBC10069ADEE /* ViewController.m */; };
+		41DD50C4205277CD009D0029 /* SuperRotateAnimationExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DD50C3205277CD009D0029 /* SuperRotateAnimationExampleController.m */; };
 		41DDFF40204925E000E8E562 /* TextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DDFF3F204925E000E8E562 /* TextObject.m */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		4164A4EB2047EBC10069ADEE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4164A4EC2047EBC10069ADEE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4164A4ED2047EBC10069ADEE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		41DD50C2205277CD009D0029 /* SuperRotateAnimationExampleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperRotateAnimationExampleController.h; sourceTree = "<group>"; };
+		41DD50C3205277CD009D0029 /* SuperRotateAnimationExampleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperRotateAnimationExampleController.m; sourceTree = "<group>"; };
 		41DDFF3E204925E000E8E562 /* TextObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextObject.h; sourceTree = "<group>"; };
 		41DDFF3F204925E000E8E562 /* TextObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +166,8 @@
 				414B869E2047D2A200A83B0D /* main.m */,
 				41DDFF3E204925E000E8E562 /* TextObject.h */,
 				41DDFF3F204925E000E8E562 /* TextObject.m */,
+				41DD50C2205277CD009D0029 /* SuperRotateAnimationExampleController.h */,
+				41DD50C3205277CD009D0029 /* SuperRotateAnimationExampleController.m */,
 			);
 			path = MangoDemo;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 				4164A4EF2047EBC10069ADEE /* ViewController.m in Sources */,
 				4164A4DC2047E0020069ADEE /* MANBlockBody.m in Sources */,
 				4164A4D12047E0020069ADEE /* MANStack.m in Sources */,
+				41DD50C4205277CD009D0029 /* SuperRotateAnimationExampleController.m in Sources */,
 				4164A4DE2047E0020069ADEE /* MANFunctionDefinition.m in Sources */,
 				4164A4CB2047E0020069ADEE /* util.m in Sources */,
 				4164A4E92047E4270069ADEE /* mango.l in Sources */,

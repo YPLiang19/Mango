@@ -58,8 +58,9 @@ static MANStatementResult *execute_else_if_list(MANInterpreter *inter, MANScopeC
 	for (MANElseIf *elseIf in elseIfList) {
 		MANValue *conValue = ane_eval_expression(inter, scope, elseIf.condition);
 		if ([conValue isSubtantial]) {
-			MANScopeChain *conScope = [MANScopeChain scopeChainWithNext:scope];
-			res = ane_execute_statement_list(inter, conScope, elseIf.thenBlock.statementList);
+			MANScopeChain *elseIfScope = [MANScopeChain scopeChainWithNext:scope];
+			res = ane_execute_statement_list(inter, elseIfScope, elseIf.thenBlock.statementList);
+			[elseIfScope setMangoBlockVarNil];
 			*executed = YES;
 			break;
 		}
@@ -71,14 +72,16 @@ static MANStatementResult *execute_if_statement(MANInterpreter *inter, MANScopeC
 	MANStatementResult *res;
 	MANValue *conValue = ane_eval_expression(inter, scope, statement.condition);
 	if ([conValue isSubtantial]) {
-		MANScopeChain *conScope = [MANScopeChain scopeChainWithNext:scope];
-		res = ane_execute_statement_list(inter, conScope, statement.thenBlock.statementList);
+		MANScopeChain *thenScope = [MANScopeChain scopeChainWithNext:scope];
+		res = ane_execute_statement_list(inter, thenScope, statement.thenBlock.statementList);
+		[thenScope setMangoBlockVarNil];
 	}else{
 		BOOL executed;
 		res = execute_else_if_list(inter, scope, statement.elseIfList, &executed);
 		if (!executed && statement.elseBlocl) {
 			MANScopeChain *elseScope = [MANScopeChain scopeChainWithNext:scope];
 			res = ane_execute_statement_list(inter, elseScope, statement.elseBlocl.statementList);
+			[elseScope setMangoBlockVarNil];
 		}
 	}
 	return res ?: [MANStatementResult normalResult];
@@ -102,6 +105,7 @@ static MANStatementResult *execute_switch_statement(MANInterpreter *inter, MANSc
 		}
 		MANScopeChain *caseScope = [MANScopeChain scopeChainWithNext:scope];
 		res = ane_execute_statement_list(inter, caseScope, case_.block.statementList);
+		[caseScope setMangoBlockVarNil];
 		if (res.type != MANStatementResultTypeNormal) {
 			break;
 		}
@@ -110,6 +114,7 @@ static MANStatementResult *execute_switch_statement(MANInterpreter *inter, MANSc
 	if (res.type == MANStatementResultTypeNormal) {
 		MANScopeChain *defaultCaseScope = [MANScopeChain scopeChainWithNext:scope];
 		res = ane_execute_statement_list(inter, defaultCaseScope, statement.defaultBlock.statementList);
+		[defaultCaseScope setMangoBlockVarNil];
 	}
 	
 	if (res.type == MANStatementResultTypeBreak) {
@@ -149,6 +154,8 @@ static MANStatementResult *execute_for_statement(MANInterpreter *inter, MANScope
 		}
 		
 	}
+	
+	[forScope setMangoBlockVarNil];
 	
 	return res ?: [MANStatementResult normalResult];
 	
@@ -190,6 +197,7 @@ static MANStatementResult *execute_for_each_statement(MANInterpreter *inter, MAN
 			res.type = MANStatementResultTypeNormal;
 		}
 	}
+	[forScope setMangoBlockVarNil];
 	return res ?: [MANStatementResult normalResult];
 	
 }
@@ -212,6 +220,7 @@ static MANStatementResult *execute_while_statement(MANInterpreter *inter, MANSco
 			res.type = MANStatementResultTypeNormal;
 		}
 	}
+	[whileScope setMangoBlockVarNil];
 	return res ?: [MANStatementResult normalResult];
 }
 
@@ -233,6 +242,7 @@ static MANStatementResult *execute_do_while_statement(MANInterpreter *inter, MAN
 			break;
 		}
 	}
+	[whileScope setMangoBlockVarNil];
 	return res ?: [MANStatementResult normalResult];
 }
 
@@ -345,6 +355,7 @@ MANValue * mango_call_mango_function(MANInterpreter *inter, MANScopeChain *scope
 	}
 	
 	MANStatementResult *res = ane_execute_statement_list(inter, funScope, func.block.statementList);
+	[funScope setMangoBlockVarNil];
 	if (res.type == MANStatementResultTypeReturn) {
 		return res.reutrnValue;
 	}else{
