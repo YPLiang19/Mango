@@ -73,7 +73,9 @@ static void eval_block_expression(MANInterpreter *inter, MANScopeChain *outScope
 		typeEncoding = mango_str_append(typeEncoding, paramTypeEncoding);
 	}
 	manBlock.typeEncoding = typeEncoding;
-	value.objectValue = [manBlock ocBlock];
+	__autoreleasing id ocBlock = [manBlock ocBlock];
+	value.objectValue = ocBlock;
+	CFRelease((__bridge void *)ocBlock);
 	[inter.stack push:value];
 }
 
@@ -87,7 +89,7 @@ static void eval_nil_expr(MANInterpreter *inter){
 
 static void eval_identifer_expression(MANInterpreter *inter, MANScopeChain *scope ,MANIdentifierExpression *expr){
 	NSString *identifier = expr.identifier;
-	MANValue *value = [scope getValueWithIdentifier:identifier];
+	MANValue *value = [scope getValueWithIdentifierInChain:identifier];
 	if (!value) {
 		Class clazz = NSClassFromString(identifier);
 		if (clazz) {
@@ -115,34 +117,6 @@ static void eval_ternary_expression(MANInterpreter *inter, MANScopeChain *scope,
 }
 static void eval_function_call_expression(MANInterpreter *inter, MANScopeChain *scope, MANFunctonCallExpression *expr);
 
-
-void mango_assign_value_to_identifer_expr(MANInterpreter *inter, MANScopeChain *scope, NSString *identifier,MANValue *operValue){
-	for (MANScopeChain *pos = scope; pos; pos = pos.next) {
-		if (pos.instance) {
-			Ivar ivar	= class_getInstanceVariable([pos instance],identifier.UTF8String);
-			if (ivar) {
-				const char *ivarEncoding = ivar_getTypeEncoding(ivar);
-				void *ptr = (__bridge void *)(pos.instance) +  ivar_getOffset(ivar);
-				[operValue assign2CValuePointer:ptr typeEncoding:ivarEncoding];
-				return;
-			}
-			
-		}else{
-			__block BOOL finish = NO;;
-			[pos.vars enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, MANValue * _Nonnull obj, BOOL * _Nonnull stop) {
-				if ([key isEqualToString:identifier]) {
-					[obj assignFrom:operValue];
-					*stop = YES;
-					finish = YES;
-				}
-			}];
-			if (finish) {
-				return;
-			}
-		}
-		
-	}
-}
 
 static void eval_assign_expression(MANInterpreter *inter, MANScopeChain *scope, MANAssignExpression *expr){
 	MANAssignKind assignKind = expr.assignKind;
@@ -205,7 +179,7 @@ static void eval_assign_expression(MANInterpreter *inter, MANScopeChain *scope, 
 			NSCAssert(assignKind == MAN_NORMAL_ASSIGN, @"");
 			eval_expression(inter, scope, rightExpr);
 			MANValue *rightValue = [inter.stack pop];
-			mango_assign_value_to_identifer_expr(inter, scope,@"self", rightValue);
+			[scope assignWithIdentifer:@"self" value:rightValue];
 			[inter.stack push:rightValue];
 			break;
 		}
@@ -251,8 +225,7 @@ static void eval_assign_expression(MANInterpreter *inter, MANScopeChain *scope, 
 			
 			eval_expression(inter, scope, optrExpr);
 			MANValue *operValue = [inter.stack pop];
-
-			mango_assign_value_to_identifer_expr(inter, scope, identiferExpr.identifier, operValue);
+			[scope assignWithIdentifer:identiferExpr.identifier value:operValue];
 			[inter.stack push:operValue];
 			break;
 		}
@@ -1060,7 +1033,7 @@ break;\
 }
 
 static void eval_self_super_expression(MANInterpreter *inter, MANScopeChain *scope){
-	MANValue *value = [scope getValueWithIdentifier:@"self"];
+	MANValue *value = [scope getValueWithIdentifierInChain:@"self"];
 	NSCAssert(value, @"not found var %@", @"self");
 	[inter.stack push:value];
 }
@@ -1165,13 +1138,13 @@ static void eval_function_call_expression(MANInterpreter *inter, MANScopeChain *
 			SEL sel = NSSelectorFromString(memberExpr.memberName);
 			switch (memberObjExpr.expressionKind) {
 				case MAN_SELF_EXPRESSION:{
-					id _self = [[scope getValueWithIdentifier:@"self"] objectValue];
+					id _self = [[scope getValueWithIdentifierInChain:@"self"] objectValue];
 					MANValue *retValue = invoke(expr.lineNumber, inter, scope,_self, sel, expr.args);
 					[inter.stack push:retValue];
 					break;
 				}
 				case MAN_SUPER_EXPRESSION:{
-					id _self = [[scope getValueWithIdentifier:@"self"] objectValue];
+					id _self = [[scope getValueWithIdentifierInChain:@"self"] objectValue];
 					Class superClass = class_getSuperclass([_self class]);
 					struct objc_super *superPtr = &(struct objc_super){_self,superClass};
 					NSMethodSignature *sig = [_self methodSignatureForSelector:sel];

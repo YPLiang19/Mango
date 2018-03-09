@@ -43,97 +43,98 @@ static void add_built_in_struct_declare(){
 }
 
 static void add_build_in_function(MANInterpreter *interpreter){
-	
-	interpreter.commonScope.vars[@"CGPointMake"] = [MANValue valueInstanceWithBlock:^CGPoint(CGFloat x, CGFloat y){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGPoint(CGFloat x, CGFloat y){
 		return CGPointMake(x, y);
-	}];
+	}] withIndentifier:@"CGPointMake"];
 	
-	interpreter.commonScope.vars[@"CGSizeMake"] = [MANValue valueInstanceWithBlock:^CGSize(CGFloat width, CGFloat height){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGSize(CGFloat width, CGFloat height){
 		return CGSizeMake(width, height);
-	}];
+	}] withIndentifier:@"CGSizeMake"];
 	
-	interpreter.commonScope.vars[@"CGRectMake"] = [MANValue valueInstanceWithBlock:^CGRect (CGFloat x, CGFloat y, CGFloat width, CGFloat height){
+	
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGRect (CGFloat x, CGFloat y, CGFloat width, CGFloat height){
 		return CGRectMake(x, y, width, height);
-	}];
+	}] withIndentifier:@"CGRectMake"];
 	
-	interpreter.commonScope.vars[@"NSMakeRange"] = [MANValue valueInstanceWithBlock:^NSRange(NSUInteger loc, NSUInteger len){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^NSRange(NSUInteger loc, NSUInteger len){
 		return NSMakeRange(loc, len);
-	}];
+	}] withIndentifier:@"NSMakeRange"];
 	
-	interpreter.commonScope.vars[@"UIOffsetMake"] = [MANValue valueInstanceWithBlock:^UIOffset(CGFloat horizontal, CGFloat vertical){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^UIOffset(CGFloat horizontal, CGFloat vertical){
 		return UIOffsetMake(horizontal, vertical);
-	}];
+	}] withIndentifier:@"UIOffsetMake"];
 	
-	interpreter.commonScope.vars[@"UIEdgeInsetsMake"] = [MANValue valueInstanceWithBlock:^UIEdgeInsets(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^UIEdgeInsets(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right){
 		return UIEdgeInsetsMake(top, left, bottom, right);
-	}];
+	}] withIndentifier:@"UIEdgeInsetsMake"];
 	
-	interpreter.commonScope.vars[@"CGVectorMake"] = [MANValue valueInstanceWithBlock:^CGVector(CGFloat dx, CGFloat dy){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGVector(CGFloat dx, CGFloat dy){
 		return CGVectorMake(dx, dy);
-	}];
+	}] withIndentifier:@"CGVectorMake"];
 	
-	interpreter.commonScope.vars[@"CGAffineTransformMake"] = [MANValue valueInstanceWithBlock:^ CGAffineTransform(CGFloat a, CGFloat b, CGFloat c, CGFloat d, CGFloat tx, CGFloat ty){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^ CGAffineTransform(CGFloat a, CGFloat b, CGFloat c, CGFloat d, CGFloat tx, CGFloat ty){
 		return CGAffineTransformMake(a, b, c, d, tx, ty);
-	}];
+	}] withIndentifier:@"CGAffineTransformMake"];
 	
-	interpreter.commonScope.vars[@"CGAffineTransformMakeScale"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(CGFloat sx, CGFloat sy){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(CGFloat sx, CGFloat sy){
 		return CGAffineTransformMakeScale(sx, sy);
-	}];
+	}] withIndentifier:@"CGAffineTransformMakeScale"];
 	
-	interpreter.commonScope.vars[@"CGAffineTransformMakeRotation"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(CGFloat angle){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(CGFloat angle){
 		return CGAffineTransformMakeRotation(angle);
-	}];
+	}] withIndentifier:@"CGAffineTransformMakeRotation"];
 	
-	interpreter.commonScope.vars[@"CGAffineTransformMakeTranslation"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(CGFloat tx, CGFloat ty){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(CGFloat tx, CGFloat ty){
 		return CGAffineTransformMakeTranslation(tx, ty);
-	}];
+	}] withIndentifier:@"CGAffineTransformMakeTranslation"];
 	
-	interpreter.commonScope.vars[@"CGAffineTransformRotate"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t, CGFloat angle){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t, CGFloat angle){
 		return CGAffineTransformRotate(t, angle);
-	}];
+	}] withIndentifier:@"CGAffineTransformRotate"];
 	
-	interpreter.commonScope.vars[@"CGAffineTransformConcat"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t1, CGAffineTransform t2){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t1, CGAffineTransform t2){
 		return CGAffineTransformConcat(t1,t2);
-	}];
+	}] withIndentifier:@"CGAffineTransformConcat"];
 	
 	
-	interpreter.commonScope.vars[@"CGAffineTransformScale"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t, CGFloat sx, CGFloat sy){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t, CGFloat sx, CGFloat sy){
 		return CGAffineTransformScale(t, sx, sy);
-	}];
+	}] withIndentifier:@"CGAffineTransformScale"];
 	
-	interpreter.commonScope.vars[@"CGAffineTransformTranslate"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t, CGFloat tx, CGFloat ty){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t, CGFloat tx, CGFloat ty){
 		return CGAffineTransformTranslate(t, tx, ty);
-	}];
+	}] withIndentifier:@"CGAffineTransformTranslate"];
 
-	interpreter.commonScope.vars[@"CGAffineTransformFromString"] = [MANValue valueInstanceWithBlock:^CGAffineTransform(NSString * _Nonnull string){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGAffineTransform(NSString * _Nonnull string){
 		return CGAffineTransformFromString(string);
-	}];
+	}] withIndentifier:@"CGAffineTransformFromString"];
 
-	interpreter.commonScope.vars[@"CATransform3DMakeScale"] = [MANValue valueInstanceWithBlock:^CATransform3D(CGFloat sx, CGFloat sy, CGFloat sz){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CATransform3D(CGFloat sx, CGFloat sy, CGFloat sz){
 		return CATransform3DMakeScale(sx, sy, sz);
-	}];
+	}] withIndentifier:@"CATransform3DMakeScale"];
 	
 	
-	interpreter.commonScope.vars[@"NSLog"] = [MANValue valueInstanceWithBlock:^void (id obj){
+	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^void (id obj){
 		NSLog(@"%@",obj);
-	}];
+	}] withIndentifier:@"NSLog"];
 	
 }
 static void add_build_in_var(MANInterpreter *inter){
-	inter.commonScope.vars[@"NSRunLoopCommonModes"] = [MANValue valueInstanceWithObject:NSRunLoopCommonModes];
-	inter.commonScope.vars[@"NSDefaultRunLoopMode"] = [MANValue valueInstanceWithObject:NSDefaultRunLoopMode];
+	[inter.commonScope setValue:[MANValue valueInstanceWithObject:NSRunLoopCommonModes] withIndentifier:@"NSRunLoopCommonModes"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithObject:NSDefaultRunLoopMode] withIndentifier:@"NSDefaultRunLoopMode"];
 	
-	inter.commonScope.vars[@"M_PI"] = [MANValue valueInstanceWithDouble:M_PI];
-	inter.commonScope.vars[@"M_PI_2"] = [MANValue valueInstanceWithDouble:M_PI_2];
-	inter.commonScope.vars[@"M_PI_4"] = [MANValue valueInstanceWithDouble:M_PI_4];
-	inter.commonScope.vars[@"M_1_PI"] = [MANValue valueInstanceWithDouble:M_1_PI];
-	inter.commonScope.vars[@"M_2_PI"] = [MANValue valueInstanceWithDouble:M_2_PI];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithDouble:M_PI] withIndentifier:@"M_PI"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithDouble:M_PI_2] withIndentifier:@"M_PI_2"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithDouble:M_PI_4] withIndentifier:@"M_PI_4"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithDouble:M_1_PI] withIndentifier:@"M_1_PI"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithDouble:M_2_PI] withIndentifier:@"M_2_PI"];
 	
 	UIDevice *device = [UIDevice currentDevice];
 	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-	inter.commonScope.vars[@"$systemVersion"] = [MANValue valueInstanceWithObject:device.systemVersion];
-	inter.commonScope.vars[@"$appVersion"] =  [MANValue valueInstanceWithObject:[infoDictionary objectForKey:@"CFBundleShortVersionString"]];
-	inter.commonScope.vars[@"$buildVersion"] =  [MANValue valueInstanceWithObject:[infoDictionary objectForKey:@"CFBundleVersion"]];
+	[inter.commonScope setValue:[MANValue valueInstanceWithObject:device.systemVersion] withIndentifier:@"$systemVersion"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithObject:[infoDictionary objectForKey:@"CFBundleShortVersionString"]] withIndentifier:@"$appVersion"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithObject:[infoDictionary objectForKey:@"CFBundleVersion"]] withIndentifier:@"$buildVersion"];
 	
 }
 

@@ -45,7 +45,7 @@ static void execute_declaration(MANInterpreter *inter, MANScopeChain *scope, MAN
 		MANValue *initValue = ane_eval_expression(inter, scope, declaration.initializer);
 		[value assignFrom:initValue];
 	}
-	scope.vars[declaration.name] = value;
+	[scope setValue:value withIndentifier:declaration.name];
 }
 
 
@@ -178,7 +178,7 @@ static MANStatementResult *execute_for_each_statement(MANInterpreter *inter, MAN
 		MANValue *operValue = [[MANValue alloc] init];
 		operValue.type = man_create_type_specifier(MAN_TYPE_OBJECT);
 		operValue.objectValue = var;
-		mango_assign_value_to_identifer_expr(inter, forScope, statement.identifierExpr.identifier, operValue);
+		[forScope assignWithIdentifer:statement.identifierExpr.identifier value:operValue];
 		
 		res = ane_execute_statement_list(inter, forScope, statement.block.statementList);
 		if (res.type == MANStatementResultTypeReturn) {
@@ -340,7 +340,7 @@ MANValue * mango_call_mango_function(MANInterpreter *inter, MANScopeChain *scope
 	MANScopeChain *funScope = [MANScopeChain scopeChainWithNext:scope];
 	NSUInteger i = 0;
 	for (MANParameter *param in params) {
-		funScope.vars[param.name] = args[i];
+		[funScope setValue:args[i] withIndentifier:param.name];
 		i++;
 	}
 	

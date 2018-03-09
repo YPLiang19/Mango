@@ -39,11 +39,11 @@
 }
 
 - (MANValue *)objectForKeyedSubscript:(id)key{
-	return _interpreter.topScope.vars[key];
+	return [_interpreter.topScope getValueWithIdentifier:key];
 }
 
-- (void)setObject:(id)object forKeyedSubscript:(NSObject<NSCopying> *)key{
-	_interpreter.topScope.vars[key] = [MANValue valueInstanceWithObject:object];
+- (void)setObject:(id)object forKeyedSubscript:(NSString *)key{
+	[_interpreter.topScope setValue:[MANValue valueInstanceWithObject:object] withIndentifier:key];
 	
 	
 }

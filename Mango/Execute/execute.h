@@ -16,7 +16,6 @@ void mango_add_built_in(MANInterpreter *inter);
 BOOL mango_equal_value(NSUInteger lineNumber,MANValue *value1, MANValue *value2);
 MANValue *ane_eval_expression(MANInterpreter *inter, MANScopeChain *scope,MANExpression *expr);
 void ane_interpret(MANInterpreter *inter);
-void mango_assign_value_to_identifer_expr(MANInterpreter *inter, MANScopeChain *scope, NSString *identifer,MANValue *operValue);
 /*execute.m*/
 MANStatementResult *ane_execute_statement_list(MANInterpreter *inter, MANScopeChain *scope, NSArray<MANStatement *> *statementList);
 MANValue * mango_call_mango_function(MANInterpreter *inter, MANScopeChain *scope, MANFunctionDefinition *func, NSArray<MANValue *> *args);

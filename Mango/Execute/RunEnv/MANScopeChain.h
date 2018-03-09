@@ -12,12 +12,14 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface MANScopeChain: NSObject
 @property (strong, nonatomic) id instance;
-@property (strong, nonatomic) NSMutableDictionary<NSString *,MANValue *> *vars;
 @property (strong, nonatomic) MANScopeChain *next;
+@property (strong, nonatomic) dispatch_queue_t queue;
 
 + (instancetype)scopeChainWithNext:(MANScopeChain *)next;
-- (MANValue *)getValueWithIdentifier:(NSString *)identifier;
-
+- (MANValue *)getValueWithIdentifierInChain:(NSString *)identifier;
+- (MANValue *)getValueWithIdentifier:(NSString *)identifer;
+- (void)setValue:(MANValue *)value withIndentifier:(NSString *)identier;
+- (void)assignWithIdentifer:(NSString *)identifier value:(MANValue *)value;
 @end
 NS_ASSUME_NONNULL_END
 
