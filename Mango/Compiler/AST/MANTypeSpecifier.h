@@ -21,7 +21,8 @@ typedef NS_ENUM(NSUInteger, ANATypeSpecifierKind) {
 	MAN_TYPE_BLOCK,
 	MAN_TYPE_STRUCT,
 	MAN_TYPE_STRUCT_LITERAL,
-	MAN_TYPE_POINTER
+	MAN_TYPE_POINTER,
+	MAN_TYPE_UNKNOWN
 };
 @interface MANTypeSpecifier : NSObject
 @property (copy, nonatomic) NSString *structName;

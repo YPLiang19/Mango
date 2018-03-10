@@ -157,12 +157,19 @@ static void increment_line_number(){
 	return NIL;
 	
 }
+
+<INITIAL>"NULL" {
+	MANExpression *expression = man_create_expression(MAN_NULL_EXPRESSION);
+	yylval.expression = (__bridge_retained void *)expression;
+	return NULL_;
+	
+}
+
 <INITIAL>"YES" {
 	MANExpression *expression = man_create_expression(MAN_BOOLEAN_EXPRESSION);
 	expression.boolValue = YES;
 	yylval.expression = (__bridge_retained void *)expression;
 	return YES_;
-	
 }
 <INITIAL>"NO" {
 	MANExpression *expression = man_create_expression(MAN_BOOLEAN_EXPRESSION);

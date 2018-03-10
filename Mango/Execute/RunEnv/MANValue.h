@@ -20,9 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) double doubleValue;
 @property (strong, nonatomic, nullable) id objectValue;
 @property (strong, nonatomic, nullable) Class classValue;
-@property (assign, nonatomic) SEL selValue;
-@property (assign, nonatomic) const char * cstringValue;
-@property (assign, nonatomic) void *pointerValue;
+@property (assign, nonatomic, nullable) SEL selValue;
+@property (assign, nonatomic, nullable) const char * cstringValue;
+@property (assign, nonatomic, nullable) void *pointerValue;
 
 - (BOOL)isSubtantial;
 - (BOOL)isObject;
@@ -47,12 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)valueInstanceWithUint:(unsigned long long int)uintValue;
 + (instancetype)valueInstanceWithInt:(long long int)intValue;
 + (instancetype)valueInstanceWithDouble:(double)doubleValue;
-+ (instancetype)valueInstanceWithObject:(id)objValue;
-+ (instancetype)valueInstanceWithBlock:(id)blockValue;
-+ (instancetype)valueInstanceWithClass:(Class)clazzValue;
++ (instancetype)valueInstanceWithObject:(nullable id)objValue;
++ (instancetype)valueInstanceWithBlock:(nullable id)blockValue;
++ (instancetype)valueInstanceWithClass:(nullable Class)clazzValue;
 + (instancetype)valueInstanceWithSEL:(SEL)selValue;
-+ (instancetype)valueInstanceWithCstring:(const char *)cstringValue;
-+ (instancetype)valueInstanceWithPointer:(void *)pointerValue;
++ (instancetype)valueInstanceWithCstring:(nullable const char *)cstringValue;
++ (instancetype)valueInstanceWithPointer:(nullable void *)pointerValue;
 + (instancetype)valueInstanceWithStruct:(void *)structValue typeEncoding:(const char *)typeEncoding;
 
 - (instancetype)nsStringValue;

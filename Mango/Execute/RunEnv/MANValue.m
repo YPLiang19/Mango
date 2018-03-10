@@ -79,6 +79,9 @@
 }
 
 - (void)assignFrom:(MANValue *)src{
+	if (_type.typeKind == MAN_TYPE_UNKNOWN) {
+		_type = src.type;
+	}
 	switch (_type.typeKind) {
 		case MAN_TYPE_BOOL:
 		case MAN_TYPE_U_INT:

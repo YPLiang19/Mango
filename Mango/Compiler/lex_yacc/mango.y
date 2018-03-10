@@ -42,6 +42,7 @@ int yylex(void);
 %token <expression> SELF
 %token <expression> SUPER
 %token <expression> NIL
+%token <expression> NULL_
 %token <expression> YES_
 %token <expression> NO_
 
@@ -353,6 +354,10 @@ type_specifier: VOID
 			| STRUCT IDENTIFIER
 			{
 				$$ =  (__bridge_retained void *)man_create_struct_type_specifier((__bridge_transfer NSString *)$2);
+			}
+			| IDENTIFIER
+			{
+				$$ = (__bridge_retained void *)man_create_type_specifier(MAN_TYPE_UNKNOWN);
 			}
 			;
 
@@ -839,10 +844,7 @@ primary_expression: IDENTIFIER
 			| DOUBLE_LITERAL
 			| STRING_LITERAL
 			| NIL
-			{
-				MANExpression *expr = man_create_expression(MAN_NIL_EXPRESSION);
-				$$ = (__bridge_retained void *)expr;
-			}
+			| NULL_
 			| SELECTOR LP selector RP
 			{
 				MANExpression *expr = man_create_expression(MAN_SELECTOR_EXPRESSION);

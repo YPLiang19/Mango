@@ -133,20 +133,33 @@ self.resultView.text = text;
 
 }
 
+//类方法替换示例
 + (void)classMethodExapleWithInstance:(ViewController *)vc{
 	vc.resultView.text = @"here is Mango  Class Method " + self;
 }
 
+//条件注释示例
 #If($systemVersion.doubleValue() > 12.0 )
 - (void)conditionsAnnotationExample{
 self.resultView.text = @"here is Mango method";
 }
 
-- (void)testObjectDealloc{
-	TextObject *obj = TextObject.alloc().init();
+
+//GCD示例
+- (void)gcdExample{
+	dispatch_queue_t queue = dispatch_queue_create("com.plliang19.mango", DISPATCH_QUEUE_CONCURRENT);
+	dispatch_async(queue, ^{
+		NSLog(@"dispatch_async");
+	});
+	dispatch_sync(queue, ^{
+		NSLog(@"dispatch_sync");
+	});
 }
 
+
 }
+
+
 
 
 

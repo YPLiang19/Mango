@@ -42,6 +42,116 @@ static void add_built_in_struct_declare(){
 	
 }
 
+static void add_gcd_build_in(MANInterpreter *inter){
+	[inter.commonScope setValue:[MANValue valueInstanceWithInt:DISPATCH_QUEUE_PRIORITY_HIGH] withIndentifier:@"DISPATCH_QUEUE_PRIORITY_HIGH"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithInt:DISPATCH_QUEUE_PRIORITY_DEFAULT] withIndentifier:@"DISPATCH_QUEUE_PRIORITY_DEFAULT"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithInt:DISPATCH_QUEUE_PRIORITY_LOW] withIndentifier:@"DISPATCH_QUEUE_PRIORITY_LOW"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithInt:DISPATCH_QUEUE_PRIORITY_BACKGROUND] withIndentifier:@"DISPATCH_QUEUE_PRIORITY_BACKGROUND"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithUint:DISPATCH_TIME_FOREVER] withIndentifier:@"DISPATCH_TIME_FOREVER"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithInt:DISPATCH_TIME_NOW] withIndentifier:@"DISPATCH_TIME_NOW"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithObject:DISPATCH_QUEUE_CONCURRENT] withIndentifier:@"DISPATCH_QUEUE_CONCURRENT"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithPointer:NULL] withIndentifier:@"DISPATCH_QUEUE_SERIAL"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithUint:NSEC_PER_SEC] withIndentifier:@"NSEC_PER_SEC"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithUint:NSEC_PER_MSEC] withIndentifier:@"NSEC_PER_MSEC"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithUint:USEC_PER_SEC] withIndentifier:@"USEC_PER_SEC"];
+	[inter.commonScope setValue:[MANValue valueInstanceWithUint:NSEC_PER_USEC] withIndentifier:@"NSEC_PER_USEC"];
+	
+
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^dispatch_time_t (dispatch_time_t when, int64_t delta){
+		 return dispatch_time(when, delta);
+	}] withIndentifier:@"dispatch_time"];
+	
+	/* queue */
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^id(long identifier, unsigned long flags) {
+		return dispatch_get_global_queue(identifier, flags);
+	}]withIndentifier:@"dispatch_get_global_queue"];
+	
+
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^id() {
+		return dispatch_get_main_queue();
+	}]withIndentifier:@"dispatch_get_main_queue"];
+
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^id(const char *queueName, dispatch_queue_attr_t attr) {
+		dispatch_queue_t queue = dispatch_queue_create(queueName, attr);
+		return queue;
+	}] withIndentifier:@"dispatch_queue_create"];
+	
+	
+	/* dispatch & dispatch_barrier */
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_queue_t queue, void (^block)(void)) {
+		dispatch_async(queue, ^{
+			block();
+		});
+	}] withIndentifier:@"dispatch_async"];
+	
+	
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_queue_t queue, void (^block)(void)) {
+		dispatch_sync(queue, ^{
+			block();
+		});
+	}] withIndentifier:@"dispatch_sync"];
+	
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_queue_t queue, void (^block)(void)) {
+		dispatch_barrier_async(queue, ^{
+			block();
+		});
+	}] withIndentifier:@"dispatch_barrier_async"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_queue_t queue, void (^block)(void)) {
+		dispatch_barrier_sync(queue, ^{
+			block();
+		});
+	}] withIndentifier:@"dispatch_barrier_sync"];
+	
+
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(size_t iterations, dispatch_queue_t queue, void (^block)(size_t)) {
+		dispatch_apply(iterations, queue, ^(size_t index) {
+			block(index);
+		});
+	}] withIndentifier:@"dispatch_apply"];
+	
+	
+	
+	/* dispatch_group */
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^id() {
+		dispatch_group_t group = dispatch_group_create();
+		return group;
+	}] withIndentifier:@"dispatch_group_create"];
+	
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_group_t group, dispatch_queue_t queue, void (^block)(void)) {
+		dispatch_group_async(group, queue, ^{
+			block();
+		});
+	}] withIndentifier:@"dispatch_group_async"];
+	
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_group_t group,  dispatch_time_t timeout) {
+		dispatch_group_wait(group, timeout);
+	}] withIndentifier:@"dispatch_group_wait"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_group_t group, dispatch_queue_t queue, void (^block)(void)) {
+		dispatch_group_notify(group, queue, ^{
+			block();
+		});
+	}] withIndentifier:@"dispatch_group_notify"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_group_t group) {
+		dispatch_group_enter(group);
+	}] withIndentifier:@"dispatch_group_enter"];
+	
+	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^void(dispatch_group_t group) {
+		dispatch_group_leave(group);
+	}] withIndentifier:@"dispatch_group_leave"];
+}
+
 static void add_build_in_function(MANInterpreter *interpreter){
 	[interpreter.commonScope setValue:[MANValue valueInstanceWithBlock:^CGPoint(CGFloat x, CGFloat y){
 		return CGPointMake(x, y);
@@ -144,6 +254,7 @@ void mango_add_built_in(MANInterpreter *inter){
 		add_built_in_struct_declare();
 		add_build_in_function(inter);
 		add_build_in_var(inter);
+		add_gcd_build_in(inter);
 	});
 	
 }

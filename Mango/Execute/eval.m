@@ -85,7 +85,12 @@ static void eval_nil_expr(MANInterpreter *inter){
 	value.objectValue = nil;
 	[inter.stack push:value];
 }
-
+static void eval_null_expr(MANInterpreter *inter){
+	MANValue *value = [MANValue new];
+	value.type = man_create_type_specifier(MAN_TYPE_POINTER);
+	value.pointerValue = NULL;
+	[inter.stack push:value];
+}
 
 static void eval_identifer_expression(MANInterpreter *inter, MANScopeChain *scope ,MANIdentifierExpression *expr){
 	NSString *identifier = expr.identifier;
@@ -1365,6 +1370,9 @@ static void eval_expression(MANInterpreter *inter, MANScopeChain *scope, __kindo
 			break;
 		case MAN_NIL_EXPRESSION:
 			eval_nil_expr(inter);
+			break;
+		case MAN_NULL_EXPRESSION:
+			eval_null_expr(inter);
 			break;
 		case MAN_SELF_EXPRESSION:
 		case MAN_SUPER_EXPRESSION:
