@@ -250,6 +250,7 @@ class ViewController:UIViewController {
     self.resultView.text = @""+a;
 }
 
+//Block定示例
 - (void)blockStatementExample{
     Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
       NSString *result = str1.stringByAppendingString:(str2);
@@ -259,7 +260,7 @@ class ViewController:UIViewController {
     self.resultView.text = result;
 }
 
-
+//定义接受方法参数示例
 - (void)paramPassingExampleWithBOOLArg:(BOOL)BOOLArg intArg:(int) intArg uintArg:(uint)uintArg structArg:(struct CGRect)structArg blockArg:(Block)blockArg objArg:(id)objArg {
     NSString *text = @"";
     text += @"BOOLArg:" + BOOLArg + @",\n";
@@ -271,7 +272,7 @@ class ViewController:UIViewController {
     self.resultView.text = text;
 }
 
-
+//返回值示例
 - (Block)returnBlockExample{
     NSString *prefix = @"mango: ";
     Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
@@ -285,6 +286,28 @@ class ViewController:UIViewController {
 - (void)createAndOpenNewViewControllerExample{
   SubRotateAnimationExampleController *vc = SubRotateAnimationExampleController.alloc().init();
   self.navigationController.pushViewController:animated:(vc,YES);
+}
+//类方法替换示例
++ (void)classMethodExapleWithInstance:(ViewController *)vc{
+	vc.resultView.text = @"here is Mango  Class Method " + self;
+}
+
+//条件注释示例
+#If($systemVersion.doubleValue() > 12.0 )
+- (void)conditionsAnnotationExample{
+	self.resultView.text = @"here is Mango method";
+}
+
+
+//GCD示例
+- (void)gcdExample{
+	dispatch_queue_t queue = dispatch_queue_create("com.plliang19.mango", DISPATCH_QUEUE_CONCURRENT);
+	dispatch_async(queue, ^{
+		NSLog(@"dispatch_async");
+	});
+	dispatch_sync(queue, ^{
+		NSLog(@"dispatch_sync");
+	});
 }
 
 }
@@ -352,4 +375,5 @@ class SubRotateAnimationExampleController:UIViewController {
 	
 #### Pointer
  	Pointer ptr; // C pointer. 
-  
+	
+	
