@@ -19,7 +19,6 @@ static int st_string_literal_buffer_size = 0;
 static int st_string_literal_buffer_alloc_size = 0;
 
 
-
 int yyerror(char const *str){
 	printf("line:%zd: %s\n",man_get_current_compile_util().currentLineNumber,str);
 	return 0;
@@ -55,7 +54,6 @@ void man_append_string_literal(int letter){
 		free(st_string_literal_buffer);
 		st_string_literal_buffer = new_pointer;
 	}
-	
 	st_string_literal_buffer[st_string_literal_buffer_size] = letter;
 	st_string_literal_buffer_size++;
 }
@@ -65,7 +63,6 @@ void man_rest_string_literal_buffer(void){
 	st_string_literal_buffer = NULL;
 	st_string_literal_buffer_size = 0;
 	st_string_literal_buffer_alloc_size = 0;
-	
 }
 
 const char *man_end_string_literal(){
@@ -74,7 +71,6 @@ const char *man_end_string_literal(){
 	char *str = malloc(strLen + 1);
 	strcpy(str, st_string_literal_buffer);
 	man_rest_string_literal_buffer();
-	
 	return str;
 }
 
@@ -169,7 +165,6 @@ void man_build_block_expr(MANBlockExpression *expr, MANTypeSpecifier *returnType
 	func.params  = params;
 	func.block = block;
 	expr.func = func;
-	
 }
 
 
@@ -187,7 +182,6 @@ MANDeclarationStatement *man_create_declaration_statement(MANDeclaration *declar
 	statement.kind = MANStatementKindDeclaration;
 	statement.declaration = declaration;
 	return statement;
-	
 }
 
 
@@ -206,11 +200,8 @@ MANElseIf *man_create_else_if(MANExpression *condition, MANBlockBody *thenBlock)
 	return elseIf;
 }
 
-
 MANIfStatement *man_create_if_statement(MANExpression *condition,MANBlockBody *thenBlock,NSArray<MANElseIf *> *elseIfList,MANBlockBody *elseBlocl){
 	MANIfStatement *statement = [[MANIfStatement alloc] init];
-
-	
 	statement.kind = MANStatementKindIf;
 	statement.condition = condition;
 	statement.thenBlock = thenBlock;
@@ -218,8 +209,6 @@ MANIfStatement *man_create_if_statement(MANExpression *condition,MANBlockBody *t
 	statement.elseIfList = elseIfList;
 	return statement;
 }
-
-
 
 MANCase *man_create_case(MANExpression *expr, MANBlockBody *block){
 	MANCase *case_ = [[MANCase alloc] init];
@@ -230,14 +219,12 @@ MANCase *man_create_case(MANExpression *expr, MANBlockBody *block){
 
 MANSwitchStatement *man_create_switch_statement(MANExpression *expr, NSArray<MANCase *> *caseList, MANBlockBody *defaultBlock){
 	MANSwitchStatement *statement = [[MANSwitchStatement alloc] init];
-	
 	statement.kind = MANStatementKindSwitch;
 	statement.expr = expr;
 	statement.caseList = caseList;
 	statement.defaultBlock = defaultBlock;
 	return statement;
 }
-
 
 MANForStatement *man_create_for_statement(MANExpression *initializerExpr, MANDeclaration *declaration,
 										  MANExpression *condition, MANExpression *post, MANBlockBody *block){
@@ -495,13 +482,11 @@ void man_add_class_definition(MANClassDefinition *classDefinition){
 	MANInterpreter *interpreter = man_get_current_compile_util();
 	interpreter.classDefinitionDic[classDefinition.name] = classDefinition;
 	[interpreter.topList addObject:classDefinition];
-	
 }
 
 void man_add_statement(MANStatement *statement){
 	MANInterpreter *interpreter = man_get_current_compile_util();
 	[interpreter.topList addObject:statement];
-
 }
 
 

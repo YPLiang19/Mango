@@ -99,7 +99,7 @@
 				Class ocBlockClass = NSClassFromString(@"NSBlock");
 				if ([[value c2objectValue] isKindOfClass:ocBlockClass]) {
 					struct MANSimulateBlock *blockStructPtr = (__bridge void *)value.objectValue;
-					if (blockStructPtr->flags | BLOCK_CREATED_FROM_MANGO) {
+					if (blockStructPtr->flags & BLOCK_CREATED_FROM_MANGO) {
 						value.objectValue = nil;
 					}
 				}

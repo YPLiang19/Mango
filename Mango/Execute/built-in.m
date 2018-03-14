@@ -49,7 +49,6 @@ static void add_gcd_build_in(MANInterpreter *inter){
 	[inter.commonScope setValue:[MANValue valueInstanceWithInt:DISPATCH_QUEUE_PRIORITY_BACKGROUND] withIndentifier:@"DISPATCH_QUEUE_PRIORITY_BACKGROUND"];
 	
 	[inter.commonScope setValue:[MANValue valueInstanceWithUint:DISPATCH_TIME_FOREVER] withIndentifier:@"DISPATCH_TIME_FOREVER"];
-	
 	[inter.commonScope setValue:[MANValue valueInstanceWithInt:DISPATCH_TIME_NOW] withIndentifier:@"DISPATCH_TIME_NOW"];
 	
 	[inter.commonScope setValue:[MANValue valueInstanceWithObject:DISPATCH_QUEUE_CONCURRENT] withIndentifier:@"DISPATCH_QUEUE_CONCURRENT"];
@@ -59,8 +58,6 @@ static void add_gcd_build_in(MANInterpreter *inter){
 	[inter.commonScope setValue:[MANValue valueInstanceWithUint:NSEC_PER_MSEC] withIndentifier:@"NSEC_PER_MSEC"];
 	[inter.commonScope setValue:[MANValue valueInstanceWithUint:USEC_PER_SEC] withIndentifier:@"USEC_PER_SEC"];
 	[inter.commonScope setValue:[MANValue valueInstanceWithUint:NSEC_PER_USEC] withIndentifier:@"NSEC_PER_USEC"];
-	
-
 	
 	[inter.commonScope setValue:[MANValue valueInstanceWithBlock:^dispatch_time_t (dispatch_time_t when, int64_t delta){
 		 return dispatch_time(when, delta);

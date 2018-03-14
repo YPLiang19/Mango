@@ -10,7 +10,6 @@
 
 @implementation MANStatement
 
-
 @end
 
 
