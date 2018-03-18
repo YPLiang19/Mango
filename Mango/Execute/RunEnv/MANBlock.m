@@ -17,12 +17,13 @@
 void copy_helper(struct MANSimulateBlock *dst, struct MANSimulateBlock *src)
 {
 	// do not copy anything is this funcion! just retain if need.
-		CFRetain(dst->wrapper);
+	CFRetain(dst->wrapper);
 }
 
 void dispose_helper(struct MANSimulateBlock *src)
 {
-		CFRelease(src->wrapper);
+	free((void *)src->descriptor->signature);
+	CFRelease(src->wrapper);
 }
 
 
@@ -110,15 +111,15 @@ static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 		(void (*)(const void *src))dispose_helper,
 		typeEncoding
 	};
-	struct MANGOSimulateBlockDescriptor *descriptorPtr = malloc(sizeof(struct MANGOSimulateBlockDescriptor));
-	memcpy(descriptorPtr, &descriptor, sizeof(struct MANGOSimulateBlockDescriptor));
+	_descriptor = malloc(sizeof(struct MANGOSimulateBlockDescriptor));
+	memcpy(_descriptor, &descriptor, sizeof(struct MANGOSimulateBlockDescriptor));
 	
 	struct MANSimulateBlock simulateBlock = {
 		&_NSConcreteStackBlock,
 		(BLOCK_HAS_COPY_DISPOSE | BLOCK_HAS_SIGNATURE | BLOCK_CREATED_FROM_MANGO),
 		0,
 		blockImp,
-		descriptorPtr,
+		_descriptor,
 		(__bridge void*)self
 	};
 	_blockPtr = Block_copy(&simulateBlock);

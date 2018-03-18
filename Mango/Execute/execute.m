@@ -500,8 +500,9 @@ static void replace_getter_method(MANInterpreter *inter ,Class clazz, MANPropert
 	ffi_prep_cif(cifPtr, FFI_DEFAULT_ABI, argCount, returnType, argTypes);
 	ffi_closure *closure = ffi_closure_alloc(sizeof(ffi_closure), (void **)&imp);
 	ffi_prep_closure_loc(closure, cifPtr, getterInter, (__bridge void *)prop, imp);
-	
-	class_replaceMethod(clazz, getterSEL, (IMP)imp, mango_str_append(retTypeEncoding, "@:"));
+	const char * typeEncoding = mango_str_append(retTypeEncoding, "@:");
+	class_replaceMethod(clazz, getterSEL, (IMP)imp, typeEncoding);
+	free((void *)typeEncoding);
 }
 
 static void replace_setter_method(MANInterpreter *inter ,Class clazz, MANPropertyDefinition *prop){
@@ -524,8 +525,9 @@ static void replace_setter_method(MANInterpreter *inter ,Class clazz, MANPropert
 	ffi_prep_cif(cifPtr, FFI_DEFAULT_ABI, argCount, returnType, argTypes);
 	ffi_closure *closure = ffi_closure_alloc(sizeof(ffi_closure), (void **)&imp);
 	ffi_prep_closure_loc(closure, cifPtr, setterInter, (__bridge void *)prop, imp);
-	
-	class_replaceMethod(clazz, setterSEL, (IMP)imp, mango_str_append("v@:", prtTypeEncoding));
+	const char * typeEncoding = mango_str_append("v@:", prtTypeEncoding);
+	class_replaceMethod(clazz, setterSEL, (IMP)imp, typeEncoding);
+	free((void *)typeEncoding);
 }
 
 
@@ -597,7 +599,7 @@ static void mango_forward_invocation(__unsafe_unretained id assignSlf, SEL sel, 
 	for (NSUInteger i = 2; i < numberOfArguments; i++) {
 		const char *typeEncoding = [methodSignature getArgumentTypeAtIndex:i];
 		size_t size = mango_size_with_encoding(typeEncoding);
-		void *ptr = malloc(size);
+		void *ptr = alloca(size);
 		[invocation getArgument:ptr atIndex:i];
 		MANValue *argValue = [[MANValue alloc] initWithCValuePointer:ptr typeEncoding:typeEncoding bridgeTransfer:NO];
 		[args addObject:argValue];
@@ -606,7 +608,7 @@ static void mango_forward_invocation(__unsafe_unretained id assignSlf, SEL sel, 
 	MANValue *retValue = mango_call_mango_function(inter, classScope, method.functionDefinition, args);
 	if (retValue.type.typeKind != MAN_TYPE_VOID) {
 		size_t retLen = [methodSignature methodReturnLength];
-		void *retPtr = malloc(retLen);
+		void *retPtr = alloca(retLen);
 		const char *retTypeEncoding = [methodSignature methodReturnType];
 		[retValue assign2CValuePointer:retPtr typeEncoding:retTypeEncoding];
 		[invocation setReturnValue:retPtr];
@@ -629,6 +631,7 @@ static void replace_method(MANInterpreter *interpreter,Class clazz, MANMethodDef
 	
 	
 	
+	BOOL needFreeTypeEncoding = NO;
 	const char *typeEncoding;
 	Method ocMethod;
 	if (method.classMethod) {
@@ -645,11 +648,15 @@ static void replace_method(MANInterpreter *interpreter,Class clazz, MANMethodDef
 		for (MANParameter *param in func.params) {
 			const char *paramTypeEncoding = [param.type typeEncoding];
 			typeEncoding = mango_str_append(typeEncoding, paramTypeEncoding);
+			needFreeTypeEncoding = YES;
 		}
 	}
 	Class c2 = method.classMethod ? objc_getMetaClass(class_getName(clazz)) : clazz;
 	class_replaceMethod(c2, @selector(forwardInvocation:), (IMP)mango_forward_invocation,"v@:@");
 	class_replaceMethod(c2, sel, _objc_msgForward, typeEncoding);
+	if (needFreeTypeEncoding) {
+		free((void *)typeEncoding);
+	}
 }
 
 
