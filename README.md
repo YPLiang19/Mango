@@ -4,8 +4,8 @@ Mango is a DSL which syntax is very similar to Objective-C，Mango is also an iO
 
 ## Example
 ```objc
-import "AppDelegate.h"
-#import "mango.h"
+#import "AppDelegate.h"
+#import <MangoFix/mango.h>
 
 @implementation AppDelegate
 
