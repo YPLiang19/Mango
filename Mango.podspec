@@ -10,7 +10,7 @@ s.license      = "MIT"
 s.author             = { "Yong PengLiang" => "yong_pliang@163.com" }
 s.ios.deployment_target = "8.0"
 s.source       = { :git => "https://github.com/YPLiang19/Mango.git", :tag => "#{s.version}" }
-s.source_files  = "Mango/**/*.{h,m,c,y,l}"
+s.source_files  = "Mango/**/*.{h,m,c}"
 s.vendored_libraries  = 'Mango/libffi/libffi.a'
 end
 
