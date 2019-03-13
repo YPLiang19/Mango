@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "mango.h"
+#import <Mango/mango.h>
 
 
 

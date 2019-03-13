@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name         = "Mango"
-s.version      = "1.0.0"
+s.version      = "1.0.1"
 s.summary      = "Mango"
 s.description  = <<-DESC
   Mango is a DSL which syntax is very similar to Objective-C，Mango is also an iOS  App hotfix SDK. You can use Mango method replace any Objective-C method.
