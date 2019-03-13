@@ -1,0 +1,1 @@
+../../../../../Mango/Compiler/AST/MANClassDefinition.h

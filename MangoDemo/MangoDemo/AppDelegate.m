@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"mg"];
-	NSURL *scriptUrl = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",path]];
+	NSURL *scriptUrl = [NSURL fileURLWithPath:path];
 	MMANontext *context = [[MMANontext alloc] init];
 	[context evalMangoScriptWithURL:scriptUrl];
 	return YES;

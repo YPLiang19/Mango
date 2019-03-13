@@ -1,0 +1,16 @@
+PODS:
+  - Mango (1.0.0)
+
+DEPENDENCIES:
+  - Mango (from `../`)
+
+EXTERNAL SOURCES:
+  Mango:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Mango: 710e389f9dc2633ca232ae1b60c2ca9fa2414f12
+
+PODFILE CHECKSUM: 17bcb8b01c0d0d9f2ad82ec9c1942199c042a8d1
+
+COCOAPODS: 1.5.3
