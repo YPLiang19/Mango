@@ -7,167 +7,167 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02C88E1D6D970B2C1ACE73477F9A67F4 /* MANTypeSpecifier.m in Sources */ = {isa = PBXBuildFile; fileRef = AA06C12D586058EB8D3D30AB9D1BD9AB /* MANTypeSpecifier.m */; };
-		0929A407A99D8773555DED88FF4327C9 /* MANValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BA1B2253D3099DA28CEC07ACB87CD12 /* MANValue.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0A1852F59211BDD7D1801ABCF62D79B1 /* MANStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E8156093E97B603F9826DAED59EEDA /* MANStack.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0D7EA894F27FE1D2D7A328641E60FCD1 /* MANContext.h in Headers */ = {isa = PBXBuildFile; fileRef = CA988F1E48821A923BC8B20D3EF0ACB7 /* MANContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		133B2B8CB1B528FC376C0A40712916B1 /* MANBlockBody.h in Headers */ = {isa = PBXBuildFile; fileRef = F5B93E2836C9FFF2EE4EAD2DC729F7BF /* MANBlockBody.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		153FAC11686A8BEA3FFD64DD76270491 /* MANTypeSpecifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D0F58EC63A3BCF86F618E2775D8A62A /* MANTypeSpecifier.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1C52F5BCD1A920C8D1D0A53D2C9BA839 /* create.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE7840A4F0DAFBFF941225356F0EBDE /* create.m */; };
-		21749781DE00F4A6E893C6ACF6EEF2D9 /* MANContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D02F246648E1E82C56F7D8697FC100E1 /* MANContext.m */; };
-		242DAFC03E8D89681B87F3C7485583AA /* MANStructDeclare.h in Headers */ = {isa = PBXBuildFile; fileRef = D383C88920EDF38E698EFBF02FE32E8F /* MANStructDeclare.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		25399BC4B1BF9DD56D96C754E2A66E04 /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = 0615C2FBEA4977E1C4F3AC3F266FF4BB /* ffi.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		32D4212CA90D6378384E1CEA93DE4FFC /* y.tab.m in Sources */ = {isa = PBXBuildFile; fileRef = 79FA210ED51D5237C6F945F87C3413D9 /* y.tab.m */; };
-		355F66457E4DCDF99DD1444CF638407C /* MANBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 137768BA37B6F4A75B493DE2D1E5EA84 /* MANBlock.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		380A3603C5EA06E19BC38AFFCA6E9218 /* lex.yy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED8F83611C64F414A0E9396BADEBC34 /* lex.yy.m */; };
-		3FDEA237832C65B4B77A96ED0795BC5A /* MANInterpreter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB36CD1514F4E34F672D359837AA9CC /* MANInterpreter.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4190A1F3CA8A21BEA8D5DFD45CAC872E /* MANStatementResult.h in Headers */ = {isa = PBXBuildFile; fileRef = F6A865C3AAA34D559289392557563BB2 /* MANStatementResult.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		42F34F73001835F9A07CE953DB97A1D5 /* MANFunctionDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9F38C9B65313856BEF2190A8842C20 /* MANFunctionDefinition.m */; };
-		441FC4C7E3BDF28E0C12199D75D9D45E /* MANStatementResult.m in Sources */ = {isa = PBXBuildFile; fileRef = D33C087B1F3578B08DD859DA56F6C349 /* MANStatementResult.m */; };
-		46D01E0CE474396BE2983932CA0C3382 /* MANBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D91CB4E42411ED7C1DDA12F9F90101C3 /* MANBlock.m */; };
-		483D9682CA15727A074C32A83EA9F673 /* MANScopeChain.h in Headers */ = {isa = PBXBuildFile; fileRef = C85D0217A8C60AB7EC48E58ED04613C3 /* MANScopeChain.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4C1B0726773915A92F0A1513F4968BBA /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EE620ED0A3F3EB519BB24CCDB267F22 /* ffi_x86_64.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4CBA391A1D867C3D9C4017379022CF0A /* execute.h in Headers */ = {isa = PBXBuildFile; fileRef = DBD14A12DCA586A1810841A8711FAFC9 /* execute.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4E52828B297EC4D5D5D633BEB08A828C /* Mango-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DB8257638A6DBC54B926ACF94485B0 /* Mango-dummy.m */; };
-		4E6487915AE2208DF9F527311DB6C903 /* MANClassDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB78AA5247A9B8291266742CA57C82C /* MANClassDefinition.m */; };
-		5AD23AB2C527E84F18EBF50D97F58755 /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD4D9C10D7473137D7D44FEC276B3F /* util.m */; };
-		5BC039B16E7C50DFB8773D7C5050FD4E /* MANStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = EEDF4691A3CFE9F8BB651E7ED16447A1 /* MANStatement.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5C421C715F025FF04FAF451DC82FACBD /* MANExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB62638401F74170103D2CE22E7D91D /* MANExpression.m */; };
-		5E4612DCA4B0E0149463D21FA342AF6B /* MANBlockBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B5E220548CBEBC62F8F5DD16619804 /* MANBlockBody.m */; };
-		6030B84B4E70A54DD3DAF7990FAE5BA4 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = D715BAA182F02C4107B90A15B989E05B /* ffi_i386.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		619344A76BC12AEF6D9EA4B67F7C8AEC /* ffi_arm64.h in Headers */ = {isa = PBXBuildFile; fileRef = 065FEB49DFD708578E08EF255DDE7505 /* ffi_arm64.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		61BAB2174DE55672E6F64DC97B13FD9D /* MANStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D203E74FDB89FDA30B18956B14010E7 /* MANStatement.m */; };
-		62232039342A2DD399D5D909DA8B9AA1 /* MANClassDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 0600A4DA581D8EF59DC6B4EB70799B75 /* MANClassDefinition.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		62827FCF25173AC546FFA95FA2816319 /* MANDeclaration.m in Sources */ = {isa = PBXBuildFile; fileRef = DA836852C8DDE93B36A0708F43100DBD /* MANDeclaration.m */; };
-		6335874D47A63DBDEE93B4B31AEF5FBB /* MANValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEA8497B45E3094E2909490099CE4D8 /* MANValue.m */; };
-		64E1DAA84B6B089F7C432BF98590D57D /* MANStructDeclareTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A529F63FC2D9403696724F12E6FD847 /* MANStructDeclareTable.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		669BD568F72C605B5FED02BF0144FAE3 /* built-in.m in Sources */ = {isa = PBXBuildFile; fileRef = DF129A229C38ACE2622E21A009CF6E9C /* built-in.m */; };
-		6B8E5D04CD745D3516DFBA3FCF17952A /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = F5945623D62E336156797099D4F01815 /* ffitarget_x86_64.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		70F4B05B22EBBDEC890539B7A614C8A7 /* mango.h in Headers */ = {isa = PBXBuildFile; fileRef = AB10A114BC193F6D1F52C64FD483AA5F /* mango.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7B417C298181220A698E53D356E6CE65 /* MANMethodMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B32DBB6B78071FE438E235FE78E3569E /* MANMethodMapTable.m */; };
-		7BB4DFE4F989530802FE2565448F3084 /* errrorc.m in Sources */ = {isa = PBXBuildFile; fileRef = D689D197D975533A13D403CE2A441506 /* errrorc.m */; };
-		7F2B1BD8E2F5E20C4734B7E076136586 /* create.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7F68B65BCD9C87D701EF5A7CA580E8 /* create.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8D820AE40D933DC9598A826D894591E5 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AB35EBF47C27388FB76579BD8A4B49 /* ffitarget.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		988793758DCDEB10FCF574CC2BE5CFA9 /* MANMethodMapTable.h in Headers */ = {isa = PBXBuildFile; fileRef = C5772CB460B0F13EB7F92DCE8D3519F6 /* MANMethodMapTable.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9E33959A3407BE7CB10A01C2C6C088D7 /* execute.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C2DBB45A45E6AB64F972BC77B746C /* execute.m */; };
-		9EFBE5357371D7A0F3E8AD2942C17C97 /* MANStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3499B4EF5E96C4D6EF5849DAA9C5B3 /* MANStack.m */; };
-		A39DD1CF89A018002DA73B51A902F27C /* MANFunctionDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B5AC0468EC2C3FAFA1A76D0DD702117 /* MANFunctionDefinition.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A61D8C7B1F3AA628756803E585C6A9D5 /* MANInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2BC19403D8E0E6A4F4D9F97C7A3F76 /* MANInterpreter.m */; };
-		AC11180E8F6890F1363ECA5735740C6F /* eval.m in Sources */ = {isa = PBXBuildFile; fileRef = AE71959749DA46AE46C13ADB8699EABF /* eval.m */; };
-		B3793D20ED32EA1D110F63FBE8C28F28 /* ffitarget_arm64.h in Headers */ = {isa = PBXBuildFile; fileRef = F86770E8F261DA8E63804A709508D3C6 /* ffitarget_arm64.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B45AD37D8AD7D7462E6262B40938CA6C /* MANScopeChain.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E358215F8C10AF3F7BCDA211817343 /* MANScopeChain.m */; };
-		B879D360BA7251A96BC36DB788C27CA4 /* MANExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 6469FF399C2610E6B1A8F10A7C16ED10 /* MANExpression.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B8F5DE6342323B9914E2F553AD01F9CF /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = E3EBFB6E717EFB884A800200CA132955 /* ffitarget_i386.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BD627A3AAE6FE2FCA977CA18C7F80DE1 /* man_ast.h in Headers */ = {isa = PBXBuildFile; fileRef = 617F5EDC70EE008B2CDE23AB2FEB6F41 /* man_ast.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D8308B296405B1D56738BAA38257B287 /* runenv.h in Headers */ = {isa = PBXBuildFile; fileRef = 514A9C2B5268CDD6D1A302A06E298798 /* runenv.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DAA7A26B421A70EBA8606F825673380A /* MANStructDeclare.m in Sources */ = {isa = PBXBuildFile; fileRef = EBC95A226225949EA0F7286D77EA3DA5 /* MANStructDeclare.m */; };
-		DF9590DCA069BA33483EA9F95C86A768 /* MANDeclaration.h in Headers */ = {isa = PBXBuildFile; fileRef = D9EE1D8FBD23C0176991DCDC91072F5F /* MANDeclaration.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		ECD9FEDF8FEEEDCF4B8B981B8BF9526C /* y.tab.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AD27D3AB15D81C3A4F3E63BCC5FBCFE /* y.tab.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EE9036993BF5FEBDF057620F144EED60 /* Pods-MangoDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9789BD7F307A1CF897A336AE4D35075 /* Pods-MangoDemo-dummy.m */; };
-		F25620996920D8FC305F5BA8F62B35B0 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E1C0DEB6AFE1C37E1B6DCE32F1E2D4A /* util.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F38DD227B3912058B05EEC296CD1706D /* ffi_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = 0EE3704E8E5642A308216BFCC9599917 /* ffi_arm.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F46128CA54B1BCE01B461FC46DEDC71E /* ffitarget_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = 24698CF068D09D92B467483F86BF7B85 /* ffitarget_arm.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FBA27707CC846DCE1A28FB8E63C741D7 /* MANStructDeclareTable.m in Sources */ = {isa = PBXBuildFile; fileRef = D490727191CA63AD749B45FDCAFBE0F3 /* MANStructDeclareTable.m */; };
+		061DABAF5C6943665D2C8D47B685C82C /* MANBlockBody.m in Sources */ = {isa = PBXBuildFile; fileRef = BB60E211958C38EBECFB22849C598EAB /* MANBlockBody.m */; };
+		0BCD41056E596F6037A54E42237357DB /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 6823B36C07C6FC9562A652AD227C272A /* ffitarget_i386.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0CC939CC30CB81A1650311355FCDD9C6 /* eval.m in Sources */ = {isa = PBXBuildFile; fileRef = CA39EB665FD4849098AD9E6865B731FC /* eval.m */; };
+		1070C46F2FF253F73F2C7ADF088823A8 /* MANBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D8688691887CCB8267DCEEA7EDE5E5BA /* MANBlock.m */; };
+		14C23F6AEAE8B4FEE84F3533E8CA17F5 /* errrorc.m in Sources */ = {isa = PBXBuildFile; fileRef = A779766FB4EA0D91E67C6F59E49E0ADD /* errrorc.m */; };
+		15B3D3E0CEB5FF19413620DC6F4D9867 /* MANTypeSpecifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 4785F9D23476BE7E9459CFAB282ACA99 /* MANTypeSpecifier.m */; };
+		17AD0C0477F3C117D05982C81B6F3EA4 /* MANStatementResult.h in Headers */ = {isa = PBXBuildFile; fileRef = C865F9FC20546B056CA6108CCB509A52 /* MANStatementResult.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1BB5DDC528F1C1D90FF3D14CE5FE76CF /* y.tab.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F1B6A42241FEBEC112713229B247F /* y.tab.m */; };
+		1D8974CDEFF556CF9BC40F74E2967285 /* ffitarget_arm64.h in Headers */ = {isa = PBXBuildFile; fileRef = 13391A4D24F7E965759CEBE7C05689EA /* ffitarget_arm64.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2148FF2080E55FC0CCD90A6609FBE78E /* ffitarget_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = DD9D86742F1C3F50E621BB9279A34C96 /* ffitarget_arm.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2159E8EB0B0161DE5C791256403EE831 /* MANMethodMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A94E99D44CD696848823364C334C77 /* MANMethodMapTable.m */; };
+		21B7EC0903F39F4C6615FCB3A3E20EF5 /* Pods-MangoDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9789BD7F307A1CF897A336AE4D35075 /* Pods-MangoDemo-dummy.m */; };
+		230F901ACF7403357E8D100D35580DD0 /* MANStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = E4485BA6A92EDE98B2A4FF4075A8CACA /* MANStatement.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		24C883E1216B5EE2CC33FDE02DE28579 /* MANStack.m in Sources */ = {isa = PBXBuildFile; fileRef = E2205B290DB008302CE7733460DC4DAE /* MANStack.m */; };
+		2CE791BC3DE2BA103687D9E661587796 /* execute.h in Headers */ = {isa = PBXBuildFile; fileRef = 283B8CF454202D3D0AA4B1379240FCAC /* execute.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2DA9A4A8FFFF00367332ADD7B479D81F /* MANStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA22BDC511442B1DF51B6B7188E74A6 /* MANStatement.m */; };
+		2E2CBB8A522D0AB2ED8138F930F5FD82 /* MANScopeChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5025FB50679CB8C632131F50F024F2FD /* MANScopeChain.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2F40BE9072DEE085820B045DDBD088A8 /* MANValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D636155628C411A5A10CA9D4645B2B40 /* MANValue.m */; };
+		3340A22C0FC09F0319A133644293422F /* MangoFix-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C748953F263BB983FA2E14E39C04B3D4 /* MangoFix-dummy.m */; };
+		3501CBFC7A87DB396A960B5B0BEF5840 /* create.m in Sources */ = {isa = PBXBuildFile; fileRef = 205A8DAC6EE99895E7F9FFEE1B0A05CD /* create.m */; };
+		35EDAA617F4678874859B02538C88FDA /* create.h in Headers */ = {isa = PBXBuildFile; fileRef = E143D264AA3994CCAF58E4F859BDF69F /* create.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		36EDAA19FF47446F9D913EB7C04EBB01 /* MANInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E6A0C11D1137B18EC88DDAE6D9100 /* MANInterpreter.m */; };
+		43256FDCEE3B516586BFB38E8E0578A0 /* MANClassDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8182DA7186C090A31BB15129424B74 /* MANClassDefinition.m */; };
+		46469EE96CC39D925B163332B90B3105 /* MANScopeChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A7AA55137707583774BF69E1F38288 /* MANScopeChain.m */; };
+		469427CC7D0C7640D38C052C552002FE /* MANMethodMapTable.h in Headers */ = {isa = PBXBuildFile; fileRef = B5E905BF2249895AF33467808FC8CD71 /* MANMethodMapTable.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		53FD6E23196AD39BAFCE3CCEBDF2FE93 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 485236C1202E379EFF4C9842543D4B79 /* ffitarget.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		55EA09ACE673A7D5A4CBFB4C8BDC63CD /* MANFunctionDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 316216EEC15E1F6E877873DF530301D7 /* MANFunctionDefinition.m */; };
+		65CEF87D3008965C7C8EA31225B65AA7 /* MANBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = A8911C3A72615ADE0B5FE5B23275A290 /* MANBlock.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		672E8E554FDC93E978D40F3ABF83835C /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C7968C67D67B64AE7294D17335EAA9 /* util.m */; };
+		6A4D366A872D0F3CD2E3AA25381A7EC5 /* MANClassDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 93C43B664FAE55EE3AC261F8465FEDCD /* MANClassDefinition.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7205F4B6FAAF6BFC41D0401A0864B20E /* MANExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ECA430288922D93FDEA08BF7F5BF9B4 /* MANExpression.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7410E855F69BF33863A73F9378EBD945 /* MANContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 501E4EE87A2444E0C102E90F06FF9A40 /* MANContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7838AAE58A249DF4A777D5144F482D92 /* MANValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 17DCC47115A6392185A143D52BA8DAB9 /* MANValue.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7B69B58C2C3E9BD9280E4FCFFA542017 /* ffitarget_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 8514800B468193ACCC1E1547045122A5 /* ffitarget_x86_64.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7C3A3B8FAEA19D2DA883DDA79766F910 /* MANDeclaration.m in Sources */ = {isa = PBXBuildFile; fileRef = 25B38D8675B82F8BE96FCBEC87BA5A69 /* MANDeclaration.m */; };
+		81B48FCDF68359515F99BAFB8E08E1D8 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 92999D82B1FFC0E15C169450B86A5364 /* util.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		85003AE07AA73E70886EA363DAFF8F38 /* mango.h in Headers */ = {isa = PBXBuildFile; fileRef = C5BF5748A036D09F90EFCAF9BF3D2DD3 /* mango.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8B685631DCD1EEA6D86B8D19DCB5A6FA /* MANStructDeclare.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC9072791FC61D8586B249FF96DE81 /* MANStructDeclare.m */; };
+		925F1263880AD1BA83196DCABCE65FC0 /* MANTypeSpecifier.h in Headers */ = {isa = PBXBuildFile; fileRef = DE5EB0769373D3040F2FD9C60E1282A2 /* MANTypeSpecifier.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		940683752F2EF6D67B247BFDD78DCE55 /* MANStructDeclareTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D892FEAFB19698CC6B672041E1A3E58 /* MANStructDeclareTable.m */; };
+		950AE4595EA1173A64DA448E715A4866 /* ffi_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = ACE5D5EE1832A46730E9E09F03B1998A /* ffi_arm.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9D6796E6ED1761500B41746B14999DB7 /* y.tab.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CF10B607CE8E6336D5E617A556A0AB3 /* y.tab.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9E8B54CBAB797504B6185BB54E748450 /* MANStack.h in Headers */ = {isa = PBXBuildFile; fileRef = D76CFDFAFF6E37CEA8C5397DB65B5220 /* MANStack.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A042B81DD2EC354E0E49ECD559DED132 /* MANFunctionDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 44767BD874FC388355ADFC555BFEA93B /* MANFunctionDefinition.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ABD7651D18454D9BFC87FDCD4B3BB964 /* MANStructDeclare.h in Headers */ = {isa = PBXBuildFile; fileRef = E8BC83B41832B4F94B413D77518198BA /* MANStructDeclare.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B74ECCA94D7E249E6F15A521EBAAB969 /* MANStructDeclareTable.h in Headers */ = {isa = PBXBuildFile; fileRef = CEC141E356D74B6A3CA438FEDA807654 /* MANStructDeclareTable.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CAFE6C9325CE739E7DBB78E2DB1BD2A9 /* MANBlockBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 28F51BB93000C9DEF45551E6AB0BE3E1 /* MANBlockBody.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CEF4A58A37D8FDA1D7A64045F5200230 /* MANContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C5686F5DBCD127BFFE758EA139BF66 /* MANContext.m */; };
+		CFF990A620169F5AC4745C8DF64D7E4D /* lex.yy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED38BC7AAEEFD5117763CE01EF172DB /* lex.yy.m */; };
+		D470D360197635868809B549C6C96537 /* ffi_arm64.h in Headers */ = {isa = PBXBuildFile; fileRef = ED1832845B6BD0F43190CE4D3BFD0E4B /* ffi_arm64.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D9652B5AC904BB13F22F868F801DA43B /* ffi_x86_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F7C65104B10B363A39B83CF1DF75FD1 /* ffi_x86_64.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E0BD715F0FB54C0D6BFAE24DEC7B5967 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 02601F4CCCA728E1D49ABFE6665A3DDD /* ffi_i386.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E23EA11E84AB14BBBAF3783D646DE19A /* built-in.m in Sources */ = {isa = PBXBuildFile; fileRef = CCD521A08A2DB97825781D285E9CFCE2 /* built-in.m */; };
+		E75A3A2E3C3CF0BD18123ECCC97D937E /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = 566905C686DACC2AA09A5CCFA0EFCD8F /* ffi.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EB989ED36A464FB35E18A3E2851FBC16 /* MANInterpreter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2869716B324A4FD81945008E8AFDD93E /* MANInterpreter.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EC960BE82756CDD58F8C0529A7FD840A /* man_ast.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C95AA81D06895D64B3392B8D8384DA3 /* man_ast.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F675F64879BC8E0019D6BC5888773FCB /* MANExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 459F4BA80704F28923ADB09FD43232EB /* MANExpression.m */; };
+		F8CEB9259FAF28BAAE59A7AEC3B04670 /* MANStatementResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DC246AD10F342D1AE4C127C3B9E41C5E /* MANStatementResult.m */; };
+		FC4186934992FA8D6FBFA4299C490DBA /* execute.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FC4D42D5F9869CB0393E09130498EF /* execute.m */; };
+		FDF21F7E942F62060C7F3CAA842AFAFB /* MANDeclaration.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BC31ADF684B7E3A5421EA56D40D781 /* MANDeclaration.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FE3EB1E36B00F62BE382CA5553D3701B /* runenv.h in Headers */ = {isa = PBXBuildFile; fileRef = E77157D67B6EB3263750670CBBE29B95 /* runenv.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		75118707E4605EFFC40C9476739062C7 /* PBXContainerItemProxy */ = {
+		57C00C854E442A1391F87F6DDC06F3B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 292F4D7C95E3FB589E96666437D2B78E;
-			remoteInfo = Mango;
+			remoteGlobalIDString = D7AFEB1EE5EB7E0ADE5048B360FDBAFF;
+			remoteInfo = MangoFix;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0600A4DA581D8EF59DC6B4EB70799B75 /* MANClassDefinition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANClassDefinition.h; sourceTree = "<group>"; };
-		0615C2FBEA4977E1C4F3AC3F266FF4BB /* ffi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
-		065FEB49DFD708578E08EF255DDE7505 /* ffi_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_arm64.h; sourceTree = "<group>"; };
-		0A529F63FC2D9403696724F12E6FD847 /* MANStructDeclareTable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStructDeclareTable.h; sourceTree = "<group>"; };
-		0D203E74FDB89FDA30B18956B14010E7 /* MANStatement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStatement.m; sourceTree = "<group>"; };
-		0D3499B4EF5E96C4D6EF5849DAA9C5B3 /* MANStack.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStack.m; sourceTree = "<group>"; };
-		0EE3704E8E5642A308216BFCC9599917 /* ffi_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_arm.h; sourceTree = "<group>"; };
-		137768BA37B6F4A75B493DE2D1E5EA84 /* MANBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANBlock.h; sourceTree = "<group>"; };
-		1B5AC0468EC2C3FAFA1A76D0DD702117 /* MANFunctionDefinition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANFunctionDefinition.h; sourceTree = "<group>"; };
-		1BE7840A4F0DAFBFF941225356F0EBDE /* create.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = create.m; sourceTree = "<group>"; };
-		24698CF068D09D92B467483F86BF7B85 /* ffitarget_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm.h; sourceTree = "<group>"; };
-		2A2BC19403D8E0E6A4F4D9F97C7A3F76 /* MANInterpreter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANInterpreter.m; sourceTree = "<group>"; };
-		2AD27D3AB15D81C3A4F3E63BCC5FBCFE /* y.tab.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = y.tab.h; sourceTree = "<group>"; };
-		2ED8F83611C64F414A0E9396BADEBC34 /* lex.yy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = lex.yy.m; sourceTree = "<group>"; };
-		3EB78AA5247A9B8291266742CA57C82C /* MANClassDefinition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANClassDefinition.m; sourceTree = "<group>"; };
-		49297478CDA56ED8416CF69294BF43E6 /* libPods-MangoDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-MangoDemo.a"; path = "libPods-MangoDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BA1B2253D3099DA28CEC07ACB87CD12 /* MANValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANValue.h; sourceTree = "<group>"; };
-		4CA7125C2AF14DDEA84ACC8A4AFAE6AD /* Mango.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Mango.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		4D0F58EC63A3BCF86F618E2775D8A62A /* MANTypeSpecifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANTypeSpecifier.h; sourceTree = "<group>"; };
-		4DC12B47C8F3AAA7E01EE7D3943C2D17 /* Mango-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Mango-prefix.pch"; sourceTree = "<group>"; };
-		50E8156093E97B603F9826DAED59EEDA /* MANStack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStack.h; sourceTree = "<group>"; };
-		514A9C2B5268CDD6D1A302A06E298798 /* runenv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = runenv.h; sourceTree = "<group>"; };
-		5BB62638401F74170103D2CE22E7D91D /* MANExpression.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANExpression.m; sourceTree = "<group>"; };
-		5FB66DDC66C206B9735EE5326BC1848F /* libMango.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMango.a; path = libMango.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		617F5EDC70EE008B2CDE23AB2FEB6F41 /* man_ast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = man_ast.h; sourceTree = "<group>"; };
-		6469FF399C2610E6B1A8F10A7C16ED10 /* MANExpression.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANExpression.h; sourceTree = "<group>"; };
-		64DB8257638A6DBC54B926ACF94485B0 /* Mango-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Mango-dummy.m"; sourceTree = "<group>"; };
-		6BEA8497B45E3094E2909490099CE4D8 /* MANValue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANValue.m; sourceTree = "<group>"; };
-		7086A26418CE491DF66F9BFFD50F94F3 /* libffi.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libffi.a; path = Mango/libffi/libffi.a; sourceTree = "<group>"; };
-		79FA210ED51D5237C6F945F87C3413D9 /* y.tab.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = y.tab.m; sourceTree = "<group>"; };
-		7AB36CD1514F4E34F672D359837AA9CC /* MANInterpreter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANInterpreter.h; sourceTree = "<group>"; };
-		7EFD4D9C10D7473137D7D44FEC276B3F /* util.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = util.m; path = Mango/util.m; sourceTree = "<group>"; };
+		02601F4CCCA728E1D49ABFE6665A3DDD /* ffi_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		094B54A36C687EBA07C612E5BE69062E /* MangoFix-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MangoFix-prefix.pch"; sourceTree = "<group>"; };
+		0CF10B607CE8E6336D5E617A556A0AB3 /* y.tab.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = y.tab.h; sourceTree = "<group>"; };
+		0F7C65104B10B363A39B83CF1DF75FD1 /* ffi_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
+		13391A4D24F7E965759CEBE7C05689EA /* ffitarget_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm64.h; sourceTree = "<group>"; };
+		15BC31ADF684B7E3A5421EA56D40D781 /* MANDeclaration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANDeclaration.h; sourceTree = "<group>"; };
+		17DCC47115A6392185A143D52BA8DAB9 /* MANValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANValue.h; sourceTree = "<group>"; };
+		205A8DAC6EE99895E7F9FFEE1B0A05CD /* create.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = create.m; sourceTree = "<group>"; };
+		25B38D8675B82F8BE96FCBEC87BA5A69 /* MANDeclaration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANDeclaration.m; sourceTree = "<group>"; };
+		283B8CF454202D3D0AA4B1379240FCAC /* execute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = execute.h; sourceTree = "<group>"; };
+		2869716B324A4FD81945008E8AFDD93E /* MANInterpreter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANInterpreter.h; sourceTree = "<group>"; };
+		28F51BB93000C9DEF45551E6AB0BE3E1 /* MANBlockBody.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANBlockBody.h; sourceTree = "<group>"; };
+		316216EEC15E1F6E877873DF530301D7 /* MANFunctionDefinition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANFunctionDefinition.m; sourceTree = "<group>"; };
+		44767BD874FC388355ADFC555BFEA93B /* MANFunctionDefinition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANFunctionDefinition.h; sourceTree = "<group>"; };
+		459F4BA80704F28923ADB09FD43232EB /* MANExpression.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANExpression.m; sourceTree = "<group>"; };
+		4785F9D23476BE7E9459CFAB282ACA99 /* MANTypeSpecifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANTypeSpecifier.m; sourceTree = "<group>"; };
+		485236C1202E379EFF4C9842543D4B79 /* ffitarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		4ED38BC7AAEEFD5117763CE01EF172DB /* lex.yy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = lex.yy.m; sourceTree = "<group>"; };
+		501E4EE87A2444E0C102E90F06FF9A40 /* MANContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MANContext.h; path = Mango/MANContext.h; sourceTree = "<group>"; };
+		5025FB50679CB8C632131F50F024F2FD /* MANScopeChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANScopeChain.h; sourceTree = "<group>"; };
+		566905C686DACC2AA09A5CCFA0EFCD8F /* ffi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		5C95AA81D06895D64B3392B8D8384DA3 /* man_ast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = man_ast.h; sourceTree = "<group>"; };
+		5FCC9072791FC61D8586B249FF96DE81 /* MANStructDeclare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStructDeclare.m; sourceTree = "<group>"; };
+		64A94E99D44CD696848823364C334C77 /* MANMethodMapTable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANMethodMapTable.m; sourceTree = "<group>"; };
+		6823B36C07C6FC9562A652AD227C272A /* ffitarget_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		6ECA430288922D93FDEA08BF7F5BF9B4 /* MANExpression.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANExpression.h; sourceTree = "<group>"; };
+		76FC4D42D5F9869CB0393E09130498EF /* execute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = execute.m; sourceTree = "<group>"; };
 		84AF32F441F27FB7C458A5D80A392103 /* Pods-MangoDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MangoDemo-acknowledgements.plist"; sourceTree = "<group>"; };
-		894C2DBB45A45E6AB64F972BC77B746C /* execute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = execute.m; sourceTree = "<group>"; };
-		8E1C0DEB6AFE1C37E1B6DCE32F1E2D4A /* util.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = util.h; path = Mango/util.h; sourceTree = "<group>"; };
-		8E7F68B65BCD9C87D701EF5A7CA580E8 /* create.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
-		9284D54CDE8A53865A00BAA18873685D /* Mango.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Mango.xcconfig; sourceTree = "<group>"; };
+		8514800B468193ACCC1E1547045122A5 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
+		8D892FEAFB19698CC6B672041E1A3E58 /* MANStructDeclareTable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStructDeclareTable.m; sourceTree = "<group>"; };
+		92999D82B1FFC0E15C169450B86A5364 /* util.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = util.h; path = Mango/util.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93C43B664FAE55EE3AC261F8465FEDCD /* MANClassDefinition.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANClassDefinition.h; sourceTree = "<group>"; };
 		93F4439423FF4DCFB39196BB6D3DEDB7 /* Pods-MangoDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MangoDemo.release.xcconfig"; sourceTree = "<group>"; };
-		9EE620ED0A3F3EB519BB24CCDB267F22 /* ffi_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
-		AA06C12D586058EB8D3D30AB9D1BD9AB /* MANTypeSpecifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANTypeSpecifier.m; sourceTree = "<group>"; };
-		AB10A114BC193F6D1F52C64FD483AA5F /* mango.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mango.h; path = Mango/mango.h; sourceTree = "<group>"; };
+		9A8E6A0C11D1137B18EC88DDAE6D9100 /* MANInterpreter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANInterpreter.m; sourceTree = "<group>"; };
+		A779766FB4EA0D91E67C6F59E49E0ADD /* errrorc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = errrorc.m; sourceTree = "<group>"; };
+		A7A7AA55137707583774BF69E1F38288 /* MANScopeChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANScopeChain.m; sourceTree = "<group>"; };
+		A7C5686F5DBCD127BFFE758EA139BF66 /* MANContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MANContext.m; path = Mango/MANContext.m; sourceTree = "<group>"; };
+		A8911C3A72615ADE0B5FE5B23275A290 /* MANBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANBlock.h; sourceTree = "<group>"; };
+		ACE5D5EE1832A46730E9E09F03B1998A /* ffi_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_arm.h; sourceTree = "<group>"; };
 		AE5F599D5E5967A2F574CFE12D0983BA /* Pods-MangoDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MangoDemo-frameworks.sh"; sourceTree = "<group>"; };
-		AE71959749DA46AE46C13ADB8699EABF /* eval.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = eval.m; sourceTree = "<group>"; };
-		B32DBB6B78071FE438E235FE78E3569E /* MANMethodMapTable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANMethodMapTable.m; sourceTree = "<group>"; };
-		B8E358215F8C10AF3F7BCDA211817343 /* MANScopeChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANScopeChain.m; sourceTree = "<group>"; };
+		AEB599A19C60CC1EABB02D0BEEEC530C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		AF8182DA7186C090A31BB15129424B74 /* MANClassDefinition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANClassDefinition.m; sourceTree = "<group>"; };
+		AF899C0358D102ED0752A876C7EA0CE7 /* MangoFix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MangoFix.xcconfig; sourceTree = "<group>"; };
+		B5E905BF2249895AF33467808FC8CD71 /* MANMethodMapTable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANMethodMapTable.h; sourceTree = "<group>"; };
+		B69F1B6A42241FEBEC112713229B247F /* y.tab.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = y.tab.m; sourceTree = "<group>"; };
+		BB60E211958C38EBECFB22849C598EAB /* MANBlockBody.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANBlockBody.m; sourceTree = "<group>"; };
 		BCC0DBD48D8E79844C0AC113CC4CA320 /* Pods-MangoDemo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MangoDemo-resources.sh"; sourceTree = "<group>"; };
-		BE9F38C9B65313856BEF2190A8842C20 /* MANFunctionDefinition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANFunctionDefinition.m; sourceTree = "<group>"; };
-		C5772CB460B0F13EB7F92DCE8D3519F6 /* MANMethodMapTable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANMethodMapTable.h; sourceTree = "<group>"; };
-		C85D0217A8C60AB7EC48E58ED04613C3 /* MANScopeChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANScopeChain.h; sourceTree = "<group>"; };
+		BF7A47C22AF2985CCE063B179F3C560A /* libffi.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libffi.a; path = Mango/libffi/libffi.a; sourceTree = "<group>"; };
+		C5BF5748A036D09F90EFCAF9BF3D2DD3 /* mango.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mango.h; path = Mango/mango.h; sourceTree = "<group>"; };
+		C748953F263BB983FA2E14E39C04B3D4 /* MangoFix-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MangoFix-dummy.m"; sourceTree = "<group>"; };
+		C865F9FC20546B056CA6108CCB509A52 /* MANStatementResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStatementResult.h; sourceTree = "<group>"; };
 		C9789BD7F307A1CF897A336AE4D35075 /* Pods-MangoDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MangoDemo-dummy.m"; sourceTree = "<group>"; };
-		CA988F1E48821A923BC8B20D3EF0ACB7 /* MANContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MANContext.h; path = Mango/MANContext.h; sourceTree = "<group>"; };
-		D02F246648E1E82C56F7D8697FC100E1 /* MANContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MANContext.m; path = Mango/MANContext.m; sourceTree = "<group>"; };
-		D33C087B1F3578B08DD859DA56F6C349 /* MANStatementResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStatementResult.m; sourceTree = "<group>"; };
-		D383C88920EDF38E698EFBF02FE32E8F /* MANStructDeclare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStructDeclare.h; sourceTree = "<group>"; };
-		D490727191CA63AD749B45FDCAFBE0F3 /* MANStructDeclareTable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStructDeclareTable.m; sourceTree = "<group>"; };
-		D4AB35EBF47C27388FB76579BD8A4B49 /* ffitarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
-		D689D197D975533A13D403CE2A441506 /* errrorc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = errrorc.m; sourceTree = "<group>"; };
-		D715BAA182F02C4107B90A15B989E05B /* ffi_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
-		D91CB4E42411ED7C1DDA12F9F90101C3 /* MANBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANBlock.m; sourceTree = "<group>"; };
-		D9EE1D8FBD23C0176991DCDC91072F5F /* MANDeclaration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANDeclaration.h; sourceTree = "<group>"; };
-		DA836852C8DDE93B36A0708F43100DBD /* MANDeclaration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANDeclaration.m; sourceTree = "<group>"; };
-		DBD14A12DCA586A1810841A8711FAFC9 /* execute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = execute.h; sourceTree = "<group>"; };
-		DF129A229C38ACE2622E21A009CF6E9C /* built-in.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "built-in.m"; sourceTree = "<group>"; };
-		E3EBFB6E717EFB884A800200CA132955 /* ffitarget_i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		CA39EB665FD4849098AD9E6865B731FC /* eval.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = eval.m; sourceTree = "<group>"; };
+		CCD521A08A2DB97825781D285E9CFCE2 /* built-in.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "built-in.m"; sourceTree = "<group>"; };
+		CEC141E356D74B6A3CA438FEDA807654 /* MANStructDeclareTable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStructDeclareTable.h; sourceTree = "<group>"; };
+		D3717F75EFB842CEA635D443077C06B4 /* MangoFix.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = MangoFix.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D636155628C411A5A10CA9D4645B2B40 /* MANValue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANValue.m; sourceTree = "<group>"; };
+		D76CFDFAFF6E37CEA8C5397DB65B5220 /* MANStack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStack.h; sourceTree = "<group>"; };
+		D8688691887CCB8267DCEEA7EDE5E5BA /* MANBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANBlock.m; sourceTree = "<group>"; };
+		DAAE590E56AC024D44B81B9B99E75A1B /* libMangoFix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMangoFix.a; path = libMangoFix.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC246AD10F342D1AE4C127C3B9E41C5E /* MANStatementResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStatementResult.m; sourceTree = "<group>"; };
+		DD9D86742F1C3F50E621BB9279A34C96 /* ffitarget_arm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm.h; sourceTree = "<group>"; };
+		DE5EB0769373D3040F2FD9C60E1282A2 /* MANTypeSpecifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANTypeSpecifier.h; sourceTree = "<group>"; };
+		E143D264AA3994CCAF58E4F859BDF69F /* create.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
+		E2205B290DB008302CE7733460DC4DAE /* MANStack.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStack.m; sourceTree = "<group>"; };
+		E4485BA6A92EDE98B2A4FF4075A8CACA /* MANStatement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStatement.h; sourceTree = "<group>"; };
+		E77157D67B6EB3263750670CBBE29B95 /* runenv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = runenv.h; sourceTree = "<group>"; };
+		E7C7968C67D67B64AE7294D17335EAA9 /* util.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = util.m; path = Mango/util.m; sourceTree = "<group>"; };
 		E85A1609EF60EDAC999E27D1937C0A8A /* Pods-MangoDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MangoDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		EBC95A226225949EA0F7286D77EA3DA5 /* MANStructDeclare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStructDeclare.m; sourceTree = "<group>"; };
+		E8BC83B41832B4F94B413D77518198BA /* MANStructDeclare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStructDeclare.h; sourceTree = "<group>"; };
+		ED1832845B6BD0F43190CE4D3BFD0E4B /* ffi_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffi_arm64.h; sourceTree = "<group>"; };
 		ED6CE8EB4C20AD8774B09554A6026597 /* Pods-MangoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MangoDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		EEDF4691A3CFE9F8BB651E7ED16447A1 /* MANStatement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStatement.h; sourceTree = "<group>"; };
-		F0B5E220548CBEBC62F8F5DD16619804 /* MANBlockBody.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANBlockBody.m; sourceTree = "<group>"; };
-		F5945623D62E336156797099D4F01815 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
-		F5B93E2836C9FFF2EE4EAD2DC729F7BF /* MANBlockBody.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANBlockBody.h; sourceTree = "<group>"; };
-		F6A865C3AAA34D559289392557563BB2 /* MANStatementResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MANStatementResult.h; sourceTree = "<group>"; };
-		F86770E8F261DA8E63804A709508D3C6 /* ffitarget_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm64.h; sourceTree = "<group>"; };
-		FAB312D88786A86BAB67AD9E9C3DC9BC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		FBC84EFE3C60B25C7849A590F1768A9B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		FD5264970AF8FEA0A3A0854C2BFBB08C /* libPods-MangoDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-MangoDemo.a"; path = "libPods-MangoDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDA22BDC511442B1DF51B6B7188E74A6 /* MANStatement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MANStatement.m; sourceTree = "<group>"; };
+		FFE64B7C473A329F61D83838E18B43B1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7C884225254D940AA937E7F040D079CC /* Frameworks */ = {
+		2953EFB6157E1D27061DF51A89B4AB19 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A2CEC82899B1EA5713F8526F64AA530B /* Frameworks */ = {
+		9939764AA6CCD502DCD32026DAD6FF4E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -177,12 +177,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04B9C927B9E4F1BB5C25485AE3FCF49E /* Development Pods */ = {
+		02FF3ABF78371A8CDBA7E5F052C252F7 /* Execute */ = {
 			isa = PBXGroup;
 			children = (
-				B4E22D7198DB09C99741560FCBBF0350 /* Mango */,
+				CCD521A08A2DB97825781D285E9CFCE2 /* built-in.m */,
+				CA39EB665FD4849098AD9E6865B731FC /* eval.m */,
+				283B8CF454202D3D0AA4B1379240FCAC /* execute.h */,
+				76FC4D42D5F9869CB0393E09130498EF /* execute.m */,
+				D5E88793EB5DCDF976B1339AC75828F3 /* RunEnv */,
 			);
-			name = "Development Pods";
+			name = Execute;
+			path = Mango/Execute;
+			sourceTree = "<group>";
+		};
+		0A2838CCA1D4BECC27402D27F45B73BD /* AST */ = {
+			isa = PBXGroup;
+			children = (
+				5C95AA81D06895D64B3392B8D8384DA3 /* man_ast.h */,
+				28F51BB93000C9DEF45551E6AB0BE3E1 /* MANBlockBody.h */,
+				BB60E211958C38EBECFB22849C598EAB /* MANBlockBody.m */,
+				93C43B664FAE55EE3AC261F8465FEDCD /* MANClassDefinition.h */,
+				AF8182DA7186C090A31BB15129424B74 /* MANClassDefinition.m */,
+				15BC31ADF684B7E3A5421EA56D40D781 /* MANDeclaration.h */,
+				25B38D8675B82F8BE96FCBEC87BA5A69 /* MANDeclaration.m */,
+				6ECA430288922D93FDEA08BF7F5BF9B4 /* MANExpression.h */,
+				459F4BA80704F28923ADB09FD43232EB /* MANExpression.m */,
+				44767BD874FC388355ADFC555BFEA93B /* MANFunctionDefinition.h */,
+				316216EEC15E1F6E877873DF530301D7 /* MANFunctionDefinition.m */,
+				2869716B324A4FD81945008E8AFDD93E /* MANInterpreter.h */,
+				9A8E6A0C11D1137B18EC88DDAE6D9100 /* MANInterpreter.m */,
+				E4485BA6A92EDE98B2A4FF4075A8CACA /* MANStatement.h */,
+				FDA22BDC511442B1DF51B6B7188E74A6 /* MANStatement.m */,
+				E8BC83B41832B4F94B413D77518198BA /* MANStructDeclare.h */,
+				5FCC9072791FC61D8586B249FF96DE81 /* MANStructDeclare.m */,
+				DE5EB0769373D3040F2FD9C60E1282A2 /* MANTypeSpecifier.h */,
+				4785F9D23476BE7E9459CFAB282ACA99 /* MANTypeSpecifier.m */,
+			);
+			name = AST;
+			path = AST;
 			sourceTree = "<group>";
 		};
 		0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */ = {
@@ -190,6 +222,24 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		12F1E4446B1DF3600BDF743C9A35578F /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2DA9422A4D60AAECBE2FD9BC1B927219 /* MangoFix */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		19E7E0267F6478374DCDA2471FB5157E /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				AEB599A19C60CC1EABB02D0BEEEC530C /* LICENSE */,
+				D3717F75EFB842CEA635D443077C06B4 /* MangoFix.podspec */,
+				FFE64B7C473A329F61D83838E18B43B1 /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		1F6F3201223104BBF0A8354963E2DC64 /* Pods-MangoDemo */ = {
@@ -207,25 +257,23 @@
 			path = "Target Support Files/Pods-MangoDemo";
 			sourceTree = "<group>";
 		};
-		25329F94DC18BA5819790FDFBCA68019 /* Support Files */ = {
+		2DA9422A4D60AAECBE2FD9BC1B927219 /* MangoFix */ = {
 			isa = PBXGroup;
 			children = (
-				9284D54CDE8A53865A00BAA18873685D /* Mango.xcconfig */,
-				64DB8257638A6DBC54B926ACF94485B0 /* Mango-dummy.m */,
-				4DC12B47C8F3AAA7E01EE7D3943C2D17 /* Mango-prefix.pch */,
+				501E4EE87A2444E0C102E90F06FF9A40 /* MANContext.h */,
+				A7C5686F5DBCD127BFFE758EA139BF66 /* MANContext.m */,
+				C5BF5748A036D09F90EFCAF9BF3D2DD3 /* mango.h */,
+				92999D82B1FFC0E15C169450B86A5364 /* util.h */,
+				E7C7968C67D67B64AE7294D17335EAA9 /* util.m */,
+				63A048047DB3827889E7B1946D073BEE /* Compiler */,
+				02FF3ABF78371A8CDBA7E5F052C252F7 /* Execute */,
+				8DEA4ADDE5254A62F557D5BB21075DD6 /* Frameworks */,
+				6FCE2C380C272AAAB11F56482E348C53 /* libffi */,
+				19E7E0267F6478374DCDA2471FB5157E /* Pod */,
+				79F8ED19A196E38A157DA5A6B28B8D8B /* Support Files */,
 			);
-			name = "Support Files";
-			path = "MangoDemo/Pods/Target Support Files/Mango";
-			sourceTree = "<group>";
-		};
-		2F97956C8E70958850462F25E405B99F /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				FAB312D88786A86BAB67AD9E9C3DC9BC /* LICENSE */,
-				4CA7125C2AF14DDEA84ACC8A4AFAE6AD /* Mango.podspec */,
-				FBC84EFE3C60B25C7849A590F1768A9B /* README.md */,
-			);
-			name = Pod;
+			name = MangoFix;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		52F4A58A27F4BB93BA6502F43BE3C65D /* Targets Support Files */ = {
@@ -236,237 +284,189 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		53803812CEA21D8189EC203596EB778C /* RunEnv */ = {
+		532C6BE8DD9DD08514CD0BED984B4AC7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				137768BA37B6F4A75B493DE2D1E5EA84 /* MANBlock.h */,
-				D91CB4E42411ED7C1DDA12F9F90101C3 /* MANBlock.m */,
-				C5772CB460B0F13EB7F92DCE8D3519F6 /* MANMethodMapTable.h */,
-				B32DBB6B78071FE438E235FE78E3569E /* MANMethodMapTable.m */,
-				C85D0217A8C60AB7EC48E58ED04613C3 /* MANScopeChain.h */,
-				B8E358215F8C10AF3F7BCDA211817343 /* MANScopeChain.m */,
-				50E8156093E97B603F9826DAED59EEDA /* MANStack.h */,
-				0D3499B4EF5E96C4D6EF5849DAA9C5B3 /* MANStack.m */,
-				F6A865C3AAA34D559289392557563BB2 /* MANStatementResult.h */,
-				D33C087B1F3578B08DD859DA56F6C349 /* MANStatementResult.m */,
-				0A529F63FC2D9403696724F12E6FD847 /* MANStructDeclareTable.h */,
-				D490727191CA63AD749B45FDCAFBE0F3 /* MANStructDeclareTable.m */,
-				4BA1B2253D3099DA28CEC07ACB87CD12 /* MANValue.h */,
-				6BEA8497B45E3094E2909490099CE4D8 /* MANValue.m */,
-				514A9C2B5268CDD6D1A302A06E298798 /* runenv.h */,
+				DAAE590E56AC024D44B81B9B99E75A1B /* libMangoFix.a */,
+				FD5264970AF8FEA0A3A0854C2BFBB08C /* libPods-MangoDemo.a */,
 			);
-			name = RunEnv;
-			path = RunEnv;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		57643C64852B71A9ADB852846F70443D /* lex_yacc */ = {
+			isa = PBXGroup;
+			children = (
+				4ED38BC7AAEEFD5117763CE01EF172DB /* lex.yy.m */,
+				0CF10B607CE8E6336D5E617A556A0AB3 /* y.tab.h */,
+				B69F1B6A42241FEBEC112713229B247F /* y.tab.m */,
+			);
+			name = lex_yacc;
+			path = lex_yacc;
+			sourceTree = "<group>";
+		};
+		63A048047DB3827889E7B1946D073BEE /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				E143D264AA3994CCAF58E4F859BDF69F /* create.h */,
+				205A8DAC6EE99895E7F9FFEE1B0A05CD /* create.m */,
+				A779766FB4EA0D91E67C6F59E49E0ADD /* errrorc.m */,
+				0A2838CCA1D4BECC27402D27F45B73BD /* AST */,
+				57643C64852B71A9ADB852846F70443D /* lex_yacc */,
+			);
+			name = Compiler;
+			path = Mango/Compiler;
+			sourceTree = "<group>";
+		};
+		6FCE2C380C272AAAB11F56482E348C53 /* libffi */ = {
+			isa = PBXGroup;
+			children = (
+				566905C686DACC2AA09A5CCFA0EFCD8F /* ffi.h */,
+				ACE5D5EE1832A46730E9E09F03B1998A /* ffi_arm.h */,
+				ED1832845B6BD0F43190CE4D3BFD0E4B /* ffi_arm64.h */,
+				02601F4CCCA728E1D49ABFE6665A3DDD /* ffi_i386.h */,
+				0F7C65104B10B363A39B83CF1DF75FD1 /* ffi_x86_64.h */,
+				485236C1202E379EFF4C9842543D4B79 /* ffitarget.h */,
+				DD9D86742F1C3F50E621BB9279A34C96 /* ffitarget_arm.h */,
+				13391A4D24F7E965759CEBE7C05689EA /* ffitarget_arm64.h */,
+				6823B36C07C6FC9562A652AD227C272A /* ffitarget_i386.h */,
+				8514800B468193ACCC1E1547045122A5 /* ffitarget_x86_64.h */,
+			);
+			name = libffi;
+			path = Mango/libffi;
+			sourceTree = "<group>";
+		};
+		79F8ED19A196E38A157DA5A6B28B8D8B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF899C0358D102ED0752A876C7EA0CE7 /* MangoFix.xcconfig */,
+				C748953F263BB983FA2E14E39C04B3D4 /* MangoFix-dummy.m */,
+				094B54A36C687EBA07C612E5BE69062E /* MangoFix-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "MangoDemo/Pods/Target Support Files/MangoFix";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				04B9C927B9E4F1BB5C25485AE3FCF49E /* Development Pods */,
+				12F1E4446B1DF3600BDF743C9A35578F /* Development Pods */,
 				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
-				BF2C5AE86381034801A6291136A86076 /* Products */,
+				532C6BE8DD9DD08514CD0BED984B4AC7 /* Products */,
 				52F4A58A27F4BB93BA6502F43BE3C65D /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		87C32C6DC32DABBD914232525FE05095 /* Execute */ = {
+		8DEA4ADDE5254A62F557D5BB21075DD6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF129A229C38ACE2622E21A009CF6E9C /* built-in.m */,
-				AE71959749DA46AE46C13ADB8699EABF /* eval.m */,
-				DBD14A12DCA586A1810841A8711FAFC9 /* execute.h */,
-				894C2DBB45A45E6AB64F972BC77B746C /* execute.m */,
-				53803812CEA21D8189EC203596EB778C /* RunEnv */,
-			);
-			name = Execute;
-			path = Mango/Execute;
-			sourceTree = "<group>";
-		};
-		87E256E11A360F4FF905B44041D2C511 /* lex_yacc */ = {
-			isa = PBXGroup;
-			children = (
-				2ED8F83611C64F414A0E9396BADEBC34 /* lex.yy.m */,
-				2AD27D3AB15D81C3A4F3E63BCC5FBCFE /* y.tab.h */,
-				79FA210ED51D5237C6F945F87C3413D9 /* y.tab.m */,
-			);
-			name = lex_yacc;
-			path = lex_yacc;
-			sourceTree = "<group>";
-		};
-		8EEB395B61777EF5F1E60FA0ACB6AB95 /* AST */ = {
-			isa = PBXGroup;
-			children = (
-				617F5EDC70EE008B2CDE23AB2FEB6F41 /* man_ast.h */,
-				F5B93E2836C9FFF2EE4EAD2DC729F7BF /* MANBlockBody.h */,
-				F0B5E220548CBEBC62F8F5DD16619804 /* MANBlockBody.m */,
-				0600A4DA581D8EF59DC6B4EB70799B75 /* MANClassDefinition.h */,
-				3EB78AA5247A9B8291266742CA57C82C /* MANClassDefinition.m */,
-				D9EE1D8FBD23C0176991DCDC91072F5F /* MANDeclaration.h */,
-				DA836852C8DDE93B36A0708F43100DBD /* MANDeclaration.m */,
-				6469FF399C2610E6B1A8F10A7C16ED10 /* MANExpression.h */,
-				5BB62638401F74170103D2CE22E7D91D /* MANExpression.m */,
-				1B5AC0468EC2C3FAFA1A76D0DD702117 /* MANFunctionDefinition.h */,
-				BE9F38C9B65313856BEF2190A8842C20 /* MANFunctionDefinition.m */,
-				7AB36CD1514F4E34F672D359837AA9CC /* MANInterpreter.h */,
-				2A2BC19403D8E0E6A4F4D9F97C7A3F76 /* MANInterpreter.m */,
-				EEDF4691A3CFE9F8BB651E7ED16447A1 /* MANStatement.h */,
-				0D203E74FDB89FDA30B18956B14010E7 /* MANStatement.m */,
-				D383C88920EDF38E698EFBF02FE32E8F /* MANStructDeclare.h */,
-				EBC95A226225949EA0F7286D77EA3DA5 /* MANStructDeclare.m */,
-				4D0F58EC63A3BCF86F618E2775D8A62A /* MANTypeSpecifier.h */,
-				AA06C12D586058EB8D3D30AB9D1BD9AB /* MANTypeSpecifier.m */,
-			);
-			name = AST;
-			path = AST;
-			sourceTree = "<group>";
-		};
-		B4E22D7198DB09C99741560FCBBF0350 /* Mango */ = {
-			isa = PBXGroup;
-			children = (
-				CA988F1E48821A923BC8B20D3EF0ACB7 /* MANContext.h */,
-				D02F246648E1E82C56F7D8697FC100E1 /* MANContext.m */,
-				AB10A114BC193F6D1F52C64FD483AA5F /* mango.h */,
-				8E1C0DEB6AFE1C37E1B6DCE32F1E2D4A /* util.h */,
-				7EFD4D9C10D7473137D7D44FEC276B3F /* util.m */,
-				F30565CF35C6DE124D4E1A714F8350FA /* Compiler */,
-				87C32C6DC32DABBD914232525FE05095 /* Execute */,
-				C6B6171895F78C9A3E591E3EEEABEDF6 /* Frameworks */,
-				EB103333ED6A8A101A560F359FDF44B9 /* libffi */,
-				2F97956C8E70958850462F25E405B99F /* Pod */,
-				25329F94DC18BA5819790FDFBCA68019 /* Support Files */,
-			);
-			name = Mango;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		BF2C5AE86381034801A6291136A86076 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5FB66DDC66C206B9735EE5326BC1848F /* libMango.a */,
-				49297478CDA56ED8416CF69294BF43E6 /* libPods-MangoDemo.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C6B6171895F78C9A3E591E3EEEABEDF6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7086A26418CE491DF66F9BFFD50F94F3 /* libffi.a */,
+				BF7A47C22AF2985CCE063B179F3C560A /* libffi.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EB103333ED6A8A101A560F359FDF44B9 /* libffi */ = {
+		D5E88793EB5DCDF976B1339AC75828F3 /* RunEnv */ = {
 			isa = PBXGroup;
 			children = (
-				0615C2FBEA4977E1C4F3AC3F266FF4BB /* ffi.h */,
-				0EE3704E8E5642A308216BFCC9599917 /* ffi_arm.h */,
-				065FEB49DFD708578E08EF255DDE7505 /* ffi_arm64.h */,
-				D715BAA182F02C4107B90A15B989E05B /* ffi_i386.h */,
-				9EE620ED0A3F3EB519BB24CCDB267F22 /* ffi_x86_64.h */,
-				D4AB35EBF47C27388FB76579BD8A4B49 /* ffitarget.h */,
-				24698CF068D09D92B467483F86BF7B85 /* ffitarget_arm.h */,
-				F86770E8F261DA8E63804A709508D3C6 /* ffitarget_arm64.h */,
-				E3EBFB6E717EFB884A800200CA132955 /* ffitarget_i386.h */,
-				F5945623D62E336156797099D4F01815 /* ffitarget_x86_64.h */,
+				A8911C3A72615ADE0B5FE5B23275A290 /* MANBlock.h */,
+				D8688691887CCB8267DCEEA7EDE5E5BA /* MANBlock.m */,
+				B5E905BF2249895AF33467808FC8CD71 /* MANMethodMapTable.h */,
+				64A94E99D44CD696848823364C334C77 /* MANMethodMapTable.m */,
+				5025FB50679CB8C632131F50F024F2FD /* MANScopeChain.h */,
+				A7A7AA55137707583774BF69E1F38288 /* MANScopeChain.m */,
+				D76CFDFAFF6E37CEA8C5397DB65B5220 /* MANStack.h */,
+				E2205B290DB008302CE7733460DC4DAE /* MANStack.m */,
+				C865F9FC20546B056CA6108CCB509A52 /* MANStatementResult.h */,
+				DC246AD10F342D1AE4C127C3B9E41C5E /* MANStatementResult.m */,
+				CEC141E356D74B6A3CA438FEDA807654 /* MANStructDeclareTable.h */,
+				8D892FEAFB19698CC6B672041E1A3E58 /* MANStructDeclareTable.m */,
+				17DCC47115A6392185A143D52BA8DAB9 /* MANValue.h */,
+				D636155628C411A5A10CA9D4645B2B40 /* MANValue.m */,
+				E77157D67B6EB3263750670CBBE29B95 /* runenv.h */,
 			);
-			name = libffi;
-			path = Mango/libffi;
-			sourceTree = "<group>";
-		};
-		F30565CF35C6DE124D4E1A714F8350FA /* Compiler */ = {
-			isa = PBXGroup;
-			children = (
-				8E7F68B65BCD9C87D701EF5A7CA580E8 /* create.h */,
-				1BE7840A4F0DAFBFF941225356F0EBDE /* create.m */,
-				D689D197D975533A13D403CE2A441506 /* errrorc.m */,
-				8EEB395B61777EF5F1E60FA0ACB6AB95 /* AST */,
-				87E256E11A360F4FF905B44041D2C511 /* lex_yacc */,
-			);
-			name = Compiler;
-			path = Mango/Compiler;
+			name = RunEnv;
+			path = RunEnv;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		7FC6A71BA35863089FC0BE16DD756650 /* Headers */ = {
+		FE77F276A0511D54870D04F1341E867E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F2B1BD8E2F5E20C4734B7E076136586 /* create.h in Headers */,
-				4CBA391A1D867C3D9C4017379022CF0A /* execute.h in Headers */,
-				25399BC4B1BF9DD56D96C754E2A66E04 /* ffi.h in Headers */,
-				F38DD227B3912058B05EEC296CD1706D /* ffi_arm.h in Headers */,
-				619344A76BC12AEF6D9EA4B67F7C8AEC /* ffi_arm64.h in Headers */,
-				6030B84B4E70A54DD3DAF7990FAE5BA4 /* ffi_i386.h in Headers */,
-				4C1B0726773915A92F0A1513F4968BBA /* ffi_x86_64.h in Headers */,
-				8D820AE40D933DC9598A826D894591E5 /* ffitarget.h in Headers */,
-				F46128CA54B1BCE01B461FC46DEDC71E /* ffitarget_arm.h in Headers */,
-				B3793D20ED32EA1D110F63FBE8C28F28 /* ffitarget_arm64.h in Headers */,
-				B8F5DE6342323B9914E2F553AD01F9CF /* ffitarget_i386.h in Headers */,
-				6B8E5D04CD745D3516DFBA3FCF17952A /* ffitarget_x86_64.h in Headers */,
-				BD627A3AAE6FE2FCA977CA18C7F80DE1 /* man_ast.h in Headers */,
-				355F66457E4DCDF99DD1444CF638407C /* MANBlock.h in Headers */,
-				133B2B8CB1B528FC376C0A40712916B1 /* MANBlockBody.h in Headers */,
-				62232039342A2DD399D5D909DA8B9AA1 /* MANClassDefinition.h in Headers */,
-				0D7EA894F27FE1D2D7A328641E60FCD1 /* MANContext.h in Headers */,
-				DF9590DCA069BA33483EA9F95C86A768 /* MANDeclaration.h in Headers */,
-				B879D360BA7251A96BC36DB788C27CA4 /* MANExpression.h in Headers */,
-				A39DD1CF89A018002DA73B51A902F27C /* MANFunctionDefinition.h in Headers */,
-				70F4B05B22EBBDEC890539B7A614C8A7 /* mango.h in Headers */,
-				3FDEA237832C65B4B77A96ED0795BC5A /* MANInterpreter.h in Headers */,
-				988793758DCDEB10FCF574CC2BE5CFA9 /* MANMethodMapTable.h in Headers */,
-				483D9682CA15727A074C32A83EA9F673 /* MANScopeChain.h in Headers */,
-				0A1852F59211BDD7D1801ABCF62D79B1 /* MANStack.h in Headers */,
-				5BC039B16E7C50DFB8773D7C5050FD4E /* MANStatement.h in Headers */,
-				4190A1F3CA8A21BEA8D5DFD45CAC872E /* MANStatementResult.h in Headers */,
-				242DAFC03E8D89681B87F3C7485583AA /* MANStructDeclare.h in Headers */,
-				64E1DAA84B6B089F7C432BF98590D57D /* MANStructDeclareTable.h in Headers */,
-				153FAC11686A8BEA3FFD64DD76270491 /* MANTypeSpecifier.h in Headers */,
-				0929A407A99D8773555DED88FF4327C9 /* MANValue.h in Headers */,
-				D8308B296405B1D56738BAA38257B287 /* runenv.h in Headers */,
-				F25620996920D8FC305F5BA8F62B35B0 /* util.h in Headers */,
-				ECD9FEDF8FEEEDCF4B8B981B8BF9526C /* y.tab.h in Headers */,
+				35EDAA617F4678874859B02538C88FDA /* create.h in Headers */,
+				2CE791BC3DE2BA103687D9E661587796 /* execute.h in Headers */,
+				E75A3A2E3C3CF0BD18123ECCC97D937E /* ffi.h in Headers */,
+				950AE4595EA1173A64DA448E715A4866 /* ffi_arm.h in Headers */,
+				D470D360197635868809B549C6C96537 /* ffi_arm64.h in Headers */,
+				E0BD715F0FB54C0D6BFAE24DEC7B5967 /* ffi_i386.h in Headers */,
+				D9652B5AC904BB13F22F868F801DA43B /* ffi_x86_64.h in Headers */,
+				53FD6E23196AD39BAFCE3CCEBDF2FE93 /* ffitarget.h in Headers */,
+				2148FF2080E55FC0CCD90A6609FBE78E /* ffitarget_arm.h in Headers */,
+				1D8974CDEFF556CF9BC40F74E2967285 /* ffitarget_arm64.h in Headers */,
+				0BCD41056E596F6037A54E42237357DB /* ffitarget_i386.h in Headers */,
+				7B69B58C2C3E9BD9280E4FCFFA542017 /* ffitarget_x86_64.h in Headers */,
+				EC960BE82756CDD58F8C0529A7FD840A /* man_ast.h in Headers */,
+				65CEF87D3008965C7C8EA31225B65AA7 /* MANBlock.h in Headers */,
+				CAFE6C9325CE739E7DBB78E2DB1BD2A9 /* MANBlockBody.h in Headers */,
+				6A4D366A872D0F3CD2E3AA25381A7EC5 /* MANClassDefinition.h in Headers */,
+				7410E855F69BF33863A73F9378EBD945 /* MANContext.h in Headers */,
+				FDF21F7E942F62060C7F3CAA842AFAFB /* MANDeclaration.h in Headers */,
+				7205F4B6FAAF6BFC41D0401A0864B20E /* MANExpression.h in Headers */,
+				A042B81DD2EC354E0E49ECD559DED132 /* MANFunctionDefinition.h in Headers */,
+				85003AE07AA73E70886EA363DAFF8F38 /* mango.h in Headers */,
+				EB989ED36A464FB35E18A3E2851FBC16 /* MANInterpreter.h in Headers */,
+				469427CC7D0C7640D38C052C552002FE /* MANMethodMapTable.h in Headers */,
+				2E2CBB8A522D0AB2ED8138F930F5FD82 /* MANScopeChain.h in Headers */,
+				9E8B54CBAB797504B6185BB54E748450 /* MANStack.h in Headers */,
+				230F901ACF7403357E8D100D35580DD0 /* MANStatement.h in Headers */,
+				17AD0C0477F3C117D05982C81B6F3EA4 /* MANStatementResult.h in Headers */,
+				ABD7651D18454D9BFC87FDCD4B3BB964 /* MANStructDeclare.h in Headers */,
+				B74ECCA94D7E249E6F15A521EBAAB969 /* MANStructDeclareTable.h in Headers */,
+				925F1263880AD1BA83196DCABCE65FC0 /* MANTypeSpecifier.h in Headers */,
+				7838AAE58A249DF4A777D5144F482D92 /* MANValue.h in Headers */,
+				FE3EB1E36B00F62BE382CA5553D3701B /* runenv.h in Headers */,
+				81B48FCDF68359515F99BAFB8E08E1D8 /* util.h in Headers */,
+				9D6796E6ED1761500B41746B14999DB7 /* y.tab.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		292F4D7C95E3FB589E96666437D2B78E /* Mango */ = {
+		6272836B419206B92E126367032679D9 /* Pods-MangoDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 47AC7D885FDA23D27A289177E6D9E010 /* Build configuration list for PBXNativeTarget "Mango" */;
+			buildConfigurationList = 2B8C3AF60E98AEE61A3218FF7279B179 /* Build configuration list for PBXNativeTarget "Pods-MangoDemo" */;
 			buildPhases = (
-				AC0E6C581728C7E8B9FCEA731140D914 /* Sources */,
-				A2CEC82899B1EA5713F8526F64AA530B /* Frameworks */,
-				7FC6A71BA35863089FC0BE16DD756650 /* Headers */,
+				84BD52D9133B42D4F11587392D8B9F22 /* Sources */,
+				9939764AA6CCD502DCD32026DAD6FF4E /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = Mango;
-			productName = Mango;
-			productReference = 5FB66DDC66C206B9735EE5326BC1848F /* libMango.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		8B295DEE6DAB3D912913DC77BBD4090C /* Pods-MangoDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 33B45A77B9B9B7549CF805EA995D3E99 /* Build configuration list for PBXNativeTarget "Pods-MangoDemo" */;
-			buildPhases = (
-				FBA92BD19FB2DEC1466326AC07F508A2 /* Sources */,
-				7C884225254D940AA937E7F040D079CC /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D44638D70308FC850D25D96F6B265D96 /* PBXTargetDependency */,
+				AB62B5C0D7D24EE7CEF7770E89C73B5B /* PBXTargetDependency */,
 			);
 			name = "Pods-MangoDemo";
 			productName = "Pods-MangoDemo";
-			productReference = 49297478CDA56ED8416CF69294BF43E6 /* libPods-MangoDemo.a */;
+			productReference = FD5264970AF8FEA0A3A0854C2BFBB08C /* libPods-MangoDemo.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D7AFEB1EE5EB7E0ADE5048B360FDBAFF /* MangoFix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07588EA152FD5ECF7D32EAFE87DF3197 /* Build configuration list for PBXNativeTarget "MangoFix" */;
+			buildPhases = (
+				E65CD3D020C8E726733182B9E5A0DCB3 /* Sources */,
+				2953EFB6157E1D27061DF51A89B4AB19 /* Frameworks */,
+				FE77F276A0511D54870D04F1341E867E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MangoFix;
+			productName = MangoFix;
+			productReference = DAAE590E56AC024D44B81B9B99E75A1B /* libMangoFix.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -486,117 +486,70 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = BF2C5AE86381034801A6291136A86076 /* Products */;
+			productRefGroup = 532C6BE8DD9DD08514CD0BED984B4AC7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				292F4D7C95E3FB589E96666437D2B78E /* Mango */,
-				8B295DEE6DAB3D912913DC77BBD4090C /* Pods-MangoDemo */,
+				D7AFEB1EE5EB7E0ADE5048B360FDBAFF /* MangoFix */,
+				6272836B419206B92E126367032679D9 /* Pods-MangoDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AC0E6C581728C7E8B9FCEA731140D914 /* Sources */ = {
+		84BD52D9133B42D4F11587392D8B9F22 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				669BD568F72C605B5FED02BF0144FAE3 /* built-in.m in Sources */,
-				1C52F5BCD1A920C8D1D0A53D2C9BA839 /* create.m in Sources */,
-				7BB4DFE4F989530802FE2565448F3084 /* errrorc.m in Sources */,
-				AC11180E8F6890F1363ECA5735740C6F /* eval.m in Sources */,
-				9E33959A3407BE7CB10A01C2C6C088D7 /* execute.m in Sources */,
-				380A3603C5EA06E19BC38AFFCA6E9218 /* lex.yy.m in Sources */,
-				46D01E0CE474396BE2983932CA0C3382 /* MANBlock.m in Sources */,
-				5E4612DCA4B0E0149463D21FA342AF6B /* MANBlockBody.m in Sources */,
-				4E6487915AE2208DF9F527311DB6C903 /* MANClassDefinition.m in Sources */,
-				21749781DE00F4A6E893C6ACF6EEF2D9 /* MANContext.m in Sources */,
-				62827FCF25173AC546FFA95FA2816319 /* MANDeclaration.m in Sources */,
-				5C421C715F025FF04FAF451DC82FACBD /* MANExpression.m in Sources */,
-				42F34F73001835F9A07CE953DB97A1D5 /* MANFunctionDefinition.m in Sources */,
-				4E52828B297EC4D5D5D633BEB08A828C /* Mango-dummy.m in Sources */,
-				A61D8C7B1F3AA628756803E585C6A9D5 /* MANInterpreter.m in Sources */,
-				7B417C298181220A698E53D356E6CE65 /* MANMethodMapTable.m in Sources */,
-				B45AD37D8AD7D7462E6262B40938CA6C /* MANScopeChain.m in Sources */,
-				9EFBE5357371D7A0F3E8AD2942C17C97 /* MANStack.m in Sources */,
-				61BAB2174DE55672E6F64DC97B13FD9D /* MANStatement.m in Sources */,
-				441FC4C7E3BDF28E0C12199D75D9D45E /* MANStatementResult.m in Sources */,
-				DAA7A26B421A70EBA8606F825673380A /* MANStructDeclare.m in Sources */,
-				FBA27707CC846DCE1A28FB8E63C741D7 /* MANStructDeclareTable.m in Sources */,
-				02C88E1D6D970B2C1ACE73477F9A67F4 /* MANTypeSpecifier.m in Sources */,
-				6335874D47A63DBDEE93B4B31AEF5FBB /* MANValue.m in Sources */,
-				5AD23AB2C527E84F18EBF50D97F58755 /* util.m in Sources */,
-				32D4212CA90D6378384E1CEA93DE4FFC /* y.tab.m in Sources */,
+				21B7EC0903F39F4C6615FCB3A3E20EF5 /* Pods-MangoDemo-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FBA92BD19FB2DEC1466326AC07F508A2 /* Sources */ = {
+		E65CD3D020C8E726733182B9E5A0DCB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE9036993BF5FEBDF057620F144EED60 /* Pods-MangoDemo-dummy.m in Sources */,
+				E23EA11E84AB14BBBAF3783D646DE19A /* built-in.m in Sources */,
+				3501CBFC7A87DB396A960B5B0BEF5840 /* create.m in Sources */,
+				14C23F6AEAE8B4FEE84F3533E8CA17F5 /* errrorc.m in Sources */,
+				0CC939CC30CB81A1650311355FCDD9C6 /* eval.m in Sources */,
+				FC4186934992FA8D6FBFA4299C490DBA /* execute.m in Sources */,
+				CFF990A620169F5AC4745C8DF64D7E4D /* lex.yy.m in Sources */,
+				1070C46F2FF253F73F2C7ADF088823A8 /* MANBlock.m in Sources */,
+				061DABAF5C6943665D2C8D47B685C82C /* MANBlockBody.m in Sources */,
+				43256FDCEE3B516586BFB38E8E0578A0 /* MANClassDefinition.m in Sources */,
+				CEF4A58A37D8FDA1D7A64045F5200230 /* MANContext.m in Sources */,
+				7C3A3B8FAEA19D2DA883DDA79766F910 /* MANDeclaration.m in Sources */,
+				F675F64879BC8E0019D6BC5888773FCB /* MANExpression.m in Sources */,
+				55EA09ACE673A7D5A4CBFB4C8BDC63CD /* MANFunctionDefinition.m in Sources */,
+				3340A22C0FC09F0319A133644293422F /* MangoFix-dummy.m in Sources */,
+				36EDAA19FF47446F9D913EB7C04EBB01 /* MANInterpreter.m in Sources */,
+				2159E8EB0B0161DE5C791256403EE831 /* MANMethodMapTable.m in Sources */,
+				46469EE96CC39D925B163332B90B3105 /* MANScopeChain.m in Sources */,
+				24C883E1216B5EE2CC33FDE02DE28579 /* MANStack.m in Sources */,
+				2DA9A4A8FFFF00367332ADD7B479D81F /* MANStatement.m in Sources */,
+				F8CEB9259FAF28BAAE59A7AEC3B04670 /* MANStatementResult.m in Sources */,
+				8B685631DCD1EEA6D86B8D19DCB5A6FA /* MANStructDeclare.m in Sources */,
+				940683752F2EF6D67B247BFDD78DCE55 /* MANStructDeclareTable.m in Sources */,
+				15B3D3E0CEB5FF19413620DC6F4D9867 /* MANTypeSpecifier.m in Sources */,
+				2F40BE9072DEE085820B045DDBD088A8 /* MANValue.m in Sources */,
+				672E8E554FDC93E978D40F3ABF83835C /* util.m in Sources */,
+				1BB5DDC528F1C1D90FF3D14CE5FE76CF /* y.tab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D44638D70308FC850D25D96F6B265D96 /* PBXTargetDependency */ = {
+		AB62B5C0D7D24EE7CEF7770E89C73B5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Mango;
-			target = 292F4D7C95E3FB589E96666437D2B78E /* Mango */;
-			targetProxy = 75118707E4605EFFC40C9476739062C7 /* PBXContainerItemProxy */;
+			name = MangoFix;
+			target = D7AFEB1EE5EB7E0ADE5048B360FDBAFF /* MangoFix */;
+			targetProxy = 57C00C854E442A1391F87F6DDC06F3B6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		12D18B0B4FA57A1327A91540B287C3CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9284D54CDE8A53865A00BAA18873685D /* Mango.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/Mango/Mango-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Mango;
-				PRODUCT_NAME = Mango;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		21A030BFD50E1307AE04F74E7A7B32F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93F4439423FF4DCFB39196BB6D3DEDB7 /* Pods-MangoDemo.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		30D948AE62C04225F8DEF8734A4C5A26 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -655,28 +608,50 @@
 			};
 			name = Release;
 		};
-		3A8838EF2C50286E437DEE0DACA9EA03 /* Debug */ = {
+		728BFD97E3EF81934DDDB9CD1A9A73A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9284D54CDE8A53865A00BAA18873685D /* Mango.xcconfig */;
+			baseConfigurationReference = ED6CE8EB4C20AD8774B09554A6026597 /* Pods-MangoDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/Mango/Mango-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Mango;
-				PRODUCT_NAME = Mango;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		99D02A73B19117F37CE8FDEBBFF954EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93F4439423FF4DCFB39196BB6D3DEDB7 /* Pods-MangoDemo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		9E88537B08ED4D6EB44DBA7BC8D56A35 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -741,54 +716,79 @@
 			};
 			name = Debug;
 		};
-		E8A7A20E4B3DBEF5D373AA620BE056F3 /* Debug */ = {
+		BE7A6193EBC367D992AC0309072B9C8F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED6CE8EB4C20AD8774B09554A6026597 /* Pods-MangoDemo.debug.xcconfig */;
+			baseConfigurationReference = AF899C0358D102ED0752A876C7EA0CE7 /* MangoFix.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				MACH_O_TYPE = staticlib;
+				GCC_PREFIX_HEADER = "Target Support Files/MangoFix/MangoFix-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MangoFix;
+				PRODUCT_NAME = MangoFix;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
+		C998243F47AF37285DFA66DDEB6D1C4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF899C0358D102ED0752A876C7EA0CE7 /* MangoFix.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/MangoFix/MangoFix-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = MangoFix;
+				PRODUCT_NAME = MangoFix;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		07588EA152FD5ECF7D32EAFE87DF3197 /* Build configuration list for PBXNativeTarget "MangoFix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7A6193EBC367D992AC0309072B9C8F /* Debug */,
+				C998243F47AF37285DFA66DDEB6D1C4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B8C3AF60E98AEE61A3218FF7279B179 /* Build configuration list for PBXNativeTarget "Pods-MangoDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				728BFD97E3EF81934DDDB9CD1A9A73A6 /* Debug */,
+				99D02A73B19117F37CE8FDEBBFF954EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E88537B08ED4D6EB44DBA7BC8D56A35 /* Debug */,
 				30D948AE62C04225F8DEF8734A4C5A26 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		33B45A77B9B9B7549CF805EA995D3E99 /* Build configuration list for PBXNativeTarget "Pods-MangoDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E8A7A20E4B3DBEF5D373AA620BE056F3 /* Debug */,
-				21A030BFD50E1307AE04F74E7A7B32F0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47AC7D885FDA23D27A289177E6D9E010 /* Build configuration list for PBXNativeTarget "Mango" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3A8838EF2C50286E437DEE0DACA9EA03 /* Debug */,
-				12D18B0B4FA57A1327A91540B287C3CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

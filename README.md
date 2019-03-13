@@ -50,14 +50,14 @@ class ViewController:UIViewController{
 
 ## Installation
 ### CocoaPods
-1. Add `pod 'Mango'` to your Podfile.
+1. Add `pod 'MangoFix'` to your Podfile.
 * Run `pod install` or `pod update`.
-* Import `<Mango/mango.h>`
+* Import `<MangoFix/mango.h>`
 
 ## Usage
 ### Objective-C
 
-1. `#import <Mango/mango.h>`
+1. `#import <MangoFix/mango.h>`
 2. `exec Mango Script by [context evalMangoScriptWithSourceString:@""];`
 
 ```objc

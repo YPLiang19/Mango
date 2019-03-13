@@ -1,16 +1,16 @@
 PODS:
-  - Mango (1.0.0)
+  - MangoFix (1.0.1)
 
 DEPENDENCIES:
-  - Mango (from `../`)
+  - MangoFix (from `../`)
 
 EXTERNAL SOURCES:
-  Mango:
+  MangoFix:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Mango: 1b59b74d80b0642e1cc051e57beff1d4ae4dd918
+  MangoFix: 0f6b32bcf1f30993f4d82b8f656196091e916a08
 
-PODFILE CHECKSUM: 17bcb8b01c0d0d9f2ad82ec9c1942199c042a8d1
+PODFILE CHECKSUM: da986bb6bb4f62380af7f271f3c4f2a1c1a21a20
 
 COCOAPODS: 1.5.3

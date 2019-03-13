@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-s.name         = "Mango"
+s.name         = "MangoFix"
 s.version      = "1.0.1"
 s.summary      = "Mango"
 s.description  = <<-DESC
