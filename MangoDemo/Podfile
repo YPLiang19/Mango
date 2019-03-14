@@ -3,5 +3,6 @@
 
 target 'MangoDemo' do
 pod 'MangoFix', :path => '../'
+#pod 'MangoFix'
 end
 

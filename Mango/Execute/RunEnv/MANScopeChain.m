@@ -12,6 +12,7 @@
 #import "MANBlock.h"
 @interface MANScopeChain()
 @property (strong, nonatomic) NSMutableDictionary<NSString *,MANValue *> *vars;
+@property (strong,nonatomic)NSLock *lock;
 @end
 
 @implementation MANScopeChain
@@ -25,23 +26,22 @@
 - (instancetype)init{
 	if (self = [super init]) {
 		_vars = [NSMutableDictionary dictionary];
-		_queue = dispatch_queue_create("com.mango.scopeChain", DISPATCH_QUEUE_CONCURRENT);
+        _lock = [[NSLock alloc] init];
 	}
 	return self;
 }
 
 
 - (void)setValue:(MANValue *)value withIndentifier:(NSString *)identier{
-	dispatch_barrier_async(_queue, ^{
-		_vars[identier] = value;
-	});
+    [self.lock lock];
+    self.vars[identier] = value;
+    [self.lock unlock];
 }
 
 - (MANValue *)getValueWithIdentifier:(NSString *)identifer{
-	__block MANValue *value;
-	dispatch_sync(_queue, ^{
-		value = _vars[identifer];
-	});
+    [self.lock lock];
+	MANValue *value = self.vars[identifer];
+    [self.lock unlock];
 	return value;
 }
 
@@ -60,9 +60,7 @@
 		}else{
 			MANValue *srcValue = [pos getValueWithIdentifier:identifier];
 			if (srcValue) {
-				dispatch_barrier_async(pos.queue, ^{
-					[srcValue assignFrom:value];
-				});
+				[srcValue assignFrom:value];
 				return;
 			}
 		}
@@ -92,21 +90,21 @@
 }
 
 - (void)setMangoBlockVarNil{
-	dispatch_barrier_async(_queue, ^{
-		NSArray *allValues = [self.vars allValues];
-		for (MANValue *value in allValues) {
-			if ([value isObject]) {
-				Class ocBlockClass = NSClassFromString(@"NSBlock");
-				if ([[value c2objectValue] isKindOfClass:ocBlockClass]) {
-					struct MANSimulateBlock *blockStructPtr = (__bridge void *)value.objectValue;
-					if (blockStructPtr->flags & BLOCK_CREATED_FROM_MANGO) {
-						value.objectValue = nil;
-					}
-				}
-				
-			}
-		}
-	});
+//    [self.lock lock];
+//    NSArray *allValues = [self.vars allValues];
+//    for (MANValue *value in allValues) {
+//        if ([value isObject]) {
+//            Class ocBlockClass = NSClassFromString(@"NSBlock");
+//            if ([[value c2objectValue] isKindOfClass:ocBlockClass]) {
+//                struct MANSimulateBlock *blockStructPtr = (__bridge void *)value.objectValue;
+//                if (blockStructPtr->flags & BLOCK_CREATED_FROM_MANGO) {
+//                    value.objectValue = nil;
+//                }
+//            }
+//            
+//        }
+//    }
+//    [self.lock unlock];
 }
 
 @end

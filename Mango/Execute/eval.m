@@ -75,7 +75,7 @@ static void eval_block_expression(MANInterpreter *inter, MANScopeChain *outScope
 	manBlock.typeEncoding = typeEncoding;
 	__autoreleasing id ocBlock = [manBlock ocBlock];
 	value.objectValue = ocBlock;
-	CFRelease((__bridge void *)ocBlock);
+    CFRelease((__bridge void *)ocBlock);
 	[inter.stack push:value];
 }
 

@@ -71,10 +71,14 @@ static NSString * const cellIdentifier = @"cell";
 		case 7://block语句示例
 			[self blockStatementExample];
 			break;
-		case 8://参数传递示例
-			[self paramPassingExampleWithBOOLArg:YES intArg:1 uintArg:2 structArg:CGRectMake(100, 200, 300, 400) blockArg:^id(NSString *str1, NSString *str2) {
-				return [NSString stringWithFormat:@"%@-%@",str1,str2];
-			} objArg:@"string object"];
+        case 8://参数传递示例
+        {
+            
+            int a = 1;
+            [self paramPassingExampleWithBOOLArg:YES intArg:1 uintArg:2 structArg:CGRectMake(100, 200, 300, 400) blockArg:^id(NSString *str1, NSString *str2) {
+                return [NSString stringWithFormat:@"%@-%@-%d",str1,str2,a];
+            } objArg:@"string object"];
+        }
 			break;
 		case 9:{//返回值示例
 			NSString * (^retBlcok)(NSString *str1,NSString *str2) = [self returnBlockExample];
@@ -97,6 +101,8 @@ static NSString * const cellIdentifier = @"cell";
 		default:
 			break;
 	}
+    
+//    NSLog(@"aaaa");
 }
 
 - (NSArray *)titles{
@@ -143,6 +149,9 @@ static NSString * const cellIdentifier = @"cell";
 	
 }
 
+- (void)passStackBlock:(void (^)(void))block{
+}
+
 - (NSString *(^)(NSString *,NSString *))returnBlockExample{
 	return nil;
 }
@@ -163,8 +172,6 @@ static NSString * const cellIdentifier = @"cell";
 //		NSLog(@"abc");
 //	});
 }
-
-
 
 
 

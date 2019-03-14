@@ -598,6 +598,14 @@ static void mango_forward_invocation(__unsafe_unretained id assignSlf, SEL sel, 
 	NSUInteger numberOfArguments = [methodSignature numberOfArguments];
 	for (NSUInteger i = 2; i < numberOfArguments; i++) {
 		const char *typeEncoding = [methodSignature getArgumentTypeAtIndex:i];
+        
+        if ([[NSString stringWithUTF8String:typeEncoding] hasPrefix:@"@?"]) {
+            __autoreleasing id block;
+            [invocation getArgument:&block atIndex:i];
+            block = [block copy];
+            [invocation setArgument:&block atIndex:i];
+        }
+        
 		size_t size = mango_size_with_encoding(typeEncoding);
 		void *ptr = alloca(size);
 		[invocation getArgument:ptr atIndex:i];

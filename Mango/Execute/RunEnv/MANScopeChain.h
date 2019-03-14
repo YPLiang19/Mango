@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MANScopeChain: NSObject
 @property (strong, nonatomic) id instance;
 @property (strong, nonatomic) MANScopeChain *next;
-@property (strong, nonatomic) dispatch_queue_t queue;
 
 + (instancetype)scopeChainWithNext:(MANScopeChain *)next;
 - (MANValue *)getValueWithIdentifierInChain:(NSString *)identifier;

@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic, nullable) SEL selValue;
 @property (assign, nonatomic, nullable) const char * cstringValue;
 @property (assign, nonatomic, nullable) void *pointerValue;
+@property (copy,nonatomic)NSString *debugString;
 
 - (BOOL)isSubtantial;
 - (BOOL)isObject;

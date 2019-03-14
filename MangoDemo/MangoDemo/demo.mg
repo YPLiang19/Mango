@@ -6,9 +6,9 @@ class ViewController:UIViewController {
 
 - (void)sequentialStatementExample{
 //变量定义
-NSString *text = @"1";
+    NSString *text = @"1";
 
-self.resultView.text = text;
+    self.resultView.text = text;
 
 }
 
@@ -116,6 +116,14 @@ self.resultView.text = text;
 	self.resultView.text = text;
 }
 
+- (void)passStackBlock:(Block)block{
+    self.testBlock:(block);
+//block();
+}
+
+
+
+
 
 - (Block)returnBlockExample{
 	NSString *prefix = @"mango: ";
@@ -166,6 +174,7 @@ self.resultView.text = @"here is Mango method";
 class SubMyController:SuperMyController {
 @property (strong, nonatomic) UIView *rotateView;
 - (void)viewDidLoad {
+        super.viewDidLoad();
 		self.title = @"Magno 创建自定义ViewController";
 		self.view.backgroundColor = UIColor.whiteColor();
 		double width = 100;

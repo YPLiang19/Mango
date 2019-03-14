@@ -15,6 +15,9 @@
     "git": "https://github.com/YPLiang19/Mango.git",
     "tag": "1.0.1"
   },
-  "source_files": "Mango/**/*.{h,m,c}",
+  "pod_target_xcconfig": {
+    "GCC_INPUT_FILETYPE": "sourcecode.c.objc"
+  },
+  "source_files": "Mango/**/*.{h,m,c,y,l}",
   "vendored_libraries": "Mango/libffi/libffi.a"
 }

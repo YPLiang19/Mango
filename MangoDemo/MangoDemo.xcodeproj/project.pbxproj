@@ -17,6 +17,7 @@
 		41DD50C4205277CD009D0029 /* SuperMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DD50C3205277CD009D0029 /* SuperMyController.m */; };
 		41DD50C7205283B0009D0029 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DD50C6205283B0009D0029 /* MyView.m */; };
 		41DDFF40204925E000E8E562 /* TextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DDFF3F204925E000E8E562 /* TextObject.m */; };
+		89027357223A5CAE00D4FDB0 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89027355223A5CAE00D4FDB0 /* test.cpp */; };
 		A5B84CCB94A4272B03533783 /* libPods-MangoDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F12A22A27BC82CF6C7CACB /* libPods-MangoDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,8 @@
 		41DDFF3F204925E000E8E562 /* TextObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextObject.m; sourceTree = "<group>"; };
 		4F89358EF94C13C924113FC1 /* Pods-MangoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangoDemo/Pods-MangoDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6550F927B25310330F4BBA70 /* Pods-MangoDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangoDemo/Pods-MangoDemo.release.xcconfig"; sourceTree = "<group>"; };
+		89027355223A5CAE00D4FDB0 /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		89027356223A5CAE00D4FDB0 /* test.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = test.hpp; sourceTree = "<group>"; };
 		E1F12A22A27BC82CF6C7CACB /* libPods-MangoDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MangoDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,6 +104,8 @@
 				41DD50C3205277CD009D0029 /* SuperMyController.m */,
 				41DD50C5205283B0009D0029 /* MyView.h */,
 				41DD50C6205283B0009D0029 /* MyView.m */,
+				89027355223A5CAE00D4FDB0 /* test.cpp */,
+				89027356223A5CAE00D4FDB0 /* test.hpp */,
 			);
 			path = MangoDemo;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 				41DDFF40204925E000E8E562 /* TextObject.m in Sources */,
 				4164A4EF2047EBC10069ADEE /* ViewController.m in Sources */,
 				41DD50C4205277CD009D0029 /* SuperMyController.m in Sources */,
+				89027357223A5CAE00D4FDB0 /* test.cpp in Sources */,
 				41DD50C7205283B0009D0029 /* MyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,7 +347,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59669493D8;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = MangoDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -362,7 +368,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59669493D8;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = MangoDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
