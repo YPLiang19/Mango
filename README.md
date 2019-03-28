@@ -5,14 +5,14 @@ Mango is a DSL which syntax is very similar to Objective-C，Mango is also an iO
 ## Example
 ```objc
 #import "AppDelegate.h"
-#import <MangoFix/mango.h>
+#import <MangoFix/MangoFix.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"mg"];
     NSURL *scriptUrl = [NSURL fileURLWithPath:path];
-    MMANontext *context = [[MMANontext alloc] init];
+    MFContext *context = [[MFContext alloc] init];
     [context evalMangoScriptWithURL:scriptUrl];
     return YES;
 }
