@@ -1,83 +1,3 @@
-# Mango
-Mango is a DSL which syntax is very similar to Objective-C，Mango is also an iOS  App hotfix SDK. You can use Mango method replace any Objective-C method.
-
-
-## Example
-```objc
-#import "AppDelegate.h"
-#import <MangoFix/mango.h>
-
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"mg"];
-    NSURL *scriptUrl = [NSURL fileURLWithPath:path];
-    MMANontext *context = [[MMANontext alloc] init];
-    [context evalMangoScriptWithURL:scriptUrl];
-    return YES;
-}
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.view addSubview:[self genView]];
-}
-
-- (UIView *)genView{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(50, 100, 150, 200)];
-    return view;
-}
-
-@end
-
-```
-
-```objc
-class ViewController:UIViewController{
-
-- (UIView *)genView{
-    UIView *view = UIView.alloc().initWithFrame:(CGRectMake(50, 100, 150, 200));
-    view.backgroundColor = UIColor.redColor();
-    return view;
-}
-
-}
-
-```
-
-## Installation
-### CocoaPods
-1. Add `pod 'MangoFix'` to your Podfile.
-* Run `pod install` or `pod update`.
-* Import `<MangoFix/MangoFix.h>`
-
-## Usage
-### Objective-C
-
-1. `#import <MangoFix/MangoFix.h>`
-2. `exec Mango Script by [context evalMangoScriptWithSourceString:@""];`
-
-```objc
-MFContext *context = [[MFContext alloc] init];
-// exec mango file from network
-[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://xxx/demo.mg"]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-    NSString *script = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [context evalMangoScriptWithSourceString:script];
-}];
-	
-// exec local mango file
-NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"js"];
-NSString *script = [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
-[context evalMangoScriptWithSourceString:script];
-```
-
-### Mango
-#### Quick start
-
-```objc
 /**
 demo.mg
 */
@@ -93,7 +13,6 @@ class ViewController:UIViewController {
 - (void)sequentialStatementExample{
 //变量定义
     NSString *text = @"1";
-
     self.resultView.text = text;
 
 }
@@ -255,6 +174,7 @@ self.resultView.text = @"here is Mango method";
 
 
 class SuperMyController:UIViewController{
+
 - (void)viewDidLoad {
     super.viewDidLoad();
     self.view.backgroundColor = UIColor.blueColor();
@@ -272,53 +192,10 @@ class SubMyController:SuperMyController {
 		double height = 100;
 		double x = self.view.frame.size.width/2 - width/2;
 		double y = self.view.frame.size.height/2 - height/2;
-		UIView *view = MyView.alloc().initWithFrame:(CGRectMake(x, y, width, height));
+		UIView *view = CustomView.alloc().initWithFrame:(CGRectMake(x, y, width, height));
 		self.view.addSubview:(view);
 		view.backgroundColor = UIColor.redColor();
 		self.rotateView = view;
-
-
 }
 
 }
-
-
-```
-
-#### Mango Type usage
- Mango support type as fllow: 
- 
-##### void
-  	equivalent to Objective-C `void`.
-	
-#### BOOL
-  	equivalent to Objective-C `BOOL`.
-	
-##### uint
-	equivalent to Objective-C `unsigned char`、`unsigned short`、`unsigned int`、`unsigned long`、`unsigned long long`、`NSUInteger`. 
-	  
-#### int
-  	equivalent to Objective-C `char`、`short`、`int`、`long`、`long long`、`NSInteger`. 
-	
-##### double
-  	equivalent to Objective-C `double`、`float`、`CGFloat`. 
-	
-#### id
-  	equivalent to Objective-C `id`.
-	
-#### OCClassName *
-  	NSString *str = @"";
-	
-#### Block
-  	Block blokc = ^id(id arg){};
-	
-#### Class
-  	Class clazz = NSString.class();
-	
-#### struct
-  	struct CGRect rect;// must add struct keyword  before structure variables defined.
-	
-#### Pointer
- 	Pointer ptr; // C pointer. 
-	
-	

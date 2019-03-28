@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 s.name         = "MangoFix"
-s.version      = "1.0.2"
-s.summary      = "Mango"
+s.version      = "1.1.0"
+s.summary      = "MangoFix"
 s.description  = <<-DESC
   Mango is a DSL which syntax is very similar to Objective-C，Mango is also an iOS  App hotfix SDK. You can use Mango method replace any Objective-C method.
 DESC
@@ -11,7 +11,7 @@ s.author             = { "Yong PengLiang" => "yong_pliang@163.com" }
 s.ios.deployment_target = "8.0"
 s.source       = { :git => "https://github.com/YPLiang19/Mango.git", :tag => "#{s.version}" }
 s.pod_target_xcconfig = { 'GCC_INPUT_FILETYPE' => 'sourcecode.c.objc' }
-s.source_files  = "Mango/**/*.{h,m,c,y,l}"
-s.vendored_libraries  = 'Mango/libffi/libffi.a'
+s.source_files  = "MangoFix/**/*.{h,m,c,y,l}"
+s.vendored_libraries  = 'MangoFix/libffi/libffi.a'
 end
 

@@ -1,0 +1,400 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8977D885224CC9070048A954 /* demo.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89FC7DA9224C047700AFC0AC /* demo.mg */; };
+		899672BC224C02DC00C7DACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 899672BB224C02DC00C7DACB /* Assets.xcassets */; };
+		899672BF224C02DC00C7DACB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899672BD224C02DC00C7DACB /* LaunchScreen.storyboard */; };
+		899672C2224C02DC00C7DACB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 899672C1224C02DC00C7DACB /* main.m */; };
+		89FC7DA6224C046800AFC0AC /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FC7D9E224C046700AFC0AC /* CustomView.m */; };
+		89FC7DA7224C046800AFC0AC /* SuperMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FC7DA1224C046800AFC0AC /* SuperMyController.m */; };
+		89FC7DA8224C046800AFC0AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FC7DA3224C046800AFC0AC /* ViewController.m */; };
+		89FC7DAD224C047800AFC0AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FC7DAA224C047700AFC0AC /* AppDelegate.m */; };
+		89FC7DAF224C048600AFC0AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FC7DAE224C048600AFC0AC /* Main.storyboard */; };
+		BC32E13D2C11D1E1A9D7B3AB /* libPods-MangoFixDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2627AE79A14DF539C2D1C2F /* libPods-MangoFixDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0EDFFE948A3B02594E2D1D61 /* Pods-MangoFixDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFixDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangoFixDemo/Pods-MangoFixDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		899672AF224C02DB00C7DACB /* MangoFixDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangoFixDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		899672BB224C02DC00C7DACB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		899672BE224C02DC00C7DACB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		899672C0224C02DC00C7DACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		899672C1224C02DC00C7DACB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		89FC7D9E224C046700AFC0AC /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
+		89FC7D9F224C046700AFC0AC /* SuperMyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperMyController.h; sourceTree = "<group>"; };
+		89FC7DA0224C046700AFC0AC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		89FC7DA1224C046800AFC0AC /* SuperMyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperMyController.m; sourceTree = "<group>"; };
+		89FC7DA3224C046800AFC0AC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		89FC7DA4224C046800AFC0AC /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
+		89FC7DA9224C047700AFC0AC /* demo.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.mg; sourceTree = "<group>"; };
+		89FC7DAA224C047700AFC0AC /* AppDelegate.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = AppDelegate.m; sourceTree = "<group>"; };
+		89FC7DAB224C047700AFC0AC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		89FC7DAE224C048600AFC0AC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9EEAECA77D20750BB9B10C88 /* Pods-MangoFixDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFixDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MangoFixDemo/Pods-MangoFixDemo.release.xcconfig"; sourceTree = "<group>"; };
+		F2627AE79A14DF539C2D1C2F /* libPods-MangoFixDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MangoFixDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		899672AC224C02DB00C7DACB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC32E13D2C11D1E1A9D7B3AB /* libPods-MangoFixDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6952C940E97417B89B104D8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2627AE79A14DF539C2D1C2F /* libPods-MangoFixDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		78F140E01FAEF1F9E846CD85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0EDFFE948A3B02594E2D1D61 /* Pods-MangoFixDemo.debug.xcconfig */,
+				9EEAECA77D20750BB9B10C88 /* Pods-MangoFixDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		899672A6224C02DA00C7DACB = {
+			isa = PBXGroup;
+			children = (
+				899672B1224C02DB00C7DACB /* MangoFixDemo */,
+				899672B0224C02DB00C7DACB /* Products */,
+				78F140E01FAEF1F9E846CD85 /* Pods */,
+				6952C940E97417B89B104D8C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		899672B0224C02DB00C7DACB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				899672AF224C02DB00C7DACB /* MangoFixDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		899672B1224C02DB00C7DACB /* MangoFixDemo */ = {
+			isa = PBXGroup;
+			children = (
+				89FC7DAB224C047700AFC0AC /* AppDelegate.h */,
+				89FC7DAA224C047700AFC0AC /* AppDelegate.m */,
+				89FC7DA9224C047700AFC0AC /* demo.mg */,
+				89FC7DA4224C046800AFC0AC /* CustomView.h */,
+				89FC7D9E224C046700AFC0AC /* CustomView.m */,
+				89FC7D9F224C046700AFC0AC /* SuperMyController.h */,
+				89FC7DA1224C046800AFC0AC /* SuperMyController.m */,
+				89FC7DA0224C046700AFC0AC /* ViewController.h */,
+				89FC7DA3224C046800AFC0AC /* ViewController.m */,
+				89FC7DAE224C048600AFC0AC /* Main.storyboard */,
+				899672BB224C02DC00C7DACB /* Assets.xcassets */,
+				899672BD224C02DC00C7DACB /* LaunchScreen.storyboard */,
+				899672C0224C02DC00C7DACB /* Info.plist */,
+				899672C1224C02DC00C7DACB /* main.m */,
+			);
+			path = MangoFixDemo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		899672AE224C02DB00C7DACB /* MangoFixDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 899672C5224C02DC00C7DACB /* Build configuration list for PBXNativeTarget "MangoFixDemo" */;
+			buildPhases = (
+				7FDE3B89C374D09B743D3898 /* [CP] Check Pods Manifest.lock */,
+				899672AB224C02DB00C7DACB /* Sources */,
+				899672AC224C02DB00C7DACB /* Frameworks */,
+				899672AD224C02DB00C7DACB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MangoFixDemo;
+			productName = MangoFixDemo;
+			productReference = 899672AF224C02DB00C7DACB /* MangoFixDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		899672A7224C02DA00C7DACB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = yongpengliang;
+				TargetAttributes = {
+					899672AE224C02DB00C7DACB = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
+			};
+			buildConfigurationList = 899672AA224C02DA00C7DACB /* Build configuration list for PBXProject "MangoFixDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 899672A6224C02DA00C7DACB;
+			productRefGroup = 899672B0224C02DB00C7DACB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				899672AE224C02DB00C7DACB /* MangoFixDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		899672AD224C02DB00C7DACB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				899672BF224C02DC00C7DACB /* LaunchScreen.storyboard in Resources */,
+				899672BC224C02DC00C7DACB /* Assets.xcassets in Resources */,
+				8977D885224CC9070048A954 /* demo.mg in Resources */,
+				89FC7DAF224C048600AFC0AC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7FDE3B89C374D09B743D3898 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MangoFixDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		899672AB224C02DB00C7DACB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				899672C2224C02DC00C7DACB /* main.m in Sources */,
+				89FC7DAD224C047800AFC0AC /* AppDelegate.m in Sources */,
+				89FC7DA6224C046800AFC0AC /* CustomView.m in Sources */,
+				89FC7DA7224C046800AFC0AC /* SuperMyController.m in Sources */,
+				89FC7DA8224C046800AFC0AC /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		899672BD224C02DC00C7DACB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				899672BE224C02DC00C7DACB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		899672C3224C02DC00C7DACB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		899672C4224C02DC00C7DACB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		899672C6224C02DC00C7DACB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EDFFE948A3B02594E2D1D61 /* Pods-MangoFixDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59669493D8;
+				INFOPLIST_FILE = MangoFixDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hujiang.jim.MangoFixDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		899672C7224C02DC00C7DACB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EEAECA77D20750BB9B10C88 /* Pods-MangoFixDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59669493D8;
+				INFOPLIST_FILE = MangoFixDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hujiang.jim.MangoFixDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		899672AA224C02DA00C7DACB /* Build configuration list for PBXProject "MangoFixDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				899672C3224C02DC00C7DACB /* Debug */,
+				899672C4224C02DC00C7DACB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		899672C5224C02DC00C7DACB /* Build configuration list for PBXNativeTarget "MangoFixDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				899672C6224C02DC00C7DACB /* Debug */,
+				899672C7224C02DC00C7DACB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 899672A7224C02DA00C7DACB /* Project object */;
+}

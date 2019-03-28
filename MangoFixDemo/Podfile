@@ -1,0 +1,8 @@
+
+# platform :ios, '8.0'
+
+target 'MangoFixDemo' do
+pod 'MangoFix', :path => '../'
+#pod 'MangoFix'
+end
+
