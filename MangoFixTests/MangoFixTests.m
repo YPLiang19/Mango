@@ -15,6 +15,7 @@
 #import "MFSuperMethodReplaceTest.h"
 #import "MFAddGlobalVarTest.h"
 #import "MFConditionalReplaceTest.h"
+#import "MFOperatorTest.h"
 #import "MFSequentialStatementTest.h"
 #import "MFBranchStatementTest.h"
 #import "MFLoopStatementTest.h"
@@ -83,6 +84,12 @@
     [self loadMango:@"MFConditionalReplaceTest"];
     MFConditionalReplaceTest *conditionalReplaceTest = [[MFConditionalReplaceTest alloc] init];
     XCTAssert([conditionalReplaceTest testConditionalReplace],@"conditionalReplaceTest");
+}
+
+- (void)testOperator{
+    [self loadMango:@"MFOperatorTest"];
+    MFOperatorTest *operatorTest = [[MFOperatorTest alloc] init];
+    XCTAssert([operatorTest testOperator],@"operatorTest");
 }
 
 

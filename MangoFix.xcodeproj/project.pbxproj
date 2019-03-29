@@ -56,6 +56,8 @@
 		899672A1224BFE6F00C7DACB /* mango.y in Sources */ = {isa = PBXBuildFile; fileRef = 89967266224BFE6F00C7DACB /* mango.y */; };
 		899672A2224BFE6F00C7DACB /* mango.l in Sources */ = {isa = PBXBuildFile; fileRef = 89967267224BFE6F00C7DACB /* mango.l */; };
 		899672A4224BFE6F00C7DACB /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967269224BFE6F00C7DACB /* util.m */; };
+		89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C671B2224E15050092C30F /* MFOperatorTest.m */; };
+		89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89C671B4224E152D0092C30F /* MFOperatorTest.mg */; };
 		89F96106224CDF2200ADFF07 /* MFAddGlobalVarTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89F96105224CDF2200ADFF07 /* MFAddGlobalVarTest.mg */; };
 		89F96109224CDF3D00ADFF07 /* MFAddGlobalVarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F96108224CDF3D00ADFF07 /* MFAddGlobalVarTest.m */; };
 		89F9610C224CE3F200ADFF07 /* MFObjectPropertyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F9610B224CE3F200ADFF07 /* MFObjectPropertyTest.m */; };
@@ -169,6 +171,9 @@
 		89967268224BFE6F00C7DACB /* MangoFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MangoFix.h; sourceTree = "<group>"; };
 		89967269224BFE6F00C7DACB /* util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = util.m; sourceTree = "<group>"; };
 		8996726A224BFE6F00C7DACB /* MFContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFContext.h; sourceTree = "<group>"; };
+		89C671B1224E15050092C30F /* MFOperatorTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFOperatorTest.h; sourceTree = "<group>"; };
+		89C671B2224E15050092C30F /* MFOperatorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFOperatorTest.m; sourceTree = "<group>"; };
+		89C671B4224E152D0092C30F /* MFOperatorTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFOperatorTest.mg; sourceTree = "<group>"; };
 		89F96105224CDF2200ADFF07 /* MFAddGlobalVarTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFAddGlobalVarTest.mg; sourceTree = "<group>"; };
 		89F96107224CDF3D00ADFF07 /* MFAddGlobalVarTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFAddGlobalVarTest.h; sourceTree = "<group>"; };
 		89F96108224CDF3D00ADFF07 /* MFAddGlobalVarTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFAddGlobalVarTest.m; sourceTree = "<group>"; };
@@ -265,6 +270,9 @@
 				895EC4E6224CC2C90062CBF8 /* MFConditionalReplaceTest.h */,
 				895EC4E7224CC2C90062CBF8 /* MFConditionalReplaceTest.m */,
 				8977D892224CD3FA0048A954 /* MFConditionalReplaceTest.mg */,
+				89C671B1224E15050092C30F /* MFOperatorTest.h */,
+				89C671B2224E15050092C30F /* MFOperatorTest.m */,
+				89C671B4224E152D0092C30F /* MFOperatorTest.mg */,
 				89FC7DB3224C058200AFC0AC /* MFSequentialStatementTest.h */,
 				89FC7DB1224C058200AFC0AC /* MFSequentialStatementTest.m */,
 				89FC7DB0224C058200AFC0AC /* MFSequentialStatementTest.mg */,
@@ -506,6 +514,7 @@
 				8977D897224CD4BD0048A954 /* MFGCDTest.mg in Resources */,
 				89F96113224CE9C700ADFF07 /* MFOriginalMethodTest.mg in Resources */,
 				8977D88D224CCF200048A954 /* MFClassMethodReplaceTest.mg in Resources */,
+				89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */,
 				8977D895224CD4520048A954 /* MFCustomStructDeclareTest.mg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,6 +562,7 @@
 				895EC4E8224CC2C90062CBF8 /* MFConditionalReplaceTest.m in Sources */,
 				89F9610C224CE3F200ADFF07 /* MFObjectPropertyTest.m in Sources */,
 				899671A3224BFD2A00C7DACB /* MangoFixTests.m in Sources */,
+				89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */,
 				89FC7DB5224C058200AFC0AC /* MFSequentialStatementTest.m in Sources */,
 				895EC4EE224CC3B10062CBF8 /* MFClassMethodReplaceTest.m in Sources */,
 				895EC4E2224CC1E30062CBF8 /* MFLoopStatementTest.m in Sources */,

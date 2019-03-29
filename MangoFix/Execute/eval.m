@@ -784,6 +784,8 @@ static void eval_negative_expression(MFInterpreter *inter, MFScopeChain *scope,M
 			NSCAssert(0, @"line:%zd operator ‘-’ can not use type: %@",expr.expr.lineNumber, value.type.typeName);
 			break;
 	}
+    [inter.stack push:resultValue];
+    
 }
 
 

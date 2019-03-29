@@ -189,7 +189,7 @@ static void increment_line_number(){
 
 
 
-<INITIAL>[-+]?[1-9][0-9]* {
+<INITIAL>[1-9][0-9]* {
 	MFExpression *expression = mf_create_expression(MF_INT_EXPRESSION);
 	NSInteger val;
 	sscanf(yytext,"%ld",&val);
@@ -218,7 +218,7 @@ static void increment_line_number(){
 }
 
 
-<INITIAL>[-+]?[0-9]+\.[0-9]+ {
+<INITIAL>[0-9]+\.[0-9]+ {
 	MFExpression *expression = mf_create_expression(MF_DOUBLE_EXPRESSION);
 	double val;
 	sscanf(yytext,"%lf",&val);
