@@ -69,7 +69,7 @@ MFContext *context = [[MFContext alloc] init];
 }];
 	
 // exec local mango file
-NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"js"];
+NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"mg"];
 NSString *script = [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
 [context evalMangoScriptWithSourceString:script];
 ```
