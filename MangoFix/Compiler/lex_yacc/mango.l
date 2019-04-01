@@ -14,7 +14,7 @@
 	static unsigned long st_source_len;
 	
 	void
-	nac_set_source_string(char const *source)
+	mf_set_source_string(char const *source)
 	{
 		st_source_string = source;
 		st_current_char_index = 0;
@@ -191,8 +191,8 @@ static void increment_line_number(){
 
 <INITIAL>[1-9][0-9]* {
 	MFExpression *expression = mf_create_expression(MF_INT_EXPRESSION);
-	NSInteger val;
-	sscanf(yytext,"%ld",&val);
+	long long int val;
+	sscanf(yytext,"%lld",&val);
 	expression.integerValue = val;
 	yylval.expression = (__bridge_retained void *)expression;
 	return INTETER_LITERAL;
@@ -202,8 +202,8 @@ static void increment_line_number(){
 
 <INITIAL>"0"[xX][0-9a-fA-F]+ {
 	MFExpression *expression = mf_create_expression(MF_INT_EXPRESSION);
-	NSInteger val;
-	sscanf(yytext,"%lx",&val);
+	long long int val;
+	sscanf(yytext,"%llx",&val);
 	expression.integerValue = val;
 	yylval.expression = (__bridge_retained void *)expression;
 	return INTETER_LITERAL;

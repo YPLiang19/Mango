@@ -74,12 +74,13 @@ static MFScopeChain *st_commonScope;
 }
 
 - (void)compileSoruceWithString:(NSString *)source{
-	extern void nac_set_source_string(char const *source);
-	nac_set_source_string([source UTF8String]);
-	
+	extern void mf_set_source_string(char const *source);
+	mf_set_source_string([source UTF8String]);
+	extern void yyrestart  (FILE * input_file );
 	extern int yyparse(void);
 	if (yyparse()) {
 		NSLog(@"error! error! error!");
+        yyrestart(NULL); /* 解析出错时，重置yylex */
 		return;
 	}
 	
