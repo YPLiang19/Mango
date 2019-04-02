@@ -689,7 +689,6 @@ static void replace_method(MFInterpreter *interpreter,Class clazz, MFMethodDefin
 static void fix_class(MFInterpreter *interpreter,MFClassDefinition *classDefinition){
 	Class clazz = NSClassFromString(classDefinition.name);
 	for (MFPropertyDefinition *prop in classDefinition.properties) {
-		
 		replace_prop(interpreter,clazz, prop);
 	}
 	
