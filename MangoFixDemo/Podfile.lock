@@ -1,5 +1,5 @@
 PODS:
-  - MangoFix (1.1.1)
+  - MangoFix (1.1.2)
 
 DEPENDENCIES:
   - MangoFix (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MangoFix: 5948edb6ce3b979c5aa55cc3f6fd344320cb34cb
+  MangoFix: 45913d135c6db9a7067dbbafdecdae447b013964
 
 PODFILE CHECKSUM: 34961e3ae86f606667df9385af573565446ef99d
 

@@ -371,12 +371,12 @@
 			isa = PBXGroup;
 			children = (
 				89967254224BFE6F00C7DACB /* mf_ast.h */,
+				89967257224BFE6F00C7DACB /* MFInterpreter.h */,
+				89967262224BFE6F00C7DACB /* MFInterpreter.m */,
 				89967259224BFE6F00C7DACB /* MFDeclaration.h */,
 				89967260224BFE6F00C7DACB /* MFDeclaration.m */,
 				8996725D224BFE6F00C7DACB /* MFExpression.h */,
 				89967250224BFE6F00C7DACB /* MFExpression.m */,
-				89967257224BFE6F00C7DACB /* MFInterpreter.h */,
-				89967262224BFE6F00C7DACB /* MFInterpreter.m */,
 				89967256224BFE6F00C7DACB /* MFStructDeclare.h */,
 				8996725F224BFE6F00C7DACB /* MFStructDeclare.m */,
 				8996725A224BFE6F00C7DACB /* MFTypeSpecifier.h */,

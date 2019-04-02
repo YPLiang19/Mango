@@ -30,9 +30,6 @@ int yylex(void);
 	void	*declaration;
 	MFAssignKind assignment_operator;
 	MFPropertyModifier property_modifier_list;
-
-
-
 }
 
 %token <identifier> IDENTIFIER

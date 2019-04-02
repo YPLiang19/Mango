@@ -1106,7 +1106,7 @@ static MFValue *invoke(NSUInteger line, MFInterpreter *inter, MFScopeChain *scop
 		const char *typeEncoding = [sig getArgumentTypeAtIndex:i];
 		void *ptr = malloc(mf_size_with_encoding(typeEncoding));
 		eval_expression(inter, scope, argExprs[i - 2]);
-		MFValue *argValue = [inter.stack pop];
+        __autoreleasing MFValue *argValue = [inter.stack pop];
 		[argValue assign2CValuePointer:ptr typeEncoding:typeEncoding];
 		[invocation setArgument:ptr atIndex:i];
 		free(ptr);
@@ -1318,7 +1318,7 @@ break;\
 				const char *typeEncoding = [sig getArgumentTypeAtIndex:i];
 				void *ptr = alloca(mf_size_with_encoding(typeEncoding));
 				eval_expression(inter, scope, expr.args[i -1]);
-				MFValue *argValue = [inter.stack pop];
+				__autoreleasing MFValue *argValue = [inter.stack pop];
 				[argValue assign2CValuePointer:ptr typeEncoding:typeEncoding];
 				[invocation setArgument:ptr atIndex:i];
 			}

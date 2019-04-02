@@ -420,7 +420,7 @@ void getterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	NSString *propName = propDef.name;
 	id propValue = objc_getAssociatedObject(_self, propKey(propName));
 	const char *type = [propDef.typeSpecifier typeEncoding];
-	MFValue *value;
+	__autoreleasing MFValue *value;
 	if (!propValue) {
 		value = [MFValue defaultValueWithTypeEncoding:type];
 		[value assign2CValuePointer:ret typeEncoding:type];
@@ -614,7 +614,7 @@ static void replaceIMP(ffi_cif *cif, void *ret, void **args, void *userdata){
         
         [argValues addObject:argValue];
     }
-    MFValue *retValue = mf_call_mf_function(inter, classScope, method.functionDefinition, argValues);
+    __autoreleasing MFValue *retValue = mf_call_mf_function(inter, classScope, method.functionDefinition, argValues);
     [retValue assign2CValuePointer:ret typeEncoding:[methodSignature methodReturnType]];
 }
 

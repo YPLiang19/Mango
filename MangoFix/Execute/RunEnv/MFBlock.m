@@ -43,7 +43,7 @@ static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 		[argValues addObject:argValue];
 		
 	}
-	MFValue *retValue = mf_call_mf_function(inter, scope, func, argValues);
+	__autoreleasing MFValue *retValue = mf_call_mf_function(inter, scope, func, argValues);
 	[retValue assign2CValuePointer:ret typeEncoding:[sig methodReturnType]];
 }
 
