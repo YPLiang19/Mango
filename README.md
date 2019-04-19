@@ -323,4 +323,4 @@ class SubMyController:SuperMyController {
 	
 
 ## Ohter
-    For more information on MangFix usage, see the MangoFix Project unit test.
+    For more information on MangFix usage, see the MangoFix project unit test.
