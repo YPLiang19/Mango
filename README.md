@@ -321,4 +321,6 @@ class SubMyController:SuperMyController {
 #### Pointer
  	Pointer ptr; // C pointer. 
 	
-	
+
+## Ohter
+    For more information on MangFix usage, see the MangoFix Project unit test.
