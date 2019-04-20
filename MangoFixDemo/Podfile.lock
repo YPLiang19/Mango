@@ -1,16 +1,23 @@
 PODS:
-  - MangoFix (1.1.2)
+  - MangoFix (1.1.3)
+  - Masonry (1.1.0)
 
 DEPENDENCIES:
   - MangoFix (from `../`)
+  - Masonry
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Masonry
 
 EXTERNAL SOURCES:
   MangoFix:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MangoFix: 45913d135c6db9a7067dbbafdecdae447b013964
+  MangoFix: d64e7c4fa1fc195864ffb2c89ea5877ef98bfa93
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 34961e3ae86f606667df9385af573565446ef99d
+PODFILE CHECKSUM: e6819c269c64418c51e52c76197db74c856fce04
 
 COCOAPODS: 1.6.1

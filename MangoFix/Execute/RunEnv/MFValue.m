@@ -114,6 +114,7 @@
 			break;
 		case MF_TYPE_STRUCT:
 			if (src.type.typeKind == MF_TYPE_STRUCT) {
+                _pointerValue = malloc(_type.structSize);
 				memcpy(_pointerValue, src.pointerValue, _type.structSize);
 			}else if (src.type.typeKind == MF_TYPE_STRUCT_LITERAL){
 				MFStructDeclareTable *table = [MFStructDeclareTable shareInstance];

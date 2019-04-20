@@ -801,22 +801,18 @@ primary_expression: IDENTIFIER
 				
 				$$ = (__bridge_retained void *)funcCallExpr;
 			}
-			| IDENTIFIER LP RP
+			| primary_expression LP RP
 			{
-				MFIdentifierExpression *identifierExpr = (MFIdentifierExpression *)mf_create_expression(MF_IDENTIFIER_EXPRESSION);
-				NSString *identifier = (__bridge_transfer NSString *)$1;
-				identifierExpr.identifier = identifier;
+                MFExpression *expr = (__bridge_transfer MFExpression *)$1;
 				MFFunctonCallExpression *funcCallExpr = (MFFunctonCallExpression *)mf_create_expression(MF_FUNCTION_CALL_EXPRESSION);
-				funcCallExpr.expr = identifierExpr;
+				funcCallExpr.expr = expr;
 				$$ = (__bridge_retained void *)funcCallExpr;
 			}
-		    | IDENTIFIER LP expression_list RP
+		    | primary_expression LP expression_list RP
 			{
-				MFIdentifierExpression *identifierExpr = (MFIdentifierExpression *)mf_create_expression(MF_IDENTIFIER_EXPRESSION);
-				NSString *identifier = (__bridge_transfer NSString *)$1;
-				identifierExpr.identifier = identifier;
+                MFExpression *expr = (__bridge_transfer MFExpression *)$1;
 				MFFunctonCallExpression *funcCallExpr = (MFFunctonCallExpression *)mf_create_expression(MF_FUNCTION_CALL_EXPRESSION);
-				funcCallExpr.expr = identifierExpr;
+				funcCallExpr.expr = expr;
 				funcCallExpr.args = (__bridge_transfer NSArray<MFExpression *> *)$3;
 				$$ = (__bridge_retained void *)funcCallExpr;
 			}

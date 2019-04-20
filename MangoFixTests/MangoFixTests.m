@@ -23,6 +23,7 @@
 #import "MFObjectPropertyTest.h"
 #import "MFCustomStructDeclareTest.h"
 #import "MFGCDTest.h"
+#import "MFCallOCReturnBlockTest.h"
 
 @interface MangoFixTest : XCTestCase
 
@@ -141,6 +142,14 @@
     XCTAssertEqual(customStruct.x, 110,@"testCustomStructDeclareWithCGRect");
     XCTAssertEqual(customStruct.y, 220,@"testCustomStructDeclareWithCGRect");
 }
+
+- (void)testCallOCReturnBlock{
+    [self loadMango:@"MFCallOCReturnBlockTest"];
+    MFCallOCReturnBlockTest *callOCReturnBlockTest = [[MFCallOCReturnBlockTest alloc] init];
+    id retValue = [callOCReturnBlockTest testCallOCReturnBlock];
+    XCTAssertEqualObjects(retValue, @"ab",@"testCallOCReturnBlock");
+}
+
 
 
 - (void)testGCD{
