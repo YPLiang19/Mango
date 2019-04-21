@@ -1,3 +1,4 @@
+[中文入门教程](https://www.jianshu.com/p/7ae91a2daead)
 # Mango
 Mango is a DSL which syntax is very similar to Objective-C，Mango is also an iOS  App hotfix SDK. You can use Mango method replace any Objective-C method.
 
