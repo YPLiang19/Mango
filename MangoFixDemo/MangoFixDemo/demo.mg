@@ -188,7 +188,7 @@ class SuperMyController:UIViewController{
     view1.translatesAutoresizingMaskIntoConstraints = NO;
     view1.backgroundColor = UIColor.greenColor();
     superview.addSubview:(view1);
-    UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);
+    struct UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);
     view1.mas_makeConstraints:(^(MASConstraintMaker *make) {
         make.top.equalTo()(superview.mas_top).with.offset()(padding.top); //with is an optional semantic filler
         make.left.equalTo()(superview.mas_left).with.offset()(padding.left);
