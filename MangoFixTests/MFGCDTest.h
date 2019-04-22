@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)testGCDWithCompletionBlock:(void(^)(id data))completion;
 
+
+- (void)testGCDAfterWithCompletionBlock:(void(^)(id data))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

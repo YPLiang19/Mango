@@ -7,5 +7,11 @@ class MFGCDTest : NSObject {
         completion(@"success");
     });
 }
+
+- (void)testGCDAfterWithCompletionBlock:(Block)completion{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        completion(@"success");
+    });
+}
     
 }

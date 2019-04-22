@@ -463,8 +463,10 @@ void setterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 			}
 			break;
 		case MFPropertyModifierMemWeak:
+            associationPolicy = OBJC_ASSOCIATION_ASSIGN;
+            break;
 		case MFPropertyModifierMemAssign:
-			associationPolicy = OBJC_ASSOCIATION_ASSIGN;
+			associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
 			break;
 			
 		case MFPropertyModifierMemCopy:

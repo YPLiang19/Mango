@@ -80,6 +80,11 @@ static void add_gcd_build_in(MFInterpreter *inter){
 	
 	
 	/* dispatch & dispatch_barrier */
+    [inter.commonScope setValue:[MFValue valueInstanceWithBlock:^(dispatch_time_t when, dispatch_queue_t  _Nonnull queue, dispatch_block_t block){
+        dispatch_after(when, queue, block);
+    }] withIndentifier:@"dispatch_after"];
+    
+    
 	[inter.commonScope setValue:[MFValue valueInstanceWithBlock:^void(dispatch_queue_t queue, void (^block)(void)) {
 		dispatch_async(queue, ^{
 			block();

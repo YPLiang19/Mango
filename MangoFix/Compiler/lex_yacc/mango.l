@@ -131,8 +131,11 @@ static void increment_line_number(){
 <INITIAL>"void" {return VOID; }
 <INITIAL>"BOOL" {return BOOL_; }
 <INITIAL>"int" {return INT; }
+<INITIAL>"NSInteger" {return INT; }
 <INITIAL>"uint" {return U_INT; }
+<INITIAL>"NSUInteger" {return U_INT; }
 <INITIAL>"double" {return DOUBLE; }
+<INITIAL>"CGFloat" {return DOUBLE; }
 <INITIAL>"CString" {return C_STRING; }
 <INITIAL>"id" {return ID; }
 <INITIAL>"Class" {return CLASS_; }

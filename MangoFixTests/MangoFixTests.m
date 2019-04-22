@@ -20,10 +20,12 @@
 #import "MFBranchStatementTest.h"
 #import "MFLoopStatementTest.h"
 #import "MFMethodParameterListAndReturnValueTest.h"
+#import "MFBasePropertyTest.h"
 #import "MFObjectPropertyTest.h"
 #import "MFCustomStructDeclareTest.h"
 #import "MFGCDTest.h"
 #import "MFCallOCReturnBlockTest.h"
+
 
 @interface MangoFixTest : XCTestCase
 
@@ -125,6 +127,13 @@
     NSDictionary *retVal  = retBlock();
     XCTAssertEqualObjects(retVal[@"param1"], @"param1Mango",@"methodParameterListAndReturnValue");
     XCTAssertEqualObjects(retVal[@"param2"], @"param2Mango",@"methodParameterListAndReturnValue");
+}
+
+- (void)testBaseProperty{
+    [self loadMango:@"MFBasePropertyTest"];
+    MFBasePropertyTest *basePropertyTest = [[MFBasePropertyTest alloc] init];
+    NSInteger retVal = [basePropertyTest testBasePropertyTest];
+    XCTAssertEqual(retVal, 10,@"testBasePropertyTest");
 }
 
 
