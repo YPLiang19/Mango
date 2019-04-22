@@ -1,5 +1,5 @@
 PODS:
-  - MangoFix (1.1.3)
+  - MangoFix (1.1.4)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ SPEC REPOS:
     - Masonry
 
 SPEC CHECKSUMS:
-  MangoFix: d64e7c4fa1fc195864ffb2c89ea5877ef98bfa93
+  MangoFix: f894ebba6dfe619d917b4d88333aa3037e0fdfd0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
 PODFILE CHECKSUM: 8b419bb9698579d5a8d614732a5d068bea7d7c8a
