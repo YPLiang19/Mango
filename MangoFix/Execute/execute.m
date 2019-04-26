@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #include <string.h>
-#import "create.h"
-#import "execute.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import "create.h"
+#import "execute.h"
 #import "util.h"
 #import "ffi.h"
 #import "runenv.h"
 #import "MFValue+Private.h"
+#import "MFWeakPropertyBox.h"
+#import "MFPropertyMapTable.h"
 
-
-static const void *propKey(NSString *propName) {
+const void *mf_propKey(NSString *propName) {
     static NSMutableDictionary *_propKeys;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -413,19 +414,28 @@ static void define_class(MFInterpreter *interpreter,MFClassDefinition *classDefi
 
 
 
-
 void getterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	MFPropertyDefinition *propDef = (__bridge MFPropertyDefinition *)userdata;
 	id _self = (__bridge id)(*(void **)args[0]);
 	NSString *propName = propDef.name;
-	id propValue = objc_getAssociatedObject(_self, propKey(propName));
+	id propValue = objc_getAssociatedObject(_self, mf_propKey(propName));
 	const char *type = [propDef.typeSpecifier typeEncoding];
-	__autoreleasing MFValue *value;
+    __autoreleasing MFValue *value;
 	if (!propValue) {
 		value = [MFValue defaultValueWithTypeEncoding:type];
 		[value assign2CValuePointer:ret typeEncoding:type];
 	}else if(*type == '@'){
-		*(void **)ret = (__bridge void *)propValue;
+        if ([propValue isKindOfClass:[MFWeakPropertyBox class]]) {
+            MFWeakPropertyBox *box = propValue;
+            if (box.target) {
+                *(void **)ret = (__bridge void *)box.target;
+            }else{
+                value = [MFValue defaultValueWithTypeEncoding:type];
+                [value assign2CValuePointer:ret typeEncoding:type];
+            }
+        }else{
+            *(void **)ret = (__bridge void *)propValue;
+        }
 	}else{
 		value = propValue;
 		[value assign2CValuePointer:ret typeEncoding:type];
@@ -447,50 +457,15 @@ void setterInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	}
 	NSString *propName = propDef.name;
 	
-	objc_AssociationPolicy associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
-	MFPropertyModifier modifier = propDef.modifier;
-	switch (modifier & MFPropertyModifierMemMask) {
-		case MFPropertyModifierMemStrong:
-			switch (modifier & MFPropertyModifierAtomicMask) {
-				case MFPropertyModifierAtomic:
-					associationPolicy = OBJC_ASSOCIATION_RETAIN;
-					break;
-				case MFPropertyModifierNonatomic:
-					associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
-					break;
-				default:
-					break;
-			}
-			break;
-		case MFPropertyModifierMemWeak:
-            associationPolicy = OBJC_ASSOCIATION_ASSIGN;
-            break;
-		case MFPropertyModifierMemAssign:
-			associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
-			break;
-			
-		case MFPropertyModifierMemCopy:
-			switch (modifier & MFPropertyModifierAtomicMask) {
-				case MFPropertyModifierAtomic:
-					associationPolicy = OBJC_ASSOCIATION_COPY;
-					break;
-				case MFPropertyModifierNonatomic:
-					associationPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
-					break;
-				default:
-					break;
-			}
-			break;
-			
-		default:
-			break;
-	}
-	objc_setAssociatedObject(_self, propKey(propName), value, associationPolicy);
-	
-	
-	
-	
+    MFPropertyModifier modifier = propDef.modifier;
+    if ((modifier & MFPropertyModifierMemMask) == MFPropertyModifierMemWeak) {
+        value = [[MFWeakPropertyBox alloc] initWithTarget:value];
+    }
+	objc_AssociationPolicy associationPolicy = mf_AssociationPolicy_with_PropertyModifier(modifier);
+	objc_setAssociatedObject(_self, mf_propKey(propName), value, associationPolicy);
+    
 }
+
 static void replace_getter_method(MFInterpreter *inter ,Class clazz, MFPropertyDefinition *prop){
 	SEL getterSEL = NSSelectorFromString(prop.name);
 	const char *retTypeEncoding  = [prop.typeSpecifier typeEncoding];
@@ -574,7 +549,8 @@ static void replace_prop(MFInterpreter *inter ,Class clazz, MFPropertyDefinition
 	}
 	objc_property_attribute_t attrs[] = { type, memAttr, atomicAttr };
 	class_replaceProperty(clazz, prop.name.UTF8String, attrs, 3);
-	
+    MFPropertyMapTableItem *propItem = [[MFPropertyMapTableItem alloc] initWithClass:clazz property:prop];
+    [[MFPropertyMapTable shareInstance] addPropertyMapTableItem:propItem];
 	replace_getter_method(inter, clazz, prop);
 	replace_setter_method(inter, clazz, prop);
 	

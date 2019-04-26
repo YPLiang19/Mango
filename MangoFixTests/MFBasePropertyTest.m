@@ -13,5 +13,8 @@
 -(NSInteger)testBasePropertyTest{
     return 0;
 }
+- (NSInteger)testIvar{
+    return 0;
+}
 
 @end

@@ -328,3 +328,39 @@ NSString *mf_struct_name_with_encoding(const char *typeEncoding){
 	
 }
 
+objc_AssociationPolicy mf_AssociationPolicy_with_PropertyModifier(MFPropertyModifier modifier){
+    objc_AssociationPolicy associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
+    switch (modifier & MFPropertyModifierMemMask) {
+        case MFPropertyModifierMemStrong:
+        case MFPropertyModifierMemWeak:
+        case MFPropertyModifierMemAssign:
+            switch (modifier & MFPropertyModifierAtomicMask) {
+                case MFPropertyModifierAtomic:
+                    associationPolicy = OBJC_ASSOCIATION_RETAIN;
+                    break;
+                case MFPropertyModifierNonatomic:
+                    associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case MFPropertyModifierMemCopy:
+            switch (modifier & MFPropertyModifierAtomicMask) {
+                case MFPropertyModifierAtomic:
+                    associationPolicy = OBJC_ASSOCIATION_COPY;
+                    break;
+                case MFPropertyModifierNonatomic:
+                    associationPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
+                    break;
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
+    }
+    return associationPolicy;
+}
+

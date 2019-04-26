@@ -26,6 +26,5 @@
 - (void)addMethodMapTableItem:(MFMethodMapTableItem *)methodMapTableItem;
 - (MFMethodMapTableItem *)getMethodMapTableItemWith:(Class)clazz classMethod:(BOOL)classMethod sel:(SEL)sel;
 
-@property(nonatomic,copy)NSString *debugString;
 
 @end

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MFBasePropertyTest : NSObject
 
 - (NSInteger)testBasePropertyTest;
+- (NSInteger)testIvar;
 
 @end
 

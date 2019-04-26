@@ -42,15 +42,15 @@
 }
 
 - (void)addMethodMapTableItem:(MFMethodMapTableItem *)methodMapTableItem{
-    [_lock lock];
 	NSString *index = [NSString stringWithFormat:@"%d_%@_%@,",methodMapTableItem.method.classMethod,NSStringFromClass(methodMapTableItem.clazz),methodMapTableItem.method.functionDefinition.name];
+    [_lock lock];
 	_dic[index] = methodMapTableItem;
     [_lock unlock];
 }
 
 - (MFMethodMapTableItem *)getMethodMapTableItemWith:(Class)clazz classMethod:(BOOL)classMethod sel:(SEL)sel{
-    [_lock lock];
     NSString *index = [NSString stringWithFormat:@"%d_%@_%@,",classMethod,NSStringFromClass(clazz),NSStringFromSelector(sel)];
+    [_lock lock];
 	MFMethodMapTableItem *item = _dic[index];
     [_lock unlock];
     return item;

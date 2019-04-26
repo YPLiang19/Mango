@@ -22,6 +22,7 @@
 #import "MFMethodParameterListAndReturnValueTest.h"
 #import "MFBasePropertyTest.h"
 #import "MFObjectPropertyTest.h"
+#import "MFIvarTest.h"
 #import "MFCustomStructDeclareTest.h"
 #import "MFGCDTest.h"
 #import "MFCallOCReturnBlockTest.h"
@@ -133,7 +134,9 @@
     [self loadMango:@"MFBasePropertyTest"];
     MFBasePropertyTest *basePropertyTest = [[MFBasePropertyTest alloc] init];
     NSInteger retVal = [basePropertyTest testBasePropertyTest];
-    XCTAssertEqual(retVal, 10,@"testBasePropertyTest");
+    XCTAssertEqual(retVal, 100000,@"testBasePropertyTest");
+    retVal= [basePropertyTest testIvar];
+    XCTAssertEqual(retVal, 100001,@"testIvar");
 }
 
 
@@ -141,6 +144,25 @@
     [self loadMango:@"MFObjectPropertyTest"];
     MFObjectPropertyTest *objectPropertyTest = [[MFObjectPropertyTest alloc] init];
     XCTAssertEqualObjects([objectPropertyTest testObjectPropertyTest], @"Mango",@"testObjectPropertyTest");
+    id x = [objectPropertyTest testIvar];
+    XCTAssertEqualObjects([objectPropertyTest testIvar], @"Mango-testIvar",@"testIvar");
+    
+}
+
+- (void)testIvar{
+    [self loadMango:@"MFIvarTest"];
+    MFIvarTest *ivarTest = [[MFIvarTest alloc] init];
+    
+    id retObj = [ivarTest testObjectIvar];
+    XCTAssertNotNil(retObj,@"testObjectIvar");
+    
+    NSInteger retInt = [ivarTest testIntIvar];
+    XCTAssertEqual(retInt, 10000001,@"testIntIvar");
+    
+    struct CGRect retStruct = [ivarTest testStructIvar];
+    
+    NSLog(@"");
+    
 }
 
 

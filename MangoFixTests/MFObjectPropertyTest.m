@@ -14,4 +14,11 @@
     return nil;
 }
 
+- (id)testWeakObjectProperty{
+    return nil;
+}
+
+- (id)testIvar{
+    return nil;
+}
 @end
