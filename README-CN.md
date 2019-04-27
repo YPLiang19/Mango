@@ -1,1 +1,2 @@
 - [MangoFix：iOS热修复另辟蹊径](https://www.jianshu.com/p/7ae91a2daead)
+- [iOS热修复MangoFix原理分析](https://www.jianshu.com/p/a6511c687eda)
