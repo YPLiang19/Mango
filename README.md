@@ -1,6 +1,6 @@
 [MangoFix中文资料集合](README-CN.md)
 # Mango
-Mango is a DSL which syntax is very similar to Objective-C，Mango is also an iOS  App hotfix SDK. You can use Mango method replace any Objective-C method.
+MangoFix is a DSL which syntax is very similar to Objective-C，MangoFix is also an iOS  App hotfix SDK. You can use MangoFix method replace any Objective-C method.
 
 
 ## Example
