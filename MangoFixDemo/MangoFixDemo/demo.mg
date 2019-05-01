@@ -172,6 +172,7 @@ self.resultView.text = @"here is Mango method";
 
 }
 
+int a = 1;
 
 class SuperMyController:UIViewController{
 
@@ -217,6 +218,9 @@ class SubMyController:SuperMyController {
 		self.view.addSubview:(view);
 		view.backgroundColor = UIColor.redColor();
 		self.rotateView = view;
+        self.block = ^{
+            NSLog(view);
+        };
 }
 
 }

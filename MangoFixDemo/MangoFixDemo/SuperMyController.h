@@ -10,4 +10,6 @@
 
 @interface SuperMyController : UIViewController
 
+@property(nonatomic,copy) id block;
+
 @end
