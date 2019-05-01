@@ -34,8 +34,6 @@ static NSString * const cellIdentifier = @"cell";
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
 }
 
-
-
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	return self.titles.count;;

@@ -32,6 +32,8 @@
 		8977D893224CD3FA0048A954 /* MFConditionalReplaceTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8977D892224CD3FA0048A954 /* MFConditionalReplaceTest.mg */; };
 		8977D895224CD4520048A954 /* MFCustomStructDeclareTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8977D894224CD4520048A954 /* MFCustomStructDeclareTest.mg */; };
 		8977D897224CD4BD0048A954 /* MFGCDTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8977D896224CD4BD0048A954 /* MFGCDTest.mg */; };
+		8981407B2279EE970023257B /* MFVarDeclareChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 898140792279EE970023257B /* MFVarDeclareChain.h */; };
+		8981407C2279EE970023257B /* MFVarDeclareChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8981407A2279EE970023257B /* MFVarDeclareChain.m */; };
 		8996719E224BFD2A00C7DACB /* MangoFix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89967194224BFD2A00C7DACB /* MangoFix.framework */; };
 		899671A3224BFD2A00C7DACB /* MangoFixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 899671A2224BFD2A00C7DACB /* MangoFixTests.m */; };
 		8996726B224BFE6F00C7DACB /* MFContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 8996722A224BFE6F00C7DACB /* MFContext.m */; };
@@ -123,6 +125,8 @@
 		8977D892224CD3FA0048A954 /* MFConditionalReplaceTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFConditionalReplaceTest.mg; sourceTree = "<group>"; };
 		8977D894224CD4520048A954 /* MFCustomStructDeclareTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFCustomStructDeclareTest.mg; sourceTree = "<group>"; };
 		8977D896224CD4BD0048A954 /* MFGCDTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFGCDTest.mg; sourceTree = "<group>"; };
+		898140792279EE970023257B /* MFVarDeclareChain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFVarDeclareChain.h; sourceTree = "<group>"; };
+		8981407A2279EE970023257B /* MFVarDeclareChain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFVarDeclareChain.m; sourceTree = "<group>"; };
 		89967194224BFD2A00C7DACB /* MangoFix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MangoFix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89967198224BFD2A00C7DACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8996719D224BFD2A00C7DACB /* MangoFixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MangoFixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,6 +391,8 @@
 				8996724B224BFE6F00C7DACB /* MFScopeChain.m */,
 				8996724C224BFE6F00C7DACB /* MFStructDeclareTable.h */,
 				89967242224BFE6F00C7DACB /* MFStructDeclareTable.m */,
+				898140792279EE970023257B /* MFVarDeclareChain.h */,
+				8981407A2279EE970023257B /* MFVarDeclareChain.m */,
 			);
 			path = RunEnv;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				89EE645A2272C87F00C7DD7A /* MFWeakPropertyBox.h in Headers */,
 				89EE645622725FBB00C7DD7A /* MFPropertyMapTable.h in Headers */,
 				895EC4DC224CAA7C0062CBF8 /* MFValue.h in Headers */,
+				8981407B2279EE970023257B /* MFVarDeclareChain.h in Headers */,
 				89F96116224CFF3700ADFF07 /* MFValue+Private.h in Headers */,
 				895EC4DB224CAA2A0062CBF8 /* MFContext.h in Headers */,
 				895EC4DA224CAA0F0062CBF8 /* MangoFix.h in Headers */,
@@ -592,6 +599,7 @@
 				899672A4224BFE6F00C7DACB /* util.m in Sources */,
 				8996729E224BFE6F00C7DACB /* MFInterpreter.m in Sources */,
 				89967285224BFE6F00C7DACB /* MFStatementResult.m in Sources */,
+				8981407C2279EE970023257B /* MFVarDeclareChain.m in Sources */,
 				8996729B224BFE6F00C7DACB /* MFStructDeclare.m in Sources */,
 				89967282224BFE6F00C7DACB /* MFStack.m in Sources */,
 			);

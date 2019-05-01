@@ -32,7 +32,7 @@ void dispose_helper(struct MFSimulateBlock *src)
 static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	MFBlock *mangoBlock = (__bridge MFBlock *)userdata;
 	MFInterpreter *inter = mangoBlock.inter;
-	MFScopeChain *scope = mangoBlock.scope;
+	MFScopeChain *scope = [MFScopeChain scopeChainWithNext:mangoBlock.outScope];
 	MFFunctionDefinition *func = mangoBlock.func;
 	NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:mangoBlock.typeEncoding];
 	NSUInteger numberOfArguments = [sig numberOfArguments];

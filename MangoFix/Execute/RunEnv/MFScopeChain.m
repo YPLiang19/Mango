@@ -105,9 +105,9 @@ extern const void *mf_propKey(NSString *propName);
 	}
 }
 
-- (MFValue *)getValueWithIdentifierInChain:(NSString *)identifier{
-	for (MFScopeChain *pos = self; pos; pos = pos.next) {
-		if (pos.instance) {
+- (MFValue *)getValueWithIdentifier:(NSString *)identifier endScope:(MFScopeChain *)endScope{
+    for (MFScopeChain *pos = self; pos != endScope; pos = pos.next) {
+        if (pos.instance) {
             NSString *propName = [self propNameByIvarName:identifier];
             MFPropertyMapTable *table = [MFPropertyMapTable shareInstance];
             Class clazz = object_getClass(pos.instance);
@@ -142,35 +142,39 @@ extern const void *mf_propKey(NSString *propName);
                 return value;
                 
             }
-		}else{
-			 MFValue *value = [pos getValueWithIdentifier:identifier];
-			if (value) {
-				return value;
-			}
-			
-		}
-	}
-	return nil;
+        }else{
+            MFValue *value = [pos getValueWithIdentifier:identifier];
+            if (value) {
+                return value;
+            }
+            
+        }
+    }
+    return nil;
+}
+
+- (MFValue *)getValueWithIdentifierInChain:(NSString *)identifier{
+    return [self getValueWithIdentifier:identifier endScope:nil];
 }
 
 - (void)setMangoBlockVarNil{
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self.lock lock];
-        NSArray *allValues = [self.vars allValues];
-        for (MFValue *value in allValues) {
-            if ([value isObject]) {
-                Class ocBlockClass = NSClassFromString(@"NSBlock");
-                if ([[value c2objectValue] isKindOfClass:ocBlockClass]) {
-                    struct MFSimulateBlock *blockStructPtr = (__bridge void *)value.objectValue;
-                    if (blockStructPtr->flags & BLOCK_CREATED_FROM_MFGO) {
-                        value.objectValue = nil;
-                    }
-                }
-                
-            }
-        }
-        [self.lock unlock];
-    });
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        [self.lock lock];
+//        NSArray *allValues = [self.vars allValues];
+//        for (MFValue *value in allValues) {
+//            if ([value isObject]) {
+//                Class ocBlockClass = NSClassFromString(@"NSBlock");
+//                if ([[value c2objectValue] isKindOfClass:ocBlockClass]) {
+//                    struct MFSimulateBlock *blockStructPtr = (__bridge void *)value.objectValue;
+//                    if (blockStructPtr->flags & BLOCK_CREATED_FROM_MFGO) {
+//                        value.objectValue = nil;
+//                    }
+//                }
+//
+//            }
+//        }
+//        [self.lock unlock];
+//    });
     
 }
 

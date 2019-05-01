@@ -84,7 +84,7 @@ typedef NS_ENUM(NSInteger, MFStatementKind) {
 @interface MFForEachStatement: MFStatement
 @property (strong, nonatomic) MFDeclaration *declaration;
 @property (strong, nonatomic) MFIdentifierExpression *identifierExpr;
-@property (strong, nonatomic) MFExpression *arrayExpr;
+@property (strong, nonatomic) MFExpression *collectionExpr;
 @property (strong, nonatomic) MFBlockBody *block;
 @end
 

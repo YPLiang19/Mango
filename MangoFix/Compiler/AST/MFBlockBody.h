@@ -13,7 +13,7 @@
 @interface MFBlockBody: NSObject
 
 @property (strong, nonatomic) NSArray<MFStatement *> *statementList;
-@property (strong, nonatomic) NSMutableArray<MFDeclaration *> *declarations;
+//@property (strong, nonatomic) NSMutableArray<MFDeclaration *> *declarations;
 @property (weak, nonatomic) MFBlockBody *outBlock;
 
 @end

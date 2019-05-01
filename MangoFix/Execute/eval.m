@@ -15,6 +15,7 @@
 #import "execute.h"
 #import "create.h"
 #import "MFValue+Private.h"
+#import "MFVarDeclareChain.h"
 
 static void eval_expression(MFInterpreter *inter, MFScopeChain *scope, __kindof MFExpression *expr);
 
@@ -54,6 +55,250 @@ static void eval_sel_expression(MFInterpreter *inter, MFExpression *expr){
 }
 
 
+static void copy_undef_var(id exprOrStatement, MFVarDeclareChain *chain, MFScopeChain *fromScope, MFScopeChain *endScope,MFScopeChain *destScope){
+    if (!exprOrStatement) {
+        return;
+    }
+    Class exprOrStatementClass = [exprOrStatement class];
+    if (exprOrStatementClass == MFExpression.class) {
+        MFExpression *expr = (MFExpression *)exprOrStatement;
+        if (expr.expressionKind == MF_SELF_EXPRESSION || expr.expressionKind == MF_SUPER_EXPRESSION) {
+            NSString *identifier = @"self";
+            if (![chain isInChain:identifier]) {
+                MFValue *value = [fromScope getValueWithIdentifier:identifier endScope:endScope];
+                if (value) {
+                    [destScope setValue:value withIndentifier:identifier];
+                }
+            }
+            return;
+        }
+    }else if (exprOrStatementClass == MFIdentifierExpression.class) {
+        MFIdentifierExpression *expr = (MFIdentifierExpression *)exprOrStatement;
+        NSString *identifier = expr.identifier;
+        if (![chain isInChain:identifier]) {
+           MFValue *value = [fromScope getValueWithIdentifier:identifier endScope:endScope];
+            if (value) {
+                [destScope setValue:value withIndentifier:identifier];
+            }
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFAssignExpression.class) {
+        MFAssignExpression *expr = (MFAssignExpression *)exprOrStatement;
+        copy_undef_var(expr.left, chain, fromScope, endScope, destScope);
+        copy_undef_var(expr.right, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFBinaryExpression.class){
+        MFBinaryExpression *expr = (MFBinaryExpression *)exprOrStatement;
+        copy_undef_var(expr.left, chain, fromScope, endScope, destScope);
+        copy_undef_var(expr.right, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFTernaryExpression.class){
+        MFTernaryExpression *expr = (MFTernaryExpression *)exprOrStatement;
+        copy_undef_var(expr.condition, chain, fromScope, endScope, destScope);
+        copy_undef_var(expr.trueExpr, chain, fromScope, endScope, destScope);
+        copy_undef_var(expr.falseExpr, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFUnaryExpression.class){
+        MFUnaryExpression *expr = (MFUnaryExpression *)exprOrStatement;
+        copy_undef_var(expr.expr, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFMemberExpression.class){
+        MFMemberExpression *expr = (MFMemberExpression *)exprOrStatement;
+        copy_undef_var(expr.expr, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFFunctonCallExpression.class){
+        MFFunctonCallExpression *expr = (MFFunctonCallExpression *)exprOrStatement;
+        copy_undef_var(expr.expr, chain, fromScope, endScope, destScope);
+        for (MFExpression *argExpr in expr.args) {
+            copy_undef_var(argExpr, chain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFSubScriptExpression.class){
+        MFSubScriptExpression *expr = (MFSubScriptExpression *)exprOrStatement;
+        copy_undef_var(expr.aboveExpr, chain, fromScope, endScope, destScope);
+        copy_undef_var(expr.bottomExpr, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFStructEntry.class){
+        MFStructEntry *expr = (MFStructEntry *)exprOrStatement;
+        copy_undef_var(expr.valueExpr, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFStructpression.class){
+        MFStructpression *expr = (MFStructpression *)exprOrStatement;
+        for (MFExpression *entryExpr in expr.entriesExpr) {
+            copy_undef_var(entryExpr, chain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFDicEntry.class){
+        MFDicEntry *expr = (MFDicEntry *)exprOrStatement;
+        copy_undef_var(expr.keyExpr, chain, fromScope, endScope, destScope);
+        copy_undef_var(expr.valueExpr, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFDictionaryExpression.class){
+        MFDictionaryExpression *expr = (MFDictionaryExpression *)exprOrStatement;
+        for (MFExpression *entryExpr in expr.entriesExpr) {
+            copy_undef_var(entryExpr, chain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFArrayExpression.class){
+        MFArrayExpression *expr = (MFArrayExpression *)exprOrStatement;
+        for (MFExpression *itemExpression in expr.itemExpressions) {
+            copy_undef_var(itemExpression, chain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFBlockExpression.class){
+        MFBlockExpression *expr = (MFBlockExpression *)exprOrStatement;
+        MFFunctionDefinition *funcDef = expr.func;
+        MFVarDeclareChain *funcChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        NSArray *params = funcDef.params;
+        for (MFParameter *param in params) {
+            NSString *name = param.name;
+            [funcChain addIndentifer:name];
+        }
+        MFBlockBody *funcDefBody = funcDef.block;
+        for (MFStatement *statement in funcDefBody.statementList) {
+            copy_undef_var(statement, funcChain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFExpressionStatement.class){
+        MFExpressionStatement *statement = (MFExpressionStatement *)exprOrStatement;
+        copy_undef_var(statement.expr, chain, fromScope, endScope, destScope);
+        return;
+        
+    }else if (exprOrStatementClass == MFDeclarationStatement.class){
+        MFDeclarationStatement *statement = (MFDeclarationStatement *)exprOrStatement;
+        NSString *name = statement.declaration.name;
+        [chain addIndentifer:name];
+        return;
+        
+    }else if (exprOrStatementClass == MFIfStatement.class){
+        MFIfStatement *ifStatement = (MFIfStatement *)exprOrStatement;
+        copy_undef_var(ifStatement.condition, chain, fromScope, endScope, destScope);
+        
+        MFVarDeclareChain *thenChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        for (MFStatement *statement in ifStatement.thenBlock.statementList) {
+            copy_undef_var(statement, thenChain, fromScope, endScope, destScope);
+        }
+        MFVarDeclareChain *elseChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        for (MFStatement *statement in ifStatement.elseBlocl.statementList) {
+            copy_undef_var(statement, elseChain, fromScope, endScope, destScope);
+        }
+        
+        for (MFElseIf *elseIf in ifStatement.elseIfList) {
+            copy_undef_var(elseIf, chain, fromScope, endScope, destScope);
+        }
+        return;
+    }else if (exprOrStatementClass == MFElseIf.class){
+        MFElseIf *elseIfStatement = (MFElseIf *)exprOrStatement;
+        copy_undef_var(elseIfStatement.condition, chain, fromScope, endScope, destScope);
+        MFVarDeclareChain *elseIfChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        for (MFStatement *statement in elseIfStatement.thenBlock.statementList) {
+            copy_undef_var(statement, elseIfChain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFSwitchStatement.class){
+        MFSwitchStatement *swithcStatement = (MFSwitchStatement *)exprOrStatement;
+        copy_undef_var(swithcStatement.expr, chain, fromScope, endScope, destScope);
+        
+        for (MFCase *case_ in swithcStatement.caseList) {
+            copy_undef_var(case_, chain, fromScope, endScope, destScope);
+        }
+        
+        MFVarDeclareChain *defChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        for (MFStatement *satement in swithcStatement.defaultBlock.statementList) {
+            copy_undef_var(satement, defChain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFCase.class){
+        MFCase *caseStatement = (MFCase *)exprOrStatement;
+        copy_undef_var(caseStatement.expr, chain, fromScope, endScope, destScope);
+        MFVarDeclareChain *caseChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        for (MFStatement *satement in caseStatement.block.statementList) {
+            copy_undef_var(satement, caseChain, fromScope, endScope, destScope);
+        }
+        return;
+        
+    }else if (exprOrStatementClass == MFForStatement.class){
+        MFForStatement *forStatement = (MFForStatement *)exprOrStatement;
+        copy_undef_var(forStatement.initializerExpr, chain, fromScope, endScope, destScope);
+        
+        MFDeclaration *declaration = forStatement.declaration;
+        MFVarDeclareChain *forChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        if (declaration) {
+            NSString *name = declaration.name;
+            [forChain addIndentifer:name];
+        }
+        copy_undef_var(forStatement.condition, forChain, fromScope, endScope, destScope);
+        
+        for (MFStatement *statement in forStatement.block.statementList) {
+            copy_undef_var(statement, forChain, fromScope, endScope, destScope);
+        }
+        
+        copy_undef_var(forStatement.post, forChain, fromScope, endScope, destScope);
+        
+        
+    }else if (exprOrStatementClass == MFForEachStatement.class){
+        MFForEachStatement *forEachStatement = (MFForEachStatement *)exprOrStatement;
+        copy_undef_var(forEachStatement.identifierExpr, chain, fromScope, endScope, destScope);
+        
+        copy_undef_var(forEachStatement.collectionExpr, chain, fromScope, endScope, destScope);
+        
+        MFVarDeclareChain *forEachChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        MFDeclaration *declaration = forEachStatement.declaration;
+        if (declaration) {
+            NSString *name = declaration.name;
+            [forEachChain addIndentifer:name];
+        }
+        for (MFStatement *statement in forEachStatement.block.statementList) {
+            copy_undef_var(statement, forEachChain, fromScope, endScope, destScope);
+        }
+        
+        
+    }else if (exprOrStatementClass == MFWhileStatement.class){
+        MFWhileStatement *whileStatement = (MFWhileStatement *)exprOrStatement;
+        copy_undef_var(whileStatement.condition, chain, fromScope, endScope, destScope);
+        
+        MFVarDeclareChain *whileChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        for (MFStatement *statement in whileStatement.block.statementList) {
+            copy_undef_var(statement, whileChain, fromScope, endScope, destScope);
+        }
+        
+    }else if (exprOrStatementClass == MFDoWhileStatement.class){
+        MFWhileStatement *doWhileStatement = (MFWhileStatement *)exprOrStatement;
+        copy_undef_var(doWhileStatement.condition, chain, fromScope, endScope, destScope);
+        
+        MFVarDeclareChain *doWhileChain = [MFVarDeclareChain varDeclareChainWithNext:chain];
+        for (MFStatement *statement in doWhileStatement.block.statementList) {
+            copy_undef_var(statement, doWhileChain, fromScope, endScope, destScope);
+        }
+        
+    }else if (exprOrStatementClass == MFReturnStatement.class){
+        MFReturnStatement *returnStatement = (MFReturnStatement *)exprOrStatement;
+        copy_undef_var(returnStatement.retValExpr, chain, fromScope, endScope, destScope);
+        return;
+    }else if (exprOrStatementClass == MFContinueStatement.class){
+        
+    }else if (exprOrStatementClass == MFBreakStatement.class){
+        
+    }
+    
+}
+
 
 
 static void eval_block_expression(MFInterpreter *inter, MFScopeChain *outScope, MFBlockExpression *expr){
@@ -62,8 +307,9 @@ static void eval_block_expression(MFInterpreter *inter, MFScopeChain *outScope, 
 	MFBlock *manBlock = [[MFBlock alloc] init];
 	manBlock.func = expr.func;
 	
-	MFScopeChain *scope = [MFScopeChain scopeChainWithNext:outScope];
-	manBlock.scope = scope;
+	MFScopeChain *scope = [MFScopeChain scopeChainWithNext:inter.topScope];
+    copy_undef_var(expr, [[MFVarDeclareChain alloc] init], outScope, inter.topScope, scope);
+	manBlock.outScope = scope;
 	
 	manBlock.inter = inter;
 	

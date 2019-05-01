@@ -181,7 +181,7 @@ static MFStatementResult *execute_for_each_statement(MFInterpreter *inter, MFSco
 	
 	
 	
-	MFValue *arrValue = mf_eval_expression(inter, scope, statement.arrayExpr);
+	MFValue *arrValue = mf_eval_expression(inter, scope, statement.collectionExpr);
 	if (arrValue.type.typeKind != MF_TYPE_OBJECT) {
 		NSCAssert(0, @"");
 	}

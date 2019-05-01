@@ -259,7 +259,7 @@ MFForEachStatement *mf_create_for_each_statement(MFTypeSpecifier *typeSpecifier,
 		varExpr.identifier = varName;
 		statement.identifierExpr = varExpr;
 	}
-	statement.arrayExpr = arrayExpr;
+	statement.collectionExpr = arrayExpr;
 	statement.block = block;
 	return statement;
 }
