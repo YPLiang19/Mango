@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) unsigned long long uintValue;
 @property (assign, nonatomic) long long integerValue;
 @property (assign, nonatomic) double doubleValue;
-@property (nonatomic) id objectValue;
+@property (nonatomic,nullable) id objectValue;
 @property (strong, nonatomic, nullable) Class classValue;
 @property (assign, nonatomic, nullable) SEL selValue;
 @property (assign, nonatomic, nullable) const char * cstringValue;

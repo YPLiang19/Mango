@@ -57,7 +57,7 @@ int yylex(void);
 %type <expression> expression expression_opt struct_literal assign_expression ternary_operator_expression logic_or_expression logic_and_expression  
 equality_expression relational_expression additive_expression multiplication_expression unary_expression postfix_expression primary_expression  dic block_body annotation_if
 
-%type <identifier> selector selector_1 selector_2
+%type <identifier> selector selector_1 selector_2 key_work_identifier
 
 %type <list> identifier_list struct_entry_list dic_entry_list  statement_list protocol_list else_if_list case_list member_definition_list
 method_name method_name_1 method_name_2 expression_list function_param_list 
@@ -453,15 +453,16 @@ selector: selector_1
 			;
 
 selector_1: IDENTIFIER
+            | key_work_identifier
 			;
 
-selector_2: IDENTIFIER COLON
+selector_2: selector_1 COLON
 			{
 				NSString *name = (__bridge_transfer NSString *)$1;
 				NSString *selector = [NSString stringWithFormat:@"%@:",name];
 				$$ = (__bridge_retained void *)selector;
 			}
-			| selector_2 IDENTIFIER COLON
+			| selector_2 selector_1 COLON
 			{
 				NSString *name1 = (__bridge_transfer NSString *)$1;
 				NSString *name2 = (__bridge_transfer NSString *)$2;
@@ -762,6 +763,16 @@ struct_literal:  LC  struct_entry_list RC
 			}
 			;
 
+key_work_identifier: CLASS
+                    {
+                        $$ = @"class";
+                    }
+                    | COPY
+                    {
+                        $$ = @"copy";
+                    }
+                    ;
+
 primary_expression: IDENTIFIER
 			{
 				MFIdentifierExpression *expr = (MFIdentifierExpression *)mf_create_expression(MF_IDENTIFIER_EXPRESSION);
@@ -776,6 +787,14 @@ primary_expression: IDENTIFIER
 				expr.memberName = (__bridge_transfer NSString *)$3;
 				$$ = (__bridge_retained void *)expr;
 			}
+
+            | primary_expression DOT key_work_identifier
+            {
+                MFMemberExpression *expr = (MFMemberExpression *)mf_create_expression(MF_MEMBER_EXPRESSION);
+                expr.expr = (__bridge_transfer MFExpression *)$1;
+                expr.memberName = (__bridge_transfer NSString *)$3;
+                $$ = (__bridge_retained void *)expr;
+            }
 			| primary_expression DOT selector LP RP
 			{
 				MFExpression *expr = (__bridge_transfer MFExpression *)$1;

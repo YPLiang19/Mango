@@ -223,7 +223,7 @@ class SubMyController:SuperMyController {
         __weak id weakSelf = self;
         self.block = ^{
             __strong id strongSelf = weakSelf;
-            NSLog(weakSelf);
+            NSLog(strongSelf.class());
         };
 }
 
