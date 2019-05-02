@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MFDeclarationModifier.h"
 @class MFTypeSpecifier;
-
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,11 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) unsigned long long uintValue;
 @property (assign, nonatomic) long long integerValue;
 @property (assign, nonatomic) double doubleValue;
-@property (strong, nonatomic, nullable) id objectValue;
+@property (nonatomic) id objectValue;
 @property (strong, nonatomic, nullable) Class classValue;
 @property (assign, nonatomic, nullable) SEL selValue;
 @property (assign, nonatomic, nullable) const char * cstringValue;
 @property (assign, nonatomic, nullable) void *pointerValue;
+
+@property (assign,nonatomic)MFDeclarationModifier modifier;
 
 - (BOOL)isSubtantial;
 - (BOOL)isObject;

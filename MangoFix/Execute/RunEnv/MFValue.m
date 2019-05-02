@@ -15,6 +15,8 @@
 
 @implementation MFValue{
     MFTypeSpecifier *_type;
+    __strong id _strongObj;
+    __weak id _weakObj;
 }
 
 - (instancetype)init{
@@ -40,7 +42,7 @@
 		case MF_TYPE_OBJECT:
 		case MF_TYPE_STRUCT_LITERAL:
 		case MF_TYPE_BLOCK:
-			return _objectValue ? YES : NO;
+			return self.objectValue ? YES : NO;
 		case MF_TYPE_STRUCT:
 		case MF_TYPE_POINTER:
 			return _pointerValue ? YES : NO;
@@ -101,7 +103,7 @@
 			break;
 		case MF_TYPE_BLOCK:
 		case MF_TYPE_OBJECT:
-			_objectValue = [src c2objectValue];
+			self.objectValue = [src c2objectValue];
 			break;
 		case MF_TYPE_CLASS:
 			_classValue = [src c2objectValue];
@@ -183,7 +185,7 @@
 			return _classValue;
 		case MF_TYPE_OBJECT:
 		case MF_TYPE_BLOCK:
-			return _objectValue;
+			return self.objectValue;
 		case MF_TYPE_POINTER:
 			return (__bridge id)_pointerValue;
 		default:
@@ -202,7 +204,7 @@
 			return (__bridge void*)_classValue;
 		case MF_TYPE_OBJECT:
 		case MF_TYPE_BLOCK:
-			return (__bridge void*)_objectValue;
+			return (__bridge void*)self.objectValue;
 		default:
 			return NULL;
 	}
@@ -254,7 +256,7 @@ break;\
 			}else if (_type.typeKind == MF_TYPE_STRUCT_LITERAL){
 				NSString *structName = mf_struct_name_with_encoding(typeEncoding);
 				MFStructDeclareTable *table = [MFStructDeclareTable shareInstance];
-				mf_struct_data_with_dic(cvaluePointer, _objectValue, [table getStructDeclareWithName:structName]);
+				mf_struct_data_with_dic(cvaluePointer, self.objectValue, [table getStructDeclareWithName:structName]);
 			}
 			break;
 		}
@@ -300,9 +302,11 @@ break;\
 		case '@':{
 			retValue.type = mf_create_type_specifier(MF_TYPE_OBJECT);
 			if (bridgeTransfer) {
-				retValue.objectValue = (__bridge_transfer id)(*(void **)cValuePointer);
+                id objectValue = (__bridge_transfer id)(*(void **)cValuePointer);
+                retValue.objectValue = objectValue;
 			}else{
-				retValue.objectValue = (__bridge id)(*(void **)cValuePointer);
+                id objectValue = (__bridge id)(*(void **)cValuePointer);
+                retValue.objectValue = objectValue;
 			}
 			
 			break;
@@ -382,9 +386,13 @@ break;\
 		case '@':
 			value.type = mf_create_type_specifier(MF_TYPE_OBJECT);
 			break;
-		case '{':
+        case '{':{
 			value.type = mf_create_struct_type_specifier(mf_struct_name_with_encoding(typeEncoding));
+            value.type.structName =  mf_struct_name_with_encoding(typeEncoding);
+            size_t size = mf_struct_size_with_encoding(typeEncoding);
+            value.pointerValue = malloc(size);
 			break;
+        }
 		case 'v':
 			value.type = mf_create_type_specifier(MF_TYPE_VOID);
 			break;
@@ -501,7 +509,7 @@ break;\
 			value.objectValue = [NSString stringWithFormat:@"%p",_pointerValue];
 			break;
 		case MF_TYPE_STRUCT_LITERAL:
-			value.objectValue = [NSString stringWithFormat:@"%@",_objectValue];
+			value.objectValue = [NSString stringWithFormat:@"%@",self.objectValue];
 			break;
 		case MF_TYPE_C_STRING:
 			value.objectValue = [NSString stringWithFormat:@"%s",_cstringValue];
@@ -525,6 +533,21 @@ break;\
 	if (_type.typeKind == MF_TYPE_STRUCT) {
 		free(_pointerValue);
 	}
+}
+
+-(void)setObjectValue:(id)objectValue{
+    if (self.modifier == MFDeclarationModifierWeak) {
+        _weakObj = objectValue;
+    }else{
+        _strongObj = objectValue;
+    }
+}
+- (id)objectValue{
+    if (self.modifier == MFDeclarationModifierWeak) {
+        return _weakObj;
+    }else{
+        return _strongObj;
+    }
 }
 
 

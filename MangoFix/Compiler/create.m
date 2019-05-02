@@ -174,8 +174,9 @@ void mf_build_block_expr(MFBlockExpression *expr, MFTypeSpecifier *returnTypeSpe
 }
 
 
-MFDeclaration *mf_create_declaration(MFTypeSpecifier *type, NSString *name, MFExpression *initializer){
+MFDeclaration *mf_create_declaration(MFDeclarationModifier modifier, MFTypeSpecifier *type, NSString *name, MFExpression *initializer){
 	MFDeclaration *declaration = [[MFDeclaration alloc] init];
+    declaration.modifier = modifier;
 	declaration.type = type;
 	declaration.name = name;
 	declaration.initializer = initializer;
@@ -253,7 +254,7 @@ MFForEachStatement *mf_create_for_each_statement(MFTypeSpecifier *typeSpecifier,
 	MFForEachStatement *statement = [[MFForEachStatement alloc] init];
 	statement.kind = MFStatementKindForEach;
 	if (typeSpecifier) {
-		statement.declaration = mf_create_declaration(typeSpecifier, varName, nil);
+		statement.declaration = mf_create_declaration(MFDeclarationModifierNone,typeSpecifier, varName, nil);
 	}else{
 		MFIdentifierExpression *varExpr = (MFIdentifierExpression *)mf_create_expression(MF_IDENTIFIER_EXPRESSION);
 		varExpr.identifier = varName;

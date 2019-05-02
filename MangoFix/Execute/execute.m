@@ -34,20 +34,21 @@ const void *mf_propKey(NSString *propName) {
 }
 
 
-static MFValue *default_value_with_type_specifier(MFInterpreter *inter, MFTypeSpecifier *typeSpecifier){
-	MFValue *value = [[MFValue alloc] init];
-	value.type = typeSpecifier;
-	if (typeSpecifier.typeKind == MF_TYPE_STRUCT) {
-		 size_t size = mf_struct_size_with_encoding([typeSpecifier typeEncoding]);
-		value.pointerValue = malloc(size);
-	}
-	return value;
+static MFValue *default_value_with_type_specifier( MFTypeSpecifier *typeSpecifier,MFDeclarationModifier modifier){
+    MFValue *value = [[MFValue alloc] init];
+    value.modifier = modifier;
+    value.type = typeSpecifier;
+    if (typeSpecifier.typeKind == MF_TYPE_STRUCT) {
+         size_t size = mf_struct_size_with_encoding([typeSpecifier typeEncoding]);
+        value.pointerValue = malloc(size);
+    }
+    return value;
 }
 
 
 
 static void execute_declaration(MFInterpreter *inter, MFScopeChain *scope, MFDeclaration *declaration){
-	MFValue *value = default_value_with_type_specifier(inter, declaration.type);
+	MFValue *value = default_value_with_type_specifier(declaration.type,declaration.modifier);
 	if (declaration.initializer) {
 		MFValue *initValue = mf_eval_expression(inter, scope, declaration.initializer);
 		[value assignFrom:initValue];

@@ -142,6 +142,8 @@ static void increment_line_number(){
 <INITIAL>"SEL" {return SEL_; }
 <INITIAL>"Block" {return BLOCK; }
 <INITIAL>"Pointer" {return POINTER; }
+<INITIAL>"__weak" {return __WEAK; }
+<INITIAL>"__strong" {return __STRONG; }
 
 <INITIAL>"self" {
 	MFExpression *expression = mf_create_expression(MF_SELF_EXPRESSION);

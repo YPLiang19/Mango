@@ -218,8 +218,12 @@ class SubMyController:SuperMyController {
 		self.view.addSubview:(view);
 		view.backgroundColor = UIColor.redColor();
 		self.rotateView = view;
+
+
+        __weak id weakSelf = self;
         self.block = ^{
-            NSLog(view);
+            __strong id strongSelf = weakSelf;
+            NSLog(weakSelf);
         };
 }
 
