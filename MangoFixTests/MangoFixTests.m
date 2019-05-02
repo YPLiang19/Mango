@@ -161,7 +161,10 @@
     
     struct CGRect retStruct = [ivarTest testStructIvar];
     
-    NSLog(@"");
+    XCTAssertEqual(retStruct.origin.x, 1,@"retStruct.origin.x");
+    XCTAssertEqual(retStruct.origin.y, 2,@"retStruct.origin.y");
+    XCTAssertEqual(retStruct.size.width, 3,@"retStruct.size.width");
+    XCTAssertEqual(retStruct.size.height, 4,@"retStruct.size.height");
     
 }
 
