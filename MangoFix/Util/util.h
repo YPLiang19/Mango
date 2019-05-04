@@ -30,7 +30,6 @@ inline static  char *removeTypeEncodingPrefix(char *typeEncoding){
 const char * mf_str_append(const char *str1, const char *str2);
 ffi_type *mf_ffi_type_with_type_encoding(const char *typeEncoding);
 size_t mf_size_with_encoding(const char *typeEncoding);
-size_t mf_struct_size_with_encoding(const char *typeEncoding);
 NSString * mf_struct_name_with_encoding(const char *typeEncoding);
 void mf_struct_data_with_dic(void *structData, NSDictionary *dic, MFStructDeclare *declare);
 objc_AssociationPolicy mf_AssociationPolicy_with_PropertyModifier(MFPropertyModifier);

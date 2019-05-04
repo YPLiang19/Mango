@@ -20,33 +20,51 @@
 
 @end
 
+
 @implementation MFIdentifierExpression
+
 @end
+
 
 @implementation MFAssignExpression
+
 @end
+
 
 @implementation MFBinaryExpression
+
 @end
 
+
 @implementation MFTernaryExpression
+
 @end
+
 
 @implementation MFUnaryExpression
 
 @end
 
+
 @implementation MFMemberExpression
+
 @end
+
 
 @implementation MFFunctonCallExpression
+
 @end
+
 
 @implementation MFSubScriptExpression
+
 @end
 
+
 @implementation MFStructEntry
+
 @end
+
 
 @implementation MFStructpression
 
@@ -56,6 +74,7 @@
 
 @end
 
+
 @implementation MFDictionaryExpression
 
 @end
@@ -64,6 +83,7 @@
 @implementation MFArrayExpression
 
 @end
+
 
 @implementation MFBlockExpression
 

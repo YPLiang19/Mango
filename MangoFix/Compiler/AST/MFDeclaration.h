@@ -11,12 +11,17 @@
 @class MFTypeSpecifier;
 @class MFExpression;
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface MFDeclaration: NSObject
+
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (strong, nonatomic) MFTypeSpecifier *type;
 @property (assign,nonatomic) MFDeclarationModifier modifier;
 @property (copy, nonatomic) NSString *name;
-@property (strong, nonatomic) MFExpression *initializer;
+@property (strong, nonatomic,nullable) MFExpression *initializer;
 //@property (assign, nonatomic,getter=isParam) BOOL param;
+
 @end
+
+NS_ASSUME_NONNULL_END

@@ -13,10 +13,10 @@
 @class MFStack;
 
 @interface MFInterpreter : NSObject
+
 @property (assign, nonatomic) NSUInteger currentLineNumber;
 @property (strong, nonatomic) NSMutableDictionary<NSString *, MFStructDeclare *> *structDeclareDic;
 @property (strong, nonatomic) NSMutableDictionary<NSString *, MFClassDefinition *> *classDefinitionDic;
-
 
 @property (strong, nonatomic) NSMutableArray *topList;
 @property (strong, nonatomic) MFClassDefinition *currentClassDefinition;
@@ -25,17 +25,9 @@
 @property (strong, nonatomic) MFScopeChain *topScope;
 @property (strong, nonatomic) MFScopeChain *commonScope;
 
-
-
-
 @property (strong, nonatomic) MFStack *stack;
 
 - (void)compileSoruceWithURL:(NSURL *)url;
 - (void)compileSoruceWithString:(NSString *)source;
-
-
-
-
-
 
 @end

@@ -251,7 +251,7 @@ break;\
 		}
 		case '{':{
 			if (_type.typeKind == MF_TYPE_STRUCT) {
-				size_t structSize = mf_struct_size_with_encoding(typeEncoding);
+				size_t structSize = mf_size_with_encoding(typeEncoding);
 				memcpy(cvaluePointer, self.pointerValue, structSize);
 			}else if (_type.typeKind == MF_TYPE_STRUCT_LITERAL){
 				NSString *structName = mf_struct_name_with_encoding(typeEncoding);
@@ -389,7 +389,7 @@ break;\
         case '{':{
 			value.type = mf_create_struct_type_specifier(mf_struct_name_with_encoding(typeEncoding));
             value.type.structName =  mf_struct_name_with_encoding(typeEncoding);
-            size_t size = mf_struct_size_with_encoding(typeEncoding);
+            size_t size = mf_size_with_encoding(typeEncoding);
             value.pointerValue = malloc(size);
 			break;
         }
@@ -476,7 +476,7 @@ break;\
 	MFValue *value = [[MFValue alloc] init];
 	value.type = mf_create_type_specifier(MF_TYPE_SEL);
 	value.type.structName = mf_struct_name_with_encoding(typeEncoding);
-	size_t size = mf_struct_size_with_encoding(typeEncoding);
+	size_t size = mf_size_with_encoding(typeEncoding);
 	value.pointerValue = malloc(size);
 	memcpy(value.pointerValue, structValue, size);
 	return value;

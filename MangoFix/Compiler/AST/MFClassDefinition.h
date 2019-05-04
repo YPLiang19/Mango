@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, AnnotationIfExprResult) {
 };
 
 
+
 typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 	MFPropertyModifierMemStrong = 0x00,
 	MFPropertyModifierMemWeak = 0x01,
@@ -31,14 +32,16 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 };
 
 
-
-
 @interface MFMemberDefinition: NSObject
+
 @property (strong, nonatomic) MFExpression *annotationIfConditionExpr;
 @property (weak, nonatomic) MFClassDefinition *classDefinition;
+
 @end
 
+
 @interface MFPropertyDefinition: MFMemberDefinition
+
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (assign, nonatomic) MFPropertyModifier modifier;
 @property (strong, nonatomic) MFTypeSpecifier *typeSpecifier;
@@ -48,6 +51,7 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 
 
 @interface MFMethodNameItem: NSObject
+
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) MFParameter *param;
 
@@ -55,12 +59,15 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 
 
 @interface MFMethodDefinition: MFMemberDefinition
+
 @property (assign, nonatomic) BOOL classMethod;
 @property (strong, nonatomic) MFFunctionDefinition *functionDefinition;
+
 @end
 
 
 @interface MFClassDefinition : NSObject
+
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *superNmae;

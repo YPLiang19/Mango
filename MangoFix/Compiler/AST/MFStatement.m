@@ -19,44 +19,56 @@
 
 
 @implementation MFDeclarationStatement
+
 @end
 
 
 @implementation MFElseIf
+
 @end
 
 @implementation MFIfStatement
+
 @end
 
 
 @implementation MFCase
+
 @end
 
 @implementation MFSwitchStatement
+
 @end
 
 @implementation MFForStatement
+
 @end
 
 @implementation MFForEachStatement
+
 @end
 
 @implementation MFWhileStatement
+
 @end
 
 
 @implementation MFDoWhileStatement
+
 @end
 
 @implementation MFContinueStatement
+
 @end
 
 
 @implementation MFBreakStatement
+
 @end
 
 
 @implementation MFReturnStatement
+
 @end
 
 

@@ -1261,7 +1261,7 @@ break;\
 				}
 				
 				NSString *subTypeEncoding = [types substringWithRange:NSMakeRange(i, end - i + 1)];
-				size_t size = mf_struct_size_with_encoding(subTypeEncoding.UTF8String);
+				size_t size = mf_size_with_encoding(subTypeEncoding.UTF8String);
 				if(j == index){
 					void *value = structData + postion;
 					MFValue *retValue = [[MFValue alloc] init];

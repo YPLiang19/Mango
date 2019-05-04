@@ -26,7 +26,9 @@ typedef NS_ENUM(NSInteger, MFStatementKind) {
 };
 
 @interface MFStatement : NSObject
+
 @property (assign, nonatomic) MFStatementKind kind;
+
 @end
 
 
@@ -41,7 +43,9 @@ typedef NS_ENUM(NSInteger, MFStatementKind) {
 
 
 @interface MFDeclarationStatement: MFStatement
+
 @property (strong, nonatomic) MFDeclaration *declaration;
+
 @end
 
 
@@ -63,52 +67,68 @@ typedef NS_ENUM(NSInteger, MFStatementKind) {
 
 
 @interface MFCase: MFStatement
+
 @property (strong, nonatomic) MFExpression *expr;
 @property (strong, nonatomic) MFBlockBody *block;
+
 @end
 
 @interface MFSwitchStatement: MFStatement
+
 @property (strong, nonatomic) MFExpression *expr;
 @property (strong, nonatomic) NSArray<MFCase *> *caseList;
 @property (strong, nonatomic) MFBlockBody *defaultBlock;
+
 @end
 
 @interface MFForStatement: MFStatement
+
 @property (strong, nonatomic) MFExpression *initializerExpr;
 @property (strong, nonatomic) MFDeclaration *declaration;
 @property (strong, nonatomic) MFExpression *condition;
 @property (strong, nonatomic) MFExpression *post;
 @property (strong, nonatomic) MFBlockBody *block;
+
 @end
 
 @interface MFForEachStatement: MFStatement
+
 @property (strong, nonatomic) MFDeclaration *declaration;
 @property (strong, nonatomic) MFIdentifierExpression *identifierExpr;
 @property (strong, nonatomic) MFExpression *collectionExpr;
 @property (strong, nonatomic) MFBlockBody *block;
+
 @end
 
 @interface MFWhileStatement: MFStatement
+
 @property (strong, nonatomic) MFExpression *condition;
 @property (strong, nonatomic) MFBlockBody *block;
+
 @end
 
 
 @interface MFDoWhileStatement: MFStatement
+
 @property (strong, nonatomic) MFBlockBody *block;
 @property (strong, nonatomic) MFExpression *condition;
+
 @end
 
 @interface MFContinueStatement: MFStatement
+
 @end
 
 
 @interface MFBreakStatement: MFStatement
+
 @end
 
 
 @interface MFReturnStatement: MFStatement
+
 @property (strong, nonatomic) MFExpression *retValExpr;
+
 @end
 
 

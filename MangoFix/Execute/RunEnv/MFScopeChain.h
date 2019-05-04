@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) MFScopeChain *next;
 
 + (instancetype)scopeChainWithNext:(MFScopeChain *)next;
-- (MFValue *)getValueWithIdentifier:(NSString *)identifier endScope:(nullable MFScopeChain *)endScope;
+- (nullable MFValue *)getValueWithIdentifier:(NSString *)identifier endScope:(nullable MFScopeChain *)endScope;
 - (MFValue *)getValueWithIdentifierInChain:(NSString *)identifier;
 - (MFValue *)getValueWithIdentifier:(NSString *)identifer;
 - (void)setValue:(MFValue *)value withIndentifier:(NSString *)identier;

@@ -116,119 +116,16 @@ static ffi_type *_ffi_type_with_type_encoding(NSString *typeEncoding){
 	return NULL;
 }
 
-static size_t _struct_size_with_encoding(NSString *typeEncoding){
-	
-	NSString *types = [typeEncoding substringToIndex:typeEncoding.length-1];
-	NSUInteger location = [types rangeOfString:@"="].location+1;
-	types = [types substringFromIndex:location];
-	
-	size_t size = 0;
-	size_t index = 0;
-	const char *encoding = types.UTF8String;
-#define STRUCE_SZIE_CASE(_code,_type)\
-case _code:\
-size += sizeof(_type);\
-break;
-	while (encoding[index]) {
-		switch (encoding[index]) {
-				STRUCE_SZIE_CASE('c', char)
-				STRUCE_SZIE_CASE('i', int)
-				STRUCE_SZIE_CASE('s', short)
-				STRUCE_SZIE_CASE('l', long)
-				STRUCE_SZIE_CASE('q', long long)
-				STRUCE_SZIE_CASE('C', unsigned char)
-				STRUCE_SZIE_CASE('I', unsigned int)
-				STRUCE_SZIE_CASE('S', unsigned short)
-				STRUCE_SZIE_CASE('L', unsigned long)
-				STRUCE_SZIE_CASE('Q', unsigned long long);
-				STRUCE_SZIE_CASE('f', float);
-				STRUCE_SZIE_CASE('d', double)
-				STRUCE_SZIE_CASE('D', long double)
-				STRUCE_SZIE_CASE('B', BOOL);
-				STRUCE_SZIE_CASE('^', void *)
-				STRUCE_SZIE_CASE('*', char *)
-			case '{':{
-				size_t stackSize = 1;
-				size_t end = index + 1;
-				for (char c = encoding[end]; c ; end++, c = encoding[end]) {
-					if (c == '{') {
-						stackSize++;
-					}else if (c == '}') {
-						stackSize--;
-						if (stackSize == 0) {
-							break;
-						}
-					}
-				}
-				
-				NSString *subTypeEncoding = [types substringWithRange:NSMakeRange(index, end - index + 1)];
-				size += _struct_size_with_encoding(subTypeEncoding);
-				index += end - index;
-				break;
-			}
-				
-			default:
-				break;
-		}
-		index++;
-	}
-	
-#undef STRUCE_SZIE_CASE
-	return size;
+ffi_type *mf_ffi_type_with_type_encoding(const char *typeEncoding){
+    return _ffi_type_with_type_encoding([NSString stringWithUTF8String:typeEncoding]);
 }
 
 size_t mf_size_with_encoding(const char *typeEncoding){
-	typeEncoding = removeTypeEncodingPrefix((char *)typeEncoding);
-	switch (*typeEncoding) {
-		case 'v':
-			return sizeof(void);
-		case 'c':
-			return sizeof(char);
-		case 'i':
-			return sizeof(int);
-		case 's':
-			return sizeof(short);
-		case 'l':
-			return sizeof(long);
-		case 'q':
-			return sizeof(long long int);
-		case 'C':
-			return sizeof(unsigned char);
-		case 'I':
-			return sizeof(unsigned int);
-		case 'S':
-			return sizeof(unsigned short);
-		case 'L':
-			return sizeof(unsigned long);
-		case 'Q':
-			return sizeof(unsigned long long int);
-		case 'f':
-			return sizeof(float);
-		case 'd':
-			return sizeof(double);
-		case 'D':
-			return sizeof(long double);
-		case 'B':
-			return sizeof(BOOL);
-		case '^':
-			return sizeof(void *);
-		case '*':
-			return sizeof(char *);
-		case '@':
-			return sizeof(id);
-		case '#':
-			return sizeof(Class);
-		case ':':
-			return sizeof(SEL);
-		case '{':
-			return _struct_size_with_encoding([NSString stringWithUTF8String:typeEncoding]);
-		default:
-			NSCAssert(0, @"");
-			break;
-	}
-	return 0;
+    NSUInteger size;
+    NSUInteger alignp;
+    NSGetSizeAndAlignment(typeEncoding, &size, &alignp);
+    return size;
 }
-
 
 
 void mf_struct_data_with_dic(void *structData,NSDictionary *dic, MFStructDeclare *declare){
@@ -282,7 +179,7 @@ break;\
 				}
 				
 				NSString *subTypeEncoding = [types substringWithRange:NSMakeRange(index, end - index + 1)];
-				size_t size = mf_struct_size_with_encoding(subTypeEncoding.UTF8String);
+				size_t size = mf_size_with_encoding(subTypeEncoding.UTF8String);
 				NSString *subStructName = mf_struct_name_with_encoding(subTypeEncoding.UTF8String);
 				MFStructDeclare *subStructDeclare = [[MFStructDeclareTable shareInstance] getStructDeclareWithName:subStructName];
 				id subStruct = dic[key];
@@ -311,15 +208,6 @@ break;\
 static NSString *_struct_name_with_encoding(NSString *typeEncoding){
 	NSUInteger end = [typeEncoding rangeOfString:@"="].location;
 	return [typeEncoding substringWithRange:NSMakeRange(1, end -1)];
-}
-
-ffi_type *mf_ffi_type_with_type_encoding(const char *typeEncoding){
-	return _ffi_type_with_type_encoding([NSString stringWithUTF8String:typeEncoding]);
-}
-
-size_t mf_struct_size_with_encoding(const char *typeEncoding){
-	return _struct_size_with_encoding([NSString stringWithUTF8String:typeEncoding]);
-	
 }
 
 

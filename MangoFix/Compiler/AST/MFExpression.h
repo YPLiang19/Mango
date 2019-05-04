@@ -58,6 +58,7 @@ typedef NS_ENUM(NSInteger, MFExpressionKind) {
 
 
 @interface MFExpression : NSObject
+
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (assign, nonatomic) MFExpressionKind expressionKind;
 @property (assign, nonatomic) BOOL boolValue;
@@ -68,11 +69,15 @@ typedef NS_ENUM(NSInteger, MFExpressionKind) {
 @property (copy, nonatomic) NSString *selectorName;
 @property (strong, nonatomic) NSString *currentClassName;
 @property (copy, nonatomic) NSString *debugString;
+
 - (instancetype)initWithExpressionKind:(MFExpressionKind)expressionKind;
+
 @end
 
 @interface MFIdentifierExpression: MFExpression
+
 @property (copy, nonatomic) NSString *identifier;
+
 @end
 
 
@@ -87,9 +92,11 @@ typedef NS_ENUM(NSInteger, MFAssignKind) {
 
 
 @interface MFAssignExpression: MFExpression
+
 @property (assign, nonatomic) MFAssignKind assignKind;
 @property (strong, nonatomic) MFExpression *left;
 @property (strong, nonatomic) MFExpression *right;
+
 @end
 
 @interface MFBinaryExpression: MFExpression
@@ -101,17 +108,20 @@ typedef NS_ENUM(NSInteger, MFAssignKind) {
 
 
 @interface MFTernaryExpression: MFExpression
+
 @property (strong, nonatomic) MFExpression *condition;
 @property (strong, nonatomic) MFExpression *trueExpr;
 @property (strong, nonatomic) MFExpression *falseExpr;
 
 @end
 
+
 @interface MFUnaryExpression: MFExpression
 
 @property (strong, nonatomic) MFExpression *expr;
 
 @end
+
 
 @interface MFMemberExpression: MFExpression
 
@@ -138,24 +148,27 @@ typedef NS_ENUM(NSInteger, MFAssignKind) {
 @end
 
 
-
 @interface MFStructEntry:NSObject
+
 @property (copy, nonatomic) NSString *key;
 @property (strong, nonatomic) MFExpression *valueExpr;
+
 @end
 
 @interface MFStructpression: MFExpression
+
 @property (strong, nonatomic) NSArray<MFStructEntry *> *entriesExpr;
 
 @end
 
 
-
 @interface MFDicEntry: NSObject
+
 @property (strong, nonatomic) MFExpression *keyExpr;
 @property (strong, nonatomic) MFExpression *valueExpr;
 
 @end
+
 
 @interface MFDictionaryExpression: MFExpression
 
@@ -172,6 +185,7 @@ typedef NS_ENUM(NSInteger, MFAssignKind) {
 
 
 @interface MFBlockExpression: MFExpression
+
 @property (strong, nonatomic) MFFunctionDefinition *func;
 
 @end

@@ -144,7 +144,6 @@
     [self loadMango:@"MFObjectPropertyTest"];
     MFObjectPropertyTest *objectPropertyTest = [[MFObjectPropertyTest alloc] init];
     XCTAssertEqualObjects([objectPropertyTest testObjectPropertyTest], @"Mango",@"testObjectPropertyTest");
-    id x = [objectPropertyTest testIvar];
     XCTAssertEqualObjects([objectPropertyTest testIvar], @"Mango-testIvar",@"testIvar");
     
 }

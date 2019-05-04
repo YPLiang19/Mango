@@ -31,5 +31,4 @@ typedef NS_ENUM(NSUInteger, ANATypeSpecifierKind) {
 @property (assign, nonatomic) ANATypeSpecifierKind typeKind;
 @property (assign, nonatomic, readonly) const char * typeEncoding;
 
-
 @end

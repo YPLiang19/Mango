@@ -39,7 +39,7 @@ static MFValue *default_value_with_type_specifier( MFTypeSpecifier *typeSpecifie
     value.modifier = modifier;
     value.type = typeSpecifier;
     if (typeSpecifier.typeKind == MF_TYPE_STRUCT) {
-         size_t size = mf_struct_size_with_encoding([typeSpecifier typeEncoding]);
+        size_t size = mf_size_with_encoding([typeSpecifier typeEncoding]);
         value.pointerValue = malloc(size);
     }
     return value;

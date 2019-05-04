@@ -14,9 +14,11 @@
 @class MFMethodDefinition;
 
 @interface MFParameter:NSObject
+
 @property (strong, nonatomic) MFTypeSpecifier *type;
 @property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic) NSUInteger lineNumber;
+
 @end
 
 typedef NS_ENUM(NSUInteger,MFFunctionDefinitionKind) {
@@ -32,6 +34,5 @@ typedef NS_ENUM(NSUInteger,MFFunctionDefinitionKind) {
 @property (copy, nonatomic) NSString *name;//or selecor
 @property (strong, nonatomic) NSArray<MFParameter *> *params;
 @property (strong, nonatomic) MFBlockBody *block;
-
 
 @end
