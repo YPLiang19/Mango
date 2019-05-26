@@ -26,6 +26,8 @@
 #import "MFCustomStructDeclareTest.h"
 #import "MFGCDTest.h"
 #import "MFCallOCReturnBlockTest.h"
+#import "MFDispatchSemaphoreTest.h"
+#import "MFDispatchSourceTest.h"
 
 
 @interface MangoFixTest : XCTestCase
@@ -181,6 +183,21 @@
     MFCallOCReturnBlockTest *callOCReturnBlockTest = [[MFCallOCReturnBlockTest alloc] init];
     id retValue = [callOCReturnBlockTest testCallOCReturnBlock];
     XCTAssertEqualObjects(retValue, @"ab",@"testCallOCReturnBlock");
+}
+
+
+- (void)testDispatchSemaphore{
+    [self loadMango:@"MFDispatchSemaphoreTest"];
+    MFDispatchSemaphoreTest *dispatchSemaphoreTest = [[MFDispatchSemaphoreTest alloc] init];
+    BOOL retValue = [dispatchSemaphoreTest testDispatchSemaphore];
+    XCTAssert(retValue,@"testDispatchSemaphore");
+}
+
+- (void)testDispatchSource{
+    [self loadMango:@"MFDispatchSourceTest"];
+    MFDispatchSourceTest *dispatchSourceTest = [[MFDispatchSourceTest alloc] init];
+    NSInteger count = [dispatchSourceTest testDispatchSource];
+    XCTAssertEqual(count,10, @"testDispatchSource");
 }
 
 

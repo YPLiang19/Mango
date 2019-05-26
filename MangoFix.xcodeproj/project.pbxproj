@@ -31,6 +31,10 @@
 		8977D893224CD3FA0048A954 /* MFConditionalReplaceTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8977D892224CD3FA0048A954 /* MFConditionalReplaceTest.mg */; };
 		8977D895224CD4520048A954 /* MFCustomStructDeclareTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8977D894224CD4520048A954 /* MFCustomStructDeclareTest.mg */; };
 		8977D897224CD4BD0048A954 /* MFGCDTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8977D896224CD4BD0048A954 /* MFGCDTest.mg */; };
+		8980F33A229A7EC20072A79C /* MFDispatchSemaphoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8980F339229A7EC20072A79C /* MFDispatchSemaphoreTest.m */; };
+		8980F33C229A7EE70072A79C /* MFDispatchSemaphoreTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8980F33B229A7EE70072A79C /* MFDispatchSemaphoreTest.mg */; };
+		8980F33F229A7FA90072A79C /* MFDispatchSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8980F33E229A7FA90072A79C /* MFDispatchSourceTest.m */; };
+		8980F341229A7FBE0072A79C /* MFDispatchSourceTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8980F340229A7FBE0072A79C /* MFDispatchSourceTest.mg */; };
 		8981407C2279EE970023257B /* MFVarDeclareChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8981407A2279EE970023257B /* MFVarDeclareChain.m */; };
 		89814084227ACEDD0023257B /* MangoFix.h in Headers */ = {isa = PBXBuildFile; fileRef = 89967268224BFE6F00C7DACB /* MangoFix.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		89814085227ACEE70023257B /* MFDeclarationModifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 8981407E227ACA060023257B /* MFDeclarationModifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -122,6 +126,12 @@
 		8977D892224CD3FA0048A954 /* MFConditionalReplaceTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFConditionalReplaceTest.mg; sourceTree = "<group>"; };
 		8977D894224CD4520048A954 /* MFCustomStructDeclareTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFCustomStructDeclareTest.mg; sourceTree = "<group>"; };
 		8977D896224CD4BD0048A954 /* MFGCDTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFGCDTest.mg; sourceTree = "<group>"; };
+		8980F338229A7EC20072A79C /* MFDispatchSemaphoreTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFDispatchSemaphoreTest.h; sourceTree = "<group>"; };
+		8980F339229A7EC20072A79C /* MFDispatchSemaphoreTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFDispatchSemaphoreTest.m; sourceTree = "<group>"; };
+		8980F33B229A7EE70072A79C /* MFDispatchSemaphoreTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFDispatchSemaphoreTest.mg; sourceTree = "<group>"; };
+		8980F33D229A7FA90072A79C /* MFDispatchSourceTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFDispatchSourceTest.h; sourceTree = "<group>"; };
+		8980F33E229A7FA90072A79C /* MFDispatchSourceTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFDispatchSourceTest.m; sourceTree = "<group>"; };
+		8980F340229A7FBE0072A79C /* MFDispatchSourceTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFDispatchSourceTest.mg; sourceTree = "<group>"; };
 		898140792279EE970023257B /* MFVarDeclareChain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFVarDeclareChain.h; sourceTree = "<group>"; };
 		8981407A2279EE970023257B /* MFVarDeclareChain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFVarDeclareChain.m; sourceTree = "<group>"; };
 		8981407E227ACA060023257B /* MFDeclarationModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFDeclarationModifier.h; sourceTree = "<group>"; };
@@ -325,6 +335,12 @@
 				895EC4F5224CC4920062CBF8 /* MFGCDTest.h */,
 				895EC4F6224CC4920062CBF8 /* MFGCDTest.m */,
 				8977D896224CD4BD0048A954 /* MFGCDTest.mg */,
+				8980F338229A7EC20072A79C /* MFDispatchSemaphoreTest.h */,
+				8980F339229A7EC20072A79C /* MFDispatchSemaphoreTest.m */,
+				8980F33B229A7EE70072A79C /* MFDispatchSemaphoreTest.mg */,
+				8980F33D229A7FA90072A79C /* MFDispatchSourceTest.h */,
+				8980F33E229A7FA90072A79C /* MFDispatchSourceTest.m */,
+				8980F340229A7FBE0072A79C /* MFDispatchSourceTest.mg */,
 				89674F75226BCD3300EE2DDA /* MFCallOCReturnBlockTest.h */,
 				89674F73226BCD3200EE2DDA /* MFCallOCReturnBlockTest.m */,
 				89674F74226BCD3200EE2DDA /* MFCallOCReturnBlockTest.mg */,
@@ -546,6 +562,7 @@
 				89F9610E224CE41100ADFF07 /* MFObjectPropertyTest.mg in Resources */,
 				89F96106224CDF2200ADFF07 /* MFAddGlobalVarTest.mg in Resources */,
 				8977D893224CD3FA0048A954 /* MFConditionalReplaceTest.mg in Resources */,
+				8980F341229A7FBE0072A79C /* MFDispatchSourceTest.mg in Resources */,
 				8977D887224CCB910048A954 /* MFBranchStatementTest.mg in Resources */,
 				89674F77226BCD3300EE2DDA /* MFCallOCReturnBlockTest.mg in Resources */,
 				8977D88B224CCC710048A954 /* MFInstanceMethodReplaceTest.mg in Resources */,
@@ -558,6 +575,7 @@
 				8977D897224CD4BD0048A954 /* MFGCDTest.mg in Resources */,
 				89F96113224CE9C700ADFF07 /* MFOriginalMethodTest.mg in Resources */,
 				8977D88D224CCF200048A954 /* MFClassMethodReplaceTest.mg in Resources */,
+				8980F33C229A7EE70072A79C /* MFDispatchSemaphoreTest.mg in Resources */,
 				89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */,
 				8977D895224CD4520048A954 /* MFCustomStructDeclareTest.mg in Resources */,
 			);
@@ -606,6 +624,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				89674F76226BCD3300EE2DDA /* MFCallOCReturnBlockTest.m in Sources */,
+				8980F33F229A7FA90072A79C /* MFDispatchSourceTest.m in Sources */,
+				8980F33A229A7EC20072A79C /* MFDispatchSemaphoreTest.m in Sources */,
 				89674F7A226DC2FA00EE2DDA /* MFBasePropertyTest.m in Sources */,
 				895EC4F4224CC4690062CBF8 /* MFSuperMethodReplaceTest.m in Sources */,
 				895EC4E8224CC2C90062CBF8 /* MFConditionalReplaceTest.m in Sources */,
