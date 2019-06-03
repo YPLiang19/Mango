@@ -13,10 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MFObjectPropertyTest : NSObject
 
 @property(nonatomic,copy)NSString *strTypeProperty;
+@property (assign, nonatomic) NSInteger num;
 
 - (NSString *)testObjectPropertyTest;
 - (id)testWeakObjectProperty;
 - (id)testIvar;
+- (NSInteger)testProMathAdd;
 
 @end
 

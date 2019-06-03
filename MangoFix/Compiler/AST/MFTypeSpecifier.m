@@ -67,8 +67,8 @@
 		st_dic = @{
 				 @(MF_TYPE_VOID):@"void",
 				 @(MF_TYPE_BOOL):@"BOOL",
-				 @(MF_TYPE_INT):@"int(long long int)",
-				 @(MF_TYPE_U_INT):@"uint(unsigned long long int)",
+				 @(MF_TYPE_INT):@"int(int64_t)",
+				 @(MF_TYPE_U_INT):@"uint(uint64_t)",
 				 @(MF_TYPE_DOUBLE):@"double",
 				 @(MF_TYPE_C_STRING):@"cstring(char *)",
 				 @(MF_TYPE_POINTER):@"pointer(char *)",

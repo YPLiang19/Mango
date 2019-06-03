@@ -51,11 +51,16 @@ struct MFGOSimulateBlockDescriptor {
 		const char *signature;
 	};
 };
+
+
 @interface MFBlock : NSObject
+
 @property (strong, nonatomic) MFScopeChain *outScope;
 @property (strong, nonatomic) MFFunctionDefinition *func;
 @property (weak, nonatomic) MFInterpreter *inter;
 @property (assign, nonatomic) const char *typeEncoding;
+
 - (id)ocBlock;
 + (const char *)typeEncodingForBlock:(id)block;
+
 @end

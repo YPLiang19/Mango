@@ -22,6 +22,10 @@ class MFObjectPropertyTest : NSObject{
     _strTypeProperty = @"Mango-testIvar";
     return _strTypeProperty;
 }
+- (NSInteger)testProMathAdd{
+    self.num += 10;
+    return self.num;
 
+}
 
 }

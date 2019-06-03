@@ -24,10 +24,12 @@
 #import "MFObjectPropertyTest.h"
 #import "MFIvarTest.h"
 #import "MFCustomStructDeclareTest.h"
+#import "MFStructMemberAssignTest.h"
 #import "MFGCDTest.h"
 #import "MFCallOCReturnBlockTest.h"
 #import "MFDispatchSemaphoreTest.h"
 #import "MFDispatchSourceTest.h"
+#import "MFCallSuperNoArgTest.h"
 
 
 @interface MangoFixTest : XCTestCase
@@ -147,6 +149,8 @@
     MFObjectPropertyTest *objectPropertyTest = [[MFObjectPropertyTest alloc] init];
     XCTAssertEqualObjects([objectPropertyTest testObjectPropertyTest], @"Mango",@"testObjectPropertyTest");
     XCTAssertEqualObjects([objectPropertyTest testIvar], @"Mango-testIvar",@"testIvar");
+    NSInteger num = [objectPropertyTest testProMathAdd];
+    XCTAssertEqual(num, 10,@"testProMathAdd");
     
 }
 
@@ -178,6 +182,22 @@
     XCTAssertEqual(customStruct.y, 220,@"testCustomStructDeclareWithCGRect");
 }
 
+- (void)testStructMemberAssign{
+    [self loadMango:@"MFStructMemberAssignTest"];
+    MFStructMemberAssignTest *structMemberAssignTest = [[MFStructMemberAssignTest alloc] init];
+    struct CGRect rect = [structMemberAssignTest testStructMemberAssign1];
+    XCTAssertEqual(rect.origin.x, 10,@"testStructMemberAssign1");
+    XCTAssertEqual(rect.origin.y, 11,@"testStructMemberAssign1");
+    XCTAssertEqual(rect.size.width, 100,@"testStructMemberAssign1");
+    XCTAssertEqual(rect.size.height, 101,@"testStructMemberAssign1");
+    CGPoint point = [structMemberAssignTest testStructMemberAssign2];
+    XCTAssertEqual(point.x, 10,@"testStructMemberAssign2");
+    XCTAssertEqual(point.y, 100,@"testStructMemberAssign2");
+
+    
+    
+}
+
 - (void)testCallOCReturnBlock{
     [self loadMango:@"MFCallOCReturnBlockTest"];
     MFCallOCReturnBlockTest *callOCReturnBlockTest = [[MFCallOCReturnBlockTest alloc] init];
@@ -200,6 +220,12 @@
     XCTAssertEqual(count,10, @"testDispatchSource");
 }
 
+- (void)testCallSuperNoArgTestSupser{
+    [self loadMango:@"MFCallSuperNoArgTest"];
+    MFCallSuperNoArgTest *callSuperNoArgTest = [[MFCallSuperNoArgTest alloc] init];
+    BOOL retVale = [callSuperNoArgTest testCallSuperNoArgTestSupser];
+    XCTAssert(retVale,@"testCallSuperNoArgTestSupser");
+}
 
 
 - (void)testGCD{

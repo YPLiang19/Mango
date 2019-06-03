@@ -21,4 +21,8 @@
 - (id)testIvar{
     return nil;
 }
+
+- (NSInteger)testProMathAdd{
+    return 0;
+}
 @end
