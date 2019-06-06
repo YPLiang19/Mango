@@ -37,7 +37,7 @@ static void add_built_in_struct_declare(){
 	MFStructDeclare *uiEdgeInsetsStructDeclare = [[MFStructDeclare alloc] initWithName:@"UIEdgeInsets" typeEncoding:"{UIEdgeInsets=dddd}" keys:@[@"top",@"left",@"bottom",@"right"]];
 	[table addStructDeclare:uiEdgeInsetsStructDeclare];
 	
-	MFStructDeclare *caTransform3DStructDeclare = [[MFStructDeclare alloc] initWithName:@"CATransform3D" typeEncoding:"" keys:@[@"m11",@"m12",@"m13",@"m14",@"m21",@"m22",@"m23",@"m24",@"m31",@"m32",@"m33",@"m34",@"41",@"m42",@"m43",@"m44",]];
+	MFStructDeclare *caTransform3DStructDeclare = [[MFStructDeclare alloc] initWithName:@"CATransform3D" typeEncoding:"{CATransform3D=dddddddddddddddd}" keys:@[@"m11",@"m12",@"m13",@"m14",@"m21",@"m22",@"m23",@"m24",@"m31",@"m32",@"m33",@"m34",@"41",@"m42",@"m43",@"m44",]];
 	[table addStructDeclare:caTransform3DStructDeclare];
 	
 }
@@ -351,18 +351,101 @@ static void add_build_in_function(MFInterpreter *interpreter){
 	[interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^void (id obj){
 		NSLog(@"%@",obj);
 	}] withIndentifier:@"NSLog"];
+    
+    
+    //Specifier: d, o, u, x, or X
+    //Length modifier: l, ll
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^NSString *(NSString * _Nonnull format, NSNumber *num){
+        if (format.length < 2){
+            goto err;
+        }
+        if (![format hasPrefix:@"%"]) {
+            goto err;
+        }
+        if ([format hasSuffix:@"lld"]) {
+            return [NSString stringWithFormat:format,num.longLongValue];
+        }
+        if ([format hasSuffix:@"llu"] || [format hasSuffix:@"llo"] || [format hasSuffix:@"llx"] || [format hasSuffix:@"llX"]) {
+            return [NSString stringWithFormat:format,num.unsignedLongLongValue];
+        }
+        
+        if ([format hasSuffix:@"ld"]) {
+            return [NSString stringWithFormat:format,num.longValue];
+        }
+        if ([format hasSuffix:@"lu"] || [format hasSuffix:@"lo"] || [format hasSuffix:@"lx"] || [format hasSuffix:@"lX"]) {
+            return [NSString stringWithFormat:format,num.unsignedLongValue];
+        }
+        
+        if ([format hasSuffix:@"d"]) {
+            return [NSString stringWithFormat:format,num.intValue];
+        }
+        
+        if ([format hasSuffix:@"u"] || [format hasSuffix:@"o"] || [format hasSuffix:@"x"] || [format hasSuffix:@"X"]) {
+            return [NSString stringWithFormat:format,num.unsignedIntValue];
+        }
+        
+        if ([format hasSuffix:@"lf"]) {
+            return [NSString stringWithFormat:format,num.doubleValue];
+        }
+        
+        if ([format hasSuffix:@"f"]) {
+            return [NSString stringWithFormat:format,num.floatValue];
+        }
+        err: NSCAssert(0, @"not support format %@",format);
+        return nil;
+    }] withIndentifier:@"fmt_num"];
 	
 }
 static void add_build_in_var(MFInterpreter *inter){
 	[inter.commonScope setValue:[MFValue valueInstanceWithObject:NSRunLoopCommonModes] withIndentifier:@"NSRunLoopCommonModes"];
 	[inter.commonScope setValue:[MFValue valueInstanceWithObject:NSDefaultRunLoopMode] withIndentifier:@"NSDefaultRunLoopMode"];
-	
-	
+
 	[inter.commonScope setValue:[MFValue valueInstanceWithDouble:M_PI] withIndentifier:@"M_PI"];
 	[inter.commonScope setValue:[MFValue valueInstanceWithDouble:M_PI_2] withIndentifier:@"M_PI_2"];
 	[inter.commonScope setValue:[MFValue valueInstanceWithDouble:M_PI_4] withIndentifier:@"M_PI_4"];
 	[inter.commonScope setValue:[MFValue valueInstanceWithDouble:M_1_PI] withIndentifier:@"M_1_PI"];
 	[inter.commonScope setValue:[MFValue valueInstanceWithDouble:M_2_PI] withIndentifier:@"M_2_PI"];
+    
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchDown] withIndentifier:@"UIControlEventTouchDown"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchDownRepeat] withIndentifier:@"UIControlEventTouchDownRepeat"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchDragInside] withIndentifier:@"UIControlEventTouchDragInside"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchDragOutside] withIndentifier:@"UIControlEventTouchDragOutside"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchDragEnter] withIndentifier:@"UIControlEventTouchDragEnter"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchDragExit] withIndentifier:@"UIControlEventTouchDragExit"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchUpInside] withIndentifier:@"UIControlEventTouchUpInside"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchUpOutside] withIndentifier:@"UIControlEventTouchUpOutside"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventTouchCancel] withIndentifier:@"UIControlEventTouchCancel"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventValueChanged] withIndentifier:@"UIControlEventValueChanged"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:1 << 13] withIndentifier:@"UIControlEventPrimaryActionTriggered"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventEditingDidBegin] withIndentifier:@"UIControlEventEditingDidBegin"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventEditingChanged] withIndentifier:@"UIControlEventEditingChanged"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventEditingDidEnd] withIndentifier:@"UIControlEventEditingDidEnd"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventEditingDidEndOnExit] withIndentifier:@"UIControlEventEditingDidEndOnExit"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventAllTouchEvents] withIndentifier:@"UIControlEventAllTouchEvents"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventAllEditingEvents] withIndentifier:@"UIControlEventAllEditingEvents"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventApplicationReserved] withIndentifier:@"UIControlEventApplicationReserved"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventSystemReserved] withIndentifier:@"UIControlEventSystemReserved"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlEventAllEvents] withIndentifier:@"UIControlEventAllEvents"];
+    
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentVerticalAlignmentCenter] withIndentifier:@"UIControlContentVerticalAlignmentCenter"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentVerticalAlignmentTop] withIndentifier:@"UIControlContentVerticalAlignmentTop"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentVerticalAlignmentBottom] withIndentifier:@"UIControlContentVerticalAlignmentBottom"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentVerticalAlignmentFill] withIndentifier:@"UIControlContentVerticalAlignmentFill"];
+    
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentHorizontalAlignmentCenter] withIndentifier:@"UIControlContentHorizontalAlignmentCenter"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentHorizontalAlignmentLeft] withIndentifier:@"UIControlContentHorizontalAlignmentLeft"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentHorizontalAlignmentRight] withIndentifier:@"UIControlContentHorizontalAlignmentRight"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:UIControlContentHorizontalAlignmentFill] withIndentifier:@"UIControlContentHorizontalAlignmentFill"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:4] withIndentifier:@"UIControlContentHorizontalAlignmentLeading"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithInt:5] withIndentifier:@"UIControlContentHorizontalAlignmentTrailing"];
+    
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlStateNormal] withIndentifier:@"UIControlStateNormal"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlStateHighlighted] withIndentifier:@"UIControlStateHighlighted"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlStateDisabled] withIndentifier:@"UIControlStateDisabled"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlStateSelected] withIndentifier:@"UIControlStateSelected"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:1 << 3] withIndentifier:@"UIControlStateFocused"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlStateApplication] withIndentifier:@"UIControlStateApplication"];
+    [inter.commonScope setValue:[MFValue valueInstanceWithUint:UIControlStateReserved] withIndentifier:@"UIControlStateReserved"];
 	
 	UIDevice *device = [UIDevice currentDevice];
 	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];

@@ -72,7 +72,9 @@
 		899672A4224BFE6F00C7DACB /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967269224BFE6F00C7DACB /* util.m */; };
 		89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C671B2224E15050092C30F /* MFOperatorTest.m */; };
 		89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89C671B4224E152D0092C30F /* MFOperatorTest.mg */; };
+		89D5304A22A8E5D9005DCF2F /* MFFormatNumberTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */; };
 		89E7A53A227255D00052728B /* MFIvarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E7A539227255D00052728B /* MFIvarTest.m */; };
+		89EC123622A8E51900EC9298 /* MFFormatNumberTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EC123522A8E51900EC9298 /* MFFormatNumberTest.m */; };
 		89EE6453227257D300C7DD7A /* MFIvarTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89EE6452227257D300C7DD7A /* MFIvarTest.mg */; };
 		89EE645722725FBB00C7DD7A /* MFPropertyMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EE645522725FBB00C7DD7A /* MFPropertyMapTable.m */; };
 		89EE645B2272C87F00C7DD7A /* MFWeakPropertyBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EE64592272C87F00C7DD7A /* MFWeakPropertyBox.m */; };
@@ -212,8 +214,11 @@
 		89C671B1224E15050092C30F /* MFOperatorTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFOperatorTest.h; sourceTree = "<group>"; };
 		89C671B2224E15050092C30F /* MFOperatorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFOperatorTest.m; sourceTree = "<group>"; };
 		89C671B4224E152D0092C30F /* MFOperatorTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFOperatorTest.mg; sourceTree = "<group>"; };
+		89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFFormatNumberTest.mg; sourceTree = "<group>"; };
 		89E7A538227255D00052728B /* MFIvarTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFIvarTest.h; sourceTree = "<group>"; };
 		89E7A539227255D00052728B /* MFIvarTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFIvarTest.m; sourceTree = "<group>"; };
+		89EC123422A8E51900EC9298 /* MFFormatNumberTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFFormatNumberTest.h; sourceTree = "<group>"; };
+		89EC123522A8E51900EC9298 /* MFFormatNumberTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFFormatNumberTest.m; sourceTree = "<group>"; };
 		89EE6452227257D300C7DD7A /* MFIvarTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFIvarTest.mg; sourceTree = "<group>"; };
 		89EE645422725FBB00C7DD7A /* MFPropertyMapTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFPropertyMapTable.h; sourceTree = "<group>"; };
 		89EE645522725FBB00C7DD7A /* MFPropertyMapTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFPropertyMapTable.m; sourceTree = "<group>"; };
@@ -360,6 +365,9 @@
 				8972EEBE22A4D5CD009D49DB /* MFCallSuperNoArgTest.h */,
 				8972EEBF22A4D5CD009D49DB /* MFCallSuperNoArgTest.m */,
 				8972EEC122A4D696009D49DB /* MFCallSuperNoArgTest.mg */,
+				89EC123422A8E51900EC9298 /* MFFormatNumberTest.h */,
+				89EC123522A8E51900EC9298 /* MFFormatNumberTest.m */,
+				89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */,
 				899671A2224BFD2A00C7DACB /* MangoFixTests.m */,
 				899671A4224BFD2A00C7DACB /* Info.plist */,
 			);
@@ -581,6 +589,7 @@
 				8980F341229A7FBE0072A79C /* MFDispatchSourceTest.mg in Resources */,
 				8977D887224CCB910048A954 /* MFBranchStatementTest.mg in Resources */,
 				89674F77226BCD3300EE2DDA /* MFCallOCReturnBlockTest.mg in Resources */,
+				89D5304A22A8E5D9005DCF2F /* MFFormatNumberTest.mg in Resources */,
 				8977D88B224CCC710048A954 /* MFInstanceMethodReplaceTest.mg in Resources */,
 				8977D88F224CD3DE0048A954 /* MFSuperMethodReplaceTest.mg in Resources */,
 				89EE6453227257D300C7DD7A /* MFIvarTest.mg in Resources */,
@@ -642,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89674F76226BCD3300EE2DDA /* MFCallOCReturnBlockTest.m in Sources */,
+				89EC123622A8E51900EC9298 /* MFFormatNumberTest.m in Sources */,
 				8980F33F229A7FA90072A79C /* MFDispatchSourceTest.m in Sources */,
 				8972EEB922A0E6FE009D49DB /* MFStructMemberAssignTest.m in Sources */,
 				8980F33A229A7EC20072A79C /* MFDispatchSemaphoreTest.m in Sources */,
@@ -729,7 +739,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -785,7 +795,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -808,6 +818,7 @@
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFix/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -838,6 +849,7 @@
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFix/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

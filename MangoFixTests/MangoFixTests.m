@@ -30,6 +30,7 @@
 #import "MFDispatchSemaphoreTest.h"
 #import "MFDispatchSourceTest.h"
 #import "MFCallSuperNoArgTest.h"
+#import "MFFormatNumberTest.h"
 
 
 @interface MangoFixTest : XCTestCase
@@ -239,6 +240,13 @@
     [self waitForExpectationsWithTimeout:5.0 handler:^(NSError * _Nullable error) {
         NSLog(@"%@",error);
     }];
+}
+
+- (void)testFormat{
+    [self loadMango:@"MFFormatNumberTest"];
+    MFFormatNumberTest *formatNumberTest = [[MFFormatNumberTest alloc] init];
+    NSString *retVale = [formatNumberTest testFormatNumber];
+    XCTAssertEqualObjects(retVale, @"255-377-ff-FF-255-377-ff-FF-255-377-ff-FF-255.000000-255.000000-255.00-255.00",@"testFormatNumber");
 }
 
 @end

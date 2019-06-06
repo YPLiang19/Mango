@@ -175,13 +175,13 @@ self.resultView.text = @"here is Mango method";
 int a = 1;
 
 class SuperMyController:UIViewController{
-
+/*
 - (void)viewDidLoad {
     super.viewDidLoad();
     self.view.backgroundColor = UIColor.blueColor();
     self.testMasonry();
 }
-
+*/
 
 - (void)testMasonry{
     UIView *superview = self.view;
@@ -222,9 +222,21 @@ class SubMyController:SuperMyController {
 
         __weak id weakSelf = self;
         self.block = ^{
-            __strong id strongSelf = weakSelf;
+            __strong ids strongSelf = weakSelf;
             NSLog(strongSelf.class());
         };
+
+
+UIButton *btn = UIButton.alloc().initWithFrame:(CGRectMake(100, 300, 200, 50));
+btn.setBackgroundColor:(UIColor.redColor());
+btn.setTitle:forState:(@"test btn click", UIControlStateNormal);
+btn.addTarget:action:forControlEvents:(self, @selector(btnDidClicked:), UIControlEventTouchUpInside);
+self.view.addSubview:(btn);
+
+}
+
+- (void)btnDidClicked:(id)btn{
+        NSLog(@"1---" + btn + @"btn clicked");
 }
 
 }
