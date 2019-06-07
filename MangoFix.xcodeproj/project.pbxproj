@@ -829,6 +829,7 @@
 					"$(PROJECT_DIR)/Mango/libffi",
 					"$(PROJECT_DIR)/MangoFix/libffi",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hujiang.jim.MangoFix;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -860,6 +861,7 @@
 					"$(PROJECT_DIR)/Mango/libffi",
 					"$(PROJECT_DIR)/MangoFix/libffi",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hujiang.jim.MangoFix;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
