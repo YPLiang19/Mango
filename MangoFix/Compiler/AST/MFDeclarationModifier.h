@@ -9,9 +9,10 @@
 #ifndef MFDeclarationModifier_h
 #define MFDeclarationModifier_h
 
-typedef NS_ENUM(NSInteger,MFDeclarationModifier) {
-    MFDeclarationModifierNone,
-    MFDeclarationModifierStrong,
-    MFDeclarationModifierWeak
+typedef NS_OPTIONS(NSUInteger,MFDeclarationModifier) {
+    MFDeclarationModifierNone       = 1,
+    MFDeclarationModifierStrong     = 1 << 1,
+    MFDeclarationModifierWeak       = 1 << 2,
+    MFDeclarationModifierStatic     = 1 << 3,
 };
 #endif /* MFDeclarationModifier_h */

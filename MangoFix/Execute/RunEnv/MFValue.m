@@ -581,7 +581,7 @@ break;\
 
 
 -(void)setObjectValue:(id)objectValue{
-    if (self.modifier == MFDeclarationModifierWeak) {
+    if (self.modifier & MFDeclarationModifierWeak) {
         _weakObj = objectValue;
     }else{
         _strongObj = objectValue;
@@ -590,11 +590,54 @@ break;\
 
 
 - (id)objectValue{
-    if (self.modifier == MFDeclarationModifierWeak) {
+    if (self.modifier & MFDeclarationModifierWeak) {
         return _weakObj;
     }else{
         return _strongObj;
     }
+}
+
+-(void *)valuePointer{
+    void *retPtr = NULL;
+    switch (_type.typeKind) {
+        case MF_TYPE_BOOL:
+        case MF_TYPE_U_INT:
+            retPtr = &_uintValue;
+            break;
+        case MF_TYPE_INT:
+            retPtr = &_integerValue;
+            break;
+        case MF_TYPE_DOUBLE:
+            retPtr = &_doubleValue;
+            break;
+        case MF_TYPE_CLASS:
+            retPtr = &_classValue;
+            break;
+        case MF_TYPE_BLOCK:
+        case MF_TYPE_STRUCT_LITERAL:
+        case MF_TYPE_OBJECT:{
+            if (self.modifier & MFDeclarationModifierWeak) {
+                retPtr = &_weakObj;
+            }else{
+                retPtr = &_strongObj;
+            }
+            break;
+        }
+        case MF_TYPE_SEL:
+            retPtr = &_selValue;
+            break;
+        case MF_TYPE_STRUCT:
+        case MF_TYPE_POINTER:
+            retPtr = &_pointerValue;
+            break;
+        case MF_TYPE_C_STRING:
+            retPtr = &_cstringValue;
+            break;
+        default:
+            NSCAssert(0, @"");
+            break;
+    }
+    return retPtr;
 }
 
 @end

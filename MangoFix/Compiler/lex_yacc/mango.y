@@ -44,12 +44,12 @@ int yylex(void);
 %token <expression> YES_
 %token <expression> NO_
 
-%token COLON SEMICOLON COMMA  LP RP LB RB LC RC  QUESTION DOT ASSIGN AT POWER
+%token COLON SEMICOLON COMMA  LP RP LB RB LC RC  QUESTION DOT ASSIGN AT ADDRESS POWER
 	AND OR NOT EQ NE LT LE GT GE SUB SUB_ASSIGN ADD ADD_ASSIGN ASTERISK_ASSIGN DIV DIV_ASSIGN MOD MOD_ASSIGN INCREMENT DECREMENT
 	ANNOTATION_IF CLASS STRUCT DECLARE SELECTOR
 	RETURN IF ELSE FOR IN WHILE DO SWITCH CASE DEFAULT BREAK CONTINUE
 	PROPERTY WEAK STRONG COPY ASSIGN_MEM NONATOMIC ATOMIC  ASTERISK  VOID
-	BOOL_ U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG
+	BOOL_ U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC
 
 
 
@@ -77,7 +77,7 @@ break_statement continue_statement return_statement declaration_statement
 %type <else_if> else_if
 %type <function_param> function_param
 %type <declaration> declaration
-%type <declaration_modifier> declaration_modifier
+%type <declaration_modifier> declaration_modifier declaration_modifier_list
 %%
 
 compile_util: /*empty*/
@@ -780,6 +780,16 @@ primary_expression: IDENTIFIER
 				expr.identifier = identifier;
 				$$ = (__bridge_retained void *)expr;
 			}
+            | ADDRESS IDENTIFIER
+            {
+                MFIdentifierExpression *identiferExpr = (MFIdentifierExpression *)mf_create_expression(MF_IDENTIFIER_EXPRESSION);
+                NSString *identifier = (__bridge_transfer NSString *)$2;;
+                identiferExpr.identifier = identifier;
+                
+                MFUnaryExpression *expr = (MFUnaryExpression *)mf_create_expression(MF_GET_ADDRESS_EXPRESSION);
+                expr.expr = identiferExpr;
+                $$ = (__bridge_retained void *)expr;
+            }
 			| primary_expression DOT IDENTIFIER
 			{
 				MFMemberExpression *expr = (MFMemberExpression *)mf_create_expression(MF_MEMBER_EXPRESSION);
@@ -1031,10 +1041,20 @@ declaration_modifier:__WEAK
             {
                $$ = MFDeclarationModifierStrong;
             }
+            | STATIC
+            {
+                $$ = MFDeclarationModifierStatic;
+            }
             ;
 
+declaration_modifier_list:declaration_modifier
+            | declaration_modifier_list declaration_modifier
+            {
+                $$ = $1 | $2;
+            }
+            ;
 
-declaration: declaration_modifier type_specifier IDENTIFIER
+declaration: declaration_modifier_list type_specifier IDENTIFIER
 			{
 				MFTypeSpecifier *type = (__bridge_transfer MFTypeSpecifier *)$2;
 				NSString *name = (__bridge_transfer NSString *)$3;
@@ -1042,7 +1062,7 @@ declaration: declaration_modifier type_specifier IDENTIFIER
                 
 				$$ = (__bridge_retained void *)declaration;
 			}
-			| declaration_modifier type_specifier IDENTIFIER ASSIGN expression
+			| declaration_modifier_list type_specifier IDENTIFIER ASSIGN expression
 			{
 				MFTypeSpecifier *type = (__bridge_transfer MFTypeSpecifier *)$2;
 				NSString *name = (__bridge_transfer NSString *)$3;

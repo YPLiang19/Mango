@@ -1438,6 +1438,15 @@ static void eval_at_expression(MFInterpreter *inter, MFScopeChain *scope,MFUnary
 	[inter.stack push:resultValue];
 }
 
+static void eval_get_address_expresion(MFInterpreter *inter, MFScopeChain *scope,MFUnaryExpression *expr){
+    eval_expression(inter, scope, expr.expr);
+    MFValue *value = [inter.stack pop];
+    MFValue *resultValue = [MFValue new];
+    resultValue.type = mf_create_type_specifier(MF_TYPE_POINTER);
+    resultValue.pointerValue = [value valuePointer];
+    [inter.stack push:resultValue];
+}
+
 
 static void eval_struct_expression(MFInterpreter *inter, MFScopeChain *scope, MFStructpression *expr){
 	NSMutableDictionary *structDic = [NSMutableDictionary dictionary];
@@ -1603,9 +1612,6 @@ static void eval_function_call_expression(MFInterpreter *inter, MFScopeChain *sc
 					MFValue *retValue = invoke(expr.lineNumber, inter, scope, [memberObj c2objectValue], sel, expr.args);
 					[inter.stack push:retValue];
 					break;
-					
-					
-					
 				}
 			}
 			
@@ -1744,6 +1750,9 @@ static void eval_expression(MFInterpreter *inter, MFScopeChain *scope, __kindof 
 		case MF_AT_EXPRESSION:
 			eval_at_expression(inter, scope, expr);
 			break;
+        case MF_GET_ADDRESS_EXPRESSION:
+            eval_get_address_expresion(inter, scope, expr);
+            break;
 		case NSC_NEGATIVE_EXPRESSION:
 			eval_negative_expression(inter, scope, expr);
 			break;

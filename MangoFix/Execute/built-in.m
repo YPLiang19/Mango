@@ -274,6 +274,16 @@ static void add_gcd_build_in(MFInterpreter *inter){
         dispatch_source_set_registration_handler(source, handler);
     }] withIndentifier:@"dispatch_source_set_registration_handler"];
     
+    
+    /*dispatch_once*/
+    [inter.commonScope setValue:[MFValue valueInstanceWithBlock:^void(dispatch_once_t *onceTokenPtr,
+                                                                      dispatch_block_t _Nullable handler){
+        dispatch_once(onceTokenPtr,handler);
+    }] withIndentifier:@"dispatch_once"];
+    
+    
+    
+    
 }
 
 static void add_build_in_function(MFInterpreter *interpreter){

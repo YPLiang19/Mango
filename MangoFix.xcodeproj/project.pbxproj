@@ -73,6 +73,12 @@
 		89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C671B2224E15050092C30F /* MFOperatorTest.m */; };
 		89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89C671B4224E152D0092C30F /* MFOperatorTest.mg */; };
 		89D5304A22A8E5D9005DCF2F /* MFFormatNumberTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */; };
+		89E6A66922AA31B700F6D02C /* MFStaticVarTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 89E6A66722AA31B700F6D02C /* MFStaticVarTable.h */; };
+		89E6A66A22AA31B700F6D02C /* MFStaticVarTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E6A66822AA31B700F6D02C /* MFStaticVarTable.m */; };
+		89E6A66D22AA3A1100F6D02C /* MFStaticVarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E6A66C22AA3A1100F6D02C /* MFStaticVarTest.m */; };
+		89E6A66F22AA3A5B00F6D02C /* MFStaticVarTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89E6A66E22AA3A5B00F6D02C /* MFStaticVarTest.mg */; };
+		89E6A67222AA3D8F00F6D02C /* MFGetAddressOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E6A67122AA3D8F00F6D02C /* MFGetAddressOperatorTest.m */; };
+		89E6A67422AA3DB300F6D02C /* MFGetAddressOperatorTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89E6A67322AA3DB300F6D02C /* MFGetAddressOperatorTest.mg */; };
 		89E7A53A227255D00052728B /* MFIvarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E7A539227255D00052728B /* MFIvarTest.m */; };
 		89EC123622A8E51900EC9298 /* MFFormatNumberTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EC123522A8E51900EC9298 /* MFFormatNumberTest.m */; };
 		89EE6453227257D300C7DD7A /* MFIvarTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89EE6452227257D300C7DD7A /* MFIvarTest.mg */; };
@@ -215,6 +221,14 @@
 		89C671B2224E15050092C30F /* MFOperatorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFOperatorTest.m; sourceTree = "<group>"; };
 		89C671B4224E152D0092C30F /* MFOperatorTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFOperatorTest.mg; sourceTree = "<group>"; };
 		89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFFormatNumberTest.mg; sourceTree = "<group>"; };
+		89E6A66722AA31B700F6D02C /* MFStaticVarTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFStaticVarTable.h; sourceTree = "<group>"; };
+		89E6A66822AA31B700F6D02C /* MFStaticVarTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFStaticVarTable.m; sourceTree = "<group>"; };
+		89E6A66B22AA3A1100F6D02C /* MFStaticVarTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFStaticVarTest.h; sourceTree = "<group>"; };
+		89E6A66C22AA3A1100F6D02C /* MFStaticVarTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFStaticVarTest.m; sourceTree = "<group>"; };
+		89E6A66E22AA3A5B00F6D02C /* MFStaticVarTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFStaticVarTest.mg; sourceTree = "<group>"; };
+		89E6A67022AA3D8F00F6D02C /* MFGetAddressOperatorTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFGetAddressOperatorTest.h; sourceTree = "<group>"; };
+		89E6A67122AA3D8F00F6D02C /* MFGetAddressOperatorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFGetAddressOperatorTest.m; sourceTree = "<group>"; };
+		89E6A67322AA3DB300F6D02C /* MFGetAddressOperatorTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFGetAddressOperatorTest.mg; sourceTree = "<group>"; };
 		89E7A538227255D00052728B /* MFIvarTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFIvarTest.h; sourceTree = "<group>"; };
 		89E7A539227255D00052728B /* MFIvarTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFIvarTest.m; sourceTree = "<group>"; };
 		89EC123422A8E51900EC9298 /* MFFormatNumberTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFFormatNumberTest.h; sourceTree = "<group>"; };
@@ -368,6 +382,12 @@
 				89EC123422A8E51900EC9298 /* MFFormatNumberTest.h */,
 				89EC123522A8E51900EC9298 /* MFFormatNumberTest.m */,
 				89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */,
+				89E6A66B22AA3A1100F6D02C /* MFStaticVarTest.h */,
+				89E6A66C22AA3A1100F6D02C /* MFStaticVarTest.m */,
+				89E6A66E22AA3A5B00F6D02C /* MFStaticVarTest.mg */,
+				89E6A67022AA3D8F00F6D02C /* MFGetAddressOperatorTest.h */,
+				89E6A67122AA3D8F00F6D02C /* MFGetAddressOperatorTest.m */,
+				89E6A67322AA3DB300F6D02C /* MFGetAddressOperatorTest.mg */,
 				899671A2224BFD2A00C7DACB /* MangoFixTests.m */,
 				899671A4224BFD2A00C7DACB /* Info.plist */,
 			);
@@ -431,6 +451,8 @@
 				89967242224BFE6F00C7DACB /* MFStructDeclareTable.m */,
 				898140792279EE970023257B /* MFVarDeclareChain.h */,
 				8981407A2279EE970023257B /* MFVarDeclareChain.m */,
+				89E6A66722AA31B700F6D02C /* MFStaticVarTable.h */,
+				89E6A66822AA31B700F6D02C /* MFStaticVarTable.m */,
 			);
 			path = RunEnv;
 			sourceTree = "<group>";
@@ -494,6 +516,7 @@
 				895EC4DB224CAA2A0062CBF8 /* MFContext.h in Headers */,
 				89814085227ACEE70023257B /* MFDeclarationModifier.h in Headers */,
 				89814084227ACEDD0023257B /* MangoFix.h in Headers */,
+				89E6A66922AA31B700F6D02C /* MFStaticVarTable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +616,7 @@
 				8977D88B224CCC710048A954 /* MFInstanceMethodReplaceTest.mg in Resources */,
 				8977D88F224CD3DE0048A954 /* MFSuperMethodReplaceTest.mg in Resources */,
 				89EE6453227257D300C7DD7A /* MFIvarTest.mg in Resources */,
+				89E6A67422AA3DB300F6D02C /* MFGetAddressOperatorTest.mg in Resources */,
 				8977D891224CD3EC0048A954 /* MFMethodParameterListAndReturnValueTest.mg in Resources */,
 				89FC7DB4224C058200AFC0AC /* MFSequentialStatementTest.mg in Resources */,
 				8977D889224CCC620048A954 /* MFLoopStatementTest.mg in Resources */,
@@ -601,6 +625,7 @@
 				8972EEBB22A0E74E009D49DB /* MFStructMemberAssignTest.mg in Resources */,
 				89F96113224CE9C700ADFF07 /* MFOriginalMethodTest.mg in Resources */,
 				8977D88D224CCF200048A954 /* MFClassMethodReplaceTest.mg in Resources */,
+				89E6A66F22AA3A5B00F6D02C /* MFStaticVarTest.mg in Resources */,
 				8980F33C229A7EE70072A79C /* MFDispatchSemaphoreTest.mg in Resources */,
 				8972EEC222A4D696009D49DB /* MFCallSuperNoArgTest.mg in Resources */,
 				89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */,
@@ -617,6 +642,7 @@
 			files = (
 				8996729A224BFE6F00C7DACB /* MFClassDefinition.m in Sources */,
 				899672A1224BFE6F00C7DACB /* mango.y in Sources */,
+				89E6A66A22AA31B700F6D02C /* MFStaticVarTable.m in Sources */,
 				8996729F224BFE6F00C7DACB /* errrorc.m in Sources */,
 				899672A2224BFE6F00C7DACB /* mango.l in Sources */,
 				8996729C224BFE6F00C7DACB /* MFDeclaration.m in Sources */,
@@ -658,6 +684,7 @@
 				89674F7A226DC2FA00EE2DDA /* MFBasePropertyTest.m in Sources */,
 				895EC4F4224CC4690062CBF8 /* MFSuperMethodReplaceTest.m in Sources */,
 				895EC4E8224CC2C90062CBF8 /* MFConditionalReplaceTest.m in Sources */,
+				89E6A66D22AA3A1100F6D02C /* MFStaticVarTest.m in Sources */,
 				89F9610C224CE3F200ADFF07 /* MFObjectPropertyTest.m in Sources */,
 				899671A3224BFD2A00C7DACB /* MangoFixTests.m in Sources */,
 				89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */,
@@ -667,6 +694,7 @@
 				895EC4E2224CC1E30062CBF8 /* MFLoopStatementTest.m in Sources */,
 				895EC4DF224CC1AB0062CBF8 /* MFBranchStatementTest.m in Sources */,
 				895EC4F7224CC4920062CBF8 /* MFGCDTest.m in Sources */,
+				89E6A67222AA3D8F00F6D02C /* MFGetAddressOperatorTest.m in Sources */,
 				895EC4EB224CC30D0062CBF8 /* MFInstanceMethodReplaceTest.m in Sources */,
 				89F96109224CDF3D00ADFF07 /* MFAddGlobalVarTest.m in Sources */,
 				895EC4E5224CC2520062CBF8 /* MFMethodParameterListAndReturnValueTest.m in Sources */,

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)assignFrom:(MFValue *)src;
 - (void)assign2CValuePointer:(void *)cvaluePointer typeEncoding:(const char *)typeEncoding;
-
+-(nullable void *)valuePointer;
 @end
 
 NS_ASSUME_NONNULL_END

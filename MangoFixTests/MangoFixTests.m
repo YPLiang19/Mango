@@ -31,6 +31,8 @@
 #import "MFDispatchSourceTest.h"
 #import "MFCallSuperNoArgTest.h"
 #import "MFFormatNumberTest.h"
+#import "MFStaticVarTest.h"
+#import "MFGetAddressOperatorTest.h"
 
 
 @interface MangoFixTest : XCTestCase
@@ -247,6 +249,25 @@
     MFFormatNumberTest *formatNumberTest = [[MFFormatNumberTest alloc] init];
     NSString *retVale = [formatNumberTest testFormatNumber];
     XCTAssertEqualObjects(retVale, @"255-377-ff-FF-255-377-ff-FF-255-377-ff-FF-255.000000-255.000000-255.00-255.00",@"testFormatNumber");
+}
+
+- (void)testStaticVar{
+    [self loadMango:@"MFStaticVarTest"];
+    MFStaticVarTest *staticVarTest = [[MFStaticVarTest alloc] init];
+    NSInteger i1 = [staticVarTest testStaticVar];
+    NSInteger i2 = [staticVarTest testStaticVar];
+    NSInteger i3 = [staticVarTest testStaticVar];
+    XCTAssert(i1 == 1 && i2 == 2 && i3 == 3,@"testStaticVar");
+    NSLog(@"========= %qd,%qd,%qd",i1,i2,i3);
+}
+
+- (void)testGetAddressOperator{
+    [self loadMango:@"MFGetAddressOperatorTest"];
+    MFGetAddressOperatorTest *getAddressOperatorTest = [[MFGetAddressOperatorTest alloc] init];
+    NSInteger i1 = [getAddressOperatorTest testGetAddressOperator];
+    NSInteger i2 = [getAddressOperatorTest testGetAddressOperator];
+    NSInteger i3 = [getAddressOperatorTest testGetAddressOperator];
+    XCTAssert(i1 == 1 && i2 == 1 && i3 == 1,@"testGetAddressOperator");
 }
 
 @end

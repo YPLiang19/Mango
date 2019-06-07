@@ -18,6 +18,7 @@
 #import "MFValue+Private.h"
 #import "MFWeakPropertyBox.h"
 #import "MFPropertyMapTable.h"
+#import "MFStaticVarTable.h"
 
 const void *mf_propKey(NSString *propName) {
     static NSMutableDictionary *_propKeys;
@@ -48,12 +49,32 @@ static MFValue *default_value_with_type_specifier( MFTypeSpecifier *typeSpecifie
 
 
 static void execute_declaration(MFInterpreter *inter, MFScopeChain *scope, MFDeclaration *declaration){
-	MFValue *value = default_value_with_type_specifier(declaration.type,declaration.modifier);
-	if (declaration.initializer) {
-		MFValue *initValue = mf_eval_expression(inter, scope, declaration.initializer);
-		[value assignFrom:initValue];
-	}
-	[scope setValue:value withIndentifier:declaration.name];
+    BOOL staticVar = declaration.modifier & MFDeclarationModifierStatic;
+    __block MFValue *value = nil;
+    
+    void (^initValueBlock)(void) = ^(){
+        value = default_value_with_type_specifier(declaration.type,declaration.modifier);
+        if (declaration.initializer) {
+            MFValue *initValue = mf_eval_expression(inter, scope, declaration.initializer);
+            [value assignFrom:initValue];
+        }
+    };
+    
+    if (staticVar) {
+        NSString *key = [NSString stringWithFormat:@"%p",(void *)declaration];
+        value = [[MFStaticVarTable shareInstance] getStaticVarValueWithKey:key];
+        if (value) {
+            [scope setValue:value withIndentifier:declaration.name];
+        }else{
+            initValueBlock();
+            [scope setValue:value withIndentifier:declaration.name];
+            [[MFStaticVarTable shareInstance] setStaticVarValue:value withKey:key];
+        }
+    }else{
+        initValueBlock();
+        [scope setValue:value withIndentifier:declaration.name];
+    }
+	
 }
 
 

@@ -58,6 +58,7 @@ static void increment_line_number(){
 <INITIAL>"}" {return RC; }
 <INITIAL>"?" {return QUESTION; }
 <INITIAL>"." { return DOT; }
+<INITIAL>"&" {return ADDRESS; }
 <INITIAL>"@" { return AT; }
 
 
@@ -133,6 +134,7 @@ static void increment_line_number(){
 <INITIAL>"int" {return INT; }
 <INITIAL>"NSInteger" {return INT; }
 <INITIAL>"int64_t" {return INT; }
+<INITIAL>"dispatch_once_t" {return INT; }
 <INITIAL>"uint" {return U_INT; }
 <INITIAL>"NSUInteger" {return U_INT; }
 <INITIAL>"uint64_t" {return U_INT; }
@@ -146,6 +148,7 @@ static void increment_line_number(){
 <INITIAL>"Pointer" {return POINTER; }
 <INITIAL>"__weak" {return __WEAK; }
 <INITIAL>"__strong" {return __STRONG; }
+<INITIAL>"static" {return STATIC; }
 
 <INITIAL>"self" {
 	MFExpression *expression = mf_create_expression(MF_SELF_EXPRESSION);

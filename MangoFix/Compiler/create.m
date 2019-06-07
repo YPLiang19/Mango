@@ -114,6 +114,7 @@ Class mf_expression_class_of_kind(MFExpressionKind kind){
 		case MF_INCREMENT_EXPRESSION:
 		case MF_DECREMENT_EXPRESSION:
 		case NSC_NEGATIVE_EXPRESSION:
+        case MF_GET_ADDRESS_EXPRESSION:
 		case MF_AT_EXPRESSION:
 			return [MFUnaryExpression class];
 		case MF_SUB_SCRIPT_EXPRESSION:
@@ -174,9 +175,9 @@ void mf_build_block_expr(MFBlockExpression *expr, MFTypeSpecifier *returnTypeSpe
 }
 
 
-MFDeclaration *mf_create_declaration(MFDeclarationModifier modifier, MFTypeSpecifier *type, NSString *name, MFExpression *initializer){
+MFDeclaration *mf_create_declaration(MFDeclarationModifier modifier_list, MFTypeSpecifier *type, NSString *name, MFExpression *initializer){
 	MFDeclaration *declaration = [[MFDeclaration alloc] init];
-    declaration.modifier = modifier;
+    declaration.modifier = modifier_list;
 	declaration.type = type;
 	declaration.name = name;
 	declaration.initializer = initializer;

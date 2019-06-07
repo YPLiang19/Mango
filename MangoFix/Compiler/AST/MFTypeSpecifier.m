@@ -71,7 +71,7 @@
 				 @(MF_TYPE_U_INT):@"uint(uint64_t)",
 				 @(MF_TYPE_DOUBLE):@"double",
 				 @(MF_TYPE_C_STRING):@"cstring(char *)",
-				 @(MF_TYPE_POINTER):@"pointer(char *)",
+				 @(MF_TYPE_POINTER):@"pointer(void *)",
 				 @(MF_TYPE_CLASS):@"Class",
 				 @(MF_TYPE_SEL):@"SEL",
 				 @(MF_TYPE_OBJECT):@"id",

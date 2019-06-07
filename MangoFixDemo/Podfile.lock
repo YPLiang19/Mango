@@ -1,5 +1,5 @@
 PODS:
-  - MangoFix (1.1.10)
+  - MangoFix (1.2.0)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MangoFix: 4d2274ae0de89916a90e5d238bc3b2d3c100d2a6
+  MangoFix: 097688734402df8134b06feca6fb5e62371deeaf
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
 PODFILE CHECKSUM: d4c840804038b7a88dd36af2034601338236c188
