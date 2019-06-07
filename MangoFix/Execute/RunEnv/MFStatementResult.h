@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class MFValue;
 
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, MFStatementResultType) {
 	MFStatementResultTypeNormal,
@@ -19,9 +20,11 @@ typedef NS_ENUM(NSInteger, MFStatementResultType) {
 
 @interface MFStatementResult : NSObject
 @property (assign, nonatomic) MFStatementResultType type;
-@property (strong, nonatomic) MFValue *reutrnValue;
+@property (strong, nonatomic, nullable) MFValue *reutrnValue;
 + (instancetype)normalResult;
 + (instancetype)returnResult;
 + (instancetype)breakResult;
 + (instancetype)continueResult;
 @end
+
+NS_ASSUME_NONNULL_END

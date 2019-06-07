@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MFWeakPropertyBox : NSObject
 
 @property (weak)id target;
+
 - (instancetype)initWithTarget:(id)target;
 
 @end

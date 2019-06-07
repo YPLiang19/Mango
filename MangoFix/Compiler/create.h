@@ -102,6 +102,6 @@ MFInterpreter *mf_get_current_compile_util(void);
 
 void mf_set_current_compile_util(MFInterpreter *interpreter);
 
-void mf_compile_err(NSUInteger lineNumber,MFCompileError error,...);
+void mf_compile_err(int lineNumber,MFCompileError error,...);
 
 #endif /* create_h */

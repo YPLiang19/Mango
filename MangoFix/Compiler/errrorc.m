@@ -9,8 +9,8 @@
 #include <Foundation/Foundation.h>
 #import "create.h"
 
-void mf_compile_err(NSUInteger lineNumber,MFCompileError error,...){
-	NSLog(@"编译错误。。。。");
+void mf_compile_err(int lineNumber,MFCompileError error,...){
+    NSLog(@"line:%d",lineNumber);
 	exit(1);
 }
 

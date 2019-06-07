@@ -15,7 +15,7 @@ static int st_string_literal_buffer_alloc_size = 0;
 
 
 int yyerror(char const *str){
-	printf("line:%zd: %s\n",mf_get_current_compile_util().currentLineNumber,str);
+	printf("line:%d: %s\n",mf_get_current_compile_util().currentLineNumber,str);
 	return 0;
 }
 
@@ -313,7 +313,6 @@ MFBlockBody *mf_open_block_statement(){
 	block.outBlock = interpreter.currentBlock;
 	interpreter.currentBlock = block;
 	return block;
-	
 }
 
 
@@ -328,10 +327,10 @@ MFBlockBody *mf_close_block_statement(MFBlockBody *block, NSArray<MFStatement *>
 
 MFStructDeclare *mf_create_struct_declare(MFExpression *annotaionIfConditionExpr, NSString *structName, NSString *typeEncodingKey, MFExpression *typeEncodingValueExpr, NSString *keysKey, NSArray<NSString *> *keysValue){
 	if (![typeEncodingKey isEqualToString:@"typeEncoding"]) {
-		mf_compile_err(0, MFCompileErrorStructDeclareLackTypeEncoding);
+		mf_compile_err(mf_get_current_compile_util().currentLineNumber, MFCompileErrorStructDeclareLackTypeEncoding);
 	}
 	if (![keysKey isEqualToString:@"keys"]) {
-		mf_compile_err(0, MFCompileErrorStructDeclareLackTypeKeys);
+		mf_compile_err(mf_get_current_compile_util().currentLineNumber, MFCompileErrorStructDeclareLackTypeKeys);
 	}
     const char *typeEncodingValue = typeEncodingValueExpr.cstringValue;
 	MFStructDeclare *structDeclare = [[MFStructDeclare alloc] init];

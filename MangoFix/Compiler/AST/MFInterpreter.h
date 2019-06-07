@@ -14,7 +14,7 @@
 
 @interface MFInterpreter : NSObject
 
-@property (assign, nonatomic) NSUInteger currentLineNumber;
+@property (assign, nonatomic) int currentLineNumber;
 @property (strong, nonatomic) NSMutableDictionary<NSString *, MFStructDeclare *> *structDeclareDic;
 @property (strong, nonatomic) NSMutableDictionary<NSString *, MFClassDefinition *> *classDefinitionDic;
 

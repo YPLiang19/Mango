@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)scopeChainWithNext:(MFScopeChain *)next;
 - (nullable MFValue *)getValueWithIdentifier:(NSString *)identifier endScope:(nullable MFScopeChain *)endScope;
-- (MFValue *)getValueWithIdentifierInChain:(NSString *)identifier;
-- (MFValue *)getValueWithIdentifier:(NSString *)identifer;
+- (nullable MFValue *)getValueWithIdentifierInChain:(NSString *)identifier;
+- (nullable MFValue *)getValueWithIdentifier:(NSString *)identifer;
 - (void)setValue:(MFValue *)value withIndentifier:(NSString *)identier;
 - (void)assignWithIdentifer:(NSString *)identifier value:(MFValue *)value;
 - (void)setMangoBlockVarNil;

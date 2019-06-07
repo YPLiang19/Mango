@@ -245,14 +245,14 @@ static void increment_line_number(){
 <INITIAL>"/*" {	BEGIN C_COMMENT; }
 <INITIAL>"//" { BEGIN CC_COMMENT; }
 <INITIAL>.	{
-	mf_compile_err(0,MFCompileErrorParseErr);
+	mf_compile_err(mf_get_current_compile_util().currentLineNumber,MFCompileErrorParseErr);
 }
 
 <C_COMMENT>\n { increment_line_number();}
 <C_COMMENT>. ;
 <C_COMMENT>"*/"	{ BEGIN INITIAL; }
 <C_COMMENT><<EOF>>	{
-	mf_compile_err(0,MFCompileErrorParseErr);
+	mf_compile_err(mf_get_current_compile_util().currentLineNumber,MFCompileErrorParseErr);
 }
 
 <CC_COMMENT>.	;

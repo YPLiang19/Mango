@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "MFStructDeclare.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MFStructDeclareTable : NSObject
 + (instancetype)shareInstance;
 
 - (void)addStructDeclare:(MFStructDeclare *)structDeclare;
-- (MFStructDeclare *)getStructDeclareWithName:(NSString *)name;
+- (nullable MFStructDeclare *)getStructDeclareWithName:(NSString *)name;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -20,23 +20,28 @@
 }
 
 - (void)push:(MFValue *)value{
+    NSAssert(value, @"value can not be nil");
 	[_arr addObject:value];
 }
 
 - (MFValue *)pop{
 	MFValue *value = [_arr  lastObject];
+    NSAssert(value, @"stack is empty");
 	[_arr removeLastObject];
 	return value;
 }
 
 - (MFValue *)peekStack:(NSUInteger)index{
+    NSAssert(_arr.count - 1 >= index, @"index out of bounds");
 	MFValue *value = _arr[_arr.count - 1 - index];
 	return value;
 }
 
 - (void)shrinkStack:(NSUInteger)shrinkSize{
+    NSAssert(shrinkSize <= _arr.count, @"shrinkSize out of stack size");
 	[_arr removeObjectsInRange:NSMakeRange(_arr.count - shrinkSize, shrinkSize)];
 }
+
 - (NSUInteger)size{
 	return _arr.count;
 }

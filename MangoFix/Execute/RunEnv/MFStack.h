@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+NS_ASSUME_NONNULL_BEGIN
 
 @class MFValue;
 
@@ -21,3 +21,4 @@
 - (NSUInteger)size;
 @end
 
+NS_ASSUME_NONNULL_END

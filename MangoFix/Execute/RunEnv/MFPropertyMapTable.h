@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shareInstance;
 
 - (void)addPropertyMapTableItem:(MFPropertyMapTableItem *)propertyMapTableItem;
-- (MFPropertyMapTableItem *)getPropertyMapTableItemWith:(Class)clazz name:(NSString *)name;
+- (nullable MFPropertyMapTableItem *)getPropertyMapTableItemWith:(Class)clazz name:(NSString *)name;
 
 
 @end

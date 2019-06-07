@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "mf_ast.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MFMethodMapTableItem:NSObject
 
 @property (strong, nonatomic) Class clazz;
@@ -24,7 +26,9 @@
 + (instancetype)shareInstance;
 
 - (void)addMethodMapTableItem:(MFMethodMapTableItem *)methodMapTableItem;
-- (MFMethodMapTableItem *)getMethodMapTableItemWith:(Class)clazz classMethod:(BOOL)classMethod sel:(SEL)sel;
+- (nullable MFMethodMapTableItem *)getMethodMapTableItemWith:(Class)clazz classMethod:(BOOL)classMethod sel:(SEL)sel;
 
 
 @end
+
+NS_ASSUME_NONNULL_END
