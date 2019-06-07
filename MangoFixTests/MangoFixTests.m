@@ -258,7 +258,6 @@
     NSInteger i2 = [staticVarTest testStaticVar];
     NSInteger i3 = [staticVarTest testStaticVar];
     XCTAssert(i1 == 1 && i2 == 2 && i3 == 3,@"testStaticVar");
-    NSLog(@"========= %qd,%qd,%qd",i1,i2,i3);
 }
 
 - (void)testGetAddressOperator{
