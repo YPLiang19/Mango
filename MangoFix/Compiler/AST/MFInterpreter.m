@@ -79,8 +79,10 @@ static MFScopeChain *st_commonScope;
 	extern void yyrestart  (FILE * input_file );
 	extern int yyparse(void);
 	if (yyparse()) {
-		NSLog(@"error! error! error!");
         yyrestart(NULL); /* 解析出错时，重置yylex */
+#ifdef DEBUG
+        NSCAssert(0, @"compile error！！！");
+#endif
 		return;
 	}
 	
