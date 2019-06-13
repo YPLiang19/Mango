@@ -11,6 +11,9 @@
 
 void mf_compile_err(int lineNumber,MFCompileError error,...){
     NSLog(@"line:%d",lineNumber);
+#ifdef DEBUG
+    NSCAssert(0, @"compile error！！！");
+#endif
 	exit(1);
 }
 
