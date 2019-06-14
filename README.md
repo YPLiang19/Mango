@@ -1,6 +1,7 @@
 [MangoFix中文资料集合](README-CN.md)
 
-为了便于大家讨论，让MangoFix更好的发展，欢迎加入MangoFix官方讨论群，群聊QQ号码：766215773
+MangoFix 学习讨论QQ群：766215773
+
 # Mango
 MangoFix is a DSL which syntax is very similar to Objective-C，MangoFix is also an iOS  App hotfix SDK. You can use MangoFix method replace any Objective-C method.
 
