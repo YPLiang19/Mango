@@ -18,6 +18,8 @@
 #import "MFStructDeclare.h"
 #import "MFDeclaration.h"
 #import "MFBlockBody.h"
+#import "MFTypedefTable.h"
+#import "errror.h"
 
 
 #endif /* nac_ast_h */

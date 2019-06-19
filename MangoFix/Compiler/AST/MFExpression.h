@@ -16,7 +16,6 @@ typedef NS_ENUM(NSInteger, MFExpressionKind) {
 	MF_BOOLEAN_EXPRESSION = 1,
 	MF_INT_EXPRESSION,
 	MF_U_INT_EXPRESSION,
-	MF_FLOAT_EXPRESSION,
 	MF_DOUBLE_EXPRESSION,
 	MF_STRING_EXPRESSION,
 	MF_SELECTOR_EXPRESSION,
@@ -52,6 +51,7 @@ typedef NS_ENUM(NSInteger, MFExpressionKind) {
 	MF_INCREMENT_EXPRESSION,
 	MF_DECREMENT_EXPRESSION,
 	MF_AT_EXPRESSION,
+    MF_C_FUNCTION_EXPRESSION,
     MF_GET_ADDRESS_EXPRESSION
 };
 
@@ -63,8 +63,8 @@ typedef NS_ENUM(NSInteger, MFExpressionKind) {
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (assign, nonatomic) MFExpressionKind expressionKind;
 @property (assign, nonatomic) BOOL boolValue;
-@property (assign, nonatomic) long long int integerValue;
-@property (assign, nonatomic) unsigned long long  uintValue;
+@property (assign, nonatomic) int64_t integerValue;
+@property (assign, nonatomic) uint64_t  uintValue;
 @property (assign, nonatomic) double doubleValue;
 @property (assign, nonatomic) const char *cstringValue;
 @property (copy, nonatomic) NSString *selectorName;
@@ -188,6 +188,15 @@ typedef NS_ENUM(NSInteger, MFAssignKind) {
 @interface MFBlockExpression: MFExpression
 
 @property (strong, nonatomic) MFFunctionDefinition *func;
+
+@end
+
+
+
+
+@interface MFCFuntionExpression : MFExpression
+
+@property (strong, nonatomic) MFExpression *cfunNameOrPointerExpr;
 
 @end
 

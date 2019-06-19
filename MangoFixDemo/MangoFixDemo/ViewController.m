@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import <WebKit/WebKit.h>
+#import <objc/runtime.h>
 
 typedef struct {
     CGFloat x;
@@ -30,6 +32,8 @@ static NSString * const cellIdentifier = @"cell";
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+   
+    
 	self.title = @"Mango示例";
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
 }
@@ -125,6 +129,15 @@ static NSString * const cellIdentifier = @"cell";
 		case 15://CGD示例
 			[self gcdExample];
 			break;
+        case 16://静态变量示例
+            [self staticVarAndGetVarAddressOperExample];
+            break;
+        case 17://C函数变量示例
+            [self cfuntionVarExample];
+            break;
+        case 18://typedef 示例C
+            [self typedefExaple];
+            break;
 		default:
 			break;
 	}
@@ -134,10 +147,11 @@ static NSString * const cellIdentifier = @"cell";
 - (NSArray *)titles{
 	if (_titles == nil) {
 		_titles = @[@"顺序语句示例",@"if语句示例",@"switch语句示例",@"for语句示例",@"forEach语句示例",@"while语句示例",
-					@"do while语句示例",@"block语句示例",@"参数传递示例",@"结构体传参示例",@"返回值示例",@"创建自定义ViewController",@"替换类方式示例",@"调用原始实现示例",@"条件注解示例",@"GCD示例"];
+					@"do while语句示例",@"block语句示例",@"参数传递示例",@"结构体传参示例",@"返回值示例",@"创建自定义ViewController",@"替换类方式示例",@"调用原始实现示例",@"条件注解示例",@"GCD示例",@"静态变量和取地址运算符示例",@"C函数变量示例", @"teypedef 示例"];
 	}
 	return _titles;
 }
+
 
 - (void)sequentialStatementExample{
 	
@@ -201,12 +215,19 @@ static NSString * const cellIdentifier = @"cell";
 
 
 - (void)gcdExample{
-    dispatch_queue_t queue = dispatch_queue_create("com.plliang19.mango", DISPATCH_QUEUE_SERIAL);
-    dispatch_async(queue, ^{
-        NSLog(@"abc");
-    });
+    
 }
 
+- (void)staticVarAndGetVarAddressOperExample{
+    
+}
 
+- (void)cfuntionVarExample{
+    
+}
+
+- (void)typedefExaple{
+    
+}
 
 @end

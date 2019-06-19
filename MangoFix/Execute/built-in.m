@@ -401,7 +401,7 @@ static void add_build_in_function(MFInterpreter *interpreter){
         if ([format hasSuffix:@"f"]) {
             return [NSString stringWithFormat:format,num.floatValue];
         }
-        err: NSCAssert(0, @"not support format %@",format);
+        err: mf_throw_error(0, MFRuntimeErrorNotSupportNumberFormat, @"not support format %@",format);
         return nil;
     }] withIndentifier:@"fmt_num"];
 	
@@ -462,6 +462,14 @@ static void add_build_in_var(MFInterpreter *inter){
 	[inter.commonScope setValue:[MFValue valueInstanceWithObject:device.systemVersion] withIndentifier:@"$systemVersion"];
 	[inter.commonScope setValue:[MFValue valueInstanceWithObject:[infoDictionary objectForKey:@"CFBundleShortVersionString"]] withIndentifier:@"$appVersion"];
 	[inter.commonScope setValue:[MFValue valueInstanceWithObject:[infoDictionary objectForKey:@"CFBundleVersion"]] withIndentifier:@"$buildVersion"];
+    
+#if defined(__LP64__) && __LP64__
+    BOOL is32BitDevice = NO;
+#else
+    BOOL is32BitDevice = YES;
+#endif
+    [inter.commonScope setValue:[MFValue valueInstanceWithBOOL:is32BitDevice ] withIndentifier:@"$is32BitDevice"];;
+    
 	
 }
 

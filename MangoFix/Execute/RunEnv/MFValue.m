@@ -67,7 +67,7 @@
 
 
 - (BOOL)isMember{
-	ANATypeSpecifierKind kind = _type.typeKind;
+	MFTypeSpecifierKind kind = _type.typeKind;
 	switch (kind) {
 		case MF_TYPE_BOOL:
 		case MF_TYPE_INT:
@@ -128,6 +128,10 @@
 		case MF_TYPE_C_STRING:
 			_cstringValue = [src c2pointerValue];
 			break;
+        case MF_TYPE_C_FUNCTION:{
+            _pointerValue = [src c2pointerValue];
+            break;
+        }
 		case MF_TYPE_STRUCT:
 			if (src.type.typeKind == MF_TYPE_STRUCT) {
                 _pointerValue = malloc(_type.structSize);
@@ -216,6 +220,7 @@
 		case MF_TYPE_C_STRING:
 			return (void *)_cstringValue;
 		case MF_TYPE_POINTER:
+        case MF_TYPE_C_FUNCTION:
 			return _pointerValue;
 		case MF_TYPE_CLASS:
 			return (__bridge void*)_classValue;
@@ -228,7 +233,7 @@
 }
 
 
-- (void)assign2CValuePointer:(void *)cvaluePointer typeEncoding:(const char *)typeEncoding{
+- (void)assignToCValuePointer:(void *)cvaluePointer typeEncoding:(const char *)typeEncoding{
 	typeEncoding = removeTypeEncodingPrefix((char *)typeEncoding);
 #define mf_ASSIGN_2_C_VALUE_POINTER_CASE(_encode, _type, _sel)\
 case _encode:{\
@@ -549,6 +554,15 @@ break;\
 		case MF_TYPE_POINTER:
 			value.objectValue = [NSString stringWithFormat:@"%p",_pointerValue];
 			break;
+        case MF_TYPE_C_FUNCTION:{
+            NSMutableString *signature = [NSMutableString stringWithString:_type.returnTypeEncode];
+            for (NSString * paramEncode in _type.paramListTypeEncode) {
+                [signature appendString:paramEncode];
+            }
+            value.objectValue = [NSString stringWithFormat:@"%@-%p",signature,_pointerValue];
+            break;
+        }
+            
 		case MF_TYPE_STRUCT_LITERAL:
 			value.objectValue = [NSString stringWithFormat:@"%@",self.objectValue];
 			break;
@@ -571,14 +585,6 @@ break;\
 - (void)setType:(MFTypeSpecifier *)type{
     _type = type;
 }
-
-
-- (void)dealloc{
-	if (_type.typeKind == MF_TYPE_STRUCT && !_structPointNoCopyData) {
-		free(_pointerValue);
-	}
-}
-
 
 -(void)setObjectValue:(id)objectValue{
     if (self.modifier & MFDeclarationModifierWeak) {
@@ -638,6 +644,12 @@ break;\
             break;
     }
     return retPtr;
+}
+
+- (void)dealloc{
+    if (_type.typeKind == MF_TYPE_STRUCT && !_structPointNoCopyData) {
+        free(_pointerValue);
+    }
 }
 
 @end

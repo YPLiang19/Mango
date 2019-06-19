@@ -11,7 +11,6 @@
 
 @interface MFStructDeclare : NSObject
 @property (strong, nonatomic) MFExpression *annotationIfConditionExpr;
-@property (assign, nonatomic) NSUInteger lineNumber;
 @property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic)const char *typeEncoding;
 @property (strong, nonatomic) NSArray<NSString *> *keys;

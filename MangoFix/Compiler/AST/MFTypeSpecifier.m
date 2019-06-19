@@ -50,7 +50,8 @@
 				  @(MF_TYPE_CLASS):@"#",
 				  @(MF_TYPE_SEL):@":",
 				  @(MF_TYPE_OBJECT):@"@",
-				  @(MF_TYPE_BLOCK):@"@?"
+				  @(MF_TYPE_BLOCK):@"@?",
+                  @(MF_TYPE_C_FUNCTION): @"^v",
 				 };
 	});
 	_typeEncoding = [_dic[@(self.typeKind)] UTF8String];
@@ -70,12 +71,13 @@
 				 @(MF_TYPE_INT):@"int(int64_t)",
 				 @(MF_TYPE_U_INT):@"uint(uint64_t)",
 				 @(MF_TYPE_DOUBLE):@"double",
-				 @(MF_TYPE_C_STRING):@"cstring(char *)",
-				 @(MF_TYPE_POINTER):@"pointer(void *)",
+				 @(MF_TYPE_C_STRING):@"CString(char *)",
+				 @(MF_TYPE_POINTER):@"Pointer(void *)",
 				 @(MF_TYPE_CLASS):@"Class",
 				 @(MF_TYPE_SEL):@"SEL",
 				 @(MF_TYPE_OBJECT):@"id",
-				 @(MF_TYPE_BLOCK):@"NSBlock"
+				 @(MF_TYPE_BLOCK):@"Block",
+                 @(MF_TYPE_C_FUNCTION): @"CFunction",
 				 };
 	});
 	return st_dic[@(self.typeKind)];

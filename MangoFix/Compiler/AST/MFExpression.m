@@ -129,6 +129,14 @@
 
 @end
 
+@implementation MFCFuntionExpression
+
+- (instancetype)init{
+    return [super initWithExpressionKind:MF_C_FUNCTION_EXPRESSION];
+}
+
+@end
+
 
 
 

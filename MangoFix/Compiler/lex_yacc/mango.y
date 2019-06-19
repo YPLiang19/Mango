@@ -49,7 +49,7 @@ int yylex(void);
 	ANNOTATION_IF CLASS STRUCT DECLARE SELECTOR
 	RETURN IF ELSE FOR IN WHILE DO SWITCH CASE DEFAULT BREAK CONTINUE
 	PROPERTY WEAK STRONG COPY ASSIGN_MEM NONATOMIC ATOMIC  ASTERISK  VOID
-	BOOL_ U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC
+	BOOL_ CHAR U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC C_FUNCTION  TYPEDEF
 
 
 
@@ -57,10 +57,10 @@ int yylex(void);
 %type <expression> expression expression_opt struct_literal assign_expression ternary_operator_expression logic_or_expression logic_and_expression  
 equality_expression relational_expression additive_expression multiplication_expression unary_expression postfix_expression primary_expression  dic block_body annotation_if
 
-%type <identifier> selector selector_1 selector_2 key_work_identifier
+%type <identifier> selector selector_1 selector_2 key_work_identifier c_type_identier
 
 %type <list> identifier_list struct_entry_list dic_entry_list  statement_list protocol_list else_if_list case_list member_definition_list
-method_name method_name_1 method_name_2 expression_list function_param_list 
+method_name method_name_1 method_name_2 expression_list function_param_list  c_type_identier_list
 
 %type <method_name_item> method_name_item
 %type <dic_entry> dic_entry
@@ -104,6 +104,7 @@ definition:  class_definition
 				MFStatement *statement = (__bridge_transfer MFStatement *)$1;
 				mf_add_statement(statement);
 			}
+            | typedef_definition
 			;
 
 
@@ -302,6 +303,52 @@ property_atomic_modifier: NONATOMIC
 			}
 			;
 
+typedef_definition: TYPEDEF BOOL_ IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_BOOL, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF INT IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_INT, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF U_INT IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_U_INT, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF DOUBLE IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_DOUBLE, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF C_STRING IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_C_STRING, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF ID IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_OBJECT, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF BLOCK IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_BLOCK, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF CLASS_ IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_CLASS, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF SEL_ IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_SEL, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF POINTER IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef(MF_TYPE_POINTER, (__bridge_transfer NSString *)$3);
+            }
+            | TYPEDEF IDENTIFIER IDENTIFIER SEMICOLON
+            {
+                mf_add_typedef_from_alias((__bridge_transfer NSString *)$2,(__bridge_transfer NSString *)$3);
+            }
+            ;
+
 type_specifier: VOID
 			{
 				$$ =  (__bridge_retained void *)mf_create_type_specifier(MF_TYPE_VOID);
@@ -346,6 +393,11 @@ type_specifier: VOID
 			{
 				$$ =  (__bridge_retained void *)mf_create_type_specifier(MF_TYPE_POINTER);
 			}
+            | C_FUNCTION LT c_type_identier_list GT
+            {
+                NSArray *typeList = (__bridge_transfer NSArray *)$3;
+                $$ =  (__bridge_retained void *)mf_create_cfuntion_type_specifier(typeList);
+            }
 			| IDENTIFIER ASTERISK
 			{
 				$$ =  (__bridge_retained void *)mf_create_type_specifier(MF_TYPE_OBJECT);
@@ -356,7 +408,9 @@ type_specifier: VOID
 			}
 			| IDENTIFIER
 			{
-				$$ = (__bridge_retained void *)mf_create_type_specifier(MF_TYPE_UNKNOWN);
+                MFTypedefTable *typedefTable = [MFTypedefTable shareInstance];
+                MFTypeSpecifierKind type = [typedefTable typeWtihIdentifer:(__bridge_transfer NSString *)$1];
+				$$ = (__bridge_retained void *)mf_create_type_specifier(type);
 			}
 			;
 
@@ -763,15 +817,79 @@ struct_literal:  LC  struct_entry_list RC
 			}
 			;
 
-key_work_identifier: CLASS
-                    {
-                        $$ = @"class";
-                    }
-                    | COPY
-                    {
-                        $$ = @"copy";
-                    }
-                    ;
+c_type_identier: key_work_identifier
+            | IDENTIFIER
+            | VOID ASTERISK
+            {
+                $$ = (__bridge_retained void *)@"void *";
+            }
+            | CHAR ASTERISK
+            {
+                $$ = (__bridge_retained void *)@"char *";
+            }
+            | STRUCT IDENTIFIER
+            {
+                $$ = (__bridge_retained void *)[NSString stringWithFormat:@"struct %@",(__bridge_transfer NSString *)$2];
+            }
+            ;
+
+c_type_identier_list:c_type_identier
+            {
+                NSMutableArray *list = [NSMutableArray array];
+                NSString *identifer = (__bridge_transfer NSString *)$1;
+                [list addObject:identifer];
+                $$ = (__bridge_retained void *)list;
+            }
+            | c_type_identier_list COMMA c_type_identier
+            {
+                    NSMutableArray *list = (__bridge_transfer NSMutableArray *)$1;
+                    NSString *identifer = (__bridge_transfer NSString *)$3;
+                    [list addObject:identifer];
+                    $$ = (__bridge_retained void *)list;
+            }
+            ;
+
+key_work_identifier: ID
+            {
+                $$ = (__bridge_retained void *)@"id";
+            }
+            | CLASS
+            {
+                $$ = (__bridge_retained void *)@"class";
+            }
+            | CLASS_
+            {
+                $$ = (__bridge_retained void *)@"Class";
+            }
+            | COPY
+            {
+                $$ = (__bridge_retained void *)@"copy";
+            }
+            | BOOL_
+            {
+                $$ = (__bridge_retained void *)@"BOOL";
+            }
+            | INT
+            {
+                $$ = (__bridge_retained void *)@"int";
+            }
+            | U_INT
+            {
+                $$ = (__bridge_retained void *)@"uint";
+            }
+            | DOUBLE
+            {
+                $$ = (__bridge_retained void *)@"double";
+            }
+            | SEL_
+            {
+                $$ = (__bridge_retained void *)@"SEL";
+            }
+            | VOID
+            {
+                $$ = (__bridge_retained void *)@"void";
+            }
+            ;
 
 primary_expression: IDENTIFIER
 			{
@@ -940,6 +1058,13 @@ primary_expression: IDENTIFIER
 				MFArrayExpression *expr = (MFArrayExpression *)mf_create_expression(MF_ARRAY_LITERAL_EXPRESSION);
 				$$ = (__bridge_retained void *)expr;
 			}
+            | C_FUNCTION LP expression  RP
+            {
+                MFCFuntionExpression *expr = (MFCFuntionExpression *)mf_create_expression(MF_C_FUNCTION_EXPRESSION);
+                MFExpression *cfunNameOrPointerExpr = (__bridge_transfer MFExpression *)$3;
+                expr.cfunNameOrPointerExpr = cfunNameOrPointerExpr;
+                $$ = (__bridge_retained void *)expr;
+            }
 			| dic
 			| struct_literal
 			| block_body

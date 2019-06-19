@@ -89,7 +89,7 @@ extern const void *mf_propKey(NSString *propName);
                     object_setIvar(pos.instance, ivar, [value c2objectValue]);
                 }else{
                     void *ptr = (__bridge void *)(pos.instance) +  ivar_getOffset(ivar);
-                    [value assign2CValuePointer:ptr typeEncoding:ivarEncoding];
+                    [value assignToCValuePointer:ptr typeEncoding:ivarEncoding];
                 }
                 return;
                 

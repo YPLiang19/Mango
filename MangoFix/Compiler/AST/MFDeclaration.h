@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) MFDeclarationModifier modifier;
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic,nullable) MFExpression *initializer;
-//@property (assign, nonatomic,getter=isParam) BOOL param;
 
 @end
 

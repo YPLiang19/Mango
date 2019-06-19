@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "mf_ast.h"
 #import <objc/message.h>
+#import <symdl/symdl.h>
+#import "mf_ast.h"
 #import "ffi.h"
 #import "util.h"
 #import "mf_ast.h"
@@ -31,7 +32,7 @@ static MFValue *invoke_values(id instance, SEL sel, NSArray<MFValue *> *argValue
     for (NSUInteger i = 2; i < argCount; i++) {
         const char *typeEncoding = [sig getArgumentTypeAtIndex:i];
         void *ptr = malloc(mf_size_with_encoding(typeEncoding));
-        [argValues[i-2] assign2CValuePointer:ptr typeEncoding:typeEncoding];
+        [argValues[i-2] assignToCValuePointer:ptr typeEncoding:typeEncoding];
         [invocation setArgument:ptr atIndex:i];
         free(ptr);
     }
@@ -368,7 +369,7 @@ break;\
                 size_t size = mf_size_with_encoding(subTypeEncoding.UTF8String);
                 if(j == index){
                     void *valuePtr = structData + postion;
-                    [value assign2CValuePointer:valuePtr typeEncoding:subTypeEncoding.UTF8String];
+                    [value assignToCValuePointer:valuePtr typeEncoding:subTypeEncoding.UTF8String];
                     return;
                 }
                 postion += size;
@@ -390,6 +391,13 @@ static void eval_bool_exprseeion(MFInterpreter *inter, MFExpression *expr){
 	value.type = mf_create_type_specifier(MF_TYPE_BOOL);
 	value.uintValue = expr.boolValue;
 	[inter.stack push:value];
+}
+
+static void eval_u_interger_expression(MFInterpreter *inter, MFExpression *expr){
+    MFValue *value = [MFValue new];
+    value.type = mf_create_type_specifier(MF_TYPE_U_INT);
+    value.uintValue = expr.uintValue;
+    [inter.stack push:value];
 }
 
 static void eval_interger_expression(MFInterpreter *inter, MFExpression *expr){
@@ -1383,7 +1391,7 @@ static void eval_negative_expression(MFInterpreter *inter, MFScopeChain *scope,M
 static void eval_sub_script_expression(MFInterpreter *inter, MFScopeChain *scope,MFSubScriptExpression *expr){
 	eval_expression(inter, scope, expr.bottomExpr);
 	MFValue *bottomValue = [inter.stack peekStack:0];
-	ANATypeSpecifierKind kind = bottomValue.type.typeKind;
+	MFTypeSpecifierKind kind = bottomValue.type.typeKind;
 	
 	eval_expression(inter, scope, expr.aboveExpr);
 	MFValue *arrValue = [inter.stack peekStack:0];
@@ -1581,8 +1589,7 @@ static void eval_member_expression(MFInterpreter *inter, MFScopeChain *scope, MF
 	[inter.stack push:resultValue];
 }
 
-
-
+static MFValue * call_c_function(NSUInteger lineNumber, MFValue *callee, NSArray<MFValue *> *argValues);
 
 static void eval_function_call_expression(MFInterpreter *inter, MFScopeChain *scope, MFFunctonCallExpression *expr){
 	MFExpressionKind exprKind = expr.expr.expressionKind;
@@ -1621,46 +1628,153 @@ static void eval_function_call_expression(MFInterpreter *inter, MFScopeChain *sc
 		case MF_IDENTIFIER_EXPRESSION:
 		case MF_FUNCTION_CALL_EXPRESSION:{
 			eval_expression(inter, scope, expr.expr);
-			MFValue *blockValue = [inter.stack pop];
-			
-			
-			const char *blockTypeEncoding = [MFBlock typeEncodingForBlock:blockValue.c2objectValue];
-			NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:blockTypeEncoding];
-			NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
-			[invocation setTarget:blockValue.objectValue];
-			
-			NSUInteger numberOfArguments = [sig numberOfArguments];
-			if (numberOfArguments - 1 != expr.args.count) {
-				NSCAssert(0, @"");
-			}
-			for (NSUInteger i = 1; i < numberOfArguments; i++) {
-				const char *typeEncoding = [sig getArgumentTypeAtIndex:i];
-				void *ptr = alloca(mf_size_with_encoding(typeEncoding));
-				eval_expression(inter, scope, expr.args[i -1]);
-				__autoreleasing MFValue *argValue = [inter.stack pop];
-				[argValue assign2CValuePointer:ptr typeEncoding:typeEncoding];
-				[invocation setArgument:ptr atIndex:i];
-			}
-			[invocation invoke];
-			const char *retType = [sig methodReturnType];
-			retType = removeTypeEncodingPrefix((char *)retType);
-			MFValue *retValue;
-			if (*retType != 'v') {
-				void *retValuePtr = alloca(mf_size_with_encoding(retType));
-				[invocation getReturnValue:retValuePtr];
-				retValue = [[MFValue alloc] initWithCValuePointer:retValuePtr typeEncoding:retType bridgeTransfer:NO];
-			}else{
-				retValue = [MFValue voidValueInstance];
-			}
-			[inter.stack push:retValue];
+			MFValue *callee = [inter.stack pop];
+            
+            static Class blockClass = nil;
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                blockClass = [^{} class];
+                while (blockClass) {
+                    Class superClass = class_getSuperclass(blockClass);
+                    if (superClass == nil) {
+                        break;
+                    }
+                    blockClass = superClass;
+                }
+            });
+            
+            if (callee.type.typeKind != MF_TYPE_C_FUNCTION && !(callee.isObject && [callee.objectValue isKindOfClass:blockClass])) {
+                mf_throw_error(expr.expr.lineNumber, MFRuntimeErrorCallCanNotBeCalleeValue, @"type: %@ value can not be callee",callee.type.typeName);
+                return;
+            }
+            
+            if (callee.type.typeKind == MF_TYPE_C_FUNCTION) {
+                if (callee.pointerValue == NULL) {
+                    mf_throw_error(expr.expr.lineNumber, MFRuntimeErrorNullPointer, nil);
+                    return;
+                }
+                
+                NSUInteger paramListCount =  callee.type.paramListTypeEncode.count;
+                if (paramListCount != expr.args.count) {
+                    mf_throw_error(expr.lineNumber, MFRuntimeErrorParameterListCountNoMatch, @"expect count: %zd, pass in cout:%zd",paramListCount, expr.args.count);
+                    return;
+                }
+                
+                NSMutableArray *paramValues = [NSMutableArray arrayWithCapacity:paramListCount];
+                for (MFExpression *argExpr in expr.args) {
+                    eval_expression(inter, scope, argExpr);
+                    MFValue *value = [inter.stack pop];
+                    [paramValues addObject:value];
+                }
+                MFValue *retValue = call_c_function(expr.lineNumber,callee, paramValues.copy);
+                [inter.stack push:retValue];
+            }else{
+                const char *blockTypeEncoding = [MFBlock typeEncodingForBlock:callee.c2objectValue];
+                NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:blockTypeEncoding];
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+                [invocation setTarget:callee.objectValue];
+                
+                NSUInteger numberOfArguments = [sig numberOfArguments];
+                if (numberOfArguments - 1 != expr.args.count) {
+                    mf_throw_error(expr.lineNumber, MFRuntimeErrorParameterListCountNoMatch, @"expect count: %zd, pass in cout:%zd",numberOfArguments - 1,expr.args.count);
+                    return;
+                }
+                for (NSUInteger i = 1; i < numberOfArguments; i++) {
+                    const char *typeEncoding = [sig getArgumentTypeAtIndex:i];
+                    void *ptr = alloca(mf_size_with_encoding(typeEncoding));
+                    eval_expression(inter, scope, expr.args[i -1]);
+                    __autoreleasing MFValue *argValue = [inter.stack pop];
+                    [argValue assignToCValuePointer:ptr typeEncoding:typeEncoding];
+                    [invocation setArgument:ptr atIndex:i];
+                }
+                [invocation invoke];
+                const char *retType = [sig methodReturnType];
+                retType = removeTypeEncodingPrefix((char *)retType);
+                MFValue *retValue;
+                if (*retType != 'v') {
+                    void *retValuePtr = alloca(mf_size_with_encoding(retType));
+                    [invocation getReturnValue:retValuePtr];
+                    retValue = [[MFValue alloc] initWithCValuePointer:retValuePtr typeEncoding:retType bridgeTransfer:NO];
+                }else{
+                    retValue = [MFValue voidValueInstance];
+                }
+                [inter.stack push:retValue];
+            }
 			break;
 		}
 			
 		default:
+            mf_throw_error(expr.lineNumber, MFRuntimeErrorCallCanNotBeCalleeValue, @"expression can not be callee");
 			break;
 	}
 	
 }
+
+static MFValue * call_c_function(NSUInteger lineNumber, MFValue *callee, NSArray<MFValue *> *argValues){
+    void *functionPtr = callee.pointerValue;
+    NSArray<NSString *> *paramListTypeEncode = callee.type.paramListTypeEncode;
+    NSString *returnTypeEncode = callee.type.returnTypeEncode;
+    NSUInteger argCount = paramListTypeEncode.count;
+    
+    ffi_type **ffiArgTypes = alloca(sizeof(ffi_type *) *argCount);
+    for (int i = 0; i < argCount; i++) {
+        ffiArgTypes[i] = mf_ffi_type_with_type_encoding(paramListTypeEncode[i].UTF8String);
+    }
+    
+    void **ffiArgs = alloca(sizeof(void *) *argCount);
+    for (int  i = 0; i < argCount; i++) {
+        size_t size = ffiArgTypes[i]->size;
+        void *ffiArgPtr = alloca(size);
+        ffiArgs[i] = ffiArgPtr;
+        MFValue *argValue = argValues[i];
+        [argValue assignToCValuePointer:ffiArgPtr typeEncoding:paramListTypeEncode[i].UTF8String];
+    }
+
+    ffi_cif cif;
+    ffi_type *returnFfiType = mf_ffi_type_with_type_encoding(returnTypeEncode.UTF8String);;
+    ffi_status ffiPrepStatus = ffi_prep_cif(&cif, FFI_DEFAULT_ABI, (unsigned int)argCount, returnFfiType, ffiArgTypes);
+
+    if (ffiPrepStatus == FFI_OK) {
+        void *returnPtr = NULL;
+        if (returnFfiType->size) {
+            returnPtr = alloca(returnFfiType->size);
+        }
+        ffi_call(&cif, functionPtr, returnPtr, ffiArgs);
+
+        MFValue *value = [[MFValue alloc] initWithCValuePointer:returnPtr typeEncoding:returnTypeEncode.UTF8String bridgeTransfer:NO];
+        return value;
+    }
+    mf_throw_error(lineNumber, MFRuntimeErrorCallCFunctionFailure, @"call CFunction failure");
+    return nil;
+}
+
+
+static void eval_cfunction_expression(MFInterpreter *inter, MFScopeChain *scope, MFCFuntionExpression *expr){
+    MFExpression *cfunNameOrPointerExpr = expr.cfunNameOrPointerExpr;
+    eval_expression(inter, scope, cfunNameOrPointerExpr);
+    MFValue *cfunNameOrPointer = [inter.stack pop];
+    if (cfunNameOrPointer.type.typeKind != MF_TYPE_C_STRING && cfunNameOrPointer.type.typeKind != MF_TYPE_POINTER) {
+        mf_throw_error(cfunNameOrPointerExpr.lineNumber, MFRuntimeErrorIllegalParameterType, @" CFuntion must accept a CString type or Pointer type, not %@!",cfunNameOrPointer.type.typeName);
+        return;
+    }
+    
+    MFValue *value = [[MFValue alloc] init];
+    MFTypeSpecifier *type = mf_create_type_specifier(MF_TYPE_C_FUNCTION);
+    value.type = type;
+    
+    if (cfunNameOrPointer.type.typeKind == MF_TYPE_C_STRING) {
+        void *pointerValue = symdl(cfunNameOrPointer.cstringValue);
+        if (!pointerValue) {
+            mf_throw_error(cfunNameOrPointerExpr.lineNumber, MFRuntimeErrorNotFoundCFunction, @"not found CFunction: %s",cfunNameOrPointer.cstringValue);
+            return;
+        }
+        value.pointerValue = pointerValue;
+    }else{
+        value.pointerValue = cfunNameOrPointer.pointerValue;
+    }
+    [inter.stack push:value];
+}
+
 
 
 static void eval_expression(MFInterpreter *inter, MFScopeChain *scope, __kindof MFExpression *expr){
@@ -1668,6 +1782,9 @@ static void eval_expression(MFInterpreter *inter, MFScopeChain *scope, __kindof 
 		case MF_BOOLEAN_EXPRESSION:
 			eval_bool_exprseeion(inter, expr);
 			break;
+        case MF_U_INT_EXPRESSION:
+            eval_u_interger_expression(inter, expr);
+            break;
 		case MF_INT_EXPRESSION:
 			eval_interger_expression(inter, expr);
 			break;
@@ -1777,6 +1894,9 @@ static void eval_expression(MFInterpreter *inter, MFScopeChain *scope, __kindof 
 		case MF_FUNCTION_CALL_EXPRESSION:
 			eval_function_call_expression(inter, scope, expr);
 			break;
+        case MF_C_FUNCTION_EXPRESSION:
+            eval_cfunction_expression(inter, scope, expr);
+            break;
 		default:
 			break;
 	}

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89253B3322B395A400AD9A33 /* MFTypedefTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3122B395A300AD9A33 /* MFTypedefTable.m */; };
+		89253B3422B395A400AD9A33 /* MFTypedefTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 89253B3222B395A300AD9A33 /* MFTypedefTable.h */; };
+		89253B3822B395C400AD9A33 /* MFTypedefTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89253B3522B395C400AD9A33 /* MFTypedefTest.mg */; };
+		89253B3922B395C400AD9A33 /* MFTypedefTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3622B395C400AD9A33 /* MFTypedefTest.m */; };
+		89253B4422B39E0D00AD9A33 /* MFFuncDeclareTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89253B4122B39E0D00AD9A33 /* MFFuncDeclareTest.mg */; };
+		89253B4522B39E0D00AD9A33 /* MFFuncDeclareTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B4322B39E0D00AD9A33 /* MFFuncDeclareTest.m */; };
 		895EC4DB224CAA2A0062CBF8 /* MFContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 8996726A224BFE6F00C7DACB /* MFContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		895EC4DC224CAA7C0062CBF8 /* MFValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 8996723F224BFE6F00C7DACB /* MFValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		895EC4DF224CC1AB0062CBF8 /* MFBranchStatementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 895EC4DE224CC1AB0062CBF8 /* MFBranchStatementTest.m */; };
@@ -66,10 +72,12 @@
 		8996729B224BFE6F00C7DACB /* MFStructDeclare.m in Sources */ = {isa = PBXBuildFile; fileRef = 8996725F224BFE6F00C7DACB /* MFStructDeclare.m */; };
 		8996729C224BFE6F00C7DACB /* MFDeclaration.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967260224BFE6F00C7DACB /* MFDeclaration.m */; };
 		8996729E224BFE6F00C7DACB /* MFInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967262224BFE6F00C7DACB /* MFInterpreter.m */; };
-		8996729F224BFE6F00C7DACB /* errrorc.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967263224BFE6F00C7DACB /* errrorc.m */; };
+		8996729F224BFE6F00C7DACB /* errror.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967263224BFE6F00C7DACB /* errror.m */; };
 		899672A1224BFE6F00C7DACB /* mango.y in Sources */ = {isa = PBXBuildFile; fileRef = 89967266224BFE6F00C7DACB /* mango.y */; };
 		899672A2224BFE6F00C7DACB /* mango.l in Sources */ = {isa = PBXBuildFile; fileRef = 89967267224BFE6F00C7DACB /* mango.l */; };
 		899672A4224BFE6F00C7DACB /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967269224BFE6F00C7DACB /* util.m */; };
+		8997541F22B7726100046DD4 /* symdl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8997541E22B7726100046DD4 /* symdl.framework */; };
+		8997542022B7727300046DD4 /* symdl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8997541E22B7726100046DD4 /* symdl.framework */; };
 		89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C671B2224E15050092C30F /* MFOperatorTest.m */; };
 		89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89C671B4224E152D0092C30F /* MFOperatorTest.mg */; };
 		89D5304A22A8E5D9005DCF2F /* MFFormatNumberTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */; };
@@ -105,6 +113,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		89253B3122B395A300AD9A33 /* MFTypedefTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTypedefTable.m; sourceTree = "<group>"; };
+		89253B3222B395A300AD9A33 /* MFTypedefTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTypedefTable.h; sourceTree = "<group>"; };
+		89253B3522B395C400AD9A33 /* MFTypedefTest.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MFTypedefTest.mg; sourceTree = "<group>"; };
+		89253B3622B395C400AD9A33 /* MFTypedefTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTypedefTest.m; sourceTree = "<group>"; };
+		89253B3722B395C400AD9A33 /* MFTypedefTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTypedefTest.h; sourceTree = "<group>"; };
+		89253B4122B39E0D00AD9A33 /* MFFuncDeclareTest.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MFFuncDeclareTest.mg; sourceTree = "<group>"; };
+		89253B4222B39E0D00AD9A33 /* MFFuncDeclareTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFFuncDeclareTest.h; sourceTree = "<group>"; };
+		89253B4322B39E0D00AD9A33 /* MFFuncDeclareTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFFuncDeclareTest.m; sourceTree = "<group>"; };
 		895EC4DD224CC1AB0062CBF8 /* MFBranchStatementTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFBranchStatementTest.h; sourceTree = "<group>"; };
 		895EC4DE224CC1AB0062CBF8 /* MFBranchStatementTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFBranchStatementTest.m; sourceTree = "<group>"; };
 		895EC4E0224CC1E30062CBF8 /* MFLoopStatementTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFLoopStatementTest.h; sourceTree = "<group>"; };
@@ -210,13 +226,15 @@
 		89967260224BFE6F00C7DACB /* MFDeclaration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFDeclaration.m; sourceTree = "<group>"; };
 		89967261224BFE6F00C7DACB /* MFFunctionDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFFunctionDefinition.h; sourceTree = "<group>"; };
 		89967262224BFE6F00C7DACB /* MFInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFInterpreter.m; sourceTree = "<group>"; };
-		89967263224BFE6F00C7DACB /* errrorc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = errrorc.m; sourceTree = "<group>"; };
+		89967263224BFE6F00C7DACB /* errror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = errror.m; sourceTree = "<group>"; };
 		89967264224BFE6F00C7DACB /* create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = create.h; sourceTree = "<group>"; };
 		89967266224BFE6F00C7DACB /* mango.y */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = mango.y; sourceTree = "<group>"; };
 		89967267224BFE6F00C7DACB /* mango.l */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = mango.l; sourceTree = "<group>"; };
 		89967268224BFE6F00C7DACB /* MangoFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MangoFix.h; sourceTree = "<group>"; };
 		89967269224BFE6F00C7DACB /* util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = util.m; sourceTree = "<group>"; };
 		8996726A224BFE6F00C7DACB /* MFContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFContext.h; sourceTree = "<group>"; };
+		8997541B22B736C600046DD4 /* errror.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = errror.h; sourceTree = "<group>"; };
+		8997541E22B7726100046DD4 /* symdl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = symdl.framework; sourceTree = "<group>"; };
 		89C671B1224E15050092C30F /* MFOperatorTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFOperatorTest.h; sourceTree = "<group>"; };
 		89C671B2224E15050092C30F /* MFOperatorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFOperatorTest.m; sourceTree = "<group>"; };
 		89C671B4224E152D0092C30F /* MFOperatorTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFOperatorTest.mg; sourceTree = "<group>"; };
@@ -258,6 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8997541F22B7726100046DD4 /* symdl.framework in Frameworks */,
 				89967275224BFE6F00C7DACB /* libffi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +285,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8997542022B7727300046DD4 /* symdl.framework in Frameworks */,
 				8996719E224BFD2A00C7DACB /* MangoFix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +293,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89253B3022B395A300AD9A33 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				89253B3222B395A300AD9A33 /* MFTypedefTable.h */,
+				89253B3122B395A300AD9A33 /* MFTypedefTable.m */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		89253B3E22B3977800AD9A33 /* symdl */ = {
+			isa = PBXGroup;
+			children = (
+				8997541E22B7726100046DD4 /* symdl.framework */,
+			);
+			path = symdl;
+			sourceTree = "<group>";
+		};
 		895EC4D9224CA9CA0062CBF8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +325,7 @@
 				89967196224BFD2A00C7DACB /* MangoFix */,
 				899671A1224BFD2A00C7DACB /* MangoFixTests */,
 				89967195224BFD2A00C7DACB /* Products */,
+				8997541C22B7718B00046DD4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -303,11 +341,13 @@
 		89967196224BFD2A00C7DACB /* MangoFix */ = {
 			isa = PBXGroup;
 			children = (
+				8997541A22B7365A00046DD4 /* Error */,
 				89967268224BFE6F00C7DACB /* MangoFix.h */,
 				89967198224BFD2A00C7DACB /* Info.plist */,
 				8996724D224BFE6F00C7DACB /* Compiler */,
 				89967238224BFE6F00C7DACB /* Execute */,
 				8996722C224BFE6F00C7DACB /* libffi */,
+				89253B3E22B3977800AD9A33 /* symdl */,
 				895EC4D9224CA9CA0062CBF8 /* Util */,
 			);
 			path = MangoFix;
@@ -388,6 +428,12 @@
 				89E6A67022AA3D8F00F6D02C /* MFGetAddressOperatorTest.h */,
 				89E6A67122AA3D8F00F6D02C /* MFGetAddressOperatorTest.m */,
 				89E6A67322AA3DB300F6D02C /* MFGetAddressOperatorTest.mg */,
+				89253B3722B395C400AD9A33 /* MFTypedefTest.h */,
+				89253B3622B395C400AD9A33 /* MFTypedefTest.m */,
+				89253B3522B395C400AD9A33 /* MFTypedefTest.mg */,
+				89253B4222B39E0D00AD9A33 /* MFFuncDeclareTest.h */,
+				89253B4322B39E0D00AD9A33 /* MFFuncDeclareTest.m */,
+				89253B4122B39E0D00AD9A33 /* MFFuncDeclareTest.mg */,
 				899671A2224BFD2A00C7DACB /* MangoFixTests.m */,
 				899671A4224BFD2A00C7DACB /* Info.plist */,
 			);
@@ -462,7 +508,7 @@
 			children = (
 				89967264224BFE6F00C7DACB /* create.h */,
 				8996724E224BFE6F00C7DACB /* create.m */,
-				89967263224BFE6F00C7DACB /* errrorc.m */,
+				89253B3022B395A300AD9A33 /* Table */,
 				8996724F224BFE6F00C7DACB /* AST */,
 				89967265224BFE6F00C7DACB /* lex_yacc */,
 			);
@@ -505,6 +551,22 @@
 			path = lex_yacc;
 			sourceTree = "<group>";
 		};
+		8997541A22B7365A00046DD4 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				8997541B22B736C600046DD4 /* errror.h */,
+				89967263224BFE6F00C7DACB /* errror.m */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		8997541C22B7718B00046DD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -514,6 +576,7 @@
 			files = (
 				895EC4DC224CAA7C0062CBF8 /* MFValue.h in Headers */,
 				895EC4DB224CAA2A0062CBF8 /* MFContext.h in Headers */,
+				89253B3422B395A400AD9A33 /* MFTypedefTable.h in Headers */,
 				89814085227ACEE70023257B /* MFDeclarationModifier.h in Headers */,
 				89814084227ACEDD0023257B /* MangoFix.h in Headers */,
 				89E6A66922AA31B700F6D02C /* MFStaticVarTable.h in Headers */,
@@ -613,6 +676,7 @@
 				8977D887224CCB910048A954 /* MFBranchStatementTest.mg in Resources */,
 				89674F77226BCD3300EE2DDA /* MFCallOCReturnBlockTest.mg in Resources */,
 				89D5304A22A8E5D9005DCF2F /* MFFormatNumberTest.mg in Resources */,
+				89253B3822B395C400AD9A33 /* MFTypedefTest.mg in Resources */,
 				8977D88B224CCC710048A954 /* MFInstanceMethodReplaceTest.mg in Resources */,
 				8977D88F224CD3DE0048A954 /* MFSuperMethodReplaceTest.mg in Resources */,
 				89EE6453227257D300C7DD7A /* MFIvarTest.mg in Resources */,
@@ -624,6 +688,7 @@
 				8977D897224CD4BD0048A954 /* MFGCDTest.mg in Resources */,
 				8972EEBB22A0E74E009D49DB /* MFStructMemberAssignTest.mg in Resources */,
 				89F96113224CE9C700ADFF07 /* MFOriginalMethodTest.mg in Resources */,
+				89253B4422B39E0D00AD9A33 /* MFFuncDeclareTest.mg in Resources */,
 				8977D88D224CCF200048A954 /* MFClassMethodReplaceTest.mg in Resources */,
 				89E6A66F22AA3A5B00F6D02C /* MFStaticVarTest.mg in Resources */,
 				8980F33C229A7EE70072A79C /* MFDispatchSemaphoreTest.mg in Resources */,
@@ -643,12 +708,13 @@
 				8996729A224BFE6F00C7DACB /* MFClassDefinition.m in Sources */,
 				899672A1224BFE6F00C7DACB /* mango.y in Sources */,
 				89E6A66A22AA31B700F6D02C /* MFStaticVarTable.m in Sources */,
-				8996729F224BFE6F00C7DACB /* errrorc.m in Sources */,
+				8996729F224BFE6F00C7DACB /* errror.m in Sources */,
 				899672A2224BFE6F00C7DACB /* mango.l in Sources */,
 				8996729C224BFE6F00C7DACB /* MFDeclaration.m in Sources */,
 				89EE645722725FBB00C7DD7A /* MFPropertyMapTable.m in Sources */,
 				89967279224BFE6F00C7DACB /* built-in.m in Sources */,
 				8996728C224BFE6F00C7DACB /* MFExpression.m in Sources */,
+				89253B3322B395A400AD9A33 /* MFTypedefTable.m in Sources */,
 				8996726B224BFE6F00C7DACB /* MFContext.m in Sources */,
 				8996728F224BFE6F00C7DACB /* MFBlockBody.m in Sources */,
 				89967278224BFE6F00C7DACB /* eval.m in Sources */,
@@ -686,6 +752,7 @@
 				895EC4E8224CC2C90062CBF8 /* MFConditionalReplaceTest.m in Sources */,
 				89E6A66D22AA3A1100F6D02C /* MFStaticVarTest.m in Sources */,
 				89F9610C224CE3F200ADFF07 /* MFObjectPropertyTest.m in Sources */,
+				89253B4522B39E0D00AD9A33 /* MFFuncDeclareTest.m in Sources */,
 				899671A3224BFD2A00C7DACB /* MangoFixTests.m in Sources */,
 				89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */,
 				89FC7DB5224C058200AFC0AC /* MFSequentialStatementTest.m in Sources */,
@@ -696,6 +763,7 @@
 				895EC4F7224CC4920062CBF8 /* MFGCDTest.m in Sources */,
 				89E6A67222AA3D8F00F6D02C /* MFGetAddressOperatorTest.m in Sources */,
 				895EC4EB224CC30D0062CBF8 /* MFInstanceMethodReplaceTest.m in Sources */,
+				89253B3922B395C400AD9A33 /* MFTypedefTest.m in Sources */,
 				89F96109224CDF3D00ADFF07 /* MFAddGlobalVarTest.m in Sources */,
 				895EC4E5224CC2520062CBF8 /* MFMethodParameterListAndReturnValueTest.m in Sources */,
 				89F96111224CE98D00ADFF07 /* MFOriginalMethodTest.m in Sources */,
@@ -843,6 +911,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MangoFix/symdl",
+				);
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFix/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -875,6 +947,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MangoFix/symdl",
+				);
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFix/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -902,6 +978,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59669493D8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MangoFix/symdl",
+				);
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFixTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -920,6 +1000,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59669493D8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MangoFix/symdl",
+				);
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFixTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

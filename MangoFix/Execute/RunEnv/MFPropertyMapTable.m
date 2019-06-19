@@ -16,7 +16,6 @@
         _property = property;
     }
     return self;
-    
 }
 
 @end
@@ -52,7 +51,6 @@
     [_lock lock];
     _dic[index] = propertyMapTableItem;
     [_lock unlock];
-    
 }
 
 - (MFPropertyMapTableItem *)getPropertyMapTableItemWith:(Class)clazz name:(NSString *)name{

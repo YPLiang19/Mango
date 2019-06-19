@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <MangoFix/MangoFix.h>
+#import <symdl/symdl.h>
 
 #import "MFInstanceMethodReplaceTest.h"
 #import "MFClassMethodReplaceTest.h"
@@ -33,6 +34,9 @@
 #import "MFFormatNumberTest.h"
 #import "MFStaticVarTest.h"
 #import "MFGetAddressOperatorTest.h"
+#import "MFTypedefTest.h"
+#import "MFFuncDeclareTest.h"
+#import <stdio.h>
 
 
 @interface MangoFixTest : XCTestCase
@@ -196,9 +200,6 @@
     CGPoint point = [structMemberAssignTest testStructMemberAssign2];
     XCTAssertEqual(point.x, 10,@"testStructMemberAssign2");
     XCTAssertEqual(point.y, 100,@"testStructMemberAssign2");
-
-    
-    
 }
 
 - (void)testCallOCReturnBlock{
@@ -230,12 +231,11 @@
     XCTAssert(retVale,@"testCallSuperNoArgTestSupser");
 }
 
-
 - (void)testGCD{
     [self loadMango:@"MFGCDTest"];
     MFGCDTest *gcdTest = [[MFGCDTest alloc] init];
     XCTestExpectation *expection = [self expectationWithDescription:@"testGCD"];;
-    [gcdTest testGCDWithCompletionBlock:^(id  _Nonnull data) {
+    [gcdTest testGCDAfterWithCompletionBlock:^(id  _Nonnull data) {
         XCTAssertEqualObjects(data, @"success",@"testGCDWithCompletionBlock");
         [expection fulfill];
     }];
@@ -268,5 +268,20 @@
     NSInteger i3 = [getAddressOperatorTest testGetAddressOperator];
     XCTAssert(i1 == 1 && i2 == 1 && i3 == 1,@"testGetAddressOperator");
 }
+
+- (void)testTypedef{
+    [self loadMango:@"MFTypedefTest"];
+    MFTypedefTest *typedefTest = [[MFTypedefTest alloc] init];
+    void *retPtr = [typedefTest testTypedef];
+    XCTAssert((*(int64_t *)retPtr == 0),@"testTypedef");
+}
+
+- (void)testFuncDeclare{
+    [self loadMango:@"MFFuncDeclareTest"];
+    MFFuncDeclareTest *funcDeclareTest = [[MFFuncDeclareTest alloc] init];
+    [funcDeclareTest testFuncDeclare];
+}
+
+
 
 @end

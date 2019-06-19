@@ -10,19 +10,6 @@
 #define create_h
 #import "mf_ast.h"
 
-
-typedef NS_ENUM(NSUInteger, MFCompileError) {
-	MFCompileErrorParseErr,
-	MFCompileErrorStructDeclareRedefinition,
-	MFCompileErrorStructDeclareLackTypeEncoding,
-	MFCompileErrorStructDeclareLackTypeKeys,
-	MFSameClassDefinitionDifferentSuperClass,
-	MFRedefinitionPropertyInSameClass,
-	MFRedefinitionPropertyInChildClass,
-	MFParameterRedefinition,
-	
-};
-
 void mf_open_string_literal_buf(void);
 
 void mf_append_string_literal(int letter);
@@ -41,7 +28,9 @@ void mf_build_block_expr(MFBlockExpression *expr, MFTypeSpecifier *returnTypeSpe
 
 MFStructDeclare *mf_create_struct_declare(MFExpression *annotaionIfConditionExpr, NSString *structName, NSString *typeEncodingKey, MFExpression *typeEncodingValueExpr, NSString *keysKey, NSArray<NSString *> *keysValue);
 
-MFTypeSpecifier *mf_create_type_specifier(ANATypeSpecifierKind kind);
+MFTypeSpecifier *mf_create_type_specifier(MFTypeSpecifierKind kind);
+
+MFTypeSpecifier *mf_create_cfuntion_type_specifier( NSArray<NSString *> *typeList);
 
 MFTypeSpecifier *mf_create_struct_type_specifier(NSString *structName);
 
@@ -98,10 +87,12 @@ void mf_add_struct_declare(MFStructDeclare *structDeclare);
 
 void mf_add_statement(MFStatement *statement);
 
+void mf_add_typedef(MFTypeSpecifierKind type, NSString *alias);
+
+void mf_add_typedef_from_alias(NSString *alias_existing, NSString *alias_new);
+
 MFInterpreter *mf_get_current_compile_util(void);
 
 void mf_set_current_compile_util(MFInterpreter *interpreter);
-
-void mf_compile_err(int lineNumber,MFCompileError error,...);
 
 #endif /* create_h */

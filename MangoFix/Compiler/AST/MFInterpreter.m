@@ -80,9 +80,6 @@ static MFScopeChain *st_commonScope;
 	extern int yyparse(void);
 	if (yyparse()) {
         yyrestart(NULL); /* 解析出错时，重置yylex */
-#ifdef DEBUG
-        NSCAssert(0, @"compile error！！！");
-#endif
 		return;
 	}
 	

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (MFValue *)peekStack:(NSUInteger)index;
 - (void)shrinkStack:(NSUInteger)shrinkSize;
 - (NSUInteger)size;
+
 @end
 
 NS_ASSUME_NONNULL_END

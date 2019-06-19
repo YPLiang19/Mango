@@ -20,11 +20,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-}
-
 - (void)dealloc{
 	NSLog(@"SuperMyController::%@", NSStringFromSelector(_cmd));
 }

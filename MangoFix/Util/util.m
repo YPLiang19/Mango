@@ -53,6 +53,8 @@ static ffi_type *_ffi_type_with_type_encoding(NSString *typeEncoding){
 			return &ffi_type_longdouble;
 		case 'B':
 			return &ffi_type_uint8;
+        case '*':
+            return &ffi_type_pointer;
 		case '^':
 			return &ffi_type_pointer;
 		case '@':

@@ -44,7 +44,7 @@ static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 		
 	}
 	__autoreleasing MFValue *retValue = mf_call_mf_function(inter, scope, func, argValues);
-	[retValue assign2CValuePointer:ret typeEncoding:[sig methodReturnType]];
+	[retValue assignToCValuePointer:ret typeEncoding:[sig methodReturnType]];
 }
 
 @implementation MFBlock{
