@@ -1,2 +1,3 @@
 - [MangoFix：iOS热修复另辟蹊径](https://www.jianshu.com/p/7ae91a2daead)
 - [iOS热修复MangoFix原理分析](https://www.jianshu.com/p/a6511c687eda)
+- [symdl ：一个可以替代dlsym的小工具](https://www.jianshu.com/p/a3360859bc96)
