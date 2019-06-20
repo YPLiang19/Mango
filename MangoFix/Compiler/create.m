@@ -354,7 +354,7 @@ MFTypeSpecifier *mf_create_cfuntion_type_specifier( NSArray<NSString *> *typeLis
                 @"int"          : @"i",
                 @"long"         : @"l",
                 @"int8_t"       : @"c",
-                @"int16_6"      : @"s",
+                @"int16_t"      : @"s",
                 @"int32_t"      : @"i",
                 @"int64_t"      : @"q",
                 @"u_int"        : @"I",
@@ -367,6 +367,11 @@ MFTypeSpecifier *mf_create_cfuntion_type_specifier( NSArray<NSString *> *typeLis
                 @"size_t"       : @"Q",
 #else
                 @"size_t"       : @"I",
+#endif
+#if defined(__LP64__) && __LP64__
+                @"CGFloat"      : @"d",
+#else
+                @"CGFloat"     : @"f",
 #endif
                 @"float"        : @"f",
                 @"double"       : @"d",
