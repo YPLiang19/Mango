@@ -556,6 +556,11 @@ static void copy_undef_var(id exprOrStatement, MFVarDeclareChain *chain, MFScope
         MFDeclarationStatement *statement = (MFDeclarationStatement *)exprOrStatement;
         NSString *name = statement.declaration.name;
         [chain addIndentifer:name];
+        
+        MFExpression *initializerExpr = statement.declaration.initializer;
+        if (initializerExpr) {
+            copy_undef_var(initializerExpr, chain, fromScope, endScope, destScope);
+        }
         return;
         
     }else if (exprOrStatementClass == MFIfStatement.class){
