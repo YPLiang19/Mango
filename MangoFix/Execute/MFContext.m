@@ -9,35 +9,43 @@
 #import "MFContext.h"
 #import "create.h"
 #import "execute.h"
+#import "MFRSA.h"
 
 @interface MFContext()
 @property(nonatomic, strong) MFInterpreter *interpreter;
+@property(nonatomic, copy) NSString *privateKey;
 @end
 
 @implementation MFContext
 
-
-- (instancetype)init{
-	if (self = [super init]) {
-		_interpreter = [[MFInterpreter alloc] init];
-	}
-	return self;
+- (instancetype)initWithRASPrivateKey:(NSString *)privateKey{
+    if (self = [super init]) {
+        _interpreter = [[MFInterpreter alloc] init];
+        _privateKey = privateKey;
+    }
+    return self;
 }
 
 - (void)evalMangoScriptWithURL:(NSURL *)url{
-	mf_set_current_compile_util(self.interpreter);
-	[self.interpreter compileSoruceWithURL:url];
-    mf_set_current_compile_util(nil);
-	mf_interpret(self.interpreter);
-	
-	
+    NSError *error;
+    NSString *rsaEncryptedBase64String = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"MangoFix: %@",error);
+        return;
+    }
+    [self evalMangoScriptWithRASEncryptedBase64String:rsaEncryptedBase64String];
 }
 
-- (void)evalMangoScriptWithSourceString:(NSString *)sourceString{
-	mf_set_current_compile_util(self.interpreter);
-	[self.interpreter compileSoruceWithString:sourceString];
+- (void)evalMangoScriptWithRASEncryptedBase64String:(NSString *)rsaEncryptedBase64String{
+    NSString *mangoFixString = [MFRSA decryptString:rsaEncryptedBase64String privateKey:self.privateKey];
+    if (!mangoFixString.length) {
+        NSLog(@"MangoFix: RAS decrypt error!");
+        return;
+    }
+    mf_set_current_compile_util(self.interpreter);
+    [self.interpreter compileSoruceWithString:mangoFixString];
     mf_set_current_compile_util(nil);
-	mf_interpret(self.interpreter);
+    mf_interpret(self.interpreter);
 }
 
 - (MFValue *)objectForKeyedSubscript:(id)key{
@@ -51,5 +59,16 @@
 	[_interpreter.topScope setValue:value withIndentifier:key];
 }
 
+
+#ifdef DEBUG
+- (void)evalMangoScriptWithDebugURL:(NSURL *)url{
+    NSError *error;
+    NSString *mangoFixString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+    mf_set_current_compile_util(self.interpreter);
+    [self.interpreter compileSoruceWithString:mangoFixString];
+    mf_set_current_compile_util(nil);
+    mf_interpret(self.interpreter);
+}
+#endif
 
 @end

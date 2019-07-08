@@ -9,19 +9,30 @@
 #import "MFValue.h"
 @interface MFContext : NSObject
 
+
 /**
- Evaluate Mango code from a  url.
- @param url The url of the  Mango code.
+ Initializes a MagnoFix context with specify a RSA private key, the private key must be 1024 bits and PKCS #8.
+ 
+ @param privateKey  RSA private key
+ @return MFContext instance
+ */
+- (instancetype)initWithRASPrivateKey:(NSString *)privateKey NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
+
+/**
+ Evaluate MangoFix code that encrypted by RAS and base64 encode string from a url.
+ 
+ @param url The url of the MangoFix code that encrypted by RAS and base64 encode string.
  */
 - (void)evalMangoScriptWithURL:(NSURL *)url;
 
-
 /**
- Evaluate a string of JavaScript code.
+ Evaluate a data of MangoFix code that encrypted by RAS.
 
- @param sourceString Mango
+ @param rsaEncryptedBase64String of MangoFix code that encrypted by RAS.
  */
-- (void)evalMangoScriptWithSourceString:(NSString *)sourceString;
+- (void)evalMangoScriptWithRASEncryptedBase64String:(NSString *)rsaEncryptedBase64String;
 
 /**
   Get a particular property on the global object.
@@ -34,4 +45,11 @@
  Set a particular property on the global object.
  */
 - (void)setObject:(MFValue *)value forKeyedSubscript:(NSObject <NSCopying> *)key;
+
+
+
+#ifdef DEBUG
+- (void)evalMangoScriptWithDebugURL:(NSURL *)url;
+#endif
+
 @end

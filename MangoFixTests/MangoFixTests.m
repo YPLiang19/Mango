@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import <MangoFix/MangoFix.h>
-#import <symdl/symdl.h>
 
 #import "MFInstanceMethodReplaceTest.h"
 #import "MFClassMethodReplaceTest.h"
@@ -36,8 +35,6 @@
 #import "MFGetAddressOperatorTest.h"
 #import "MFTypedefTest.h"
 #import "MFFuncDeclareTest.h"
-#import <stdio.h>
-
 
 @interface MangoFixTest : XCTestCase
 
@@ -47,16 +44,14 @@
 
 @implementation MangoFixTest
 
-- (void)loadMango:(NSString *)mangoName
-{
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:mangoName ofType:@"mg"];
-    NSURL *scriptUrl = [NSURL fileURLWithPath:path];
-    [self.context evalMangoScriptWithURL:scriptUrl];
+- (void)loadMango:(NSString *)mangoName{
+    NSURL *scriptUrl = [[NSBundle bundleForClass:[self class]] URLForResource:mangoName withExtension:@"mg"];
+    [self.context evalMangoScriptWithDebugURL:scriptUrl];
 }
 
 
 - (void)setUp {
-    self.context = [[MFContext alloc] init];
+    self.context = [[MFContext alloc] initWithRASPrivateKey:nil];
 }
 
 

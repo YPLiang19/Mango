@@ -62,17 +62,6 @@ static MFScopeChain *st_commonScope;
 }
 
 
-- (void)compileSoruceWithURL:(NSURL *)url{
-	NSError *error;
-	NSString *source = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-	if (error) {
-		NSLog(@"%@",error);
-		return;
-	}
-	[self compileSoruceWithString:source];
-	
-}
-
 - (void)compileSoruceWithString:(NSString *)source{
 	extern void mf_set_source_string(char const *source);
 	mf_set_source_string([source UTF8String]);
@@ -84,10 +73,5 @@ static MFScopeChain *st_commonScope;
 	}
 	
 }
-
-
-
-
-
 
 @end

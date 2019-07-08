@@ -27,7 +27,6 @@
 
 @property (strong, nonatomic) MFStack *stack;
 
-- (void)compileSoruceWithURL:(NSURL *)url;
 - (void)compileSoruceWithString:(NSString *)source;
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8967B0FF22CE173F008D4670 /* private_key.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8967B0FD22CE173E008D4670 /* private_key.txt */; };
+		8967B10022CE173F008D4670 /* public_key.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8967B0FE22CE173F008D4670 /* public_key.txt */; };
 		8977D885224CC9070048A954 /* demo.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89FC7DA9224C047700AFC0AC /* demo.mg */; };
 		899672BC224C02DC00C7DACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 899672BB224C02DC00C7DACB /* Assets.xcassets */; };
 		899672BF224C02DC00C7DACB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899672BD224C02DC00C7DACB /* LaunchScreen.storyboard */; };
@@ -21,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		0EDFFE948A3B02594E2D1D61 /* Pods-MangoFixDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFixDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangoFixDemo/Pods-MangoFixDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		8967B0F322CE0075008D4670 /* MangoFixDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = MangoFixDemo.entitlements; path = ../../MangoFixTests/MangoFixDemo.entitlements; sourceTree = "<group>"; };
+		8967B0FD22CE173E008D4670 /* private_key.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = private_key.txt; sourceTree = "<group>"; };
+		8967B0FE22CE173F008D4670 /* public_key.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = public_key.txt; sourceTree = "<group>"; };
 		899672AF224C02DB00C7DACB /* MangoFixDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangoFixDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		899672BB224C02DC00C7DACB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		899672BE224C02DC00C7DACB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,6 +95,9 @@
 		899672B1224C02DB00C7DACB /* MangoFixDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8967B0F322CE0075008D4670 /* MangoFixDemo.entitlements */,
+				8967B0FD22CE173E008D4670 /* private_key.txt */,
+				8967B0FE22CE173F008D4670 /* public_key.txt */,
 				89FC7DAB224C047700AFC0AC /* AppDelegate.h */,
 				89FC7DAA224C047700AFC0AC /* AppDelegate.m */,
 				89FC7DA9224C047700AFC0AC /* demo.mg */,
@@ -140,6 +148,11 @@
 				TargetAttributes = {
 					899672AE224C02DB00C7DACB = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -166,7 +179,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8967B0FF22CE173F008D4670 /* private_key.txt in Resources */,
 				899672BF224C02DC00C7DACB /* LaunchScreen.storyboard in Resources */,
+				8967B10022CE173F008D4670 /* public_key.txt in Resources */,
 				899672BC224C02DC00C7DACB /* Assets.xcassets in Resources */,
 				8977D885224CC9070048A954 /* demo.mg in Resources */,
 				89FC7DAF224C048600AFC0AC /* Main.storyboard in Resources */,
@@ -340,6 +355,7 @@
 			baseConfigurationReference = 0EDFFE948A3B02594E2D1D61 /* Pods-MangoFixDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MangoFixDemo/MangoFixDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59669493D8;
 				INFOPLIST_FILE = MangoFixDemo/Info.plist;
@@ -359,6 +375,7 @@
 			baseConfigurationReference = 9EEAECA77D20750BB9B10C88 /* Pods-MangoFixDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MangoFixDemo/MangoFixDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 59669493D8;
 				INFOPLIST_FILE = MangoFixDemo/Info.plist;
