@@ -62,7 +62,7 @@ static MFScopeChain *st_commonScope;
 }
 
 
-- (void)compileSoruceWithString:(NSString *)source{
+- (void)compileSourceWithString:(NSString *)source{
 	extern void mf_set_source_string(char const *source);
 	mf_set_source_string([source UTF8String]);
 	extern void yyrestart  (FILE * input_file );
