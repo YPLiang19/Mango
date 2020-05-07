@@ -340,7 +340,6 @@ static void add_build_in_function(MFInterpreter *interpreter){
 		return CGAffineTransformConcat(t1,t2);
 	}] withIndentifier:@"CGAffineTransformConcat"];
 	
-	
 	[interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGAffineTransform(CGAffineTransform t, CGFloat sx, CGFloat sy){
 		return CGAffineTransformScale(t, sx, sy);
 	}] withIndentifier:@"CGAffineTransformScale"];
@@ -356,7 +355,38 @@ static void add_build_in_function(MFInterpreter *interpreter){
 	[interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CATransform3D(CGFloat sx, CGFloat sy, CGFloat sz){
 		return CATransform3DMakeScale(sx, sy, sz);
 	}] withIndentifier:@"CATransform3DMakeScale"];
-	
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetWidth(rect);
+    }] withIndentifier:@"CGRectGetWidth"];
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetHeight(rect);
+    }] withIndentifier:@"CGRectGetHeight"];
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetMinX(rect);
+    }] withIndentifier:@"CGRectGetMinX"];
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetMidX(rect);
+    }] withIndentifier:@"CGRectGetMidX"];
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetMaxX(rect);
+    }] withIndentifier:@"CGRectGetMaxX"];
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetMinY(rect);
+    }] withIndentifier:@"CGRectGetMinY"];
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetMidY(rect);
+    }] withIndentifier:@"CGRectGetMidY"];
+    
+    [interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^CGFloat(CGRect rect){
+        return CGRectGetMaxY(rect);
+    }] withIndentifier:@"CGRectGetMaxY"];
 	
 	[interpreter.commonScope setValue:[MFValue valueInstanceWithBlock:^void (id obj){
 		NSLog(@"%@",obj);

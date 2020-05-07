@@ -260,8 +260,9 @@ class SubMyController:SuperMyController {
     self.title = @"Magno 创建自定义ViewController";
     double width = 100;
     double height = 100;
-    double x = self.view.frame.size.width/2 - width/2;
-    double y = self.view.frame.size.height/2 - height/2;
+    struct CGRect frame = self.view.frame;
+    double x = frame.size.width/2 - width/2;
+    double y = frame.size.height/2 - height/2;
     UIView *view = CustomView.alloc().initWithFrame:(CGRectMake(x, y, width, height));
     self.view.addSubview:(view);
     view.backgroundColor = UIColor.redColor();

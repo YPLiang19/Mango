@@ -67,8 +67,8 @@ static MFScopeChain *st_commonScope;
 	mf_set_source_string([source UTF8String]);
 	extern void yyrestart  (FILE * input_file );
 	extern int yyparse(void);
+    yyrestart(NULL); /* 每次解析前，重置yylex */
 	if (yyparse()) {
-        yyrestart(NULL); /* 解析出错时，重置yylex */
 		return;
 	}
 	

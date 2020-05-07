@@ -43,6 +43,7 @@
         return;
     }
     mf_set_current_compile_util(self.interpreter);
+    mf_add_built_in(self.interpreter);
     [self.interpreter compileSoruceWithString:mangoFixString];
     mf_set_current_compile_util(nil);
     mf_interpret(self.interpreter);
@@ -65,6 +66,7 @@
     NSError *error;
     NSString *mangoFixString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
     mf_set_current_compile_util(self.interpreter);
+    mf_add_built_in(self.interpreter);
     [self.interpreter compileSoruceWithString:mangoFixString];
     mf_set_current_compile_util(nil);
     mf_interpret(self.interpreter);

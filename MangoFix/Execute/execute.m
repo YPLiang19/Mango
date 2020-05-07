@@ -713,7 +713,6 @@ void add_struct_declare(MFInterpreter *interpreter, MFStructDeclare *structDecla
 
 
 void mf_interpret(MFInterpreter *interpreter){
-	mf_add_built_in(interpreter);
 	for (__kindof NSObject *top in interpreter.topList) {
 		if ([top isKindOfClass:[MFStatement class]]) {
 			execute_statement(interpreter, interpreter.topScope, top);
