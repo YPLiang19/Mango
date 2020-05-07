@@ -268,6 +268,7 @@ class SubMyController:SuperMyController {
     view.backgroundColor = UIColor.redColor();
     self.rotateView = view;
 
+
     __weak id weakSelf = self;
     self.block = ^{
         __strong ids strongSelf = weakSelf;
