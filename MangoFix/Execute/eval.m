@@ -1579,7 +1579,7 @@ static void eval_member_expression(MFInterpreter *inter, MFScopeChain *scope, MF
     }
     
 	eval_expression(inter, scope, expr.expr);
-	MFValue *obj = [inter.stack pop];
+	__autoreleasing MFValue *obj = [inter.stack pop];
     MFValue *resultValue;
 	if (obj.type.typeKind == MF_TYPE_STRUCT) {
 		MFStructDeclareTable *table = [MFStructDeclareTable shareInstance];
