@@ -12,13 +12,6 @@
 #import "runenv.h"
 
 
-const char * mf_str_append(const char *str1, const char *str2){
-	size_t len = strlen(str1) + strlen(str2);
-	char *ret = malloc(sizeof(char) * (len + 1));
-	strcpy(ret, str1);
-	strcat(ret, str2);
-	return ret;
-}
 
 static ffi_type *_ffi_type_with_type_encoding(NSString *typeEncoding){
 	char *code = (char *)typeEncoding.UTF8String;

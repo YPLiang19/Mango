@@ -21,7 +21,6 @@
 }
 
 - (void)dealloc{
-	NSLog(@"SuperMyController::%@", NSStringFromSelector(_cmd));
 }
 
 

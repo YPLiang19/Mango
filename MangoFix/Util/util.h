@@ -27,8 +27,6 @@ inline static  char *removeTypeEncodingPrefix(char *typeEncoding){
 	return typeEncoding;
 }
 
-const char * mf_str_append(const char *str1, const char *str2);
-
 ffi_type *mf_ffi_type_with_type_encoding(const char *typeEncoding);
 
 size_t mf_size_with_encoding(const char *typeEncoding);

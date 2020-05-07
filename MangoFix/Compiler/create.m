@@ -148,14 +148,14 @@ MFDicEntry *mf_create_dic_entry(MFExpression *keyExpr, MFExpression *valueExpr){
 
 
 MFExpression *mf_create_expression(MFExpressionKind kind){
-	Class clazz = mf_expression_class_of_kind(kind);
-	MFExpression *expr = [[clazz alloc] init];
-    expr.lineNumber = mf_get_current_compile_util().currentLineNumber;
-	expr.expressionKind = kind;
-    if (mf_get_current_compile_util().currentClassDefinition) {
-        expr.currentClassName = mf_get_current_compile_util().currentClassDefinition.name;
-    }
-	return expr;
+        Class clazz = mf_expression_class_of_kind(kind);
+        MFExpression *expr = [[clazz alloc] init];
+        expr.lineNumber = mf_get_current_compile_util().currentLineNumber;
+        expr.expressionKind = kind;
+        if (mf_get_current_compile_util().currentClassDefinition) {
+            expr.currentClassName = mf_get_current_compile_util().currentClassDefinition.name;
+        }
+        return expr;
 }
 
 

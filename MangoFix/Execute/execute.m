@@ -501,9 +501,8 @@ static void replace_getter_method(NSUInteger lineNumber, MFInterpreter *inter ,C
 	ffi_prep_cif(cifPtr, FFI_DEFAULT_ABI, argCount, returnType, argTypes);
 	ffi_closure *closure = ffi_closure_alloc(sizeof(ffi_closure), (void **)&imp);
 	ffi_prep_closure_loc(closure, cifPtr, getterInter, (__bridge void *)prop, imp);
-	const char * typeEncoding = mf_str_append(retTypeEncoding, "@:");
-	class_replaceMethod(clazz, getterSEL, (IMP)imp, typeEncoding);
-	free((void *)typeEncoding);
+	NSString * typeEncoding = [NSString stringWithFormat:@"%s%s",retTypeEncoding, "@:"];
+	class_replaceMethod(clazz, getterSEL, (IMP)imp, typeEncoding.UTF8String);
 }
 
 static void replace_setter_method(NSUInteger lineNumber ,MFInterpreter *inter ,Class clazz, MFPropertyDefinition *prop){
@@ -526,9 +525,8 @@ static void replace_setter_method(NSUInteger lineNumber ,MFInterpreter *inter ,C
 	ffi_prep_cif(cifPtr, FFI_DEFAULT_ABI, argCount, returnType, argTypes);
 	ffi_closure *closure = ffi_closure_alloc(sizeof(ffi_closure), (void **)&imp);
 	ffi_prep_closure_loc(closure, cifPtr, setterInter, (__bridge void *)prop, imp);
-	const char * typeEncoding = mf_str_append("v@:", prtTypeEncoding);
-	class_replaceMethod(clazz, setterSEL, (IMP)imp, typeEncoding);
-	free((void *)typeEncoding);
+	NSString * typeEncoding = [NSString stringWithFormat:@"%s%s","v@:", prtTypeEncoding];
+	class_replaceMethod(clazz, setterSEL, (IMP)imp, typeEncoding.UTF8String);
 }
 
 
@@ -630,8 +628,7 @@ static void replace_method(MFInterpreter *interpreter,Class clazz, MFMethodDefin
 	MFMethodMapTableItem *item = [[MFMethodMapTableItem alloc] initWithClass:clazz inter:interpreter method:method];
 	[[MFMethodMapTable shareInstance] addMethodMapTableItem:item];
 	
-	BOOL needFreeTypeEncoding = NO;
-	const char *typeEncoding;
+	NSMutableString *typeEncoding = [NSMutableString string];
 	Method ocMethod;
 	if (method.classMethod) {
 		ocMethod = class_getClassMethod(clazz, sel);
@@ -640,14 +637,13 @@ static void replace_method(MFInterpreter *interpreter,Class clazz, MFMethodDefin
 	}
 	
 	if (ocMethod) {
-		typeEncoding = method_getTypeEncoding(ocMethod);
+		[typeEncoding appendString:@(method_getTypeEncoding(ocMethod))];
 	}else{
-		typeEncoding =[func.returnTypeSpecifier typeEncoding];
+		[typeEncoding appendString:@([func.returnTypeSpecifier typeEncoding])];
 		
 		for (MFParameter *param in func.params) {
 			const char *paramTypeEncoding = [param.type typeEncoding];
-			typeEncoding = mf_str_append(typeEncoding, paramTypeEncoding);
-			needFreeTypeEncoding = YES;
+            [typeEncoding appendString:@(paramTypeEncoding)];
 		}
 	}
 	Class c2 = method.classMethod ? objc_getMetaClass(class_getName(clazz)) : clazz;
@@ -655,10 +651,10 @@ static void replace_method(MFInterpreter *interpreter,Class clazz, MFMethodDefin
         NSString *orgSelName = [NSString stringWithFormat:@"ORG%@",func.name];
         SEL orgSel = NSSelectorFromString(orgSelName);
         if (!class_respondsToSelector(c2, orgSel)) {
-            class_addMethod(c2, orgSel, method_getImplementation(ocMethod), typeEncoding);
+            class_addMethod(c2, orgSel, method_getImplementation(ocMethod), typeEncoding.UTF8String);
         }
     }
-    NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:typeEncoding];
+    NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:typeEncoding.UTF8String];
     unsigned int argCount = (unsigned int)[sig numberOfArguments];
     void *imp = NULL;
     ffi_cif *cif = malloc(sizeof(ffi_cif));//不可以free
@@ -671,14 +667,11 @@ static void replace_method(MFInterpreter *interpreter,Class clazz, MFMethodDefin
 
     if(ffi_prep_cif(cif, FFI_DEFAULT_ABI, argCount, returnType, args) == FFI_OK)
     {
-        NSDictionary *userInfo = @{@"class":c2,@"typeEncoding":@(typeEncoding)};
+        NSDictionary *userInfo = @{@"class":c2,@"typeEncoding":[typeEncoding copy]};
         CFTypeRef cfuserInfo = (__bridge_retained CFTypeRef)userInfo;
         ffi_prep_closure_loc(closure, cif, replaceIMP, (void *)cfuserInfo, imp);
     }
-    class_replaceMethod(c2, sel, imp, typeEncoding);
-	if (needFreeTypeEncoding) {
-		free((void *)typeEncoding);
-	}
+    class_replaceMethod(c2, sel, imp, typeEncoding.UTF8String);
 }
 
 
