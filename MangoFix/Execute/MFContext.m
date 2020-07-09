@@ -14,14 +14,23 @@
 @interface MFContext()
 @property(nonatomic, strong) MFInterpreter *interpreter;
 @property(nonatomic, copy) NSString *privateKey;
+@property(nonatomic, copy) NSString *publicKey;
 @end
 
 @implementation MFContext
 
-- (instancetype)initWithRASPrivateKey:(NSString *)privateKey{
+- (instancetype)initWithRSAPrivateKey:(NSString *)privateKey{
     if (self = [super init]) {
         _interpreter = [[MFInterpreter alloc] init];
         _privateKey = privateKey;
+    }
+    return self;
+}
+
+- (instancetype)initWithRSAPublicKey:(NSString *)publicKey{
+    if (self = [super init]) {
+        _interpreter = [[MFInterpreter alloc] init];
+        _publicKey = publicKey;
     }
     return self;
 }
@@ -34,16 +43,21 @@
             NSLog(@"MangoFix: %@",error);
             return;
         }
-        [self evalMangoScriptWithRASEncryptedBase64String:rsaEncryptedBase64String];
+        [self evalMangoScriptWithRSAEncryptedBase64String:rsaEncryptedBase64String];
         
     }
 }
 
-- (void)evalMangoScriptWithRASEncryptedBase64String:(NSString *)rsaEncryptedBase64String{
+- (void)evalMangoScriptWithRSAEncryptedBase64String:(NSString *)rsaEncryptedBase64String{
     @autoreleasepool {
-        NSString *mangoFixString = [MFRSA decryptString:rsaEncryptedBase64String privateKey:self.privateKey];
+        NSString *mangoFixString;
+        if (self.privateKey.length) {
+            mangoFixString = [MFRSA decryptString:rsaEncryptedBase64String privateKey:self.privateKey];
+        } else if (self.publicKey.length) {
+            mangoFixString = [MFRSA decryptString:rsaEncryptedBase64String publicKey:self.publicKey];
+        }
         if (!mangoFixString.length) {
-            NSLog(@"MangoFix: RAS decrypt error!");
+            NSLog(@"MangoFix: RSA decrypt error!");
             return;
         }
         mf_set_current_compile_util(self.interpreter);
