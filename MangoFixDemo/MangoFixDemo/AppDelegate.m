@@ -52,7 +52,7 @@ err:
     NSURL *privateKeyUrl = [[NSBundle mainBundle] URLForResource:@"private_key.txt" withExtension:nil];
     NSString *privateKey = [NSString stringWithContentsOfURL:privateKeyUrl encoding:NSUTF8StringEncoding error:nil];
     
-    MFContext *context = [[MFContext alloc] initWithRASPrivateKey:privateKey];
+    MFContext *context = [[MFContext alloc] initWithRSAPrivateKey:privateKey];
     
     NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"encrypted_demo.mg"];
     NSURL *scriptUrl = [NSURL fileURLWithPath:encryptedPath];

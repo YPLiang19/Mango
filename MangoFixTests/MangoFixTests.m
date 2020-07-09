@@ -51,7 +51,7 @@
 
 
 - (void)setUp {
-    self.context = [[MFContext alloc] initWithRASPrivateKey:nil];
+    self.context = [[MFContext alloc] initWithRSAPrivateKey:nil];
 }
 
 
