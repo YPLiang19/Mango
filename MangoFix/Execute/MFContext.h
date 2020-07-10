@@ -16,23 +16,23 @@
  @param privateKey  RSA private key
  @return MFContext instance
  */
-- (instancetype)initWithRASPrivateKey:(NSString *)privateKey NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRSAPrivateKey:(NSString *)privateKey NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
- Evaluate MangoFix code that encrypted by RAS and base64 encode string from a url.
+ Evaluate MangoFix code that encrypted by RSA and base64 encode string from a url.
  
- @param url The url of the MangoFix code that encrypted by RAS and base64 encode string.
+ @param url The url of the MangoFix code that encrypted by RSA and base64 encode string.
  */
 - (void)evalMangoScriptWithURL:(NSURL *)url;
 
 /**
- Evaluate a data of MangoFix code that encrypted by RAS.
+ Evaluate a data of MangoFix code that encrypted by RSA.
 
- @param rsaEncryptedBase64String of MangoFix code that encrypted by RAS.
+ @param rsaEncryptedBase64String of MangoFix code that encrypted by RSA.
  */
-- (void)evalMangoScriptWithRASEncryptedBase64String:(NSString *)rsaEncryptedBase64String;
+- (void)evalMangoScriptWithRSAEncryptedBase64String:(NSString *)rsaEncryptedBase64String;
 
 /**
   Get a particular property on the global object.

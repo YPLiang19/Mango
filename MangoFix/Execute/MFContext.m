@@ -18,7 +18,7 @@
 
 @implementation MFContext
 
-- (instancetype)initWithRASPrivateKey:(NSString *)privateKey{
+- (instancetype)initWithRSAPrivateKey:(NSString *)privateKey{
     if (self = [super init]) {
         _interpreter = [[MFInterpreter alloc] init];
         _privateKey = privateKey;
@@ -34,21 +34,21 @@
             NSLog(@"MangoFix: %@",error);
             return;
         }
-        [self evalMangoScriptWithRASEncryptedBase64String:rsaEncryptedBase64String];
+        [self evalMangoScriptWithRSAEncryptedBase64String:rsaEncryptedBase64String];
         
     }
 }
 
-- (void)evalMangoScriptWithRASEncryptedBase64String:(NSString *)rsaEncryptedBase64String{
+- (void)evalMangoScriptWithRSAEncryptedBase64String:(NSString *)rsaEncryptedBase64String{
     @autoreleasepool {
         NSString *mangoFixString = [MFRSA decryptString:rsaEncryptedBase64String privateKey:self.privateKey];
         if (!mangoFixString.length) {
-            NSLog(@"MangoFix: RAS decrypt error!");
+            NSLog(@"MangoFix: RSA decrypt error!");
             return;
         }
         mf_set_current_compile_util(self.interpreter);
         mf_add_built_in(self.interpreter);
-        [self.interpreter compileSoruceWithString:mangoFixString];
+        [self.interpreter compileSourceWithString:mangoFixString];
         mf_set_current_compile_util(nil);
         mf_interpret(self.interpreter);
     }
@@ -73,7 +73,7 @@
         NSString *mangoFixString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
         mf_set_current_compile_util(self.interpreter);
         mf_add_built_in(self.interpreter);
-        [self.interpreter compileSoruceWithString:mangoFixString];
+        [self.interpreter compileSourceWithString:mangoFixString];
         mf_set_current_compile_util(nil);
         mf_interpret(self.interpreter);
     }

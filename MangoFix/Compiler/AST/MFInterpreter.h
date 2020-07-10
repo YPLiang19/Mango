@@ -27,6 +27,6 @@
 
 @property (strong, nonatomic) MFStack *stack;
 
-- (void)compileSoruceWithString:(NSString *)source;
+- (void)compileSourceWithString:(NSString *)source;
 
 @end
