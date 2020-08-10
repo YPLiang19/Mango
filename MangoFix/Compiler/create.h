@@ -69,7 +69,7 @@ MFReturnStatement *mf_create_return_statement(MFExpression *retValExpr);
 
  MFBlockBody *mf_close_block_statement( MFBlockBody *block, NSArray<MFStatement *> *statementList);
 
-void mf_start_class_definition(MFExpression *annotaionIfConditionExpr, NSString *name, NSString *superNmae, NSArray<NSString *> *protocolNames);
+void mf_start_class_definition(MFExpression *annotaionIfConditionExpr, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames);
 
 MFClassDefinition *mf_end_class_definition(NSArray<MFMemberDefinition *> *members);
 
