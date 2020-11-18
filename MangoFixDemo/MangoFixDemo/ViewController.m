@@ -16,6 +16,10 @@ typedef struct {
 } MyStruct;
 static NSString * const cellIdentifier = @"cell";
 
+void load_function(void *p){
+    NSLog(@"%p",p);
+}
+
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *resultView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -133,6 +137,8 @@ static NSString * const cellIdentifier = @"cell";
             [self staticVarAndGetVarAddressOperExample];
             break;
         case 17://C函数变量示例
+            load_function(NSSearchPathForDirectoriesInDomains);
+            load_function(write);
             [self cfuntionVarExample];
             break;
         case 18://typedef 示例C
