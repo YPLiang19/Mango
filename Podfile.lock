@@ -1,0 +1,16 @@
+PODS:
+  - symdl (0.5.0)
+
+DEPENDENCIES:
+  - symdl
+
+SPEC REPOS:
+  trunk:
+    - symdl
+
+SPEC CHECKSUMS:
+  symdl: 41f089ed2aab0790aa72ca7039e5160c71d7e3a5
+
+PODFILE CHECKSUM: 3399a0f27725e777575ef07c352a35c39c37f949
+
+COCOAPODS: 1.9.1

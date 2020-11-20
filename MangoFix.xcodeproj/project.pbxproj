@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		592F650ADAB6D1FBD5649F95 /* Pods_MangoFix_MangoFixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECE17506FE1D0E845D7EADF /* Pods_MangoFix_MangoFixTests.framework */; };
+		747E6F3F96888F7AB3C8BADF /* Pods_MangoFix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C56513D96A3178630BF8E67 /* Pods_MangoFix.framework */; };
 		89253B3322B395A400AD9A33 /* MFTypedefTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3122B395A300AD9A33 /* MFTypedefTable.m */; };
 		89253B3822B395C400AD9A33 /* MFTypedefTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89253B3522B395C400AD9A33 /* MFTypedefTest.mg */; };
 		89253B3922B395C400AD9A33 /* MFTypedefTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3622B395C400AD9A33 /* MFTypedefTest.m */; };
@@ -77,8 +79,6 @@
 		899672A1224BFE6F00C7DACB /* mango.y in Sources */ = {isa = PBXBuildFile; fileRef = 89967266224BFE6F00C7DACB /* mango.y */; };
 		899672A2224BFE6F00C7DACB /* mango.l in Sources */ = {isa = PBXBuildFile; fileRef = 89967267224BFE6F00C7DACB /* mango.l */; };
 		899672A4224BFE6F00C7DACB /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 89967269224BFE6F00C7DACB /* util.m */; };
-		8997541F22B7726100046DD4 /* symdl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8997541E22B7726100046DD4 /* symdl.framework */; };
-		8997542022B7727300046DD4 /* symdl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8997541E22B7726100046DD4 /* symdl.framework */; };
 		89C671B3224E15050092C30F /* MFOperatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C671B2224E15050092C30F /* MFOperatorTest.m */; };
 		89C671B5224E152D0092C30F /* MFOperatorTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89C671B4224E152D0092C30F /* MFOperatorTest.mg */; };
 		89D5304A22A8E5D9005DCF2F /* MFFormatNumberTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89D5304922A8E5D9005DCF2F /* MFFormatNumberTest.mg */; };
@@ -113,6 +113,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C56513D96A3178630BF8E67 /* Pods_MangoFix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangoFix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		667D579249CB0B99C8B2E07A /* Pods-MangoFix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFix.debug.xcconfig"; path = "Target Support Files/Pods-MangoFix/Pods-MangoFix.debug.xcconfig"; sourceTree = "<group>"; };
 		89253B3122B395A300AD9A33 /* MFTypedefTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTypedefTable.m; sourceTree = "<group>"; };
 		89253B3222B395A300AD9A33 /* MFTypedefTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTypedefTable.h; sourceTree = "<group>"; };
 		89253B3522B395C400AD9A33 /* MFTypedefTest.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MFTypedefTest.mg; sourceTree = "<group>"; };
@@ -236,7 +238,6 @@
 		89967269224BFE6F00C7DACB /* util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = util.m; sourceTree = "<group>"; };
 		8996726A224BFE6F00C7DACB /* MFContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFContext.h; sourceTree = "<group>"; };
 		8997541B22B736C600046DD4 /* errror.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = errror.h; sourceTree = "<group>"; };
-		8997541E22B7726100046DD4 /* symdl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = symdl.framework; sourceTree = "<group>"; };
 		89C671B1224E15050092C30F /* MFOperatorTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFOperatorTest.h; sourceTree = "<group>"; };
 		89C671B2224E15050092C30F /* MFOperatorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFOperatorTest.m; sourceTree = "<group>"; };
 		89C671B4224E152D0092C30F /* MFOperatorTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFOperatorTest.mg; sourceTree = "<group>"; };
@@ -271,6 +272,10 @@
 		89FC7DB0224C058200AFC0AC /* MFSequentialStatementTest.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MFSequentialStatementTest.mg; sourceTree = "<group>"; };
 		89FC7DB1224C058200AFC0AC /* MFSequentialStatementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSequentialStatementTest.m; sourceTree = "<group>"; };
 		89FC7DB3224C058200AFC0AC /* MFSequentialStatementTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSequentialStatementTest.h; sourceTree = "<group>"; };
+		AD696F4FA839D6043A151948 /* Pods-MangoFix-MangoFixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFix-MangoFixTests.debug.xcconfig"; path = "Target Support Files/Pods-MangoFix-MangoFixTests/Pods-MangoFix-MangoFixTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AECE17506FE1D0E845D7EADF /* Pods_MangoFix_MangoFixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangoFix_MangoFixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83A7A989E7632DA01D35992 /* Pods-MangoFix-MangoFixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFix-MangoFixTests.release.xcconfig"; path = "Target Support Files/Pods-MangoFix-MangoFixTests/Pods-MangoFix-MangoFixTests.release.xcconfig"; sourceTree = "<group>"; };
+		EFB82E3A151BF45ABC8A28F8 /* Pods-MangoFix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFix.release.xcconfig"; path = "Target Support Files/Pods-MangoFix/Pods-MangoFix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,8 +283,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8997541F22B7726100046DD4 /* symdl.framework in Frameworks */,
 				89967275224BFE6F00C7DACB /* libffi.a in Frameworks */,
+				747E6F3F96888F7AB3C8BADF /* Pods_MangoFix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,8 +292,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8997542022B7727300046DD4 /* symdl.framework in Frameworks */,
 				8996719E224BFD2A00C7DACB /* MangoFix.framework in Frameworks */,
+				592F650ADAB6D1FBD5649F95 /* Pods_MangoFix_MangoFixTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,14 +307,6 @@
 				89253B3122B395A300AD9A33 /* MFTypedefTable.m */,
 			);
 			path = Table;
-			sourceTree = "<group>";
-		};
-		89253B3E22B3977800AD9A33 /* symdl */ = {
-			isa = PBXGroup;
-			children = (
-				8997541E22B7726100046DD4 /* symdl.framework */,
-			);
-			path = symdl;
 			sourceTree = "<group>";
 		};
 		895EC4D9224CA9CA0062CBF8 /* Util */ = {
@@ -330,6 +327,7 @@
 				899671A1224BFD2A00C7DACB /* MangoFixTests */,
 				89967195224BFD2A00C7DACB /* Products */,
 				8997541C22B7718B00046DD4 /* Frameworks */,
+				DB4402B0FBBCDC85E8200083 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -351,7 +349,6 @@
 				8996724D224BFE6F00C7DACB /* Compiler */,
 				89967238224BFE6F00C7DACB /* Execute */,
 				8996722C224BFE6F00C7DACB /* libffi */,
-				89253B3E22B3977800AD9A33 /* symdl */,
 				895EC4D9224CA9CA0062CBF8 /* Util */,
 			);
 			path = MangoFix;
@@ -567,8 +564,21 @@
 		8997541C22B7718B00046DD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C56513D96A3178630BF8E67 /* Pods_MangoFix.framework */,
+				AECE17506FE1D0E845D7EADF /* Pods_MangoFix_MangoFixTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB4402B0FBBCDC85E8200083 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				667D579249CB0B99C8B2E07A /* Pods-MangoFix.debug.xcconfig */,
+				EFB82E3A151BF45ABC8A28F8 /* Pods-MangoFix.release.xcconfig */,
+				AD696F4FA839D6043A151948 /* Pods-MangoFix-MangoFixTests.debug.xcconfig */,
+				C83A7A989E7632DA01D35992 /* Pods-MangoFix-MangoFixTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +603,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 899671A8224BFD2A00C7DACB /* Build configuration list for PBXNativeTarget "MangoFix" */;
 			buildPhases = (
+				B034E5D5DFAFEED72CFC9B11 /* [CP] Check Pods Manifest.lock */,
 				8996718F224BFD2A00C7DACB /* Headers */,
 				89967190224BFD2A00C7DACB /* Sources */,
 				89967191224BFD2A00C7DACB /* Frameworks */,
@@ -611,9 +622,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 899671AB224BFD2A00C7DACB /* Build configuration list for PBXNativeTarget "MangoFixTests" */;
 			buildPhases = (
+				B85D52427E1E16ECC08B8696 /* [CP] Check Pods Manifest.lock */,
 				89967199224BFD2A00C7DACB /* Sources */,
 				8996719A224BFD2A00C7DACB /* Frameworks */,
 				8996719B224BFD2A00C7DACB /* Resources */,
+				15D51A442567A1BF3FCAFA00 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -702,6 +715,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15D51A442567A1BF3FCAFA00 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MangoFix-MangoFixTests/Pods-MangoFix-MangoFixTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MangoFix-MangoFixTests/Pods-MangoFix-MangoFixTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MangoFix-MangoFixTests/Pods-MangoFix-MangoFixTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B034E5D5DFAFEED72CFC9B11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MangoFix-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B85D52427E1E16ECC08B8696 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MangoFix-MangoFixTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89967190224BFD2A00C7DACB /* Sources */ = {
@@ -839,7 +916,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -895,7 +972,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -907,6 +984,7 @@
 		};
 		899671A9224BFD2A00C7DACB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 667D579249CB0B99C8B2E07A /* Pods-MangoFix.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -943,6 +1021,7 @@
 		};
 		899671AA224BFD2A00C7DACB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFB82E3A151BF45ABC8A28F8 /* Pods-MangoFix.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -979,6 +1058,7 @@
 		};
 		899671AC224BFD2A00C7DACB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD696F4FA839D6043A151948 /* Pods-MangoFix-MangoFixTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1003,6 +1083,7 @@
 		};
 		899671AD224BFD2A00C7DACB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C83A7A989E7632DA01D35992 /* Pods-MangoFix-MangoFixTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
