@@ -2,6 +2,7 @@
 
 MangoFix 学习讨论QQ群：766215773
 
+
 # Mango
 MangoFix is a DSL which syntax is very similar to Objective-C，MangoFix is also an iOS  App hotfix SDK. You can use MangoFix method replace any Objective-C method.
 
@@ -419,3 +420,9 @@ class SubMyController:SuperMyController {
 
 ## Ohter
     For more information on MangFix usage, see the MangoFix project unit test.
+    
+    
+    
+# 微信捐赠
+
+![wechat-pay](https://user-images.githubusercontent.com/36928218/122531509-27e2c200-d052-11eb-9063-1f8f28c67683.jpg)
