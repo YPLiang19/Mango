@@ -62,8 +62,8 @@ static void blockInter(ffi_cif *cif, void *ret, void **args, void *userdata){
 	
 	if (flags & BLOCK_HAS_SIGNATURE) {
 		void *signatureLocation = blockRef->descriptor;
-		signatureLocation += sizeof(unsigned long int);
-		signatureLocation += sizeof(unsigned long int);
+		signatureLocation += sizeof(size_t);
+		signatureLocation += sizeof(size_t);
 		
 		if (flags & BLOCK_HAS_COPY_DISPOSE) {
 			signatureLocation += sizeof(void(*)(void *dst, void *src));
