@@ -34,8 +34,8 @@ struct MFSimulateBlock {
 struct MFGOSimulateBlockDescriptor {
 	//Block_descriptor_1
 	struct {
-		unsigned long int reserved;
-		unsigned long int size;
+		size_t reserved;
+		size_t size;
 	};
 	
 	//Block_descriptor_2
