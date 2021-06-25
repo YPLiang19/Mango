@@ -418,7 +418,7 @@ class SubMyController:SuperMyController {
    	CFunction<returnType,arg1Type,arg2Type,...> ptr = CFunction("c function name"); // CFunction. 
 	
 
-## Ohter
+## Other
     For more information on MangFix usage, see the MangoFix project unit test.
     
     
