@@ -175,8 +175,8 @@ class_definition: annotation_if CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,nil);
+				NSString *superName = (__bridge_transfer NSString *)$5;
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,nil);
 			}
 			RC
 			{
@@ -187,8 +187,8 @@ class_definition: annotation_if CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,nil);
+				NSString *superName = (__bridge_transfer NSString *)$5;
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,nil);
 			}
 			member_definition_list RC
 			{
@@ -200,9 +200,9 @@ class_definition: annotation_if CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$5;
 				NSArray *protocolNames = (__bridge_transfer NSArray *)$7;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,protocolNames);
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,protocolNames);
 			}
 			RC
 			{
@@ -213,9 +213,9 @@ class_definition: annotation_if CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$5;
 				NSArray *protocolNames = (__bridge_transfer NSArray *)$7;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,protocolNames);
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,protocolNames);
 			}
 			member_definition_list RC
 			{

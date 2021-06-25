@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *superNmae;
+@property (copy, nonatomic) NSString *superName;
 @property (strong, nonatomic) NSArray<NSString *> *protocolNames;
 @property (strong, nonatomic) NSArray<MFPropertyDefinition *> *properties;
 @property (strong, nonatomic) NSArray<MFMethodDefinition *> *classMethods;

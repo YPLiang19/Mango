@@ -511,13 +511,13 @@ MFPropertyDefinition *mf_create_property_definition(MFExpression *annotaionIfCon
 }
 
 
-void mf_start_class_definition(MFExpression *annotaionIfConditionExpr, NSString *name, NSString *superNmae, NSArray<NSString *> *protocolNames){
+void mf_start_class_definition(MFExpression *annotaionIfConditionExpr, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames){
 	MFInterpreter *interpreter = mf_get_current_compile_util();
 	MFClassDefinition *classDefinition = [[MFClassDefinition alloc] init];
 	classDefinition.lineNumber = interpreter.currentLineNumber;
 	classDefinition.annotationIfConditionExpr = annotaionIfConditionExpr;
 	classDefinition.name = name;
-	classDefinition.superNmae = superNmae;
+	classDefinition.superName = superName;
 	classDefinition.protocolNames = protocolNames;
 	interpreter.currentClassDefinition = classDefinition;
 }
