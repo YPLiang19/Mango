@@ -2,13 +2,8 @@
 demo.mg
 */
 
-//声明一个自定义结构体
-declare struct MyStruct {
-    typeEncoding:"{MyStruct=dd}",
-    keys:x,y
-}
-
-class ViewController:UIViewController {
+@SwiftModule("MangoFixSwfitDemo")
+class ViewController : UIViewController {
 
 - (void)sequentialStatementExample {
 //变量定义
@@ -108,7 +103,7 @@ class ViewController:UIViewController {
     self.resultView.text = result;
 }
 
-
+@MethodName("swiftMethodParamPassingExampleWithBOOLArg:intArg:uintArg:blockArg:objArg:")
 - (void)paramPassingExampleWithBOOLArg:(BOOL)BOOLArg intArg:(int) intArg uintArg:(NSUInteger)uintArg blockArg:(Block)blockArg  objArg:(id)objArg {
     NSString *text = @"";
     text += @"BOOLArg:" + BOOLArg + @",\n";
@@ -120,12 +115,16 @@ class ViewController:UIViewController {
 }
 
 
-- (struct MyStruct)paramPassingExampleWithStrut:(struct CGRect)rect{
-    struct MyStruct myStruct = {x:(rect.origin.x + 100), y:(rect.origin.x + 10)};
-    return myStruct;
+- (struct CGRect)paramPassingExampleWithStrut:(struct CGRect)rect {
+    struct CGRect ret = rect;
+    ret.origin.x = ret.origin.x + 1;
+    ret.origin.y = ret.origin.y + 1;
+    ret.size.width = ret.size.width + 1;
+    ret.size.height = ret.size.height + 1;
+    return ret;
 }
 
-- (Block)returnBlockExample{
+- (Block)returnBlockExample {
     NSString *prefix = @"mango: ";
     Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
         NSString *result = str1.stringByAppendingString:(str2);

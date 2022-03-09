@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MFFunctionDefinition.h"
+#import "MFAnnotationableDefinition.h"
 
 @class MFClassDefinition;
 
@@ -32,9 +33,8 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 };
 
 
-@interface MFMemberDefinition: NSObject
+@interface MFMemberDefinition: MFAnnotationableDefinition
 
-@property (strong, nonatomic) NSArray *annotationList;
 @property (weak, nonatomic) MFClassDefinition *classDefinition;
 
 @end
@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 @end
 
 
-@interface MFClassDefinition : NSObject
+@interface MFClassDefinition : MFAnnotationableDefinition
 
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (copy, nonatomic) NSString *name;
@@ -76,6 +76,7 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 @property (strong, nonatomic) NSArray<MFMethodDefinition *> *classMethods;
 @property (strong, nonatomic) NSArray<MFMethodDefinition *> *instanceMethods;
 @property (assign, nonatomic) AnnotationIfExprResult annotationIfExprResult;
+@property (strong, nonatomic) Class clazz;
 
 @end
 

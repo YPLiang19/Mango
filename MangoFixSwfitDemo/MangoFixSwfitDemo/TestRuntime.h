@@ -10,5 +10,4 @@
 
 void testRuntie(void);
 
-
 #endif /* TestRuntime_h */

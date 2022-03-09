@@ -133,7 +133,9 @@ annotation_list: annotation
             {
                 NSMutableArray *list = [NSMutableArray array];
                 MFAnnotation *annotation = (__bridge_transfer MFAnnotation *)$1;
-                [list addObject:annotation];
+                if (annotation) {
+                    [list addObject:annotation];
+                }
                 $$ = (__bridge_retained void *)list;
             }
             |

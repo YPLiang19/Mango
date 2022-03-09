@@ -120,12 +120,12 @@ class ViewController:UIViewController {
 }
 
 
-- (struct MyStruct)paramPassingExampleWithStrut:(struct CGRect)rect{
+- (struct MyStruct)paramPassingExampleWithStrut:(struct CGRect)rect {
     struct MyStruct myStruct = {x:(rect.origin.x + 100), y:(rect.origin.x + 10)};
     return myStruct;
 }
 
-- (Block)returnBlockExample{
+- (Block)returnBlockExample {
 	NSString *prefix = @"mango: ";
 	Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
 		NSString *result = str1.stringByAppendingString:(str2);
@@ -135,30 +135,30 @@ class ViewController:UIViewController {
 }
 
 
-- (void)callOriginalImp{
+- (void)callOriginalImp {
     self.ORGcallOriginalImp();
 }
 
-- (void)createAndOpenNewViewControllerExample{
+- (void)createAndOpenNewViewControllerExample {
 	SubMyController *vc = SubMyController.alloc().init();
 	self.navigationController.pushViewController:animated:(vc,YES);
 
 }
 
 //类方法替换示例
-+ (void)classMethodExapleWithInstance:(ViewController *)vc{
++ (void)classMethodExapleWithInstance:(ViewController *)vc {
 	vc.resultView.text = @"here is Mango  Class Method " + self;
 }
 
 //条件注释示例
-#If($systemVersion.doubleValue() > 12.0 )
-- (void)conditionsAnnotationExample{
+@If($systemVersion.doubleValue() > 12.0 )
+- (void)conditionsAnnotationExample {
     self.resultView.text = @"here is Mango method";
 }
 
 
 //GCD示例
-- (void)gcdExample{
+- (void)gcdExample {
 	dispatch_queue_t queue = dispatch_queue_create("com.plliang19.mango", DISPATCH_QUEUE_CONCURRENT);
 	dispatch_async(queue, ^{
 		NSLog(@"mango dispatch_async");
@@ -170,7 +170,7 @@ class ViewController:UIViewController {
 
 
 
-- (void)staticVarAndGetVarAddressOperExample{
+- (void)staticVarAndGetVarAddressOperExample {
     static int i = 0;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -224,7 +224,7 @@ class ViewController:UIViewController {
 
 int a = 1;
 
-class SuperMyController:UIViewController{
+class SuperMyController:UIViewController {
 /*
 - (void)viewDidLoad {
     super.viewDidLoad();
@@ -233,7 +233,7 @@ class SuperMyController:UIViewController{
 }
 */
 
-- (void)testMasonry{
+- (void)testMasonry {
     UIView *superview = self.view;
     UIView *view1 = UIView.alloc().init();
     view1.translatesAutoresizingMaskIntoConstraints = NO;
@@ -289,7 +289,7 @@ class SubMyController:SuperMyController {
 
 }
 
-- (void)btnDidClicked:(id)btn{
+- (void)btnDidClicked:(id)btn {
     NSLog(btn);
 }
 

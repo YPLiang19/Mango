@@ -177,13 +177,17 @@ static void increment_line_number(){
 	
 }
 
-
 <INITIAL>@[A-Za-z_$][A-Za-z_$0-9]* {
     NSString *identifier = mf_create_identifier(yytext);
     yylval.identifier = (__bridge_retained void *)identifier;
     return ANNOTATION;
 }
 
+<INITIAL>"#If" {
+    NSString *identifier = mf_create_identifier(yytext);
+    yylval.identifier = (__bridge_retained void *)identifier;
+    return ANNOTATION;
+}
 
 <INITIAL>[A-Za-z_$][A-Za-z_$0-9]* {
 	NSString *identifier = mf_create_identifier(yytext);

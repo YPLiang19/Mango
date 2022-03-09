@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "MFDeclarationModifier.h"
+#import "MFAnnotationableDefinition.h"
 @class MFTypeSpecifier;
 @class MFExpression;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MFDeclaration: NSObject
+@interface MFDeclaration: MFAnnotationableDefinition
 
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (strong, nonatomic) MFTypeSpecifier *type;

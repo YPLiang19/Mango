@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MFAnnotationableDefinition.h"
 @class MFExpression;
 
 
-@interface MFStructDeclare : NSObject
+@interface MFStructDeclare : MFAnnotationableDefinition
 @property (strong, nonatomic) NSArray *annotationList;
 @property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic)const char *typeEncoding;

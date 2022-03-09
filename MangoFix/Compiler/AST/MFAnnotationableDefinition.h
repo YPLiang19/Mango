@@ -10,11 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MFAnnotationDefinition : NSObject
+@interface MFAnnotationableDefinition : NSObject
 
 @property (strong, nonatomic) NSArray<MFAnnotation *> *annotationList;
 
 - (nullable MFAnnotation *)annotationByName:(NSString *)annotationName;
+
+- (nullable MFAnnotation *)ifAnnotation;
+
+- (nullable MFAnnotation *)swiftModuleAnnotation;
+
+- (nullable MFAnnotation *)selectorNameAnnotation;
 
 @end
 
