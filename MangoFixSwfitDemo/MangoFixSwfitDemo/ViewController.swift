@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MangoFixSwiftDylibTest
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,6 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.tableview.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        
         testRuntie()
     }
     
@@ -75,7 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         case 9: //结构体传参示例
             let ret = paramPassingExampleWithStrut(rect: CGRect.init(x: 10, y: 20, width: 30, height: 40))
-            self.resultView.text = String.init(format: "", ret.origin.x, ret.origin.y, ret.size.width, ret.size.height)
+            self.resultView.text = String.init(format: "return CFRect %f - %f - %f - %f", ret.origin.x, ret.origin.y, ret.size.width, ret.size.height)
 
         case 10: //返回值示例
             let block = returnBlockExample()
@@ -174,6 +177,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc
     dynamic
     func paramPassingExampleWithStrut(rect: CGRect) -> CGRect{
+        
         let x = CGRect.init()
         return x
     }

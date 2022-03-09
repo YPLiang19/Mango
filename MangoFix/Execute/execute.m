@@ -407,51 +407,45 @@ static void define_class(MFInterpreter *interpreter, MFClassDefinition *classDef
 	if (classDefinition.annotationIfExprResult != AnnotationIfExprResultTrue) {
 		return;
 	}
-    
-    NSString *swiftModule = nil;
-    if (classDefinition.swiftModuleAnnotation) {
-        MFValue *v = mf_eval_expression(interpreter, interpreter.topScope, classDefinition.swiftModuleAnnotation.expr);
-        swiftModule = v.objectValue;
-        if (!swiftModule && v.cstringValue) {
-            swiftModule = [NSString stringWithUTF8String:v.cstringValue];
-        }
-    }
-    
-    Class clazz = nil;
-    if (swiftModule) {
-        NSString *fullClassName =
-        [NSString stringWithFormat:@"%@.%@", swiftModule, classDefinition.name];
-        clazz = NSClassFromString(fullClassName);
-        if (!clazz) {
-            clazz = NSClassFromString(classDefinition.name);
-        }
-    } else {
-        clazz = NSClassFromString(classDefinition.name);
-    }
-    classDefinition.clazz = clazz;
+
+    Class clazz = NSClassFromString(classDefinition.name);
 	if (!clazz) {
 		NSString *superClassName = classDefinition.superName;
 		Class superClass = NSClassFromString(superClassName);
+        
+        if (!superClass) {
+            if (classDefinition.swiftModuleAnnotation && !classDefinition.superSwiftModuleAnnotation) {
+                NSString *sueprClassFullName = [NSString stringWithFormat:@"%s.%@", classDefinition.swiftModuleAnnotation.expr.cstringValue, superClassName];
+                superClass = NSClassFromString(sueprClassFullName);
+                if (superClass) {
+                    classDefinition.superName = sueprClassFullName;
+                }
+            }
+        }
+        
 		if (!superClass) {
 			define_class(interpreter, interpreter.classDefinitionDic[superClassName]);
+            superClass = NSClassFromString(superClassName);
 		}
+        
+        if (!superClass && classDefinition.swiftModuleAnnotation && !classDefinition.superSwiftModuleAnnotation) {
+            NSString *sueprClassFullName = [NSString stringWithFormat:@"%s.%@", classDefinition.swiftModuleAnnotation.expr.cstringValue, superClassName];
+            define_class(interpreter, interpreter.classDefinitionDic[superClassName]);
+            superClass = NSClassFromString(sueprClassFullName);
+            if (superClass) {
+                classDefinition.superName = sueprClassFullName;
+            }
+        }
 		
 		if (!superClass) {
             mf_throw_error(classDefinition.lineNumber, MFRuntimeErrorNotFoundSuperClass, @"not found super class: %@",superClassName);
 			return;
 		}
-		Class clazz = objc_allocateClassPair(superClass, classDefinition.name.UTF8String, 0);
+        clazz = objc_allocateClassPair(superClass, classDefinition.name.UTF8String, 0);
 		objc_registerClassPair(clazz);
-        classDefinition.clazz = clazz;
         
-	}else{
-		Class superClass = class_getSuperclass(clazz);
-		char const *superClassName = class_getName(superClass);
-		if (strcmp(classDefinition.superName.UTF8String, superClassName)) {
-            mf_throw_error(classDefinition.lineNumber, @"MFRuntimeErrorSuperClassNoMatch", @"MangoFix class: %@:%@, but Objective-C class: %@:%s",classDefinition.name,classDefinition.superName, classDefinition.name, superClassName);
-			return;
-		}
 	}
+    classDefinition.clazz = clazz;
     
 }
 

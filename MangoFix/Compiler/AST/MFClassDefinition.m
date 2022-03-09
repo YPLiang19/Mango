@@ -17,6 +17,22 @@
 	return self;
 }
 
+- (MFAnnotation *)superAnnotationByName:(NSString *)annotationName {
+    for (MFAnnotation *annotation in self.superAnnotationList) {
+        if ([annotation.name isEqualToString:annotationName]) {
+            return annotation;
+        }
+    }
+    return nil;
+}
+
+
+
+- (MFAnnotation *)superSwiftModuleAnnotation {
+    return [self superAnnotationByName:@"@SwiftModule"];
+}
+
+
 @end
 
 @implementation MFMemberDefinition

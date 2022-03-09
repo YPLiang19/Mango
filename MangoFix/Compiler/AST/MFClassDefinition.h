@@ -70,6 +70,7 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (copy, nonatomic) NSString *name;
+@property (strong, nonatomic) NSArray<MFAnnotation *> *superAnnotationList;
 @property (copy, nonatomic) NSString *superName;
 @property (strong, nonatomic) NSArray<NSString *> *protocolNames;
 @property (strong, nonatomic) NSArray<MFPropertyDefinition *> *properties;
@@ -77,6 +78,9 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 @property (strong, nonatomic) NSArray<MFMethodDefinition *> *instanceMethods;
 @property (assign, nonatomic) AnnotationIfExprResult annotationIfExprResult;
 @property (strong, nonatomic) Class clazz;
+
+
+- (nullable MFAnnotation *)superSwiftModuleAnnotation;
 
 @end
 

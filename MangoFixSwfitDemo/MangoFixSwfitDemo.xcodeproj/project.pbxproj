@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8937FB1827D8B618001D3089 /* MangoFixSwiftDylibTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8937FB0F27D8B618001D3089 /* MangoFixSwiftDylibTest.framework */; };
+		8937FB1F27D8B618001D3089 /* MangoFixSwiftDylibTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8937FB1E27D8B618001D3089 /* MangoFixSwiftDylibTestTests.swift */; };
+		8937FB2127D8B618001D3089 /* MangoFixSwiftDylibTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8937FB1127D8B618001D3089 /* MangoFixSwiftDylibTest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8937FB2427D8B618001D3089 /* MangoFixSwiftDylibTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8937FB0F27D8B618001D3089 /* MangoFixSwiftDylibTest.framework */; };
+		8937FB2527D8B618001D3089 /* MangoFixSwiftDylibTest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8937FB0F27D8B618001D3089 /* MangoFixSwiftDylibTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8937FB3027D8B652001D3089 /* SuperMyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8937FB2F27D8B652001D3089 /* SuperMyController.swift */; };
+		8937FB3327D8B693001D3089 /* MangoFixSwiftDylibTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8937FB0F27D8B618001D3089 /* MangoFixSwiftDylibTest.framework */; };
 		8985683D27D879CB00082302 /* TestRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 8985683C27D879CB00082302 /* TestRuntime.m */; };
 		8985684027D879F700082302 /* demo.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8985683F27D879F700082302 /* demo.mg */; };
 		89D3994F27D8794A00360EED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D3994E27D8794A00360EED /* AppDelegate.swift */; };
@@ -18,9 +25,61 @@
 		E97601F1A43BA00A78B6D194 /* Pods_MangoFixSwfitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D156A0F9A19DA7AFF753EDE /* Pods_MangoFixSwfitDemo.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8937FB1927D8B618001D3089 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89D3994327D8794A00360EED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8937FB0E27D8B618001D3089;
+			remoteInfo = MangoFixSwiftDylibTest;
+		};
+		8937FB1B27D8B618001D3089 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89D3994327D8794A00360EED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89D3994A27D8794A00360EED;
+			remoteInfo = MangoFixSwfitDemo;
+		};
+		8937FB2227D8B618001D3089 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89D3994327D8794A00360EED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8937FB0E27D8B618001D3089;
+			remoteInfo = MangoFixSwiftDylibTest;
+		};
+		8937FB3427D8B693001D3089 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89D3994327D8794A00360EED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8937FB0E27D8B618001D3089;
+			remoteInfo = MangoFixSwiftDylibTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8937FB2927D8B618001D3089 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8937FB2527D8B618001D3089 /* MangoFixSwiftDylibTest.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5111E7A361B9D5A87D88955A /* Pods-MangoFixSwfitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFixSwfitDemo.release.xcconfig"; path = "Target Support Files/Pods-MangoFixSwfitDemo/Pods-MangoFixSwfitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		5D156A0F9A19DA7AFF753EDE /* Pods_MangoFixSwfitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangoFixSwfitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8937FB0F27D8B618001D3089 /* MangoFixSwiftDylibTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MangoFixSwiftDylibTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8937FB1127D8B618001D3089 /* MangoFixSwiftDylibTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MangoFixSwiftDylibTest.h; sourceTree = "<group>"; };
+		8937FB1227D8B618001D3089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8937FB1727D8B618001D3089 /* MangoFixSwiftDylibTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MangoFixSwiftDylibTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8937FB1E27D8B618001D3089 /* MangoFixSwiftDylibTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangoFixSwiftDylibTestTests.swift; sourceTree = "<group>"; };
+		8937FB2027D8B618001D3089 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8937FB2F27D8B652001D3089 /* SuperMyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperMyController.swift; sourceTree = "<group>"; };
 		8985683A27D879CA00082302 /* MangoFixSwfitDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MangoFixSwfitDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		8985683B27D879CB00082302 /* TestRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRuntime.h; sourceTree = "<group>"; };
 		8985683C27D879CB00082302 /* TestRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRuntime.m; sourceTree = "<group>"; };
@@ -37,10 +96,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8937FB0C27D8B618001D3089 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8937FB1427D8B618001D3089 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8937FB1827D8B618001D3089 /* MangoFixSwiftDylibTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		89D3994827D8794A00360EED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8937FB2427D8B618001D3089 /* MangoFixSwiftDylibTest.framework in Frameworks */,
+				8937FB3327D8B693001D3089 /* MangoFixSwiftDylibTest.framework in Frameworks */,
 				E97601F1A43BA00A78B6D194 /* Pods_MangoFixSwfitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,10 +141,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8937FB1027D8B618001D3089 /* MangoFixSwiftDylibTest */ = {
+			isa = PBXGroup;
+			children = (
+				8937FB1127D8B618001D3089 /* MangoFixSwiftDylibTest.h */,
+				8937FB1227D8B618001D3089 /* Info.plist */,
+				8937FB2F27D8B652001D3089 /* SuperMyController.swift */,
+			);
+			path = MangoFixSwiftDylibTest;
+			sourceTree = "<group>";
+		};
+		8937FB1D27D8B618001D3089 /* MangoFixSwiftDylibTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				8937FB1E27D8B618001D3089 /* MangoFixSwiftDylibTestTests.swift */,
+				8937FB2027D8B618001D3089 /* Info.plist */,
+			);
+			path = MangoFixSwiftDylibTestTests;
+			sourceTree = "<group>";
+		};
 		89D3994227D8794A00360EED = {
 			isa = PBXGroup;
 			children = (
 				89D3994D27D8794A00360EED /* MangoFixSwfitDemo */,
+				8937FB1027D8B618001D3089 /* MangoFixSwiftDylibTest */,
+				8937FB1D27D8B618001D3089 /* MangoFixSwiftDylibTestTests */,
 				89D3994C27D8794A00360EED /* Products */,
 				75C72A9349DEA46BA52BD818 /* Pods */,
 				319A92AE8CCBE50589526B1D /* Frameworks */,
@@ -79,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				89D3994B27D8794A00360EED /* MangoFixSwfitDemo.app */,
+				8937FB0F27D8B618001D3089 /* MangoFixSwiftDylibTest.framework */,
+				8937FB1727D8B618001D3089 /* MangoFixSwiftDylibTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,7 +202,55 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		8937FB0A27D8B618001D3089 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8937FB2127D8B618001D3089 /* MangoFixSwiftDylibTest.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		8937FB0E27D8B618001D3089 /* MangoFixSwiftDylibTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8937FB2627D8B618001D3089 /* Build configuration list for PBXNativeTarget "MangoFixSwiftDylibTest" */;
+			buildPhases = (
+				8937FB0A27D8B618001D3089 /* Headers */,
+				8937FB0B27D8B618001D3089 /* Sources */,
+				8937FB0C27D8B618001D3089 /* Frameworks */,
+				8937FB0D27D8B618001D3089 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MangoFixSwiftDylibTest;
+			productName = MangoFixSwiftDylibTest;
+			productReference = 8937FB0F27D8B618001D3089 /* MangoFixSwiftDylibTest.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8937FB1627D8B618001D3089 /* MangoFixSwiftDylibTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8937FB2A27D8B618001D3089 /* Build configuration list for PBXNativeTarget "MangoFixSwiftDylibTestTests" */;
+			buildPhases = (
+				8937FB1327D8B618001D3089 /* Sources */,
+				8937FB1427D8B618001D3089 /* Frameworks */,
+				8937FB1527D8B618001D3089 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8937FB1A27D8B618001D3089 /* PBXTargetDependency */,
+				8937FB1C27D8B618001D3089 /* PBXTargetDependency */,
+			);
+			name = MangoFixSwiftDylibTestTests;
+			productName = MangoFixSwiftDylibTestTests;
+			productReference = 8937FB1727D8B618001D3089 /* MangoFixSwiftDylibTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		89D3994A27D8794A00360EED /* MangoFixSwfitDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89D3995F27D8794B00360EED /* Build configuration list for PBXNativeTarget "MangoFixSwfitDemo" */;
@@ -113,10 +260,13 @@
 				89D3994827D8794A00360EED /* Frameworks */,
 				89D3994927D8794A00360EED /* Resources */,
 				F662122B4418B438AC86070E /* [CP] Embed Pods Frameworks */,
+				8937FB2927D8B618001D3089 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8937FB2327D8B618001D3089 /* PBXTargetDependency */,
+				8937FB3527D8B693001D3089 /* PBXTargetDependency */,
 			);
 			name = MangoFixSwfitDemo;
 			productName = MangoFixSwfitDemo;
@@ -132,6 +282,14 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					8937FB0E27D8B618001D3089 = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
+					};
+					8937FB1627D8B618001D3089 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 89D3994A27D8794A00360EED;
+					};
 					89D3994A27D8794A00360EED = {
 						CreatedOnToolsVersion = 12.4;
 						LastSwiftMigration = 1240;
@@ -152,11 +310,27 @@
 			projectRoot = "";
 			targets = (
 				89D3994A27D8794A00360EED /* MangoFixSwfitDemo */,
+				8937FB0E27D8B618001D3089 /* MangoFixSwiftDylibTest */,
+				8937FB1627D8B618001D3089 /* MangoFixSwiftDylibTestTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8937FB0D27D8B618001D3089 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8937FB1527D8B618001D3089 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		89D3994927D8794A00360EED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,6 +387,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8937FB0B27D8B618001D3089 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8937FB3027D8B652001D3089 /* SuperMyController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8937FB1327D8B618001D3089 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8937FB1F27D8B618001D3089 /* MangoFixSwiftDylibTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		89D3994727D8794A00360EED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +415,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8937FB1A27D8B618001D3089 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8937FB0E27D8B618001D3089 /* MangoFixSwiftDylibTest */;
+			targetProxy = 8937FB1927D8B618001D3089 /* PBXContainerItemProxy */;
+		};
+		8937FB1C27D8B618001D3089 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89D3994A27D8794A00360EED /* MangoFixSwfitDemo */;
+			targetProxy = 8937FB1B27D8B618001D3089 /* PBXContainerItemProxy */;
+		};
+		8937FB2327D8B618001D3089 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8937FB0E27D8B618001D3089 /* MangoFixSwiftDylibTest */;
+			targetProxy = 8937FB2227D8B618001D3089 /* PBXContainerItemProxy */;
+		};
+		8937FB3527D8B693001D3089 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8937FB0E27D8B618001D3089 /* MangoFixSwiftDylibTest */;
+			targetProxy = 8937FB3427D8B693001D3089 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		89D3995427D8794A00360EED /* Main.storyboard */ = {
@@ -246,6 +459,99 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8937FB2727D8B618001D3089 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MangoFixSwiftDylibTest/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = none.MangoFixSwiftDylibTest;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8937FB2827D8B618001D3089 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MangoFixSwiftDylibTest/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = none.MangoFixSwiftDylibTest;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8937FB2B27D8B618001D3089 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MangoFixSwiftDylibTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = none.MangoFixSwiftDylibTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MangoFixSwfitDemo.app/MangoFixSwfitDemo";
+			};
+			name = Debug;
+		};
+		8937FB2C27D8B618001D3089 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MangoFixSwiftDylibTestTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = none.MangoFixSwiftDylibTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MangoFixSwfitDemo.app/MangoFixSwfitDemo";
+			};
+			name = Release;
+		};
 		89D3995D27D8794B00360EED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -366,6 +672,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9105184A0A602EF6E7F7901B /* Pods-MangoFixSwfitDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -388,6 +695,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5111E7A361B9D5A87D88955A /* Pods-MangoFixSwfitDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -408,6 +716,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8937FB2627D8B618001D3089 /* Build configuration list for PBXNativeTarget "MangoFixSwiftDylibTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8937FB2727D8B618001D3089 /* Debug */,
+				8937FB2827D8B618001D3089 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8937FB2A27D8B618001D3089 /* Build configuration list for PBXNativeTarget "MangoFixSwiftDylibTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8937FB2B27D8B618001D3089 /* Debug */,
+				8937FB2C27D8B618001D3089 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		89D3994627D8794A00360EED /* Build configuration list for PBXProject "MangoFixSwfitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

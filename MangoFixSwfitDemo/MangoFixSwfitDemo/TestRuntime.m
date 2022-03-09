@@ -13,7 +13,7 @@
 
 
 void testRuntie(void) {
-    Class vcClazz = objc_getClass("MangoFixSwfitDemo.ViewController");
+    Class vcClazz = objc_getClass("MangoFixSwiftDylibTest.SuperMyController");
     unsigned int outCount = 0;
     Method *methods = class_copyMethodList(vcClazz, &outCount);
     for (int i = 0; i < outCount; i++) {

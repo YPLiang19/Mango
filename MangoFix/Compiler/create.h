@@ -71,7 +71,7 @@ MFBlockBody *mf_close_block_statement(MFBlockBody *block, NSArray<MFStatement *>
 
 MFAnnotation *mf_create_annotation(NSString *name, MFExpression *expr);
 
-void mf_start_class_definition(NSArray<MFAnnotation *> *annotationList, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames);
+void mf_start_class_definition(NSArray<MFAnnotation *> *annotationList, NSString *name, NSArray<MFAnnotation *> *superAnnotationList, NSString *superName, NSArray<NSString *> *protocolNames);
 
 MFClassDefinition *mf_end_class_definition(NSArray<MFMemberDefinition *> *members);
 

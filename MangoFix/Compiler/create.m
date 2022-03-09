@@ -518,13 +518,24 @@ MFPropertyDefinition *mf_create_property_definition(NSArray<MFAnnotation *> *ann
 }
 
 
-void mf_start_class_definition(NSArray<MFAnnotation *> *annotationList, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames){
+void mf_start_class_definition(NSArray<MFAnnotation *> *annotationList, NSString *name, NSArray<MFAnnotation *> *superAnnotationList, NSString *superName, NSArray<NSString *> *protocolNames){
 	MFInterpreter *interpreter = mf_get_current_compile_util();
 	MFClassDefinition *classDefinition = [[MFClassDefinition alloc] init];
 	classDefinition.lineNumber = interpreter.currentLineNumber;
 	classDefinition.annotationList = annotationList;
-	classDefinition.name = name;
-	classDefinition.superName = superName;
+    classDefinition.superAnnotationList = superAnnotationList;
+    if (classDefinition.swiftModuleAnnotation) {
+        classDefinition.name = [NSString stringWithFormat:@"%s.%@", classDefinition.swiftModuleAnnotation.expr.cstringValue, name];
+    } else {
+        classDefinition.name = name;
+    }
+    
+    if (classDefinition.superSwiftModuleAnnotation) {
+        classDefinition.superName = [NSString stringWithFormat:@"%s.%@", classDefinition.superSwiftModuleAnnotation.expr.cstringValue, superName];
+    } else {
+        classDefinition.superName = superName;
+    }
+    
 	classDefinition.protocolNames = protocolNames;
 	interpreter.currentClassDefinition = classDefinition;
 }

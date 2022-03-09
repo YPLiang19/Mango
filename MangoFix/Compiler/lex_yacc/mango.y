@@ -154,13 +154,13 @@ declare_struct: annotation_list DECLARE STRUCT IDENTIFIER LC
 			IDENTIFIER COLON identifier_list
 			RC
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				NSString *structName = (__bridge_transfer NSString *)$4;
 				NSString *typeEncodingKey = (__bridge_transfer NSString *)$6;
 				MFExpression *typeEncodingValueExpr = (__bridge_transfer MFExpression *)$8;
 				NSString *keysKey = (__bridge_transfer NSString *)$10;
 				NSArray *keysValue = (__bridge_transfer NSArray *)$12;
-				MFStructDeclare *structDeclare = mf_create_struct_declare(annotaionIfConditionExpr, structName, typeEncodingKey, typeEncodingValueExpr, keysKey, keysValue);
+				MFStructDeclare *structDeclare = mf_create_struct_declare(annotationList, structName, typeEncodingKey, typeEncodingValueExpr, keysKey, keysValue);
 				$$ = (__bridge_retained void *)structDeclare;
 				
 			}
@@ -169,13 +169,13 @@ declare_struct: annotation_list DECLARE STRUCT IDENTIFIER LC
 			IDENTIFIER COLON STRING_LITERAL
 			RC
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				NSString *structName = (__bridge_transfer NSString *)$4;
 				NSString *keysKey = (__bridge_transfer NSString *)$6;
 				NSArray *keysValue = (__bridge_transfer NSArray *)$8;
 				NSString *typeEncodingKey = (__bridge_transfer NSString *)$10;
 				MFExpression *typeEncodingValueExpr = (__bridge_transfer MFExpression *)$12;
-				MFStructDeclare *structDeclare = mf_create_struct_declare(annotaionIfConditionExpr, structName, typeEncodingKey, typeEncodingValueExpr, keysKey, keysValue);
+				MFStructDeclare *structDeclare = mf_create_struct_declare(annotationList, structName, typeEncodingKey, typeEncodingValueExpr, keysKey, keysValue);
 				$$ = (__bridge_retained void *)structDeclare;
 				
 			}
@@ -201,55 +201,59 @@ identifier_list: IDENTIFIER
 
 
 
-class_definition: annotation_list CLASS IDENTIFIER COLON IDENTIFIER LC
+class_definition: annotation_list CLASS IDENTIFIER COLON annotation_list IDENTIFIER LC
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superName = (__bridge_transfer NSString *)$5;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superName,nil);
+                NSArray<MFAnnotation *> *superAnnotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$6;
+				mf_start_class_definition(annotationList, name, superAnnotationList, superName,nil);
 			}
 			RC
 			{
 				MFClassDefinition *classDefinition = mf_end_class_definition(nil);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_list CLASS IDENTIFIER COLON IDENTIFIER LC
+			| annotation_list CLASS IDENTIFIER COLON annotation_list IDENTIFIER LC
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superName = (__bridge_transfer NSString *)$5;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superName,nil);
+                NSArray<MFAnnotation *> *superAnnotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$6;
+				mf_start_class_definition(annotationList, name, superAnnotationList, superName,nil);
 			}
 			member_definition_list RC
 			{
-				NSArray *members = (__bridge_transfer NSArray *)$8;
+				NSArray *members = (__bridge_transfer NSArray *)$9;
 				MFClassDefinition *classDefinition = mf_end_class_definition(members);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_list CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
+			| annotation_list CLASS IDENTIFIER COLON annotation_list IDENTIFIER LT protocol_list GT LC
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superName = (__bridge_transfer NSString *)$5;
-				NSArray *protocolNames = (__bridge_transfer NSArray *)$7;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superName,protocolNames);
+                NSArray<MFAnnotation *> *superAnnotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$6;
+				NSArray *protocolNames = (__bridge_transfer NSArray *)$8;
+				mf_start_class_definition(annotationList, name, superAnnotationList, superName, protocolNames);
 			}
 			RC
 			{
 				MFClassDefinition *classDefinition = mf_end_class_definition(nil);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_list CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
+			| annotation_list CLASS IDENTIFIER COLON annotation_list IDENTIFIER LT protocol_list GT LC
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superName = (__bridge_transfer NSString *)$5;
-				NSArray *protocolNames = (__bridge_transfer NSArray *)$7;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superName,protocolNames);
+                NSArray<MFAnnotation *> *superAnnotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$6;
+				NSArray *protocolNames = (__bridge_transfer NSArray *)$8;
+				mf_start_class_definition(annotationList, name, superAnnotationList, superName, protocolNames);
 			}
 			member_definition_list RC
 			{
-				NSArray *members = (__bridge_transfer NSArray *)$11;
+				NSArray *members = (__bridge_transfer NSArray *)$12;
 				MFClassDefinition *classDefinition = mf_end_class_definition(members);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
@@ -274,19 +278,19 @@ protocol_list: IDENTIFIER
 
 property_definition: annotation_list PROPERTY LP property_modifier_list RP type_specifier IDENTIFIER  SEMICOLON
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				MFPropertyModifier modifier = $4;
 				MFTypeSpecifier *typeSpecifier = (__bridge_transfer MFTypeSpecifier *)$6;
 				NSString *name = (__bridge_transfer NSString *)$7;
-				MFPropertyDefinition *propertyDefinition = mf_create_property_definition(annotaionIfConditionExpr, modifier, typeSpecifier, name);
+				MFPropertyDefinition *propertyDefinition = mf_create_property_definition(annotationList, modifier, typeSpecifier, name);
 				$$ = (__bridge_retained void *)propertyDefinition;
 			}
 			| annotation_list PROPERTY LP  RP type_specifier IDENTIFIER SEMICOLON
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				MFTypeSpecifier *typeSpecifier = (__bridge_transfer MFTypeSpecifier *)$5;
 				NSString *name = (__bridge_transfer NSString *)$6;
-				MFPropertyDefinition *propertyDefinition = mf_create_property_definition(annotaionIfConditionExpr, 0x00, typeSpecifier, name);
+				MFPropertyDefinition *propertyDefinition = mf_create_property_definition(annotationList, 0x00, typeSpecifier, name);
 				$$ = (__bridge_retained void *)propertyDefinition;
 			}
 			;
@@ -451,22 +455,22 @@ method_definition: instance_method_definition
 
 instance_method_definition: annotation_list SUB LP type_specifier RP method_name block_statement
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				MFTypeSpecifier *returnTypeSpecifier = (__bridge_transfer MFTypeSpecifier *)$4;
 				NSArray *items = (__bridge_transfer NSArray *)$6;
 				MFBlockBody  *block = (__bridge_transfer MFBlockBody  *)$7;
-				MFMethodDefinition *methodDefinition = mf_create_method_definition(annotaionIfConditionExpr, NO, returnTypeSpecifier, items, block);
+				MFMethodDefinition *methodDefinition = mf_create_method_definition(annotationList, NO, returnTypeSpecifier, items, block);
 				$$ = (__bridge_retained void *)methodDefinition;
 			}
 			;
 
 class_method_definition: annotation_list ADD LP type_specifier RP method_name  block_statement
 			{
-				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
 				MFTypeSpecifier *returnTypeSpecifier = (__bridge_transfer MFTypeSpecifier *)$4;
 				NSArray *items = (__bridge_transfer NSArray *)$6;
 				MFBlockBody  *block = (__bridge_transfer MFBlockBody  *)$7;
-				MFMethodDefinition *methodDefinition = mf_create_method_definition(annotaionIfConditionExpr, YES, returnTypeSpecifier, items, block);
+				MFMethodDefinition *methodDefinition = mf_create_method_definition(annotationList, YES, returnTypeSpecifier, items, block);
 				$$ = (__bridge_retained void *)methodDefinition;
 			}
 			;	
