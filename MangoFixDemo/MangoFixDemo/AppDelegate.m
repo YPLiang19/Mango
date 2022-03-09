@@ -23,6 +23,8 @@ static NSString * const aes128Iv = @"abcdef";
     NSError *outErr = nil;
     BOOL writeResult = NO;
     
+
+    
     NSURL *scriptUrl = [[NSBundle mainBundle] URLForResource:@"demo" withExtension:@"mg"];
     NSString *plainScriptString = [NSString stringWithContentsOfURL:scriptUrl encoding:NSUTF8StringEncoding error:&outErr];
     if (outErr) goto err;
