@@ -391,7 +391,7 @@ MFValue * mf_call_mf_function(MFInterpreter *inter, MFScopeChain *scope, MFFunct
 
 static void define_class(MFInterpreter *interpreter,MFClassDefinition *classDefinition){
 	if (classDefinition.annotationIfExprResult == AnnotationIfExprResultNoComputed) {
-		MFExpression *annotationIfConditionExpr = classDefinition.annotationIfConditionExpr;
+		MFExpression *annotationIfConditionExpr = classDefinition.annotationList;
 		if (annotationIfConditionExpr) {
 			MFValue *value = mf_eval_expression(interpreter, interpreter.topScope, annotationIfConditionExpr);
 			classDefinition.annotationIfExprResult = value.isSubtantial ? AnnotationIfExprResultTrue : AnnotationIfExprResultFalse;
@@ -532,7 +532,7 @@ static void replace_setter_method(NSUInteger lineNumber ,MFInterpreter *inter ,C
 
 
 static void replace_prop(MFInterpreter *inter ,Class clazz, MFPropertyDefinition *prop){
-	if (prop.annotationIfConditionExpr) {
+	if (prop.annotationList) {
 		MFValue *conValue = mf_eval_expression(inter, inter.topScope, prop.annotationIfConditionExpr);
 		if (![conValue isSubtantial]) {
 			return;

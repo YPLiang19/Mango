@@ -325,8 +325,15 @@ MFBlockBody *mf_close_block_statement(MFBlockBody *block, NSArray<MFStatement *>
 	return block;
 }
 
+MFAnnotation *mf_create_annotation(NSString *name, MFExpression *expr) {
+    MFAnnotation *annotation = [[MFAnnotation alloc] init];
+    annotation.name = name;
+    annotation.expr = expr;
+    return annotation;
+}
 
-MFStructDeclare *mf_create_struct_declare(MFExpression *annotaionIfConditionExpr, NSString *structName, NSString *typeEncodingKey, MFExpression *typeEncodingValueExpr, NSString *keysKey, NSArray<NSString *> *keysValue){
+
+MFStructDeclare *mf_create_struct_declare(NSArray<MFAnnotation *> *annotaionList, NSString *structName, NSString *typeEncodingKey, MFExpression *typeEncodingValueExpr, NSString *keysKey, NSArray<NSString *> *keysValue){
 	if (![typeEncodingKey isEqualToString:@"typeEncoding"]) {
         mf_throw_error(mf_get_current_compile_util().currentLineNumber, MFSemanticErrorStructDeclareLackFieldEncoding, @"struct: %@ declare lack field typeEncoding",structName);
         return nil;
@@ -337,7 +344,7 @@ MFStructDeclare *mf_create_struct_declare(MFExpression *annotaionIfConditionExpr
 	}
     const char *typeEncodingValue = typeEncodingValueExpr.cstringValue;
 	MFStructDeclare *structDeclare = [[MFStructDeclare alloc] init];
-	structDeclare.annotationIfConditionExpr = annotaionIfConditionExpr;
+	structDeclare.annotationList = annotationList;
 	structDeclare.name = structName;
 	structDeclare.typeEncoding = typeEncodingValue;
 	structDeclare.keys = keysValue;
@@ -465,9 +472,9 @@ MFMethodNameItem *mf_create_method_name_item(NSString *name, MFTypeSpecifier *ty
 }
 
 
-MFMethodDefinition *mf_create_method_definition(MFExpression *annotaionIfConditionExpr, BOOL classMethod, MFTypeSpecifier *returnTypeSpecifier, NSArray<MFMethodNameItem *> *items, MFBlockBody *block){
+MFMethodDefinition *mf_create_method_definition(NSArray<MFAnnotation *> *annotaionList, BOOL classMethod, MFTypeSpecifier *returnTypeSpecifier, NSArray<MFMethodNameItem *> *items, MFBlockBody *block){
 	MFMethodDefinition *methodDefinition = [[MFMethodDefinition alloc] init];
-	methodDefinition.annotationIfConditionExpr = annotaionIfConditionExpr;
+	methodDefinition.annotationList = annotationList;
 	methodDefinition.classMethod = classMethod;
 	MFFunctionDefinition *funcDefinition = [[MFFunctionDefinition alloc] init];
 	funcDefinition.kind = MFFunctionDefinitionKindMethod;
@@ -500,9 +507,9 @@ MFMethodDefinition *mf_create_method_definition(MFExpression *annotaionIfConditi
 }
 
 
-MFPropertyDefinition *mf_create_property_definition(MFExpression *annotaionIfConditionExpr, MFPropertyModifier modifier, MFTypeSpecifier *typeSpecifier, NSString *name){
+MFPropertyDefinition *mf_create_property_definition(NSArray<MFAnnotation *> *annotaionList, MFPropertyModifier modifier, MFTypeSpecifier *typeSpecifier, NSString *name){
 	MFPropertyDefinition *propertyDefinition = [[MFPropertyDefinition alloc] init];
-	propertyDefinition.annotationIfConditionExpr = annotaionIfConditionExpr;
+	propertyDefinition.annotationList = annotationList;
 	propertyDefinition.lineNumber = mf_get_current_compile_util().currentLineNumber;
 	propertyDefinition.modifier = modifier;
 	propertyDefinition.typeSpecifier = typeSpecifier;
@@ -511,11 +518,11 @@ MFPropertyDefinition *mf_create_property_definition(MFExpression *annotaionIfCon
 }
 
 
-void mf_start_class_definition(MFExpression *annotaionIfConditionExpr, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames){
+void mf_start_class_definition(NSArray<MFAnnotation *> *annotaionList, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames){
 	MFInterpreter *interpreter = mf_get_current_compile_util();
 	MFClassDefinition *classDefinition = [[MFClassDefinition alloc] init];
 	classDefinition.lineNumber = interpreter.currentLineNumber;
-	classDefinition.annotationIfConditionExpr = annotaionIfConditionExpr;
+	classDefinition.annotationList = annotationList;
 	classDefinition.name = name;
 	classDefinition.superName = superName;
 	classDefinition.protocolNames = protocolNames;

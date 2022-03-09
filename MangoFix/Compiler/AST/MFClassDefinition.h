@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 
 @interface MFMemberDefinition: NSObject
 
-@property (strong, nonatomic) MFExpression *annotationIfConditionExpr;
+@property (strong, nonatomic) NSArray *annotationList;
 @property (weak, nonatomic) MFClassDefinition *classDefinition;
 
 @end
@@ -75,7 +75,6 @@ typedef NS_ENUM(NSUInteger, MFPropertyModifier) {
 @property (strong, nonatomic) NSArray<MFPropertyDefinition *> *properties;
 @property (strong, nonatomic) NSArray<MFMethodDefinition *> *classMethods;
 @property (strong, nonatomic) NSArray<MFMethodDefinition *> *instanceMethods;
-@property (strong, nonatomic) MFExpression *annotationIfConditionExpr;
 @property (assign, nonatomic) AnnotationIfExprResult annotationIfExprResult;
 
 @end

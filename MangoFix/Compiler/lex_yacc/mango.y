@@ -28,12 +28,15 @@ int yylex(void);
 	void	*method_name_item;
 	void	*function_param;
 	void	*declaration;
+    void    *annotation_list;
+    void    *annotation;
 	MFAssignKind assignment_operator;
 	MFPropertyModifier property_modifier_list;
     MFDeclarationModifier declaration_modifier;
 }
 
 %token <identifier> IDENTIFIER
+%token <identifier> ANNOTATION
 %token <expression> DOUBLE_LITERAL
 %token <expression> STRING_LITERAL
 %token <expression> INTETER_LITERAL
@@ -46,7 +49,7 @@ int yylex(void);
 
 %token COLON SEMICOLON COMMA  LP RP LB RB LC RC  QUESTION DOT ASSIGN AT ADDRESS POWER
 	AND OR NOT EQ NE LT LE GT GE SUB SUB_ASSIGN ADD ADD_ASSIGN ASTERISK_ASSIGN DIV DIV_ASSIGN MOD MOD_ASSIGN INCREMENT DECREMENT
-	ANNOTATION_IF CLASS STRUCT DECLARE SELECTOR ANNOTATION_SWIFT
+    CLASS STRUCT DECLARE SELECTOR
 	RETURN IF ELSE FOR IN WHILE DO SWITCH CASE DEFAULT BREAK CONTINUE
 	PROPERTY WEAK STRONG COPY ASSIGN_MEM NONATOMIC ATOMIC  ASTERISK  VOID
 	BOOL_ CHAR U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC C_FUNCTION  TYPEDEF
@@ -55,12 +58,12 @@ int yylex(void);
 
 %type <assignment_operator> assignment_operator
 %type <expression> expression expression_opt struct_literal assign_expression ternary_operator_expression logic_or_expression logic_and_expression  
-equality_expression relational_expression additive_expression multiplication_expression unary_expression postfix_expression primary_expression  dic block_body annotation_if
+equality_expression relational_expression additive_expression multiplication_expression unary_expression postfix_expression primary_expression  dic block_body
 
 %type <identifier> selector selector_1 selector_2 key_work_identifier c_type_identier
 
 %type <list> identifier_list struct_entry_list dic_entry_list  statement_list protocol_list else_if_list case_list member_definition_list
-method_name method_name_1 method_name_2 expression_list function_param_list  c_type_identier_list
+method_name method_name_1 method_name_2 expression_list function_param_list  c_type_identier_list annotation_list
 
 %type <method_name_item> method_name_item
 %type <dic_entry> dic_entry
@@ -71,6 +74,7 @@ break_statement continue_statement return_statement declaration_statement
 %type <block_statement> block_statement default_opt
 %type <declare_struct> declare_struct
 %type <property_modifier_list> property_modifier_list property_modifier property_rc_modifier  property_atomic_modifier
+%type <annotation> annotation
 %type <class_definition> class_definition
 %type <member_definition> member_definition property_definition method_definition class_method_definition instance_method_definition
 %type <one_case> one_case
@@ -108,28 +112,42 @@ definition:  class_definition
 			;
 
 
-annotation_if: /* empty */
+annotation: /* empty */
 			{
 				$$ = nil;
 			}
-			| ANNOTATION_IF LP expression RP
+            | ANNOTATION
+            {
+                NSString *name = (__bridge_transfer NSString *)$1;
+                $$ = (__bridge_retained void *)mf_create_annotation(name, nil);
+            }
+			| ANNOTATION LP expression RP
 			{
-				$$ = $3;
+                NSString *name = (__bridge_transfer NSString *)$1;
+                MFExpression *expr = (__bridge_transfer MFExpression *)$3;
+                $$ = (__bridge_retained void *)mf_create_annotation(name, expr);
 			}
 			;
-            
-annotation_swift: /* empty */
+
+annotation_list: annotation
             {
-                $$ = nil;
+                NSMutableArray *list = [NSMutableArray array];
+                MFAnnotation *annotation = (__bridge_transfer MFAnnotation *)$1;
+                [list addObject:annotation];
+                $$ = (__bridge_retained void *)list;
             }
-            | ANNOTATION_SWIFT LP IDENTIFIER RP
+            |
+            annotation_list annotation
             {
-                $$ = $3;
+                NSMutableArray *list = (__bridge_transfer NSMutableArray *)$1;
+                MFAnnotation *annotation = (__bridge_transfer MFAnnotation *)$2;
+                [list addObject:annotation];
+                $$ = (__bridge_retained void *)list;
             }
             ;
 
 
-declare_struct: annotation_if DECLARE STRUCT IDENTIFIER LC
+declare_struct: annotation_list DECLARE STRUCT IDENTIFIER LC
 			IDENTIFIER COLON STRING_LITERAL COMMA
 			IDENTIFIER COLON identifier_list
 			RC
@@ -144,7 +162,7 @@ declare_struct: annotation_if DECLARE STRUCT IDENTIFIER LC
 				$$ = (__bridge_retained void *)structDeclare;
 				
 			}
-			| annotation_if DECLARE STRUCT IDENTIFIER LC
+			| annotation_list DECLARE STRUCT IDENTIFIER LC
 			IDENTIFIER COLON identifier_list COMMA
 			IDENTIFIER COLON STRING_LITERAL
 			RC
@@ -181,7 +199,7 @@ identifier_list: IDENTIFIER
 
 
 
-class_definition: annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LC
+class_definition: annotation_list CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
@@ -193,7 +211,7 @@ class_definition: annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFI
 				MFClassDefinition *classDefinition = mf_end_class_definition(nil);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LC
+			| annotation_list CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
@@ -206,7 +224,7 @@ class_definition: annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFI
 				MFClassDefinition *classDefinition = mf_end_class_definition(members);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
+			| annotation_list CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
@@ -219,7 +237,7 @@ class_definition: annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFI
 				MFClassDefinition *classDefinition = mf_end_class_definition(nil);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
+			| annotation_list CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
@@ -252,7 +270,7 @@ protocol_list: IDENTIFIER
 			;
 
 
-property_definition: annotation_if PROPERTY LP property_modifier_list RP type_specifier IDENTIFIER  SEMICOLON
+property_definition: annotation_list PROPERTY LP property_modifier_list RP type_specifier IDENTIFIER  SEMICOLON
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				MFPropertyModifier modifier = $4;
@@ -261,7 +279,7 @@ property_definition: annotation_if PROPERTY LP property_modifier_list RP type_sp
 				MFPropertyDefinition *propertyDefinition = mf_create_property_definition(annotaionIfConditionExpr, modifier, typeSpecifier, name);
 				$$ = (__bridge_retained void *)propertyDefinition;
 			}
-			| annotation_if PROPERTY LP  RP type_specifier IDENTIFIER SEMICOLON
+			| annotation_list PROPERTY LP  RP type_specifier IDENTIFIER SEMICOLON
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				MFTypeSpecifier *typeSpecifier = (__bridge_transfer MFTypeSpecifier *)$5;
@@ -429,7 +447,7 @@ method_definition: instance_method_definition
 			| class_method_definition
 			;
 
-instance_method_definition: annotation_if SUB LP type_specifier RP method_name block_statement
+instance_method_definition: annotation_list SUB LP type_specifier RP method_name block_statement
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				MFTypeSpecifier *returnTypeSpecifier = (__bridge_transfer MFTypeSpecifier *)$4;
@@ -440,7 +458,7 @@ instance_method_definition: annotation_if SUB LP type_specifier RP method_name b
 			}
 			;
 
-class_method_definition: annotation_if ADD LP type_specifier RP method_name  block_statement
+class_method_definition: annotation_list ADD LP type_specifier RP method_name  block_statement
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				MFTypeSpecifier *returnTypeSpecifier = (__bridge_transfer MFTypeSpecifier *)$4;

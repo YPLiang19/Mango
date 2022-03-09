@@ -107,9 +107,6 @@ static void increment_line_number(){
 <INITIAL>"continue"  {return CONTINUE; }
 <INITIAL>"return" {return RETURN; }
 
-<INITIAL>"#If" {return ANNOTATION_IF; }
-<INITIAL>"@if" {return ANNOTATION_IF; }
-<INITIAL>"@swift" {return ANNOTATION_SWIFT; }
 
 <INITIAL>"@property" {return PROPERTY; }
 <INITIAL>"@selector" {return SELECTOR; }
@@ -179,6 +176,14 @@ static void increment_line_number(){
 	return NO_;
 	
 }
+
+
+<INITIAL>@[A-Za-z_$][A-Za-z_$0-9]* {
+    NSString *identifier = mf_create_identifier(yytext);
+    yylval.identifier = (__bridge_retained void *)identifier;
+    return ANNOTATION;
+}
+
 
 <INITIAL>[A-Za-z_$][A-Za-z_$0-9]* {
 	NSString *identifier = mf_create_identifier(yytext);

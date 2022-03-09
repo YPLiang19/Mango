@@ -26,7 +26,7 @@ MFExpression *mf_create_expression(MFExpressionKind kind);
 
 void mf_build_block_expr(MFBlockExpression *expr, MFTypeSpecifier *returnTypeSpecifier, NSArray<MFParameter *> *params,  MFBlockBody *block);
 
-MFStructDeclare *mf_create_struct_declare(MFExpression *annotaionIfConditionExpr, NSString *structName, NSString *typeEncodingKey, MFExpression *typeEncodingValueExpr, NSString *keysKey, NSArray<NSString *> *keysValue);
+MFStructDeclare *mf_create_struct_declare(NSArray<MFAnnotation *> *annotaionList, NSString *structName, NSString *typeEncodingKey, MFExpression *typeEncodingValueExpr, NSString *keysKey, NSArray<NSString *> *keysValue);
 
 MFTypeSpecifier *mf_create_type_specifier(MFTypeSpecifierKind kind);
 
@@ -65,11 +65,13 @@ MFBreakStatement *mf_create_break_statement(void);
 
 MFReturnStatement *mf_create_return_statement(MFExpression *retValExpr);
 
- MFBlockBody *mf_open_block_statement(void);
+MFBlockBody *mf_open_block_statement(void);
 
- MFBlockBody *mf_close_block_statement( MFBlockBody *block, NSArray<MFStatement *> *statementList);
+MFBlockBody *mf_close_block_statement(MFBlockBody *block, NSArray<MFStatement *> *statementList);
 
-void mf_start_class_definition(MFExpression *annotaionIfConditionExpr, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames);
+MFAnnotation *mf_create_annotation(NSString *name, MFExpression *expr);
+
+void mf_start_class_definition(NSArray<MFAnnotation *> *annotaionList, NSString *name, NSString *superName, NSArray<NSString *> *protocolNames);
 
 MFClassDefinition *mf_end_class_definition(NSArray<MFMemberDefinition *> *members);
 
@@ -77,9 +79,9 @@ MFFunctionDefinition *mf_create_function_definition(MFTypeSpecifier *returnTypeS
 
 MFMethodNameItem *mf_create_method_name_item(NSString *name, MFTypeSpecifier *typeSpecifier, NSString *paramName);
 
-MFMethodDefinition *mf_create_method_definition(MFExpression *annotaionIfConditionExpr, BOOL classMethod, MFTypeSpecifier *returnTypeSpecifier, NSArray<MFMethodNameItem *> *items,  MFBlockBody *block);
+MFMethodDefinition *mf_create_method_definition(NSArray<MFAnnotation *> *annotaionList, BOOL classMethod, MFTypeSpecifier *returnTypeSpecifier, NSArray<MFMethodNameItem *> *items,  MFBlockBody *block);
 
-MFPropertyDefinition *mf_create_property_definition(MFExpression *annotaionIfConditionExpr, MFPropertyModifier modifier, MFTypeSpecifier *typeSpecifier, NSString *name);
+MFPropertyDefinition *mf_create_property_definition(NSArray<MFAnnotation *> *annotaionList, MFPropertyModifier modifier, MFTypeSpecifier *typeSpecifier, NSString *name);
 
 void mf_add_class_definition(MFClassDefinition *classDefinition);
 

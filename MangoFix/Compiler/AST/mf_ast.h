@@ -20,6 +20,7 @@
 #import "MFBlockBody.h"
 #import "MFTypedefTable.h"
 #import "errror.h"
+#import "MFAnnotation.h"
 
 
 #endif /* nac_ast_h */

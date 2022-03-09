@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 @class MFExpression;
 
+
 @interface MFStructDeclare : NSObject
-@property (strong, nonatomic) MFExpression *annotationIfConditionExpr;
+@property (strong, nonatomic) NSArray *annotationList;
 @property (copy, nonatomic) NSString *name;
 @property (assign, nonatomic)const char *typeEncoding;
 @property (strong, nonatomic) NSArray<NSString *> *keys;
