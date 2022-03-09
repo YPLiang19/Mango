@@ -46,7 +46,7 @@ int yylex(void);
 
 %token COLON SEMICOLON COMMA  LP RP LB RB LC RC  QUESTION DOT ASSIGN AT ADDRESS POWER
 	AND OR NOT EQ NE LT LE GT GE SUB SUB_ASSIGN ADD ADD_ASSIGN ASTERISK_ASSIGN DIV DIV_ASSIGN MOD MOD_ASSIGN INCREMENT DECREMENT
-	ANNOTATION_IF CLASS STRUCT DECLARE SELECTOR
+	ANNOTATION_IF CLASS STRUCT DECLARE SELECTOR ANNOTATION_SWIFT
 	RETURN IF ELSE FOR IN WHILE DO SWITCH CASE DEFAULT BREAK CONTINUE
 	PROPERTY WEAK STRONG COPY ASSIGN_MEM NONATOMIC ATOMIC  ASTERISK  VOID
 	BOOL_ CHAR U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC C_FUNCTION  TYPEDEF
@@ -117,6 +117,16 @@ annotation_if: /* empty */
 				$$ = $3;
 			}
 			;
+            
+annotation_swift: /* empty */
+            {
+                $$ = nil;
+            }
+            | ANNOTATION_SWIFT LP IDENTIFIER RP
+            {
+                $$ = $3;
+            }
+            ;
 
 
 declare_struct: annotation_if DECLARE STRUCT IDENTIFIER LC
@@ -171,24 +181,24 @@ identifier_list: IDENTIFIER
 
 
 
-class_definition: annotation_if CLASS IDENTIFIER COLON IDENTIFIER LC
+class_definition: annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,nil);
+				NSString *superName = (__bridge_transfer NSString *)$5;
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,nil);
 			}
 			RC
 			{
 				MFClassDefinition *classDefinition = mf_end_class_definition(nil);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_if CLASS IDENTIFIER COLON IDENTIFIER LC
+			| annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,nil);
+				NSString *superName = (__bridge_transfer NSString *)$5;
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,nil);
 			}
 			member_definition_list RC
 			{
@@ -196,26 +206,26 @@ class_definition: annotation_if CLASS IDENTIFIER COLON IDENTIFIER LC
 				MFClassDefinition *classDefinition = mf_end_class_definition(members);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_if CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
+			| annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$5;
 				NSArray *protocolNames = (__bridge_transfer NSArray *)$7;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,protocolNames);
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,protocolNames);
 			}
 			RC
 			{
 				MFClassDefinition *classDefinition = mf_end_class_definition(nil);
 				$$ = (__bridge_retained void *)classDefinition;
 			}
-			| annotation_if CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
+			| annotation_if annotation_swift CLASS IDENTIFIER COLON IDENTIFIER LT protocol_list GT LC
 			{
 				MFExpression *annotaionIfConditionExpr = (__bridge_transfer MFExpression *)$1;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				NSString *superNmae = (__bridge_transfer NSString *)$5;
+				NSString *superName = (__bridge_transfer NSString *)$5;
 				NSArray *protocolNames = (__bridge_transfer NSArray *)$7;
-				mf_start_class_definition(annotaionIfConditionExpr, name, superNmae,protocolNames);
+				mf_start_class_definition(annotaionIfConditionExpr, name, superName,protocolNames);
 			}
 			member_definition_list RC
 			{

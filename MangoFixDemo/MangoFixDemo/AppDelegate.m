@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <MangoFix/MangoFix.h>
 
+static NSString * const aes128Key = @"123456";
+static NSString * const aes128Iv = @"abcdef";
 
 
 @interface AppDelegate ()
@@ -17,7 +19,7 @@
 
 @implementation AppDelegate
 
-- (BOOL)encryptPlainScirptToDocument{
+- (BOOL)encryptPlainScirptToDocument {
     NSError *outErr = nil;
     BOOL writeResult = NO;
     
@@ -26,17 +28,15 @@
     if (outErr) goto err;
     
     {
-        NSURL *publicKeyUrl = [[NSBundle mainBundle] URLForResource:@"public_key.txt" withExtension:nil];
-        NSString *publicKey = [NSString stringWithContentsOfURL:publicKeyUrl encoding:NSUTF8StringEncoding error:&outErr];
-        if (outErr) goto err;
-        NSString *encryptedScriptString = [MFRSA encryptString:plainScriptString publicKey:publicKey];
+        NSData *scriptData = [plainScriptString dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *encryptedScriptData = [scriptData AES128ParmEncryptWithKey:aes128Key iv:aes128Iv];
         
-        NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"encrypted_demo.mg"];
+        NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"demo_encrypted.mg"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         if (![fileManager fileExistsAtPath:encryptedPath]) {
             [fileManager createFileAtPath:encryptedPath contents:nil attributes:nil];
         }
-        writeResult = [encryptedScriptString writeToFile:encryptedPath atomically:YES encoding:NSUTF8StringEncoding error:&outErr];
+        writeResult = [encryptedScriptData writeToFile:encryptedPath options:NSDataWritingAtomic error:&outErr];
     }
 err:
     if (outErr) NSLog(@"%@",outErr);
@@ -49,12 +49,9 @@ err:
         return NO;
     }
     
-    NSURL *privateKeyUrl = [[NSBundle mainBundle] URLForResource:@"private_key.txt" withExtension:nil];
-    NSString *privateKey = [NSString stringWithContentsOfURL:privateKeyUrl encoding:NSUTF8StringEncoding error:nil];
+    MFContext *context = [[MFContext alloc] initWithAES128Key:aes128Key iv:aes128Iv];
     
-    MFContext *context = [[MFContext alloc] initWithRSAPrivateKey:privateKey];
-    
-    NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"encrypted_demo.mg"];
+    NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"demo_encrypted.mg"];
     NSURL *scriptUrl = [NSURL fileURLWithPath:encryptedPath];
     [context evalMangoScriptWithURL:scriptUrl];
 	return YES;

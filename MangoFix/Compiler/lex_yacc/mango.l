@@ -108,9 +108,13 @@ static void increment_line_number(){
 <INITIAL>"return" {return RETURN; }
 
 <INITIAL>"#If" {return ANNOTATION_IF; }
+<INITIAL>"@if" {return ANNOTATION_IF; }
+<INITIAL>"@swift" {return ANNOTATION_SWIFT; }
 
 <INITIAL>"@property" {return PROPERTY; }
 <INITIAL>"@selector" {return SELECTOR; }
+
+
 <INITIAL>"weak" {return WEAK; }
 <INITIAL>"strong" {return STRONG; }
 <INITIAL>"copy" {return COPY; }

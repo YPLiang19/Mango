@@ -407,10 +407,10 @@ static void define_class(MFInterpreter *interpreter,MFClassDefinition *classDefi
 	if (classDefinition.annotationIfExprResult != AnnotationIfExprResultTrue) {
 		return;
 	}
-	
+//    classDefinition.name = @"MangoFixSwfitDemo.ViewController";
 	Class clazz = NSClassFromString(classDefinition.name);
 	if (!clazz) {
-		NSString *superClassName = classDefinition.superNmae;
+		NSString *superClassName = classDefinition.superName;
 		Class superClass = NSClassFromString(superClassName);
 		if (!superClass) {
 			define_class(interpreter, interpreter.classDefinitionDic[superClassName]);
@@ -425,8 +425,8 @@ static void define_class(MFInterpreter *interpreter,MFClassDefinition *classDefi
 	}else{
 		Class superClass = class_getSuperclass(clazz);
 		char const *superClassName = class_getName(superClass);
-		if (strcmp(classDefinition.superNmae.UTF8String, superClassName)) {
-            mf_throw_error(classDefinition.lineNumber, @"MFRuntimeErrorSuperClassNoMatch", @"MangoFix class: %@:%@, but Objective-C class: %@:%s",classDefinition.name,classDefinition.superNmae, classDefinition.name, superClassName);
+		if (strcmp(classDefinition.superName.UTF8String, superClassName)) {
+            mf_throw_error(classDefinition.lineNumber, @"MFRuntimeErrorSuperClassNoMatch", @"MangoFix class: %@:%@, but Objective-C class: %@:%s",classDefinition.name,classDefinition.superName, classDefinition.name, superClassName);
 			return;
 		}
 	}

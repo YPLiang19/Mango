@@ -9,19 +9,21 @@
 #import "MFContext.h"
 #import "create.h"
 #import "execute.h"
-#import "MFRSA.h"
+#import "NSData+AESEncryption.h"
 
 @interface MFContext()
 @property(nonatomic, strong) MFInterpreter *interpreter;
-@property(nonatomic, copy) NSString *privateKey;
+@property(nonatomic, copy) NSString *key;
+@property(nonatomic, copy) NSString *iv;
 @end
 
 @implementation MFContext
 
-- (instancetype)initWithRSAPrivateKey:(NSString *)privateKey{
+- (instancetype)initWithAES128Key:(NSString *)key iv:(NSString *)iv{
     if (self = [super init]) {
         _interpreter = [[MFInterpreter alloc] init];
-        _privateKey = privateKey;
+        _key = key;
+        _iv = iv;
     }
     return self;
 }
@@ -29,21 +31,21 @@
 - (void)evalMangoScriptWithURL:(NSURL *)url{
     @autoreleasepool {
         NSError *error;
-        NSString *rsaEncryptedBase64String = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+        NSData *encryptedData = [NSData dataWithContentsOfURL:url];
         if (error) {
             NSLog(@"MangoFix: %@",error);
             return;
         }
-        [self evalMangoScriptWithRSAEncryptedBase64String:rsaEncryptedBase64String];
-        
+        [self evalMangoScriptWithAES128Data:encryptedData];
     }
 }
 
-- (void)evalMangoScriptWithRSAEncryptedBase64String:(NSString *)rsaEncryptedBase64String{
+- (void)evalMangoScriptWithAES128Data:(NSData *)scriptData {
     @autoreleasepool {
-        NSString *mangoFixString = [MFRSA decryptString:rsaEncryptedBase64String privateKey:self.privateKey];
+        NSData *mangoFixData = [scriptData AES128ParmDecryptWithKey:_key iv:_iv];
+        NSString *mangoFixString = [[NSString alloc] initWithData:mangoFixData encoding:NSUTF8StringEncoding];
         if (!mangoFixString.length) {
-            NSLog(@"MangoFix: RSA decrypt error!");
+            NSLog(@"MangoFix: AES128(ECBMode) decrypt error!");
             return;
         }
         mf_set_current_compile_util(self.interpreter);
@@ -66,7 +68,6 @@
 }
 
 
-#ifdef DEBUG
 - (void)evalMangoScriptWithDebugURL:(NSURL *)url{
     @autoreleasepool {
         NSError *error;
@@ -78,6 +79,5 @@
         mf_interpret(self.interpreter);
     }
 }
-#endif
 
 @end

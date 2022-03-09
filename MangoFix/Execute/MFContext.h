@@ -7,32 +7,35 @@
 //
 #import <Foundation/Foundation.h>
 #import "MFValue.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface MFContext : NSObject
 
-
 /**
- Initializes a MagnoFix context with specify a RSA private key, the private key must be 1024 bits and PKCS #8.
+ Initializes a MagnoFix context with specify a AES128(ECBMode) encryption key and iv
  
- @param privateKey  RSA private key
+ @param key  AES128Key
+ @param iv  iv
  @return MFContext instance
  */
-- (instancetype)initWithRSAPrivateKey:(NSString *)privateKey NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAES128Key:(NSString *)key iv:(NSString *)iv NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
- Evaluate MangoFix code that encrypted by RSA and base64 encode string from a url.
+ Evaluate MangoFix code that encrypted by AES128(ECBMode) from a url.
  
- @param url The url of the MangoFix code that encrypted by RSA and base64 encode string.
+ @param url The url of the MangoFix code that encrypted by AES128(ECBMode)
  */
 - (void)evalMangoScriptWithURL:(NSURL *)url;
 
 /**
- Evaluate a data of MangoFix code that encrypted by RSA.
+ Evaluate a data of MangoFix code that encrypted by AES128.
 
- @param rsaEncryptedBase64String of MangoFix code that encrypted by RSA.
+ @param scriptData of MangoFix code that encrypted by AES128.
  */
-- (void)evalMangoScriptWithRSAEncryptedBase64String:(NSString *)rsaEncryptedBase64String;
+- (void)evalMangoScriptWithAES128Data:(NSData *)scriptData;
 
 /**
   Get a particular property on the global object.
@@ -46,10 +49,13 @@
  */
 - (void)setObject:(MFValue *)value forKeyedSubscript:(NSObject <NSCopying> *)key;
 
-
-
-#ifdef DEBUG
+/**
+ Evaluate MangoFix code that is plain text from a url.
+ 
+ @param url The url of the MangoFix code that is plain text
+ */
 - (void)evalMangoScriptWithDebugURL:(NSURL *)url;
-#endif
 
 @end
+
+NS_ASSUME_NONNULL_END

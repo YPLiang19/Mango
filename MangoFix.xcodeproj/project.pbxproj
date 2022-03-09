@@ -14,6 +14,8 @@
 		89253B3922B395C400AD9A33 /* MFTypedefTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3622B395C400AD9A33 /* MFTypedefTest.m */; };
 		89253B4422B39E0D00AD9A33 /* MFFuncDeclareTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89253B4122B39E0D00AD9A33 /* MFFuncDeclareTest.mg */; };
 		89253B4522B39E0D00AD9A33 /* MFFuncDeclareTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B4322B39E0D00AD9A33 /* MFFuncDeclareTest.m */; };
+		8949CDF627D75D5B0037D336 /* NSData+AESEncryption.h in Headers */ = {isa = PBXBuildFile; fileRef = 8949CDF427D75D5B0037D336 /* NSData+AESEncryption.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8949CDF727D75D5B0037D336 /* NSData+AESEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 8949CDF527D75D5B0037D336 /* NSData+AESEncryption.m */; };
 		895EC4DB224CAA2A0062CBF8 /* MFContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 8996726A224BFE6F00C7DACB /* MFContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		895EC4DC224CAA7C0062CBF8 /* MFValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 8996723F224BFE6F00C7DACB /* MFValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		895EC4DF224CC1AB0062CBF8 /* MFBranchStatementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 895EC4DE224CC1AB0062CBF8 /* MFBranchStatementTest.m */; };
@@ -29,8 +31,6 @@
 		89674F77226BCD3300EE2DDA /* MFCallOCReturnBlockTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89674F74226BCD3200EE2DDA /* MFCallOCReturnBlockTest.mg */; };
 		89674F7A226DC2FA00EE2DDA /* MFBasePropertyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89674F79226DC2FA00EE2DDA /* MFBasePropertyTest.m */; };
 		89674F7C226DC30E00EE2DDA /* MFBasePropertyTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89674F7B226DC30E00EE2DDA /* MFBasePropertyTest.mg */; };
-		8967B0EA22CDF6B3008D4670 /* MFRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 8967B0E822CDF6B3008D4670 /* MFRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8967B0EB22CDF6B3008D4670 /* MFRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 8967B0E922CDF6B3008D4670 /* MFRSA.m */; };
 		8972EEB922A0E6FE009D49DB /* MFStructMemberAssignTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8972EEB822A0E6FE009D49DB /* MFStructMemberAssignTest.m */; };
 		8972EEBB22A0E74E009D49DB /* MFStructMemberAssignTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 8972EEBA22A0E74E009D49DB /* MFStructMemberAssignTest.mg */; };
 		8972EEC022A4D5CD009D49DB /* MFCallSuperNoArgTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8972EEBF22A4D5CD009D49DB /* MFCallSuperNoArgTest.m */; };
@@ -123,6 +123,8 @@
 		89253B4122B39E0D00AD9A33 /* MFFuncDeclareTest.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MFFuncDeclareTest.mg; sourceTree = "<group>"; };
 		89253B4222B39E0D00AD9A33 /* MFFuncDeclareTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFFuncDeclareTest.h; sourceTree = "<group>"; };
 		89253B4322B39E0D00AD9A33 /* MFFuncDeclareTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFFuncDeclareTest.m; sourceTree = "<group>"; };
+		8949CDF427D75D5B0037D336 /* NSData+AESEncryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+AESEncryption.h"; sourceTree = "<group>"; };
+		8949CDF527D75D5B0037D336 /* NSData+AESEncryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESEncryption.m"; sourceTree = "<group>"; };
 		895EC4DD224CC1AB0062CBF8 /* MFBranchStatementTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFBranchStatementTest.h; sourceTree = "<group>"; };
 		895EC4DE224CC1AB0062CBF8 /* MFBranchStatementTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFBranchStatementTest.m; sourceTree = "<group>"; };
 		895EC4E0224CC1E30062CBF8 /* MFLoopStatementTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFLoopStatementTest.h; sourceTree = "<group>"; };
@@ -147,8 +149,6 @@
 		89674F78226DC2FA00EE2DDA /* MFBasePropertyTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFBasePropertyTest.h; sourceTree = "<group>"; };
 		89674F79226DC2FA00EE2DDA /* MFBasePropertyTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFBasePropertyTest.m; sourceTree = "<group>"; };
 		89674F7B226DC30E00EE2DDA /* MFBasePropertyTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFBasePropertyTest.mg; sourceTree = "<group>"; };
-		8967B0E822CDF6B3008D4670 /* MFRSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFRSA.h; sourceTree = "<group>"; };
-		8967B0E922CDF6B3008D4670 /* MFRSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFRSA.m; sourceTree = "<group>"; };
 		8972EEB722A0E6FE009D49DB /* MFStructMemberAssignTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFStructMemberAssignTest.h; sourceTree = "<group>"; };
 		8972EEB822A0E6FE009D49DB /* MFStructMemberAssignTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFStructMemberAssignTest.m; sourceTree = "<group>"; };
 		8972EEBA22A0E74E009D49DB /* MFStructMemberAssignTest.mg */ = {isa = PBXFileReference; lastKnownFileType = text; path = MFStructMemberAssignTest.mg; sourceTree = "<group>"; };
@@ -312,10 +312,10 @@
 		895EC4D9224CA9CA0062CBF8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				8967B0E822CDF6B3008D4670 /* MFRSA.h */,
-				8967B0E922CDF6B3008D4670 /* MFRSA.m */,
 				8996722B224BFE6F00C7DACB /* util.h */,
 				89967269224BFE6F00C7DACB /* util.m */,
+				8949CDF427D75D5B0037D336 /* NSData+AESEncryption.h */,
+				8949CDF527D75D5B0037D336 /* NSData+AESEncryption.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -588,9 +588,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8967B0EA22CDF6B3008D4670 /* MFRSA.h in Headers */,
 				895EC4DC224CAA7C0062CBF8 /* MFValue.h in Headers */,
 				895EC4DB224CAA2A0062CBF8 /* MFContext.h in Headers */,
+				8949CDF627D75D5B0037D336 /* NSData+AESEncryption.h in Headers */,
 				89814085227ACEE70023257B /* MFDeclarationModifier.h in Headers */,
 				89814084227ACEDD0023257B /* MangoFix.h in Headers */,
 			);
@@ -795,6 +795,7 @@
 				89967279224BFE6F00C7DACB /* built-in.m in Sources */,
 				8996728C224BFE6F00C7DACB /* MFExpression.m in Sources */,
 				89253B3322B395A400AD9A33 /* MFTypedefTable.m in Sources */,
+				8949CDF727D75D5B0037D336 /* NSData+AESEncryption.m in Sources */,
 				8996726B224BFE6F00C7DACB /* MFContext.m in Sources */,
 				8996728F224BFE6F00C7DACB /* MFBlockBody.m in Sources */,
 				89967278224BFE6F00C7DACB /* eval.m in Sources */,
@@ -813,7 +814,6 @@
 				8996729E224BFE6F00C7DACB /* MFInterpreter.m in Sources */,
 				89967285224BFE6F00C7DACB /* MFStatementResult.m in Sources */,
 				8981407C2279EE970023257B /* MFVarDeclareChain.m in Sources */,
-				8967B0EB22CDF6B3008D4670 /* MFRSA.m in Sources */,
 				8996729B224BFE6F00C7DACB /* MFStructDeclare.m in Sources */,
 				89967282224BFE6F00C7DACB /* MFStack.m in Sources */,
 			);
