@@ -51,7 +51,7 @@
 
 
 - (void)setUp {
-    self.context = [[MFContext alloc] initWithRSAPrivateKey:nil];
+    self.context = [[MFContext alloc] initWithAES128Key:@"" iv:@""];
 }
 
 

@@ -294,3 +294,11 @@ class SubMyController:SuperMyController {
 }
 
 }
+
+class SomClass2 : SomClass1 {
+-(instancetype)initWithFrame:(CGRect)frame configuration:(WKWebViewConfiguration *)configuration {
+    self = super.initWithFrame:configuration:(frame,configuration);
+    return self;
+}
+
+}

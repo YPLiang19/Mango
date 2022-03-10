@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		592F650ADAB6D1FBD5649F95 /* Pods_MangoFix_MangoFixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECE17506FE1D0E845D7EADF /* Pods_MangoFix_MangoFixTests.framework */; };
-		747E6F3F96888F7AB3C8BADF /* Pods_MangoFix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C56513D96A3178630BF8E67 /* Pods_MangoFix.framework */; };
 		89201FC327D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 89201FC127D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.h */; };
 		89201FC427D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89201FC227D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.m */; };
+		89201FC827DA234600A8AEA0 /* Pods_MangoFix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C56513D96A3178630BF8E67 /* Pods_MangoFix.framework */; };
 		89253B3322B395A400AD9A33 /* MFTypedefTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3122B395A300AD9A33 /* MFTypedefTable.m */; };
 		89253B3822B395C400AD9A33 /* MFTypedefTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89253B3522B395C400AD9A33 /* MFTypedefTest.mg */; };
 		89253B3922B395C400AD9A33 /* MFTypedefTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3622B395C400AD9A33 /* MFTypedefTest.m */; };
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89967275224BFE6F00C7DACB /* libffi.a in Frameworks */,
-				747E6F3F96888F7AB3C8BADF /* Pods_MangoFix.framework in Frameworks */,
+				89201FC827DA234600A8AEA0 /* Pods_MangoFix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,7 +651,7 @@
 		8996718B224BFD2A00C7DACB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = yongpengliang;
 				TargetAttributes = {
 					89967193224BFD2A00C7DACB = {
@@ -898,6 +898,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -924,7 +925,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -960,6 +961,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -980,7 +982,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1008,7 +1010,7 @@
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFix/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1045,7 +1047,7 @@
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				INFOPLIST_FILE = MangoFix/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -232,8 +232,7 @@
 	}
 }
 
-
-- (void)assignToCValuePointer:(void *)cvaluePointer typeEncoding:(const char *)typeEncoding{
+- (void)assignToCValuePointer:(void *)cvaluePointer typeEncoding:(const char *)typeEncoding {
 	typeEncoding = removeTypeEncodingPrefix((char *)typeEncoding);
 #define mf_ASSIGN_2_C_VALUE_POINTER_CASE(_encode, _type, _sel)\
 case _encode:{\
@@ -260,7 +259,7 @@ break;\
 			mf_ASSIGN_2_C_VALUE_POINTER_CASE('^', void *, c2pointerValue)
 			mf_ASSIGN_2_C_VALUE_POINTER_CASE(':', SEL, selValue)
 		case '@':{
-			void  **ptr =cvaluePointer;
+			void  **ptr = cvaluePointer;
 			*ptr = (__bridge void *)[self c2objectValue];
 			break;
 		}

@@ -85,6 +85,8 @@ static MFValue *invoke_sueper_values(id instance, Class superClass, SEL sel, NSA
     NSMethodSignature *sig = [instance methodSignatureForSelector:sel];
     NSUInteger argCount = sig.numberOfArguments;
     
+    MFValue *v;
+    
     void **args = alloca(sizeof(void *) * argCount);
     ffi_type **argTypes = alloca(sizeof(ffi_type *) * argCount);
     
@@ -93,40 +95,44 @@ static MFValue *invoke_sueper_values(id instance, Class superClass, SEL sel, NSA
     
     argTypes[1] = &ffi_type_pointer;
     args[1] = &sel;
-    
     for (NSUInteger i = 2; i < argCount; i++) {
         MFValue *argValue = argValues[i-2];
         char *argTypeEncoding = (char *)[sig getArgumentTypeAtIndex:i];
         argTypeEncoding = removeTypeEncodingPrefix(argTypeEncoding);
         
         
-#define mf_SET_FFI_TYPE_AND_ARG_CASE(_code, _type, _ffi_type_value, _sel)\
+#define mf_SET_FFI_TYPE_AND_ARG_CASE(_code, _ffi_type_value)\
 case _code:{\
 argTypes[i] = &_ffi_type_value;\
-_type value = (_type)argValue._sel;\
-args[i] = &value;\
+void *ffiArgPtr = alloca(argTypes[i]->size);\
+args[i] = ffiArgPtr;\
+char c = _code;\
+[argValue assignToCValuePointer:ffiArgPtr typeEncoding:&c];\
 break;\
 }
         
         switch (*argTypeEncoding) {
-                mf_SET_FFI_TYPE_AND_ARG_CASE('c', char, ffi_type_schar, c2integerValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('i', int, ffi_type_sint, c2integerValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('s', short, ffi_type_sshort, c2integerValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('l', long, ffi_type_slong, c2integerValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('q', long long, ffi_type_sint64, c2integerValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('C', unsigned char, ffi_type_uchar, c2uintValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('I', unsigned int, ffi_type_uint, c2uintValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('S', unsigned short, ffi_type_ushort, c2uintValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('L', unsigned long, ffi_type_ulong, c2uintValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('Q', unsigned long long, ffi_type_uint64, c2uintValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('B', BOOL, ffi_type_sint8, c2uintValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('f', float, ffi_type_float, c2doubleValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('d', double, ffi_type_double, c2doubleValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('@', id, ffi_type_pointer, c2objectValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('#', Class, ffi_type_pointer, c2objectValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE(':', SEL, ffi_type_pointer, selValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('*', char *, ffi_type_pointer, c2pointerValue)
-                mf_SET_FFI_TYPE_AND_ARG_CASE('^', id, ffi_type_pointer, c2pointerValue)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('c',  ffi_type_schar)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('i', ffi_type_sint)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('s', ffi_type_sshort)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('l', ffi_type_slong)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('q', ffi_type_sint64)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('C', ffi_type_uchar)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('I', ffi_type_uint)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('S', ffi_type_ushort)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('L', ffi_type_ulong)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('Q', ffi_type_uint64)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('B', ffi_type_sint8)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('f', ffi_type_float)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('d', ffi_type_double)
+                
+                mf_SET_FFI_TYPE_AND_ARG_CASE('#', ffi_type_pointer)
+                mf_SET_FFI_TYPE_AND_ARG_CASE(':', ffi_type_pointer)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('*', ffi_type_pointer)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('^', ffi_type_pointer)
+                mf_SET_FFI_TYPE_AND_ARG_CASE('@', ffi_type_pointer)
+            
+                
                 
             case '{':{
                 argTypes[i] = mf_ffi_type_with_type_encoding(argTypeEncoding);
@@ -1308,7 +1314,7 @@ static void eval_logic_and_expression(MFInterpreter *inter, MFScopeChain *scope,
 	if (!leftValue.isSubtantial) {
 		resultValue.uintValue = NO;
 		[inter.stack pop];
-	}else{
+	} else {
 		eval_expression(inter, scope, expr.right);
 		MFValue *rightValue = [inter.stack peekStack:0];
 		if (!rightValue.isSubtantial) {
@@ -1316,7 +1322,8 @@ static void eval_logic_and_expression(MFInterpreter *inter, MFScopeChain *scope,
 		}else{
 			resultValue.uintValue = YES;
 		}
-		[inter.stack pop];
+        [inter.stack pop]; // pop left
+		[inter.stack pop]; // pop right
 	}
 	[inter.stack push:resultValue];
 }
@@ -1337,7 +1344,8 @@ static void eval_logic_or_expression(MFInterpreter *inter, MFScopeChain *scope, 
 		}else{
 			resultValue.uintValue = NO;
 		}
-		[inter.stack pop];
+        [inter.stack pop]; // pop left
+        [inter.stack pop]; // pop right
 	}
 	[inter.stack push:resultValue];
 }

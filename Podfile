@@ -13,6 +13,8 @@ target 'MangoFix' do
 
   target 'MangoFixTests' do
     # Pods for testing
+    
+    pod 'symdl'
   end
 
 end

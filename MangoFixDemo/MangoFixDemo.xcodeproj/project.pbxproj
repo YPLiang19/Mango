@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89201FC727DA04C500A8AEA0 /* SomClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 89201FC627DA04C500A8AEA0 /* SomClass.m */; };
 		8977D885224CC9070048A954 /* demo.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89FC7DA9224C047700AFC0AC /* demo.mg */; };
 		899672BC224C02DC00C7DACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 899672BB224C02DC00C7DACB /* Assets.xcassets */; };
 		899672BF224C02DC00C7DACB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899672BD224C02DC00C7DACB /* LaunchScreen.storyboard */; };
@@ -21,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		0EDFFE948A3B02594E2D1D61 /* Pods-MangoFixDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFixDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MangoFixDemo/Pods-MangoFixDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		89201FC527DA04C500A8AEA0 /* SomClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomClass.h; sourceTree = "<group>"; };
+		89201FC627DA04C500A8AEA0 /* SomClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomClass.m; sourceTree = "<group>"; };
 		899672AF224C02DB00C7DACB /* MangoFixDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MangoFixDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		899672BB224C02DC00C7DACB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		899672BE224C02DC00C7DACB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				89FC7DA1224C046800AFC0AC /* SuperMyController.m */,
 				89FC7DA0224C046700AFC0AC /* ViewController.h */,
 				89FC7DA3224C046800AFC0AC /* ViewController.m */,
+				89201FC527DA04C500A8AEA0 /* SomClass.h */,
+				89201FC627DA04C500A8AEA0 /* SomClass.m */,
 				89FC7DAE224C048600AFC0AC /* Main.storyboard */,
 				899672BB224C02DC00C7DACB /* Assets.xcassets */,
 				899672BD224C02DC00C7DACB /* LaunchScreen.storyboard */,
@@ -208,6 +213,7 @@
 			files = (
 				899672C2224C02DC00C7DACB /* main.m in Sources */,
 				89FC7DAD224C047800AFC0AC /* AppDelegate.m in Sources */,
+				89201FC727DA04C500A8AEA0 /* SomClass.m in Sources */,
 				89FC7DA6224C046800AFC0AC /* CustomView.m in Sources */,
 				89FC7DA7224C046800AFC0AC /* SuperMyController.m in Sources */,
 				89FC7DA8224C046800AFC0AC /* ViewController.m in Sources */,

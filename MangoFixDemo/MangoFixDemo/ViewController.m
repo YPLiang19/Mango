@@ -9,6 +9,20 @@
 #import "ViewController.h"
 #import <WebKit/WebKit.h>
 #import <objc/runtime.h>
+#import "SomClass.h"
+
+
+@interface MyObject : NSObject
+
+@end
+
+@implementation MyObject
+
+- (void)dealloc {
+    NSLog(@"dealloc MyObject");
+}
+
+@end
 
 typedef struct {
     CGFloat x;
@@ -40,6 +54,11 @@ void load_function(void *p){
     
 	self.title = @"Mango示例";
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    
+    CGRect rect = CGRectMake(1, 2, 2, 4);
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    SomClass2 *some = [[SomClass2 alloc] initWithFrame:rect configuration:config];
+    NSLog(@"some: %@", some);
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
