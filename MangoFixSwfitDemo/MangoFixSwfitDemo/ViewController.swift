@@ -209,7 +209,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc
     dynamic
     func conditionsAnnotationExample() {
-        self.resultView.text = "here is OC method";
+        self.resultView.text = "here is Swift method";
     }
 
 

@@ -13,14 +13,9 @@
 
 
 void testRuntie(void) {
-    Class vcClazz = objc_getClass("MangoFixSwiftDylibTest.SuperMyController");
-    unsigned int outCount = 0;
-    Method *methods = class_copyMethodList(vcClazz, &outCount);
-    for (int i = 0; i < outCount; i++) {
-        Method m = methods[i];
-        NSString *name = NSStringFromSelector(method_getName(m));
-        printf("Method: %s, imp: %p\n", name.UTF8String, method_getImplementation(m));
-    }
+    void *ptr = NSSearchPathForDirectoriesInDomains;
+    NSLog(@"%p", ptr);
+    
 
     
 }
