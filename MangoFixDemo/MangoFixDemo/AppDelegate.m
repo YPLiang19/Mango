@@ -54,6 +54,7 @@ err:
     MFContext *context = [[MFContext alloc] initWithAES128Key:aes128Key iv:aes128Iv];
     
     NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"demo_encrypted.mg"];
+    [NSURL URLWithString:@""];
     NSURL *scriptUrl = [NSURL fileURLWithPath:encryptedPath];
     [context evalMangoScriptWithURL:scriptUrl];
 	return YES;
