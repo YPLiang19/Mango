@@ -7,6 +7,31 @@ MangoFix 学习讨论QQ群：766215773
 MangoFix is a DSL which syntax is very similar to Objective-C，MangoFix is also an iOS  App hotfix SDK. You can use MangoFix method replace any Objective-C or Swift method (Support Swfit from MangoFxi 1.5).
 
 
+
+## SWfit Example
+
+```swift
+import UIKit
+import MangoFix
+
+let aes128Key = "123456"
+let aes128Iv = "abcdef"
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let context = MFContext.init(aes128Key: aes128Key, iv: aes128Iv)
+        let encryptedScriptURL = URL.init("Your URL")
+        context.evalMangoScript(with: encryptedScriptURL)
+        return true
+    }
+
+}
+
+```
+
+
 ## Objctive-C Example
 ```objc
 #import "AppDelegate.h"
@@ -55,30 +80,6 @@ class ViewController:UIViewController{
 
 ```
 
-## SWfit Example
-
-```swift
-import UIKit
-import MangoFix
-
-let aes128Key = "123456"
-let aes128Iv = "abcdef"
-
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let context = MFContext.init(aes128Key: aes128Key, iv: aes128Iv)
-        let encryptedScriptURL = URL.init("Your URL")
-        context.evalMangoScript(with: encryptedScriptURL)
-        return true
-    }
-
-}
-
-```
-
-
 ## Installation
 ### CocoaPods
 1. Add `pod 'MangoFix'` to your Podfile.
@@ -106,267 +107,6 @@ NSString *script = [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8
 ```
 
 ### Mango
-#### Objective-C Quick start
-
-```objc
-/**
-demo.mg
-*/
-
-//声明一个自定义结构体
-declare struct MyStruct {
-    typeEncoding:"{MyStruct=dd}",
-    keys:x,y
-}
-
-class ViewController:UIViewController {
-
-- (void)sequentialStatementExample{
-//变量定义
-    NSString *text = @"1";
-
-    self.resultView.text = text;
-
-}
-
-- (void)ifStatementExample{
-	int a = 2;
-	int b = 2;
-
-	NSString *text;
-	if(a > b){
-		text = @"执行结果: a > b";
-	}else if (a == b){
-		text = @"执行结果: a == b";
-	}else{
-		text = @"执行结果: a < b";
-	}
-	self.resultView.text = text;
-}
-
-- (void)switchStatementExample{
-	int a = 2;
-	NSString *text;
-	switch(a){
-		case 1:{
-			text = @"match 1";
-			break;
-		}
-		case 2:{} //case 后面的一对花括号不可以省略
-		case 3:{
-			text = @"match 2 or 3";
-			break;
-		}
-		case 4:{
-			text = @"match 4";
-			break;
-		}
-		default:{
-			text = @"match default";
-		}
-	}
-	self.resultView.text = text;
-}
-
-- (void)forStatementExample{
-	NSString *text = @"";
-	for(int i = 0; i < 20; i++){
-		text = text + i + @", ";
-		if(i == 10){
-			break;
-		}
-	}
-	self.resultView.text = text;
-}
-
-- (void)forEachStatementExample{
-	NSArray *arr = @[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"g", @"i", @"j",@"k"];
-	NSString *text = @"";
-	for(id element in arr){
-		text = text + element + @", ";
-		if(element.isEqualToString:(@"i")){
-			break;
-		}
-
-	}
-	self.resultView.text = text;
-}
-
-- (void)whileStatementExample{
-	int a;
-	while(a < 10){
-		if(a == 5){
-			break;
-		}
-		a++;
-	}
-	self.resultView.text = @""+a;
-}
-
-- (void)doWhileStatementExample{
-	int a = 0;
-	do{
-		a++;
-	}while(NO);
-	self.resultView.text = @""+a;
-
-}
-
-- (void)blockStatementExample{
-	Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
-								NSString *result = str1.stringByAppendingString:(str2);
-								return result;
-							};
-	NSString *result = catStringBlock(@"hello ", @"world!");
-	self.resultView.text = result;
-}
-
-
-- (void)paramPassingExampleWithBOOLArg:(BOOL)BOOLArg intArg:(int) intArg uintArg:(NSUInteger)uintArg blockArg:(Block)blockArg  objArg:(id)objArg {
-	NSString *text = @"";
-	text += @"BOOLArg:" + BOOLArg + @",\n";
-	text += @"intArg:" + intArg + @",\n";
-    text += @"uintArg:" + uintArg + @",\n";
-	text += @"Block执行结果:" + blockArg(@"hello", @"mango") + @"\n";
-	text += @"objArg:" + objArg;
-	self.resultView.text = text;
-}
-
-
-- (struct MyStruct)paramPassingExampleWithStrut:(struct CGRect)rect{
-    struct MyStruct myStruct = {x:(rect.origin.x + 100), y:(rect.origin.x + 10)};
-    return myStruct;
-}
-
-- (Block)returnBlockExample{
-	NSString *prefix = @"mango: ";
-	Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
-		NSString *result = str1.stringByAppendingString:(str2);
-		return prefix + result;
-	};
-	return catStringBlock;
-}
-
-
-- (void)callOriginalImp{
-    self.ORGcallOriginalImp();
-}
-
-- (void)createAndOpenNewViewControllerExample{
-	SubMyController *vc = SubMyController.alloc().init();
-	self.navigationController.pushViewController:animated:(vc,YES);
-
-}
-
-//类方法替换示例
-+ (void)classMethodExapleWithInstance:(ViewController *)vc{
-	vc.resultView.text = @"here is Mango  Class Method " + self;
-}
-
-//条件注释示例
-#If($systemVersion.doubleValue() > 12.0 )
-- (void)conditionsAnnotationExample{
-self.resultView.text = @"here is Mango method";
-}
-
-
-//GCD示例
-- (void)gcdExample{
-	dispatch_queue_t queue = dispatch_queue_create("com.plliang19.mango", DISPATCH_QUEUE_CONCURRENT);
-	dispatch_async(queue, ^{
-		NSLog(@"mango dispatch_async");
-	});
-	dispatch_sync(queue, ^{
-		NSLog(@"mango dispatch_sync");
-	});
-}
-
-
-//静态变量和取地址运算符示例
-- (void)staticVarAndGetVarAddressOperExample{
-    static int i = 0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        i++;
-    });
-    self.resultView.text = @""+i;
-}
-
-//C函数变量示例
-- (void)cfuntionVarExample{
-    int NSDocumentDirectory = 9;
-    int NSUserDomainMask = 1;
-
-    int  O_WRONLY = 0x0001;
-    uint S_IRWXU  = 0000700;
-
-
-    CFunction<id, int, int, BOOL> NSSearchPathForDirectoriesInDomains = CFunction("NSSearchPathForDirectoriesInDomains");
-    CFunction<int, char *, int, int> open = CFunction("open");
-    CFunction<size_t, int, void *, size_t> write = CFunction("write");
-    CFunction<int, int> close = CFunction("close");
-
-
-    NSString *doc = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-
-    NSString *path = doc.stringByAppendingPathComponent:(@"MangoFxi.html");
-    NSFileManager *fileManager = NSFileManager.defaultManager();
-    if (!fileManager.fileExistsAtPath:(path)) {
-        BOOL ret = fileManager.createFileAtPath:contents:attributes:(path, nil, nil);
-        if (!ret) {
-            self.resultView.text = @"创建文件失败";
-            return;
-        }
-    }
-    int fd = open(path.UTF8String,O_WRONLY, S_IRWXU);
-    if (fd < 0) {
-        self.resultView.text = @"打开文件失败";
-        return;
-    }
-    NSURL *url = NSURL.URLWithString:(@"https://github.com/YPLiang19/Mango");
-    NSData *data = NSData.dataWithContentsOfURL:(url);
-    write(fd, data.bytes, data.length);
-    close(fd);
-    self.resultView.text = @"文件写入成功:" + path;
-}
-
-
-//typedef示例
-- (void)typedefExaple{
-    self.resultView.text = @"typedef long alias_long;";
-}
-
-
-}
-
-
-class SuperMyController:UIViewController{
-- (void)viewDidLoad {
-    super.viewDidLoad();
-    self.view.backgroundColor = UIColor.blueColor();
-}
-
-}
-
-
-class SubMyController:SuperMyController {
-@property (strong, nonatomic) UIView *rotateView;
-- (void)viewDidLoad {
-        super.viewDidLoad();
-		self.title = @"Magno 创建自定义ViewController";
-		double width = 100;
-		double height = 100;
-		double x = self.view.frame.size.width/2 - width/2;
-		double y = self.view.frame.size.height/2 - height/2;
-		UIView *view = MyView.alloc().initWithFrame:(CGRectMake(x, y, width, height));
-		self.view.addSubview:(view);
-		view.backgroundColor = UIColor.redColor();
-		self.rotateView = view;
-}
-
-}
-
-```
 
 #### Swift Quick start
 
@@ -676,8 +416,268 @@ class SubMyController : @SwiftModule("MangoFixSwiftDylibTest") SuperMyController
 
 }
 
+```
 
 
+#### Objective-C Quick start
+
+```objc
+/**
+demo.mg
+*/
+
+//声明一个自定义结构体
+declare struct MyStruct {
+    typeEncoding:"{MyStruct=dd}",
+    keys:x,y
+}
+
+class ViewController:UIViewController {
+
+- (void)sequentialStatementExample{
+//变量定义
+    NSString *text = @"1";
+
+    self.resultView.text = text;
+
+}
+
+- (void)ifStatementExample{
+	int a = 2;
+	int b = 2;
+
+	NSString *text;
+	if(a > b){
+		text = @"执行结果: a > b";
+	}else if (a == b){
+		text = @"执行结果: a == b";
+	}else{
+		text = @"执行结果: a < b";
+	}
+	self.resultView.text = text;
+}
+
+- (void)switchStatementExample{
+	int a = 2;
+	NSString *text;
+	switch(a){
+		case 1:{
+			text = @"match 1";
+			break;
+		}
+		case 2:{} //case 后面的一对花括号不可以省略
+		case 3:{
+			text = @"match 2 or 3";
+			break;
+		}
+		case 4:{
+			text = @"match 4";
+			break;
+		}
+		default:{
+			text = @"match default";
+		}
+	}
+	self.resultView.text = text;
+}
+
+- (void)forStatementExample{
+	NSString *text = @"";
+	for(int i = 0; i < 20; i++){
+		text = text + i + @", ";
+		if(i == 10){
+			break;
+		}
+	}
+	self.resultView.text = text;
+}
+
+- (void)forEachStatementExample{
+	NSArray *arr = @[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"g", @"i", @"j",@"k"];
+	NSString *text = @"";
+	for(id element in arr){
+		text = text + element + @", ";
+		if(element.isEqualToString:(@"i")){
+			break;
+		}
+
+	}
+	self.resultView.text = text;
+}
+
+- (void)whileStatementExample{
+	int a;
+	while(a < 10){
+		if(a == 5){
+			break;
+		}
+		a++;
+	}
+	self.resultView.text = @""+a;
+}
+
+- (void)doWhileStatementExample{
+	int a = 0;
+	do{
+		a++;
+	}while(NO);
+	self.resultView.text = @""+a;
+
+}
+
+- (void)blockStatementExample{
+	Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
+								NSString *result = str1.stringByAppendingString:(str2);
+								return result;
+							};
+	NSString *result = catStringBlock(@"hello ", @"world!");
+	self.resultView.text = result;
+}
+
+
+- (void)paramPassingExampleWithBOOLArg:(BOOL)BOOLArg intArg:(int) intArg uintArg:(NSUInteger)uintArg blockArg:(Block)blockArg  objArg:(id)objArg {
+	NSString *text = @"";
+	text += @"BOOLArg:" + BOOLArg + @",\n";
+	text += @"intArg:" + intArg + @",\n";
+    text += @"uintArg:" + uintArg + @",\n";
+	text += @"Block执行结果:" + blockArg(@"hello", @"mango") + @"\n";
+	text += @"objArg:" + objArg;
+	self.resultView.text = text;
+}
+
+
+- (struct MyStruct)paramPassingExampleWithStrut:(struct CGRect)rect{
+    struct MyStruct myStruct = {x:(rect.origin.x + 100), y:(rect.origin.x + 10)};
+    return myStruct;
+}
+
+- (Block)returnBlockExample{
+	NSString *prefix = @"mango: ";
+	Block catStringBlock = ^NSString *(NSString *str1, NSString *str2){
+		NSString *result = str1.stringByAppendingString:(str2);
+		return prefix + result;
+	};
+	return catStringBlock;
+}
+
+
+- (void)callOriginalImp{
+    self.ORGcallOriginalImp();
+}
+
+- (void)createAndOpenNewViewControllerExample{
+	SubMyController *vc = SubMyController.alloc().init();
+	self.navigationController.pushViewController:animated:(vc,YES);
+
+}
+
+//类方法替换示例
++ (void)classMethodExapleWithInstance:(ViewController *)vc{
+	vc.resultView.text = @"here is Mango  Class Method " + self;
+}
+
+//条件注释示例
+#If($systemVersion.doubleValue() > 12.0 )
+- (void)conditionsAnnotationExample{
+self.resultView.text = @"here is Mango method";
+}
+
+
+//GCD示例
+- (void)gcdExample{
+	dispatch_queue_t queue = dispatch_queue_create("com.plliang19.mango", DISPATCH_QUEUE_CONCURRENT);
+	dispatch_async(queue, ^{
+		NSLog(@"mango dispatch_async");
+	});
+	dispatch_sync(queue, ^{
+		NSLog(@"mango dispatch_sync");
+	});
+}
+
+
+//静态变量和取地址运算符示例
+- (void)staticVarAndGetVarAddressOperExample{
+    static int i = 0;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        i++;
+    });
+    self.resultView.text = @""+i;
+}
+
+//C函数变量示例
+- (void)cfuntionVarExample{
+    int NSDocumentDirectory = 9;
+    int NSUserDomainMask = 1;
+
+    int  O_WRONLY = 0x0001;
+    uint S_IRWXU  = 0000700;
+
+
+    CFunction<id, int, int, BOOL> NSSearchPathForDirectoriesInDomains = CFunction("NSSearchPathForDirectoriesInDomains");
+    CFunction<int, char *, int, int> open = CFunction("open");
+    CFunction<size_t, int, void *, size_t> write = CFunction("write");
+    CFunction<int, int> close = CFunction("close");
+
+
+    NSString *doc = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+
+    NSString *path = doc.stringByAppendingPathComponent:(@"MangoFxi.html");
+    NSFileManager *fileManager = NSFileManager.defaultManager();
+    if (!fileManager.fileExistsAtPath:(path)) {
+        BOOL ret = fileManager.createFileAtPath:contents:attributes:(path, nil, nil);
+        if (!ret) {
+            self.resultView.text = @"创建文件失败";
+            return;
+        }
+    }
+    int fd = open(path.UTF8String,O_WRONLY, S_IRWXU);
+    if (fd < 0) {
+        self.resultView.text = @"打开文件失败";
+        return;
+    }
+    NSURL *url = NSURL.URLWithString:(@"https://github.com/YPLiang19/Mango");
+    NSData *data = NSData.dataWithContentsOfURL:(url);
+    write(fd, data.bytes, data.length);
+    close(fd);
+    self.resultView.text = @"文件写入成功:" + path;
+}
+
+
+//typedef示例
+- (void)typedefExaple{
+    self.resultView.text = @"typedef long alias_long;";
+}
+
+
+}
+
+
+class SuperMyController:UIViewController{
+- (void)viewDidLoad {
+    super.viewDidLoad();
+    self.view.backgroundColor = UIColor.blueColor();
+}
+
+}
+
+
+class SubMyController:SuperMyController {
+@property (strong, nonatomic) UIView *rotateView;
+- (void)viewDidLoad {
+        super.viewDidLoad();
+		self.title = @"Magno 创建自定义ViewController";
+		double width = 100;
+		double height = 100;
+		double x = self.view.frame.size.width/2 - width/2;
+		double y = self.view.frame.size.height/2 - height/2;
+		UIView *view = MyView.alloc().initWithFrame:(CGRectMake(x, y, width, height));
+		self.view.addSubview:(view);
+		view.backgroundColor = UIColor.redColor();
+		self.rotateView = view;
+}
+
+}
 
 ```
 
