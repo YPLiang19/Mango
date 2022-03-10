@@ -137,6 +137,9 @@ static void increment_line_number(){
 <INITIAL>"static" {return STATIC; }
 <INITIAL>"typedef" {return TYPEDEF; }
 
+<INITIAL>"@SwiftClassAlias" {return SWIFT_CLASS_ALIAS; }
+
+
 <INITIAL>"self" {
 	MFExpression *expression = mf_create_expression(MF_SELF_EXPRESSION);
 	yylval.expression = (__bridge_retained void *)expression;

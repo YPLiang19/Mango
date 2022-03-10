@@ -157,6 +157,15 @@ extern const void *mf_propKey(NSString *propName);
     return [self getValueWithIdentifier:identifier endScope:nil];
 }
 
+- (MFClassDefinition *) getClassDefinition {
+    for (MFScopeChain *pos = self; pos; pos = pos.next) {
+        if (pos.classDefinition) {
+            return pos.classDefinition;
+        }
+    }
+    return nil;
+}
+
 - (void)setMangoBlockVarNil{
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
 //        [self.lock lock];

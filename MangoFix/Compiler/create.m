@@ -526,16 +526,27 @@ void mf_start_class_definition(NSArray<MFAnnotation *> *annotationList, NSString
     classDefinition.superAnnotationList = superAnnotationList;
     if (classDefinition.swiftModuleAnnotation) {
         classDefinition.name = [NSString stringWithFormat:@"%s.%@", classDefinition.swiftModuleAnnotation.expr.cstringValue, name];
+        [[MFSwfitClassNameAlisTable shareInstance] addSwiftClassNmae:classDefinition.name alias:name];
     } else {
-        classDefinition.name = name;
+        NSString *swiftClassName = [[MFSwfitClassNameAlisTable shareInstance] swiftClassNameByAlias:name];
+        if (swiftClassName) {
+            classDefinition.name = swiftClassName;
+        } else {
+            classDefinition.name = name;
+        }
     }
     
     if (classDefinition.superSwiftModuleAnnotation) {
         classDefinition.superName = [NSString stringWithFormat:@"%s.%@", classDefinition.superSwiftModuleAnnotation.expr.cstringValue, superName];
+        [[MFSwfitClassNameAlisTable shareInstance] addSwiftClassNmae:classDefinition.superName alias:superName];
     } else {
-        classDefinition.superName = superName;
+        NSString *swiftSuperClassName = [[MFSwfitClassNameAlisTable shareInstance] swiftClassNameByAlias:superName];
+        if (swiftSuperClassName) {
+            classDefinition.superName = swiftSuperClassName;
+        } else {
+            classDefinition.superName = superName;
+        }
     }
-    
 	classDefinition.protocolNames = protocolNames;
 	interpreter.currentClassDefinition = classDefinition;
 }
@@ -601,6 +612,24 @@ void mf_add_typedef_from_alias(NSString *alias_existing, NSString *alias_new){
     mf_add_typedef(type, alias_new);
 }
 
+
+
+void mf_add_swift_class_alias(NSString *n1, NSString *n2, NSString *n3, NSString *n4, NSString *n5, NSString *aliasName) {
+    NSMutableString *swiftClassName = [NSMutableString stringWithString:n1];
+    if (n2) {
+        [swiftClassName appendFormat:@".%@", n2];
+    }
+    if (n3) {
+        [swiftClassName appendFormat:@".%@", n3];
+    }
+    if (n4) {
+        [swiftClassName appendFormat:@".%@", n4];
+    }
+    if (n5) {
+        [swiftClassName appendFormat:@".%@", n5];
+    }
+    [[MFSwfitClassNameAlisTable shareInstance] addSwiftClassNmae:swiftClassName.copy alias:aliasName];
+}
 
 
 

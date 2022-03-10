@@ -52,7 +52,7 @@ int yylex(void);
     CLASS STRUCT DECLARE SELECTOR
 	RETURN IF ELSE FOR IN WHILE DO SWITCH CASE DEFAULT BREAK CONTINUE
 	PROPERTY WEAK STRONG COPY ASSIGN_MEM NONATOMIC ATOMIC  ASTERISK  VOID
-	BOOL_ CHAR U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC C_FUNCTION  TYPEDEF
+	BOOL_ CHAR U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC C_FUNCTION  TYPEDEF SWIFT_CLASS_ALIAS
 
 
 
@@ -109,7 +109,10 @@ definition:  class_definition
 				mf_add_statement(statement);
 			}
             | typedef_definition
+            | swift_class_alias
 			;
+            
+            
 
 
 annotation: /* empty */
@@ -336,6 +339,29 @@ property_atomic_modifier: NONATOMIC
 				$$ = MFPropertyModifierAtomic;
 			}
 			;
+            
+swift_class_alias: SWIFT_CLASS_ALIAS IDENTIFIER IDENTIFIER SEMICOLON
+            {
+                mf_add_swift_class_alias((__bridge_transfer NSString *)$2, nil, nil, nil, nil, (__bridge_transfer NSString *)$3);
+            }
+            | SWIFT_CLASS_ALIAS IDENTIFIER DOT IDENTIFIER  IDENTIFIER SEMICOLON
+            {
+                mf_add_swift_class_alias((__bridge_transfer NSString *)$2, (__bridge_transfer NSString *)$4, nil, nil, nil, (__bridge_transfer NSString *)$5);
+            }
+            | SWIFT_CLASS_ALIAS IDENTIFIER DOT IDENTIFIER DOT IDENTIFIER IDENTIFIER SEMICOLON
+            {
+                mf_add_swift_class_alias((__bridge_transfer NSString *)$2, (__bridge_transfer NSString *)$4, (__bridge_transfer NSString *)$6, nil, nil, (__bridge_transfer NSString *)$7);
+            }
+            | SWIFT_CLASS_ALIAS IDENTIFIER DOT IDENTIFIER DOT IDENTIFIER DOT IDENTIFIER IDENTIFIER SEMICOLON
+            {
+                mf_add_swift_class_alias((__bridge_transfer NSString *)$2, (__bridge_transfer NSString *)$4, (__bridge_transfer NSString *)$6, (__bridge_transfer NSString *)$8, nil, (__bridge_transfer NSString *)$9);
+            }
+            | SWIFT_CLASS_ALIAS IDENTIFIER DOT IDENTIFIER DOT IDENTIFIER DOT IDENTIFIER DOT IDENTIFIER IDENTIFIER SEMICOLON
+            {
+                mf_add_swift_class_alias((__bridge_transfer NSString *)$2, (__bridge_transfer NSString *)$4, (__bridge_transfer NSString *)$6, (__bridge_transfer NSString *)$8, (__bridge_transfer NSString *)$10, (__bridge_transfer NSString *)$11);
+            }
+            ;
+
 
 typedef_definition: TYPEDEF BOOL_ IDENTIFIER SEMICOLON
             {

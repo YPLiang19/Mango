@@ -93,6 +93,8 @@ void mf_add_typedef(MFTypeSpecifierKind type, NSString *alias);
 
 void mf_add_typedef_from_alias(NSString *alias_existing, NSString *alias_new);
 
+void mf_add_swift_class_alias(NSString *n1, NSString *n2, NSString *n3, NSString *n4, NSString *n5, NSString *aliasName);
+
 MFInterpreter *mf_get_current_compile_util(void);
 
 void mf_set_current_compile_util(MFInterpreter *interpreter);

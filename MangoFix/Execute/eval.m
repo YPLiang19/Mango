@@ -727,6 +727,21 @@ static void eval_identifer_expression(MFInterpreter *inter, MFScopeChain *scope 
 	MFValue *value = [scope getValueWithIdentifierInChain:identifier];
 	if (!value) {
 		Class clazz = NSClassFromString(identifier);
+        if (!clazz) {
+            NSString *swiftClassName = [[MFSwfitClassNameAlisTable shareInstance] swiftClassNameByAlias:identifier];
+            if (swiftClassName) {
+                clazz = NSClassFromString(swiftClassName);
+            } else {
+                MFAnnotation *swiftModuleAnnotation = scope.getClassDefinition.swiftModuleAnnotation;
+                if (swiftModuleAnnotation) {
+                    NSString *trySwiftClassName = [NSString stringWithFormat:@"%s.%@", swiftModuleAnnotation.expr.cstringValue, identifier];
+                    clazz = NSClassFromString(trySwiftClassName);
+                    if (clazz) {
+                        [[MFSwfitClassNameAlisTable shareInstance] addSwiftClassNmae:trySwiftClassName alias:identifier];
+                    }
+                }
+            }
+        }
 		if (clazz) {
 			value = [MFValue valueInstanceWithClass:clazz];
 		}

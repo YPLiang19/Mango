@@ -8,6 +8,9 @@
 import UIKit
 public class SuperMyController: UIViewController {
     
+    @objc
+    var block: Any? = nil
+    
     public override
     func viewDidLoad() {
         super.viewDidLoad()

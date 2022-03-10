@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 @class MFValue;
+@class MFClassDefinition;
 
 NS_ASSUME_NONNULL_BEGIN
 @interface MFScopeChain: NSObject
 @property (weak, nonatomic) id instance;
+@property (weak, nonatomic) MFClassDefinition *classDefinition;
 @property (strong, nonatomic) MFScopeChain *next;
 
 + (instancetype)scopeChainWithNext:(MFScopeChain *)next;
@@ -21,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setValue:(MFValue *)value withIndentifier:(NSString *)identier;
 - (void)assignWithIdentifer:(NSString *)identifier value:(MFValue *)value;
 - (void)setMangoBlockVarNil;
+- (MFClassDefinition *)getClassDefinition;
 @end
 NS_ASSUME_NONNULL_END
 

@@ -407,7 +407,6 @@ static void define_class(MFInterpreter *interpreter, MFClassDefinition *classDef
 	if (classDefinition.annotationIfExprResult != AnnotationIfExprResultTrue) {
 		return;
 	}
-
     Class clazz = NSClassFromString(classDefinition.name);
 	if (!clazz) {
 		NSString *superClassName = classDefinition.superName;
@@ -418,6 +417,7 @@ static void define_class(MFInterpreter *interpreter, MFClassDefinition *classDef
                 NSString *sueprClassFullName = [NSString stringWithFormat:@"%s.%@", classDefinition.swiftModuleAnnotation.expr.cstringValue, superClassName];
                 superClass = NSClassFromString(sueprClassFullName);
                 if (superClass) {
+                    [[MFSwfitClassNameAlisTable shareInstance] addSwiftClassNmae:sueprClassFullName alias:superClassName];
                     classDefinition.superName = sueprClassFullName;
                 }
             }
@@ -430,9 +430,10 @@ static void define_class(MFInterpreter *interpreter, MFClassDefinition *classDef
         
         if (!superClass && classDefinition.swiftModuleAnnotation && !classDefinition.superSwiftModuleAnnotation) {
             NSString *sueprClassFullName = [NSString stringWithFormat:@"%s.%@", classDefinition.swiftModuleAnnotation.expr.cstringValue, superClassName];
-            define_class(interpreter, interpreter.classDefinitionDic[superClassName]);
+            define_class(interpreter, interpreter.classDefinitionDic[sueprClassFullName]);
             superClass = NSClassFromString(sueprClassFullName);
             if (superClass) {
+                [[MFSwfitClassNameAlisTable shareInstance] addSwiftClassNmae:sueprClassFullName alias:superClassName];
                 classDefinition.superName = sueprClassFullName;
             }
         }
@@ -597,6 +598,7 @@ static void replaceIMP(ffi_cif *cif, void *ret, void **args, void *userdata){
     NSDictionary * userInfo = (__bridge id)userdata;// 不可以进行释放
     Class class  = userInfo[@"class"];
     NSString *typeEncoding = userInfo[@"typeEncoding"];
+    MFClassDefinition *classDefinition =userInfo[@"classDefinition"];
     id assignSlf = (__bridge  id)(*(void **)args[0]);
     SEL sel = *(void **)args[1];
 
@@ -607,6 +609,7 @@ static void replaceIMP(ffi_cif *cif, void *ret, void **args, void *userdata){
 
     MFScopeChain *classScope = [MFScopeChain scopeChainWithNext:inter.topScope];
     classScope.instance = assignSlf;
+    classScope.classDefinition = classDefinition;
 
     NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:typeEncoding.UTF8String];
 
@@ -695,7 +698,12 @@ static void replace_method(MFInterpreter *interpreter, Class clazz, MFMethodDefi
 
     if(ffi_prep_cif(cif, FFI_DEFAULT_ABI, argCount, returnType, args) == FFI_OK)
     {
-        NSDictionary *userInfo = @{@"class":c2,@"typeEncoding":[typeEncoding copy]};
+        NSDictionary *userInfo = nil;
+        if (method.classDefinition) {
+            userInfo = @{@"class":c2, @"typeEncoding":[typeEncoding copy], @"classDefinition" : method.classDefinition};
+        } else {
+            userInfo = @{@"class":c2, @"typeEncoding":[typeEncoding copy]};
+        }
         CFTypeRef cfuserInfo = (__bridge_retained CFTypeRef)userInfo;
         ffi_prep_closure_loc(closure, cif, replaceIMP, (void *)cfuserInfo, imp);
     }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		592F650ADAB6D1FBD5649F95 /* Pods_MangoFix_MangoFixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECE17506FE1D0E845D7EADF /* Pods_MangoFix_MangoFixTests.framework */; };
 		747E6F3F96888F7AB3C8BADF /* Pods_MangoFix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C56513D96A3178630BF8E67 /* Pods_MangoFix.framework */; };
+		89201FC327D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 89201FC127D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.h */; };
+		89201FC427D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89201FC227D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.m */; };
 		89253B3322B395A400AD9A33 /* MFTypedefTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3122B395A300AD9A33 /* MFTypedefTable.m */; };
 		89253B3822B395C400AD9A33 /* MFTypedefTest.mg in Resources */ = {isa = PBXBuildFile; fileRef = 89253B3522B395C400AD9A33 /* MFTypedefTest.mg */; };
 		89253B3922B395C400AD9A33 /* MFTypedefTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 89253B3622B395C400AD9A33 /* MFTypedefTest.m */; };
@@ -115,6 +117,8 @@
 /* Begin PBXFileReference section */
 		5C56513D96A3178630BF8E67 /* Pods_MangoFix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MangoFix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		667D579249CB0B99C8B2E07A /* Pods-MangoFix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MangoFix.debug.xcconfig"; path = "Target Support Files/Pods-MangoFix/Pods-MangoFix.debug.xcconfig"; sourceTree = "<group>"; };
+		89201FC127D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFSwfitClassNameAlisTable.h; sourceTree = "<group>"; };
+		89201FC227D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFSwfitClassNameAlisTable.m; sourceTree = "<group>"; };
 		89253B3122B395A300AD9A33 /* MFTypedefTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTypedefTable.m; sourceTree = "<group>"; };
 		89253B3222B395A300AD9A33 /* MFTypedefTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTypedefTable.h; sourceTree = "<group>"; };
 		89253B3522B395C400AD9A33 /* MFTypedefTest.mg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MFTypedefTest.mg; sourceTree = "<group>"; };
@@ -490,6 +494,8 @@
 				89967248224BFE6F00C7DACB /* MFMethodMapTable.m */,
 				89EE645422725FBB00C7DD7A /* MFPropertyMapTable.h */,
 				89EE645522725FBB00C7DD7A /* MFPropertyMapTable.m */,
+				89201FC127D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.h */,
+				89201FC227D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.m */,
 				89EE64582272C87F00C7DD7A /* MFWeakPropertyBox.h */,
 				89EE64592272C87F00C7DD7A /* MFWeakPropertyBox.m */,
 				89967243224BFE6F00C7DACB /* MFScopeChain.h */,
@@ -591,6 +597,7 @@
 				895EC4DC224CAA7C0062CBF8 /* MFValue.h in Headers */,
 				895EC4DB224CAA2A0062CBF8 /* MFContext.h in Headers */,
 				8949CDF627D75D5B0037D336 /* NSData+AESEncryption.h in Headers */,
+				89201FC327D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.h in Headers */,
 				89814085227ACEE70023257B /* MFDeclarationModifier.h in Headers */,
 				89814084227ACEDD0023257B /* MangoFix.h in Headers */,
 			);
@@ -815,6 +822,7 @@
 				89967285224BFE6F00C7DACB /* MFStatementResult.m in Sources */,
 				8981407C2279EE970023257B /* MFVarDeclareChain.m in Sources */,
 				8996729B224BFE6F00C7DACB /* MFStructDeclare.m in Sources */,
+				89201FC427D9D87700A8AEA0 /* MFSwfitClassNameAlisTable.m in Sources */,
 				89967282224BFE6F00C7DACB /* MFStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
