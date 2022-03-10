@@ -12,47 +12,14 @@ MangoFix is a DSL which syntax is very similar to Objective-C，MangoFix is also
 #import "AppDelegate.h"
 #import <MangoFix/MangoFix.h>
 
+static NSString * const aes128Key = @"123456";
+static NSString * const aes128Iv = @"abcdef";
+
 @implementation AppDelegate
 
-- (BOOL)encryptPlainScirptToDocument{
-    NSError *outErr = nil;
-    BOOL writeResult = NO;
-    
-    NSURL *scriptUrl = [[NSBundle mainBundle] URLForResource:@"demo" withExtension:@"mg"];
-    NSString *plainScriptString = [NSString stringWithContentsOfURL:scriptUrl encoding:NSUTF8StringEncoding error:&outErr];
-    if (outErr) goto err;
-    
-    {
-        NSURL *publicKeyUrl = [[NSBundle mainBundle] URLForResource:@"public_key.txt" withExtension:nil];
-        NSString *publicKey = [NSString stringWithContentsOfURL:publicKeyUrl encoding:NSUTF8StringEncoding error:&outErr];
-        if (outErr) goto err;
-        NSString *encryptedScriptString = [MFRSA encryptString:plainScriptString publicKey:publicKey];
-        
-        NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"encrypted_demo.mg"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if (![fileManager fileExistsAtPath:encryptedPath]) {
-            [fileManager createFileAtPath:encryptedPath contents:nil attributes:nil];
-        }
-        writeResult = [encryptedScriptString writeToFile:encryptedPath atomically:YES encoding:NSUTF8StringEncoding error:&outErr];
-    }
-err:
-    if (outErr) NSLog(@"%@",outErr);
-    return writeResult;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    BOOL writeResult = [self encryptPlainScirptToDocument];
-    if (!writeResult) {
-        return NO;
-    }
-    
-    NSURL *privateKeyUrl = [[NSBundle mainBundle] URLForResource:@"private_key.txt" withExtension:nil];
-    NSString *privateKey = [NSString stringWithContentsOfURL:privateKeyUrl encoding:NSUTF8StringEncoding error:nil];
-    
-    MFContext *context = [[MFContext alloc] initWithRASPrivateKey:privateKey];
-    
-    NSString * encryptedPath= [(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"encrypted_demo.mg"];
-    NSURL *scriptUrl = [NSURL fileURLWithPath:encryptedPath];
+    MFContext *context = [[MFContext alloc] initWithAES128Key:aes128Key iv:aes128Iv];
+    NSURL *scriptUrl = [NSURL URLWithString:@"Your URL"];
     [context evalMangoScriptWithURL:scriptUrl];
 	return YES;
 }
@@ -92,7 +59,7 @@ class ViewController:UIViewController{
 
 ```swift
 import UIKit
-//import MangoFix
+import MangoFix
 
 let aes128Key = "123456"
 let aes128Iv = "abcdef"
@@ -100,39 +67,9 @@ let aes128Iv = "abcdef"
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    func encryptPlainScirptToDocument() -> Bool {
-        let scriptURL = Bundle.main.url(forResource: "demo.mg", withExtension: nil)
-        let script =  try? String.init(contentsOf: scriptURL!)
-        guard script != nil else {
-            return false
-        }
-        let scriptData = script!.data(using: String.Encoding.utf8)
-        guard scriptData != nil else {
-            return false
-        }
-        let nsscriptData = NSData.init(data: scriptData!)
-        let enecryptedData = nsscriptData.aes128ParmEncrypt(withKey: aes128Key, iv: aes128Iv)
-        guard enecryptedData != nil else {
-            return false
-        }
-        let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last
-        let encryptedScriptPath = docPath!.appending("/demo_encrypted.mg")
-        let encryptedScriptURL = URL.init(fileURLWithPath: encryptedScriptPath)
-        try! enecryptedData?.write(to: encryptedScriptURL)
-        return true
-    }
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let writeResult = encryptPlainScirptToDocument();
-        if !writeResult {
-            return true
-        }
-        let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last
-        let encryptedScriptPath = docPath!.appending("/demo_encrypted.mg")
-        let encryptedScriptURL = URL.init(fileURLWithPath: encryptedScriptPath)
         let context = MFContext.init(aes128Key: aes128Key, iv: aes128Iv)
+        let encryptedScriptURL = URL.init("Your URL")
         context.evalMangoScript(with: encryptedScriptURL)
         return true
     }
