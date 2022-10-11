@@ -12,10 +12,17 @@
 #import "runenv.h"
 
 
-
 static ffi_type *_ffi_type_with_type_encoding(NSString *typeEncoding){
 	char *code = (char *)typeEncoding.UTF8String;
 	switch (code[0]) {
+        case 'r':
+        case 'R':
+        case 'n':
+        case 'N':
+        case 'o':
+        case 'O':
+        case 'V':
+            return _ffi_type_with_type_encoding(@(&code[1]));
 		case 'v':
 			return &ffi_type_void;
 		case 'c':
