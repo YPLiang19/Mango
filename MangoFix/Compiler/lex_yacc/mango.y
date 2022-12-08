@@ -1,6 +1,7 @@
 %{
 	#define YYDEBUG 1
 	#define YYERROR_VERBOSE
+    #define AT @
 	#import <Foundation/Foundation.h>
 	#import "create.h"
 	#import "mf_ast.h"
@@ -534,7 +535,7 @@ method_name_2: method_name_item
 method_name_item: IDENTIFIER COLON LP type_specifier RP IDENTIFIER
 			{
 				NSString *name = (__bridge_transfer NSString *)$1;
-				name = [NSString stringWithFormat:@"%@:",name];
+				name = [NSString stringWithFormat:AT"%@:",name];
 				MFTypeSpecifier *typeSpecifier = (__bridge_transfer MFTypeSpecifier *)$4;
 				NSString *paramName = (__bridge_transfer NSString *)$6;
 				MFMethodNameItem *item = mf_create_method_name_item(name, typeSpecifier, paramName);
@@ -573,14 +574,14 @@ selector_1: IDENTIFIER
 selector_2: selector_1 COLON
 			{
 				NSString *name = (__bridge_transfer NSString *)$1;
-				NSString *selector = [NSString stringWithFormat:@"%@:",name];
+				NSString *selector = [NSString stringWithFormat:AT"%@:",name];
 				$$ = (__bridge_retained void *)selector;
 			}
 			| selector_2 selector_1 COLON
 			{
 				NSString *name1 = (__bridge_transfer NSString *)$1;
 				NSString *name2 = (__bridge_transfer NSString *)$2;
-				NSString *selector = [NSString stringWithFormat:@"%@%@:", name1, name2];
+				NSString *selector = [NSString stringWithFormat:AT"%@%@:", name1, name2];
 				$$ = (__bridge_retained void *)selector;
 			}
 			;
@@ -881,15 +882,15 @@ c_type_identier: key_work_identifier
             | IDENTIFIER
             | VOID ASTERISK
             {
-                $$ = (__bridge_retained void *)@"void *";
+                $$ = (__bridge_retained void *)AT"void *";
             }
             | CHAR ASTERISK
             {
-                $$ = (__bridge_retained void *)@"char *";
+                $$ = (__bridge_retained void *)AT"char *";
             }
             | STRUCT IDENTIFIER
             {
-                $$ = (__bridge_retained void *)[NSString stringWithFormat:@"struct %@",(__bridge_transfer NSString *)$2];
+                $$ = (__bridge_retained void *)[NSString stringWithFormat:AT"struct %@",(__bridge_transfer NSString *)$2];
             }
             ;
 
@@ -911,43 +912,43 @@ c_type_identier_list:c_type_identier
 
 key_work_identifier: ID
             {
-                $$ = (__bridge_retained void *)@"id";
+                $$ = (__bridge_retained void *)AT"id";
             }
             | CLASS
             {
-                $$ = (__bridge_retained void *)@"class";
+                $$ = (__bridge_retained void *)AT"class";
             }
             | CLASS_
             {
-                $$ = (__bridge_retained void *)@"Class";
+                $$ = (__bridge_retained void *)AT"Class";
             }
             | COPY
             {
-                $$ = (__bridge_retained void *)@"copy";
+                $$ = (__bridge_retained void *)AT"copy";
             }
             | BOOL_
             {
-                $$ = (__bridge_retained void *)@"BOOL";
+                $$ = (__bridge_retained void *)AT"BOOL";
             }
             | INT
             {
-                $$ = (__bridge_retained void *)@"int";
+                $$ = (__bridge_retained void *)AT"int";
             }
             | U_INT
             {
-                $$ = (__bridge_retained void *)@"uint";
+                $$ = (__bridge_retained void *)AT"uint";
             }
             | DOUBLE
             {
-                $$ = (__bridge_retained void *)@"double";
+                $$ = (__bridge_retained void *)AT"double";
             }
             | SEL_
             {
-                $$ = (__bridge_retained void *)@"SEL";
+                $$ = (__bridge_retained void *)AT"SEL";
             }
             | VOID
             {
-                $$ = (__bridge_retained void *)@"void";
+                $$ = (__bridge_retained void *)AT"void";
             }
             ;
 
