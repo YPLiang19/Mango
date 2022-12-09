@@ -169,6 +169,39 @@ class ViewController:UIViewController {
 }
 
 
+// Native 全局变量访问测试
+- (void)nativeGlobalVariableAccess {
+
+    extern int nativeInt1;
+    extern int nativeInt2;
+    
+    NSLog(@"--" + nativeInt1);
+    NSLog(@"--" + nativeInt2);
+
+    nativeInt2 = nativeInt1;
+                    
+    NSLog(@"--" + nativeInt1);
+    NSLog(@"--" + nativeInt2);
+
+
+    CFunction<void, char *> testNativeCStringFunc = CFunction("testNativeCStringFunc");
+    
+    extern Pointer nativeCString1;
+    extern Pointer nativeCString2;
+    
+    testNativeCStringFunc(nativeCString1);
+    testNativeCStringFunc(nativeCString2);
+    
+    nativeCString2 = nativeCString1;
+    
+    testNativeCStringFunc(nativeCString1);
+    testNativeCStringFunc(nativeCString2);
+    
+
+    extern NSString *nativeNSString;
+    self.resultView.text = nativeNSString;
+    
+}
 
 - (void)staticVarAndGetVarAddressOperExample {
     static int i = 0;
