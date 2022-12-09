@@ -36,6 +36,23 @@
 
 
 - (BOOL)isSubtantial{
+    if (self.externNativeGlobalVariable) {
+        if (!self.externNativeGlobalVariablePointer) {
+            return NO;
+        }
+        switch (_type.typeKind) {
+            case MF_TYPE_BOOL:
+                return  *(BOOL *)self.externNativeGlobalVariablePointer;
+            case MF_TYPE_U_INT:
+            case MF_TYPE_INT:
+                return  *(NSInteger *)self.externNativeGlobalVariablePointer ? YES : NO;
+            case MF_TYPE_DOUBLE:
+                return  *(double *)self.externNativeGlobalVariablePointer ? YES : NO;
+            default:
+                return  *(void **)self.externNativeGlobalVariablePointer ? YES : NO;
+                break;
+        }
+    }
 	switch (_type.typeKind) {
 		case MF_TYPE_BOOL:
 		case MF_TYPE_U_INT:
@@ -66,7 +83,7 @@
 }
 
 
-- (BOOL)isMember{
+- (BOOL)isNumber{
 	MFTypeSpecifierKind kind = _type.typeKind;
 	switch (kind) {
 		case MF_TYPE_BOOL:
@@ -101,6 +118,38 @@
 	if (_type.typeKind == MF_TYPE_UNKNOWN) {
 		_type = src.type;
 	}
+    
+    if (self.externNativeGlobalVariable) {
+        if (self.externNativeGlobalVariablePointer) {
+            switch (_type.typeKind) {
+                case MF_TYPE_BOOL:
+                    *(BOOL *)self.externNativeGlobalVariablePointer = [src c2uintValue];
+                    break;
+                case MF_TYPE_INT: {
+                    *(NSInteger *)self.externNativeGlobalVariablePointer = [src c2integerValue];
+                    break;
+                }
+                case MF_TYPE_U_INT: {
+                    *(NSUInteger *)self.externNativeGlobalVariablePointer = [src c2uintValue];
+                    break;
+                }
+                case MF_DOUBLE_EXPRESSION: {
+                    *(double *)self.externNativeGlobalVariablePointer = [src c2doubleValue];
+                    break;
+                }
+                case MF_TYPE_POINTER: {
+                    *(void **)self.externNativeGlobalVariablePointer = *(void **)[src valuePointer];
+                    break;
+                }
+                default:
+                    NSCAssert(0, @"extern native global variable as left value only can be int uint double and Pointer type!");
+            }
+            
+        }
+        return;
+    }
+    
+    
 	switch (_type.typeKind) {
 		case MF_TYPE_BOOL:
 		case MF_TYPE_U_INT:
@@ -152,6 +201,25 @@
 
 
 - (uint64_t)c2uintValue{
+    
+    if (self.externNativeGlobalVariable) {
+        if (self.externNativeGlobalVariablePointer) {
+            switch (_type.typeKind) {
+                case MF_TYPE_BOOL:
+                    return *(BOOL *)self.externNativeGlobalVariablePointer;
+                case MF_TYPE_INT:
+                    return *(NSInteger *)self.externNativeGlobalVariablePointer;
+                case MF_TYPE_U_INT:
+                    return *(NSUInteger *)self.externNativeGlobalVariablePointer;
+                case MF_TYPE_DOUBLE:
+                    return *(double *)self.externNativeGlobalVariablePointer;
+                default:
+                    return 0;
+            }
+        }
+        return 0;
+    }
+    
 	switch (_type.typeKind) {
 		case MF_TYPE_BOOL:
 			return _uintValue;
@@ -168,38 +236,31 @@
 
 
 - (int64_t)c2integerValue{
-	switch (_type.typeKind) {
-		case MF_TYPE_BOOL:
-			return _uintValue;
-		case MF_TYPE_INT:
-			return _integerValue;
-		case MF_TYPE_U_INT:
-			return _uintValue;
-		case MF_TYPE_DOUBLE:
-			return _doubleValue;
-		default:
-			return 0;
-	}
+    return [self c2uintValue];
 }
 
 
 - (double)c2doubleValue{
-	switch (_type.typeKind) {
-		case MF_TYPE_BOOL:
-			return _uintValue;
-		case MF_TYPE_INT:
-			return _integerValue;
-		case MF_TYPE_U_INT:
-			return _uintValue;
-		case MF_TYPE_DOUBLE:
-			return _doubleValue;
-		default:
-			return 0.0;
-	}
+    return [self c2uintValue];
 }
 
 
 - (id)c2objectValue{
+    if (self.externNativeGlobalVariable) {
+        if (self.externNativeGlobalVariablePointer) {
+            switch (_type.typeKind) {
+                case MF_TYPE_CLASS:
+                case MF_TYPE_OBJECT:
+                case MF_TYPE_BLOCK:
+                case MF_TYPE_POINTER:
+                    return  *(const id *)self.externNativeGlobalVariablePointer;
+                default:
+                    return nil;
+            }
+        }
+        return nil;
+    }
+    
 	switch (_type.typeKind) {
 		case MF_TYPE_CLASS:
 			return _classValue;
@@ -216,6 +277,24 @@
 
 
 - (void *)c2pointerValue{
+
+    if (self.externNativeGlobalVariable) {
+        if (self.externNativeGlobalVariablePointer) {
+            switch (_type.typeKind) {
+                case MF_TYPE_C_STRING:
+                case MF_TYPE_POINTER:
+                case MF_TYPE_C_FUNCTION:
+                case MF_TYPE_CLASS:
+                case MF_TYPE_OBJECT:
+                case MF_TYPE_BLOCK:
+                    return *(void**)self.externNativeGlobalVariablePointer;
+                default:
+                    return NULL;
+            }
+        }
+        return NULL;
+    }
+    
 	switch (_type.typeKind) {
 		case MF_TYPE_C_STRING:
 			return (void *)_cstringValue;
@@ -338,6 +417,10 @@ break;\
 			memcpy(retValue.pointerValue, cValuePointer, size);
 			break;
 		}
+        case 'v': {
+            retValue.type = mf_create_type_specifier(MF_TYPE_VOID);
+            break;
+        }
 			
 		default:
 			NSCAssert(0, @"not suppoert %s", typeEncoding);
@@ -530,6 +613,44 @@ break;\
 - (instancetype)nsStringValue{
 	MFValue *value = [[MFValue alloc] init];
 	value.type = mf_create_type_specifier(MF_TYPE_OBJECT);
+    
+    if (self.externNativeGlobalVariable) {
+        if (self.externNativeGlobalVariablePointer) {
+            switch (_type.typeKind) {
+                case MF_TYPE_BOOL:
+                    value.objectValue = [NSString stringWithFormat:@"%d",*(BOOL *)self.externNativeGlobalVariablePointer];
+                case MF_TYPE_U_INT:
+                    value.objectValue = [NSString stringWithFormat:@"%lu",(unsigned long)*(NSUInteger *)self.externNativeGlobalVariablePointer];
+                    break;
+                case MF_TYPE_INT:
+                    value.objectValue = [NSString stringWithFormat:@"%ld",(long)*(NSInteger *)self.externNativeGlobalVariablePointer];
+                    break;
+                case MF_TYPE_DOUBLE:
+                    value.objectValue = [NSString stringWithFormat:@"%lf", *(double *)self.externNativeGlobalVariablePointer];
+                    break;
+                case MF_TYPE_CLASS:
+                case MF_TYPE_BLOCK:
+                case MF_TYPE_OBJECT:
+                    value.objectValue = [NSString stringWithFormat:@"%@",*(const id *)self.externNativeGlobalVariablePointer];
+                    break;
+                case MF_TYPE_C_FUNCTION:
+                case MF_TYPE_POINTER:
+                    value.objectValue = [NSString stringWithFormat:@"%p",*(void **)self.externNativeGlobalVariablePointer];
+                    break;
+                case MF_TYPE_C_STRING:
+                    value.objectValue = [NSString stringWithFormat:@"%s",*(char **)self.externNativeGlobalVariablePointer];
+                    break;
+                default:
+                    NSCAssert(0, @"");
+                    break;
+            }
+        } else {
+            value.objectValue = @"(null)";
+        }
+        return value;
+    }
+    
+    
 	switch (_type.typeKind) {
 		case MF_TYPE_BOOL:
 		case MF_TYPE_U_INT:
@@ -603,6 +724,10 @@ break;\
 }
 
 -(void *)valuePointer{
+    if (self.externNativeGlobalVariable) {
+        return self.externNativeGlobalVariablePointer;
+    }
+    
     void *retPtr = NULL;
     switch (_type.typeKind) {
         case MF_TYPE_BOOL:

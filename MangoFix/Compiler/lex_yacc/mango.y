@@ -53,6 +53,8 @@ int yylex(void);
 	RETURN IF ELSE FOR IN WHILE DO SWITCH CASE DEFAULT BREAK CONTINUE
 	PROPERTY WEAK STRONG COPY ASSIGN_MEM NONATOMIC ATOMIC  ASTERISK  VOID
 	BOOL_ CHAR U_INT INT DOUBLE C_STRING  CLASS_ SEL_ ID POINTER BLOCK __WEAK __STRONG STATIC C_FUNCTION  TYPEDEF SWIFT_CLASS_ALIAS
+    EXTERN
+
 
 
 
@@ -1243,7 +1245,7 @@ declaration: declaration_modifier_list type_specifier IDENTIFIER
 			{
 				MFTypeSpecifier *type = (__bridge_transfer MFTypeSpecifier *)$2;
 				NSString *name = (__bridge_transfer NSString *)$3;
-				MFDeclaration *declaration = mf_create_declaration($1,type, name, nil);
+				MFDeclaration *declaration = mf_create_declaration(false, $1,type, name, nil);
                 
 				$$ = (__bridge_retained void *)declaration;
 			}
@@ -1252,14 +1254,14 @@ declaration: declaration_modifier_list type_specifier IDENTIFIER
 				MFTypeSpecifier *type = (__bridge_transfer MFTypeSpecifier *)$2;
 				NSString *name = (__bridge_transfer NSString *)$3;
 				MFExpression *initializer = (__bridge_transfer MFExpression *)$5;
-				MFDeclaration *declaration = mf_create_declaration($1,type, name, initializer);
+				MFDeclaration *declaration = mf_create_declaration(false, $1,type, name, initializer);
 				$$ = (__bridge_retained void *)declaration;
 			}
             | type_specifier IDENTIFIER
             {
                 MFTypeSpecifier *type = (__bridge_transfer MFTypeSpecifier *)$1;
                 NSString *name = (__bridge_transfer NSString *)$2;
-                MFDeclaration *declaration = mf_create_declaration(MFDeclarationModifierNone,type, name, nil);
+                MFDeclaration *declaration = mf_create_declaration(false, MFDeclarationModifierNone, type, name, nil);
                 $$ = (__bridge_retained void *)declaration;
             }
             | type_specifier IDENTIFIER ASSIGN expression
@@ -1267,7 +1269,14 @@ declaration: declaration_modifier_list type_specifier IDENTIFIER
                 MFTypeSpecifier *type = (__bridge_transfer MFTypeSpecifier *)$1;
                 NSString *name = (__bridge_transfer NSString *)$2;
                 MFExpression *initializer = (__bridge_transfer MFExpression *)$4;
-                MFDeclaration *declaration = mf_create_declaration(MFDeclarationModifierNone,type, name, initializer);
+                MFDeclaration *declaration = mf_create_declaration(false, MFDeclarationModifierNone, type, name, initializer);
+                $$ = (__bridge_retained void *)declaration;
+            }
+            | EXTERN type_specifier IDENTIFIER
+            {
+                MFTypeSpecifier *type = (__bridge_transfer MFTypeSpecifier *)$2;
+                NSString *name = (__bridge_transfer NSString *)$3;
+                MFDeclaration *declaration = mf_create_declaration(true, MFDeclarationModifierNone, type, name, nil);
                 $$ = (__bridge_retained void *)declaration;
             }
 			;
@@ -1546,5 +1555,6 @@ top_statement: declaration_statement
 			| do_while_statement
 			| expression_statement
 			;
+            
 
 %%

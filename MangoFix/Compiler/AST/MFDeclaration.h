@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MFDeclaration: MFAnnotationableDefinition
 
+@property (assign, nonatomic) BOOL externNativeGlobalVariable;
 @property (assign, nonatomic) NSUInteger lineNumber;
 @property (strong, nonatomic) MFTypeSpecifier *type;
 @property (assign,nonatomic) MFDeclarationModifier modifier;

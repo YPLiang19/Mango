@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MFValue : NSObject
 
+@property (assign, nonatomic) BOOL externNativeGlobalVariable;
+@property (assign, nonatomic) void *externNativeGlobalVariablePointer;
+
 @property (assign, nonatomic) uint64_t uintValue;
 @property (assign, nonatomic) int64_t integerValue;
 @property (assign, nonatomic) double doubleValue;
@@ -27,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)isSubtantial;
 - (BOOL)isObject;
-- (BOOL)isMember;
+- (BOOL)isNumber;
 - (BOOL)isBaseValue;
 
 - (uint64_t)c2uintValue;

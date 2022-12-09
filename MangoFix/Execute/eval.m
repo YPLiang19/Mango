@@ -968,7 +968,7 @@ static void eval_add_expression(MFInterpreter *inter, MFScopeChain *scope,MFBina
 	MFValue *rightValue = [inter.stack peekStack:0];
 	MFValue *resultValue = [MFValue new];
 	
-	if (![leftValue isMember] || ![rightValue isMember]){
+	if (![leftValue isNumber] || ![rightValue isNumber]){
 		resultValue.type = mf_create_type_specifier(MF_TYPE_OBJECT);
 		NSString *str = [NSString stringWithFormat:@"%@%@",[leftValue nsStringValue].objectValue,[rightValue nsStringValue].objectValue];
 		resultValue.objectValue = str;
@@ -1931,7 +1931,7 @@ static void eval_expression(MFInterpreter *inter, MFScopeChain *scope, __kindof 
 	
 }
 
-MFValue *mf_eval_expression(MFInterpreter *inter, MFScopeChain *scope,MFExpression *expr){
+MFValue *mf_eval_expression(MFInterpreter *inter, MFScopeChain *scope, MFExpression *expr){
 	eval_expression(inter, scope, expr);
 	return [inter.stack pop];
 }

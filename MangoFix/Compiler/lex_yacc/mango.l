@@ -136,6 +136,9 @@ static void increment_line_number(){
 <INITIAL>"__strong" {return __STRONG; }
 <INITIAL>"static" {return STATIC; }
 <INITIAL>"typedef" {return TYPEDEF; }
+<INITIAL>"extern" {return EXTERN; }
+
+
 
 <INITIAL>"@SwiftClassAlias" {return SWIFT_CLASS_ALIAS; }
 

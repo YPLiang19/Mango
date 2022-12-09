@@ -179,7 +179,7 @@ class ViewController:UIViewController {
     self.resultView.text = @""+i;
 }
 
-    - (void)cfuntionVarExample{
+- (void)cfuntionVarExample{
     int NSDocumentDirectory = 9;
     int NSUserDomainMask = 1;
 
@@ -216,9 +216,45 @@ class ViewController:UIViewController {
     self.resultView.text = @"文件写入成功:" + path;
 }
 
+
+// Native 全局变量访问测试
+- (void)nativeGlobalVariableAccess {
+
+    extern int nativeInt1;
+    extern int nativeInt2;
+    
+    NSLog(@"--" + nativeInt1);
+    NSLog(@"--" + nativeInt2);
+
+    nativeInt2 = nativeInt1;
+                    
+    NSLog(@"--" + nativeInt1);
+    NSLog(@"--" + nativeInt2);
+
+
+    CFunction<void, char *> testNativeCStringFunc = CFunction("testNativeCStringFunc");
+    
+    extern Pointer nativeCString1;
+    extern Pointer nativeCString2;
+    
+    testNativeCStringFunc(nativeCString1);
+    testNativeCStringFunc(nativeCString2);
+    
+    nativeCString2 = nativeCString1;
+    
+    testNativeCStringFunc(nativeCString1);
+    testNativeCStringFunc(nativeCString2);
+    
+
+    extern NSString *nativeNSString;
+    self.resultView.text = nativeNSString;
+    
+}
+
 - (void)typedefExaple{
     self.resultView.text = @"typedef long alias_long;";
 }
+
 
 }
 

@@ -36,7 +36,7 @@ MFTypeSpecifier *mf_create_struct_type_specifier(NSString *structName);
 
 MFParameter *mf_create_parameter(MFTypeSpecifier *type, NSString *name);
 
-MFDeclaration *mf_create_declaration(MFDeclarationModifier modifier_list, MFTypeSpecifier *type, NSString *name, MFExpression *initializer);
+MFDeclaration *mf_create_declaration(BOOL externNativeGlobalVariable, MFDeclarationModifier modifier_list, MFTypeSpecifier *type, NSString *name, MFExpression *initializer);
 
 MFDeclarationStatement *mf_create_declaration_statement(MFDeclaration *declaration);
 

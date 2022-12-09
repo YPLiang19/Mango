@@ -33,7 +33,7 @@
         NSError *error;
         NSData *encryptedData = [NSData dataWithContentsOfURL:url];
         if (error) {
-            NSLog(@"MangoFix: %@",error);
+            NSLog(@"[MangoFix] [ERROR] : %@",error);
             return;
         }
         [self evalMangoScriptWithAES128Data:encryptedData];
@@ -45,7 +45,7 @@
         NSData *mangoFixData = [scriptData AES128ParmDecryptWithKey:_key iv:_iv];
         NSString *mangoFixString = [[NSString alloc] initWithData:mangoFixData encoding:NSUTF8StringEncoding];
         if (!mangoFixString.length) {
-            NSLog(@"MangoFix: AES128(ECBMode) decrypt error!");
+            NSLog(@"[MangoFix] [ERROR] : AES128(ECBMode) decrypt error!");
             return;
         }
         mf_set_current_compile_util(self.interpreter);

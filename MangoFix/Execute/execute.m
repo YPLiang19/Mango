@@ -19,6 +19,7 @@
 #import "MFWeakPropertyBox.h"
 #import "MFPropertyMapTable.h"
 #import "MFStaticVarTable.h"
+#import <symdl/symdl.h>
 
 const void *mf_propKey(NSString *propName) {
     static NSMutableDictionary *_propKeys;
@@ -50,10 +51,12 @@ static MFValue *default_value_with_type_specifier( MFTypeSpecifier *typeSpecifie
 
 static void execute_declaration(MFInterpreter *inter, MFScopeChain *scope, MFDeclaration *declaration){
     BOOL staticVar = declaration.modifier & MFDeclarationModifierStatic;
+    BOOL externNativeGlobalVariable = declaration.externNativeGlobalVariable;
     __block MFValue *value = nil;
     
     void (^initValueBlock)(void) = ^(){
-        value = default_value_with_type_specifier(declaration.type,declaration.modifier);
+        value = default_value_with_type_specifier(declaration.type, declaration.modifier);
+        value.externNativeGlobalVariable = externNativeGlobalVariable;
         if (declaration.initializer) {
             MFValue *initValue = mf_eval_expression(inter, scope, declaration.initializer);
             [value assignFrom:initValue];
@@ -70,7 +73,20 @@ static void execute_declaration(MFInterpreter *inter, MFScopeChain *scope, MFDec
             [scope setValue:value withIndentifier:declaration.name];
             [[MFStaticVarTable shareInstance] setStaticVarValue:value withKey:key];
         }
-    }else{
+    } else if (externNativeGlobalVariable) {
+        value = [inter.commonScope getValueWithIdentifier:declaration.name];
+        if (!value) {
+            initValueBlock();
+            void *externNativeGlobalVariablePointer = symdl(declaration.name.UTF8String);
+            if (!externNativeGlobalVariablePointer) {
+                NSString *errMsg = [NSString stringWithFormat:@"extern %@ not find!", declaration.name];
+                NSLog(@"[MangoFix] [ERROR] : %@", errMsg);
+            }
+            value.externNativeGlobalVariablePointer = externNativeGlobalVariablePointer;
+            value.externNativeGlobalVariable = YES;
+            [inter.commonScope setValue:value withIndentifier:declaration.name];
+        }
+    } else {
         initValueBlock();
         [scope setValue:value withIndentifier:declaration.name];
     }
