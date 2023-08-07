@@ -1,5 +1,5 @@
 PODS:
-  - MangoFix (1.5.1):
+  - MangoFix (1.5.2):
     - symdl
   - Masonry (1.1.0)
   - symdl (0.9.0)
@@ -18,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MangoFix: 86c870851351515a88261a472cc9236959317b71
+  MangoFix: 8dbc1ff99d215152aeb29673f4e0f4444fa5024d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   symdl: b199c582777d9abb0dc324c308f358502ca2c190
 
 PODFILE CHECKSUM: 911a1bb3fd9799c1577d16ea8d90314d90fb35f1
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1
