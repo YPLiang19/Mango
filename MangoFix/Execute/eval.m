@@ -1698,8 +1698,13 @@ static void eval_function_call_expression(MFInterpreter *inter, MFScopeChain *sc
                 [inter.stack push:retValue];
             }else{
                 const char *blockTypeEncoding = [MFBlock typeEncodingForBlock:callee.c2objectValue];
-                if (!blockTypeEncoding) {
-                    blockTypeEncoding =  [callee.type typeEncoding];
+                if (!blockTypeEncoding && callee.type.annotationList) {
+                    NSArray *annotationList = callee.type.annotationList;
+                    for (MFAnnotation *annotation in annotationList) {
+                        if ([annotation.name isEqualToString:@"@Signature"]) {
+                            blockTypeEncoding = annotation.expr.cstringValue;
+                        }
+                    }
                 }
                 
                 if (!blockTypeEncoding) {

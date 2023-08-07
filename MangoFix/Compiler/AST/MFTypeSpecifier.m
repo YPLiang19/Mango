@@ -32,15 +32,6 @@
 		return _typeEncoding;
 	}
     
-    if (self.annotationList) {
-        for (MFAnnotation *annotation in self.annotationList) {
-            if ([annotation.name isEqualToString:@"@Signature"]) {
-                _typeEncoding = annotation.expr.cstringValue;
-                return _typeEncoding;
-            }
-        }
-    }
-    
 	if (self.typeKind == MF_TYPE_STRUCT || self.typeKind == MF_TYPE_STRUCT_LITERAL) {
 		MFStructDeclareTable *table = [MFStructDeclareTable shareInstance];
 		_typeEncoding = [table getStructDeclareWithName:self.structName].typeEncoding;
