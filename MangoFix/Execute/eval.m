@@ -1694,10 +1694,18 @@ static void eval_function_call_expression(MFInterpreter *inter, MFScopeChain *sc
                     MFValue *value = [inter.stack pop];
                     [paramValues addObject:value];
                 }
-                MFValue *retValue = call_c_function(expr.lineNumber,callee, paramValues.copy);
+                MFValue *retValue = call_c_function(expr.lineNumber, callee, paramValues.copy);
                 [inter.stack push:retValue];
             }else{
                 const char *blockTypeEncoding = [MFBlock typeEncodingForBlock:callee.c2objectValue];
+                if (!blockTypeEncoding) {
+                    blockTypeEncoding =  [callee.type typeEncoding];
+                }
+                
+                if (!blockTypeEncoding) {
+                    NSLog(@"[MangoFix] [ERROR] : block signature is NULL, please set manually with `@Signature`");
+                    assert(0);
+                }
                 NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:blockTypeEncoding];
                 NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
                 [invocation setTarget:callee.objectValue];

@@ -391,7 +391,9 @@ MFValue * mf_call_mf_function(MFInterpreter *inter, MFScopeChain *scope, MFFunct
 	MFScopeChain *funScope = [MFScopeChain scopeChainWithNext:scope];
 	NSUInteger i = 0;
 	for (MFParameter *param in params) {
-		[funScope setValue:args[i] withIndentifier:param.name];
+        MFValue *mfValue = args[i];
+        mfValue.type.annotationList = param.type.annotationList;
+		[funScope setValue:mfValue withIndentifier:param.name];
 		i++;
 	}
 	

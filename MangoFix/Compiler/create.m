@@ -433,6 +433,13 @@ MFTypeSpecifier *mf_create_type_specifier(MFTypeSpecifierKind kind){
 	return typeSpecifier;
 }
 
+MFTypeSpecifier *mf_create_type_specifier_with_annotation_list(MFTypeSpecifierKind kind, NSArray<MFAnnotation *> *annotationList) {
+    MFTypeSpecifier *typeSpecifier = [[MFTypeSpecifier alloc] init];
+    typeSpecifier.typeKind = kind;
+    typeSpecifier.annotationList = annotationList;
+    return typeSpecifier;
+}
+
 
 MFTypeSpecifier *mf_create_struct_type_specifier(NSString *structName){
 	MFTypeSpecifier *typeSpecifier = mf_create_type_specifier(MF_TYPE_STRUCT);

@@ -30,6 +30,8 @@ MFStructDeclare *mf_create_struct_declare(NSArray<MFAnnotation *> *annotationLis
 
 MFTypeSpecifier *mf_create_type_specifier(MFTypeSpecifierKind kind);
 
+MFTypeSpecifier *mf_create_type_specifier_with_annotation_list(MFTypeSpecifierKind kind, NSArray<MFAnnotation *> *annotationList);
+
 MFTypeSpecifier *mf_create_cfuntion_type_specifier( NSArray<NSString *> *typeList);
 
 MFTypeSpecifier *mf_create_struct_type_specifier(NSString *structName);

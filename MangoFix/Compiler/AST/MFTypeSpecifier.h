@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class MFAnnotation;
 @class MFInterpreter;
 typedef NS_ENUM(NSUInteger, MFTypeSpecifierKind) {
 	MF_TYPE_VOID,
@@ -26,6 +27,8 @@ typedef NS_ENUM(NSUInteger, MFTypeSpecifierKind) {
 	MF_TYPE_UNKNOWN
 };
 @interface MFTypeSpecifier : NSObject
+
+@property (strong, nonatomic) NSArray<MFAnnotation *> *annotationList;
 
 @property (copy, nonatomic,readonly) NSString *typeName;
 @property (assign, nonatomic) MFTypeSpecifierKind typeKind;

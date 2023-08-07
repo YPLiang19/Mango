@@ -447,9 +447,10 @@ type_specifier: VOID
 			{
 				$$ =  (__bridge_retained void *)mf_create_type_specifier(MF_TYPE_SEL);
 			}
-			| BLOCK
+			| annotation_list BLOCK
 			{
-				$$ =  (__bridge_retained void *)mf_create_type_specifier(MF_TYPE_BLOCK);
+                NSArray<MFAnnotation *> *annotationList = (__bridge_transfer NSArray<MFAnnotation *> *)$1;
+				$$ =  (__bridge_retained void *)mf_create_type_specifier_with_annotation_list(MF_TYPE_BLOCK, annotationList);
 			}
 			| POINTER
 			{
