@@ -8,7 +8,7 @@ DESC
 s.homepage     = "https://github.com/YPLiang19/Mango"
 s.license      = "MIT"
 s.author             = { "Yong PengLiang" => "yong_pliang@163.com" }
-s.ios.deployment_target = "9.0"
+s.ios.deployment_target = "11.0"
 s.source       = { :git => "https://github.com/YPLiang19/Mango.git", :tag => "#{s.version}" }
 s.pod_target_xcconfig = { 'GCC_INPUT_FILETYPE' => 'sourcecode.c.objc' }
 s.source_files  = "MangoFix/**/*.{h,m,c,y,l}"
