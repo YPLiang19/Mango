@@ -2,6 +2,8 @@
 
 MangoFix 学习讨论QQ群：766215773
 
+MangoFix 现在支持周末全天付费支持，每天（8-10小时）800，需要的可以加群联系。
+
 
 # Mango
 MangoFix is a DSL which syntax is very similar to Objective-C，MangoFix is also an iOS  App hotfix SDK. You can use MangoFix method replace any Objective-C or Swift method (Support Swfit from MangoFxi 1.5).
