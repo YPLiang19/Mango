@@ -241,7 +241,36 @@
 
 
 - (double)c2doubleValue{
-    return [self c2uintValue];
+    if (self.externNativeGlobalVariable) {
+        if (self.externNativeGlobalVariablePointer) {
+            switch (_type.typeKind) {
+                case MF_TYPE_BOOL:
+                    return *(BOOL *)self.externNativeGlobalVariablePointer;
+                case MF_TYPE_INT:
+                    return *(NSInteger *)self.externNativeGlobalVariablePointer;
+                case MF_TYPE_U_INT:
+                    return *(NSUInteger *)self.externNativeGlobalVariablePointer;
+                case MF_TYPE_DOUBLE:
+                    return *(double *)self.externNativeGlobalVariablePointer;
+                default:
+                    return 0;
+            }
+        }
+        return 0;
+    }
+    
+    switch (_type.typeKind) {
+        case MF_TYPE_BOOL:
+            return _uintValue;
+        case MF_TYPE_INT:
+            return _integerValue;
+        case MF_TYPE_U_INT:
+            return _uintValue;
+        case MF_TYPE_DOUBLE:
+            return _doubleValue;
+        default:
+            return 0;
+    }
 }
 
 
