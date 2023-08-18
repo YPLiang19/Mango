@@ -53,32 +53,6 @@ static NSString * const aes128Iv = @"abcdef";
 
 @end
 
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.view addSubview:[self genView]];
-}
-
-- (UIView *)genView{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(50, 100, 150, 200)];
-    return view;
-}
-
-@end
-
-```
-
-```objc
-class ViewController:UIViewController{
-
-- (UIView *)genView{
-    UIView *view = UIView.alloc().initWithFrame:(CGRectMake(50, 100, 150, 200));
-    view.backgroundColor = UIColor.redColor();
-    return view;
-}
-
-}
 
 ```
 
