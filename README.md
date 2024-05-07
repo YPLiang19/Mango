@@ -712,7 +712,7 @@ class WebKitViewController : UIViewController {
     webView.loadRequest:(request);
 }
 
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:( Block)decisionHandler {
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(@Signature("v16@?0q8") Block)decisionHandler {
     NSLog(@"decidePolicyForNavigationAction");
     int WKNavigationActionPolicyAllow =  1;
     decisionHandler(WKNavigationActionPolicyAllow);
