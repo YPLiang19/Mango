@@ -697,6 +697,29 @@ class SubMyController:SuperMyController {
 
 }
 
+
+class WebKitViewController : UIViewController {
+
+- (void)viewDidLoad {
+    super.viewDidLoad();
+    
+    self.view.backgroundColor = UIColor.redColor();
+    WKWebView *webView = WKWebView.alloc().initWithFrame:(self.view.bounds);
+    self.view.addSubview:(webView);
+    webView.navigationDelegate = self;
+    NSURL *url = NSURL.URLWithString:(@"https://www.baidu.com");
+    NSURLRequest *request = NSURLRequest.requestWithURL:(url);
+    webView.loadRequest:(request);
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:( Block)decisionHandler {
+    NSLog(@"decidePolicyForNavigationAction");
+    int WKNavigationActionPolicyAllow =  1;
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+}
+
 ```
 
 
