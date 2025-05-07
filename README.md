@@ -769,6 +769,4 @@ class WebKitViewController : UIViewController {
     
     
 # 微信捐赠
-
-![wechat-pay](https://user-images.githubusercontent.com/36928218/122531509-27e2c200-d052-11eb-9063-1f8f28c67683.jpg)
 ![191746597416_ pic](https://github.com/user-attachments/assets/ec845c7e-916d-4264-ba49-35443eb8b69a)
