@@ -30,6 +30,7 @@ int yylex(void);
 	void	*declaration;
     void    *annotation_list;
     void    *annotation;
+    void    *oc_method_call_entry;
 	MFAssignKind assignment_operator;
 	MFPropertyModifier property_modifier_list;
     MFDeclarationModifier declaration_modifier;
@@ -64,7 +65,7 @@ equality_expression relational_expression additive_expression multiplication_exp
 
 %type <identifier> selector selector_1 selector_2 key_work_identifier c_type_identier
 
-%type <list> identifier_list struct_entry_list dic_entry_list  statement_list protocol_list else_if_list case_list member_definition_list
+%type <list> identifier_list struct_entry_list dic_entry_list  statement_list protocol_list else_if_list case_list member_definition_list oc_method_call_entry_list
 method_name method_name_1 method_name_2 expression_list function_param_list  c_type_identier_list annotation_list
 
 %type <method_name_item> method_name_item
@@ -84,6 +85,7 @@ break_statement continue_statement return_statement declaration_statement
 %type <function_param> function_param
 %type <declaration> declaration
 %type <declaration_modifier> declaration_modifier declaration_modifier_list
+%type <oc_method_call_entry> oc_method_call_entry
 %%
 
 compile_util: /*empty*/
@@ -805,6 +807,30 @@ expression_list: assign_expression
 				$$ = (__bridge_retained void *)list;
 			}
 			;
+            
+oc_method_call_entry: IDENTIFIER COLON primary_expression
+            {
+                NSString *name = (__bridge_transfer NSString *)$1;
+                MFExpression *paramExpr = (__bridge_transfer MFExpression *)$3;
+                $$ = (__bridge_retained void *)mf_create_oc_call_entry(name, paramExpr);
+            }
+            ;
+            oc_method_call_entry_list: oc_method_call_entry
+            {
+                NSMutableArray *list = [NSMutableArray array];
+                MFOCCallEntry *entry = (__bridge_transfer MFOCCallEntry *)$1;
+                [list addObject:entry];
+                $$ = (__bridge_retained void *)list;
+            }
+            |
+            oc_method_call_entry_list oc_method_call_entry
+            {
+                NSMutableArray *list = (__bridge_transfer NSMutableArray *)$1;
+                MFOCCallEntry *entry = (__bridge_transfer MFOCCallEntry *)$2;
+                [list addObject:entry];
+                $$ = (__bridge_retained void *)list;
+            }
+            ;
 
 dic_entry: primary_expression COLON primary_expression
 			{
@@ -1013,6 +1039,36 @@ primary_expression: IDENTIFIER
 				
 				$$ = (__bridge_retained void *)funcCallExpr;
 			}
+            | LB primary_expression IDENTIFIER  RB
+            {
+                MFMemberExpression *expr = (MFMemberExpression *)mf_create_expression(MF_MEMBER_EXPRESSION);
+                expr.expr = (__bridge_transfer MFExpression *)$2;
+                expr.memberName = (__bridge_transfer NSString *)$3;
+                $$ = (__bridge_retained void *)expr;
+            }
+            ;
+            | LB primary_expression key_work_identifier  RB
+            {
+                MFMemberExpression *expr = (MFMemberExpression *)mf_create_expression(MF_MEMBER_EXPRESSION);
+                expr.expr = (__bridge_transfer MFExpression *)$2;
+                expr.memberName = (__bridge_transfer NSString *)$3;
+                $$ = (__bridge_retained void *)expr;
+            }
+            ;
+            | LB primary_expression oc_method_call_entry_list RB
+            {
+                MFExpression *expr = (__bridge_transfer MFExpression *)$2;
+                MFOCCallEntryList *entryList = mf_create_oc_call_list((__bridge_transfer NSArray *)$3);
+                MFMemberExpression *memberExpr = (MFMemberExpression *)mf_create_expression(MF_MEMBER_EXPRESSION);
+                memberExpr.expr = expr;
+                memberExpr.memberName = entryList.selector;
+                MFFunctonCallExpression *funcCallExpr = (MFFunctonCallExpression *)mf_create_expression(MF_FUNCTION_CALL_EXPRESSION);
+                funcCallExpr.expr = memberExpr;
+                funcCallExpr.args = entryList.paramExpressions;
+                $$ = (__bridge_retained void *)funcCallExpr;
+            }
+            ;
+            
 			| primary_expression LP RP
 			{
                 MFExpression *expr = (__bridge_transfer MFExpression *)$1;

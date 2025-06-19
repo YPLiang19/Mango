@@ -101,4 +101,8 @@ MFInterpreter *mf_get_current_compile_util(void);
 
 void mf_set_current_compile_util(MFInterpreter *interpreter);
 
+MFOCCallEntry *mf_create_oc_call_entry(NSString *name, MFExpression *paramExpre);
+
+MFOCCallEntryList *mf_create_oc_call_list(NSArray<MFOCCallEntry *> *list);
+
 #endif /* create_h */

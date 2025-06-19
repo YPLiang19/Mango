@@ -640,6 +640,29 @@ void mf_add_swift_class_alias(NSString *n1, NSString *n2, NSString *n3, NSString
 }
 
 
+MFOCCallEntry *mf_create_oc_call_entry(NSString *name, MFExpression *paramExpre) {
+    MFOCCallEntry *entry = [[MFOCCallEntry alloc] init];
+    entry.name = name;
+    entry.paramExpre = paramExpre;
+    return entry;
+}
+
+MFOCCallEntryList *mf_create_oc_call_list(NSArray<MFOCCallEntry *> *list) {
+    MFOCCallEntryList *ret = [[MFOCCallEntryList alloc] init];
+    NSMutableString *selector = [NSMutableString string];
+    NSMutableArray *paramsExpr = [NSMutableArray array];
+    for (MFOCCallEntry *entry in list) {
+        [selector appendFormat:@"%@:", entry.name];
+        [paramsExpr addObject:entry.paramExpre];
+    }
+    
+    ret.selector = [selector copy];
+    ret.paramExpressions = [paramsExpr copy];
+    return ret;
+}
+
+
+
 
 
 

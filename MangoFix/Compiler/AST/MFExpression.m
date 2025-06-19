@@ -138,6 +138,15 @@
 @end
 
 
+@implementation MFOCCallEntry
+
+@end
+
+@implementation MFOCCallEntryList
+
+
+@end
+
 
 
 

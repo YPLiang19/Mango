@@ -140,9 +140,8 @@ class ViewController:UIViewController {
 }
 
 - (void)createAndOpenNewViewControllerExample {
-	SubMyController *vc = SubMyController.alloc().init();
-	self.navigationController.pushViewController:animated:(vc,YES);
-
+	SubMyController *vc = [[SubMyController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //类方法替换示例
@@ -366,7 +365,7 @@ class SubMyController:SuperMyController {
 
 class SomClass2 : SomClass1 {
 -(instancetype)initWithFrame:(CGRect)frame configuration:(WKWebViewConfiguration *)configuration {
-    self = super.initWithFrame:configuration:(frame,configuration);
+    self = [super initWithFrame:frame configuration:configuration];
     return self;
 }
 

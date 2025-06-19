@@ -192,13 +192,27 @@ typedef NS_ENUM(NSInteger, MFAssignKind) {
 @end
 
 
-
-
 @interface MFCFuntionExpression : MFExpression
 
 @property (strong, nonatomic) MFExpression *cfunNameOrPointerExpr;
 
 @end
+
+@interface MFOCCallEntry: NSObject
+
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) MFExpression *paramExpre;
+
+@end
+
+
+@interface MFOCCallEntryList : NSObject
+@property(strong, nonatomic) NSString *selector;
+@property(strong, nonatomic) NSArray<MFExpression *> *paramExpressions;;
+
+@end
+
+
 
 
 
